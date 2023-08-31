@@ -10,3 +10,7 @@ fi
 echo "Stopping Redis"
 brew services stop redis
 echo "Redis is shutdown successfully"
+
+echo "Deleting env file"
+readonly envFile="$(pwd)"'/.env'
+rm "$envFile"

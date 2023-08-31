@@ -1,5 +1,3 @@
-#export TMP_RPC_PASS=$(xxd -l 5 -c 5 -p /dev/urandom)
-#echo "$TMP_RPC_PASS"
 readonly DB_LOCATION=db/data
 if [ ! -d $DB_LOCATION ]
 then
@@ -39,4 +37,9 @@ npm install
 
 echo "Loading the DB"
 node "$(pwd)"/scripts/runDataSync.js
+
+echo "Creating env file"
+readonly envFile="$(pwd)"'/.env'
+readonly JWT_SECRET=$(xxd -l 50 -c 50 -p /dev/urandom)
+echo "JWT_SECRET=$JWT_SECRET" > "$envFile"
 

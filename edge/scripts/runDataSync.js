@@ -20,7 +20,7 @@ async function getClient() {
 async function populateCrews(client) {
     try {
         const database = client.db("olg");
-        const crews = database.collection("crews");
+        const crews = database.collection("users");
         const crewData = require('../data/crews');
 
         const result = await crews.insertMany(crewData);

@@ -41,3 +41,25 @@ chmod 755 scripts/shutdown.sh
 ### <span style="color: green"> Steps to shut down the server locally
 - Stop the express server on the console (Ctrl + C)
 - To stop the MongoDB and Redis instances, run the `scripts/shutdown.sh` on your terminal.   
+
+### <span style="color: green"> Details of the components of the Edge server
+Following are the components of the server: 
+1. The express server which exposes the API for the web app to connect to
+2. The Socket IO component, which the bots will use to stream messages back to the clients
+3. The Redis cache - which will be used to publish messages as well as cache any data
+4. Mongo DB is the persistent repository in the backend
+
+### <span style="color: green"> Authentication process
+1. When the user registers for the first time, they will be required to set a PIN
+2. User will be able to reset their PIN
+3. User PIN is encrypted in the DB
+4. User authenticates with user id and PIN. After successful authentication, the API sends back user details and a JWT token. The token is signed by using an environment variable that is generated in the startup script.
+5. For all subsequent authenticated requests (including connecting to socket.io), the token should be present in the request in the Bearer Auth header, or the "token" header.
+6. The web app should listen to messages for the user based on the user id.
+
+### <span style="color: green"> Testing on the edge
+In the test folder, there are scripts/curl commands to test the edge server
+1. There is a client for socket io - this will connect to the socket server and listen for messages (based on user id)
+2. There is a client for redis - this will publish messages to a user (based on user id)
+3. There is a collection of insomnia requests - you can choose to import these into your client to test the commands
+
