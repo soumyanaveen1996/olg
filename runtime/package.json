@@ -1,0 +1,12 @@
+{
+  "name": "runtime",
+  "version": "1.0.0",
+  "description": "frontm.js runtime for edge server",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
