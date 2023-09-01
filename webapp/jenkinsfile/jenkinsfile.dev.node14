@@ -1,0 +1,42 @@
+node {
+    
+    currentBuild.result = "SUCCESS"
+
+    try {
+    
+       slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#439FE0', message: "STARTED - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+       stage('Checkout'){
+
+          checkout scm
+       }
+
+       stage('Build'){
+
+         sh 'rm -rf node_modules'
+         sh 'source ~/.bashrc | nvm use 14 | npm install --unsafe-perm'
+         sh 'CI=false npm run build:${env}'
+
+       }
+
+       stage('Deploy to S3'){
+
+            sh 'aws s3 sync build s3://${S3}'
+       }
+
+       stage('Invalidate Cloudfront Cache'){
+         
+         sh 'aws cloudfront create-invalidation --distribution-id ${CloudFront_DistributionID} --paths "/*"'
+         slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#43e046', message: "BUILD SUCCESS - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+       }
+
+    }
+    catch (err) {
+
+        currentBuild.result = "FAILURE"
+
+            slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#FF0000', message: "BUILD FAILED - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+
+        throw err
+    }
+
+}

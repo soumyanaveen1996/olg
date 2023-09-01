@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<base href="/" />
+		<!-- <meta http-equiv="Cache-Control" content="max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" /> -->
+
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=yes"
+		/>
+
+		<meta name="theme-color" content="#000000" />
+		<!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+		<link rel="manifest" id="manifest-details" />
+		<link rel="shortcut icon" />
+		<!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+		<title>FrontM Platform</title>
+		<!-- <script src="https://js.stripe.com/v3/"></script> -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+		/>
+		<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/linearicons/fonts.css" />
+		<link
+			rel="stylesheet"
+			href="fonts/font-awesome/css/fontawesome-all.min.css"
+		/>
+		<!--  <script src="https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js"></script>-->
+		<!-- <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' /> -->
+		<style>
+			body {
+				margin: 0;
+			}
+
+			.Screen {
+				padding: 30px;
+			}
+
+			.loader-container {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				overflow: hidden;
+			}
+
+			.loader {
+				margin: auto;
+				/* border: 5px dotted #dadada; */
+				/* border-top: 5px solid #3498db; */
+				/* border-radius: 50%; */
+				width: 100px;
+				height: 100px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.airplane {
+				height: 300px;
+				width: 300px;
+				object-fit: contain;
+				-webkit-animation: run 8s linear infinite;
+				animation: run 8s linear infinite;
+			}
+
+			@-webkit-keyframes run {
+				0% {
+					-webkit-transform: translateX(-100%);
+				}
+
+				100% {
+					-webkit-transform: translateX(100%);
+				}
+			}
+
+			@keyframes run {
+				0% {
+					transform: translateX(-100%);
+				}
+
+				100% {
+					transform: translateX(100%);
+				}
+			}
+		</style>
+	</head>
+
+	<body id="bootstrap-overrides" style="overflow-x: hidden; overflow-y: hidden">
+		<noscript> You need to enable JavaScript to run this app. </noscript>
+		<div id="root">
+			<div class="loader-container">
+				<!-- <div class="loader" id="pre-loader"><img style="position: fixed; left: 40%; top: 45%;"
+					src="/img/loft-loading.gif" alt="Loading..." /></div> -->
+			</div>
+		</div>
+		<div id="external-root"></div>
+		<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
+
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
+
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+		<!-- <script -->
+		<!--   async -->
+		<!--   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" -->
+		<!-- ></script> -->
+
+		<script src="https://apis.google.com/js/platform.js"></script>
+
+		<!-- <script>
+			window.fbAsyncInit = function () {
+				FB.init({
+					// appId: '194224614731693',
+					appId: "150576769074284",
+					cookie: true,
+					xfbml: true,
+					version: "v3.0",
+				});
+				FB.AppEvents.logPageView();
+			};
+
+			(function (d, s, id) {
+				var js,
+					fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {
+					return;
+				}
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			})(document, "script", "facebook-jssdk");
+		</script> -->
+
+		<script>
+			function loadGoogleAuth() {
+				if (navigator.onLine) {
+					gapi.load("auth2", function () {
+						window.auth2 = gapi.auth2.init({
+							// TODO: DEV Google Login key
+							// clientId:
+							// 	"306005128887-19ga1bg0sl09tj652icn1220v27p15co.apps.googleusercontent.com",
+							// TODO: Prod Google Login key
+							clientId:
+								"834750737902-mve86aq37ndgevoi7qmpn99tbuulma8u.apps.googleusercontent.com",
+							scope: "profile email",
+							access_type: "offline",
+							fetchBasicProfile: true,
+							plugin_name: "Onship dev",
+						});
+					});
+				}
+			}
+
+			loadGoogleAuth();
+		</script>
+
+		<!--noptimize-->
+		<script type="text/javascript">
+			(function () {
+				if (window.location.href.includes("airindia")) {
+					setTimeout(() => {
+						() => {
+							var loader_image = document.createElement("img");
+							loader_image.class = "airplane";
+							loader_image.src = "./img/airplane_preloader.svg";
+							document.getElementById("pre-loader").appendChild(loader_image);
+						};
+					}, 300);
+				}
+			})();
+
+			function downloadJSAtOnload() {
+				if (navigator.onLine) {
+					setTimeout(() => {
+						//Load Ads
+
+						// var element = document.createElement("script");
+						// element.src =
+						// 	"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+						// document.body.appendChild(element);
+
+						//Load Even Source
+						var es = document.createElement("script");
+						es.src = "js/plugins/eventsource.js";
+						document.body.appendChild(es);
+
+						//Load Outbrain
+						// var outbrain = document.createElement("script");
+						// outbrain.src = "js/plugins/my-outbrain.js";
+						// document.body.appendChild(outbrain);
+
+						//Load Google API
+						// var gooapi = document.createElement("script");
+						// gooapi.src = "https://apis.google.com/js/platform.js";
+						// document.body.appendChild(gooapi);
+
+						//   function loadGoogleAuth() {
+						//     gapi.load("auth2", function () {
+						//       window.auth2 = gapi.auth2.init({
+						//         clientId: "705702062891-2d8n54itmt5anaf7obkk80dg8mo1jg8u.apps.googleusercontent.com",
+						//         scope: "profile email",
+						//         access_type: "offline",
+						//         fetchBasicProfile: true,
+						//       });
+						//     });
+						//   }
+
+						//   setTimeout(function () {
+						//     loadGoogleAuth();
+						//   }, 1000);
+
+						//   // Load facebook
+
+						//   window.fbAsyncInit = function () {
+						//     FB.init({
+						//       // appId: '194224614731693',
+						//       appId: "150576769074284",
+						//       cookie: true,
+						//       xfbml: true,
+						//       version: "v3.0",
+						//     });
+						//     FB.AppEvents.logPageView();
+						//   };
+
+						//   (function (d, s, id) {
+						//     var js,
+						//       fjs = d.getElementsByTagName(s)[0];
+						//     if (d.getElementById(id)) {
+						//       return;
+						//     }
+						//     js = d.createElement(s);
+						//     js.id = id;
+						//     js.src = "https://connect.facebook.net/en_US/sdk.js";
+						//     fjs.parentNode.insertBefore(js, fjs);
+						//   })(document, "script", "facebook-jssdk");
+					}, 5000);
+				}
+			}
+			if (window.addEventListener)
+				window.addEventListener("load", downloadJSAtOnload, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", downloadJSAtOnload);
+			else window.onload = downloadJSAtOnload;
+		</script>
+		<!--/noptimize-->
+	</body>
+</html>

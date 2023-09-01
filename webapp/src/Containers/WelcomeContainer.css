@@ -1,0 +1,81 @@
+.welcomeContainer {
+	width: 100%;
+	display: flex;
+	overflow-y: scroll;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.marginLeftBox {
+	margin-left: 6%;
+}
+
+.catalog-cards-container {
+	flex-wrap: wrap;
+	height: fit-content;
+}
+
+.catalog-cards {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: 30px;
+	justify-content: start;
+	align-content: start;
+	width: 100%;
+	height: 100%;
+	margin-top: 3%;
+	/* align-items: center; */
+}
+
+.catalog-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 18rem;
+	height: 15rem;
+	background-color: #ffffff;
+	border-radius: 10px;
+	margin: 20px;
+	box-shadow: #cacaca 0px 0px 4px 0px;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.catalog-card:hover {
+	box-shadow: #c7c7c7 0px 0px 7px 1px;
+}
+
+.catalog-card__icon {
+	/* height: 100px; */
+	width: 90px;
+}
+
+.catalog-card__nameAvatar {
+	width: 140px;
+	height: 140px;
+	border-radius: 80px;
+	border: 2px solid black;
+	font-size: 3rem;
+	font-weight: bolder;
+	padding: 34px;
+	cursor: pointer;
+}
+
+.catalog-card__fontStyle {
+	color: #4a4a4a;
+	font-family: "SF Pro Text";
+}
+
+.catalog-card__label {
+	width: 300px;
+	text-align: center;
+	word-wrap: break-word;
+	font-size: 1.3rem;
+	font-weight: bolder;
+	padding-top: 30px;
+	cursor: pointer;
+	font-family: "SF Pro Display Regular";
+}

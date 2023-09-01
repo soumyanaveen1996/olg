@@ -1,0 +1,124 @@
+/*
+Alert and notifications
+*/
+.alert {
+	.close {
+		color: inherit;
+		top: 5px;
+		right: 10px;
+		position: absolute;
+		font-size: 1rem;
+	}
+	&.alert-primary {
+		background-color: $primary;
+		color: $white;
+		border-color: rgba($primary-active, 0.25);
+		.alert-link {
+			color: #fff;
+			text-decoration: underline;
+		}
+	}
+	&.alert-success {
+		background-color: $success;
+		color: $white;
+		border-color: rgba($success-active, 0.25);
+		.alert-link {
+			color: #fff;
+			text-decoration: underline;
+		}
+	}
+	&.alert-primary {
+		background-color: $primary-light;
+		color: $primary-active;
+		border-color: rgba($primary-active, 0.05);
+		.alert-link {
+			color: #fff;
+			text-decoration: underline;
+		}
+	}
+	&.alert-success {
+		background-color: $success-light;
+		color: $success-active;
+		border-color: rgba($success-active, 0.05);
+		.alert-link {
+			color: $success;
+			text-decoration: underline;
+		}
+	}
+	&.alert-info {
+		background-color: $info-light;
+		color: $info-active;
+		border-color: rgba($info-active, 0.05);
+		.alert-link {
+			color: $info;
+			text-decoration: underline;
+		}
+	}
+	&.alert-danger {
+		background-color: $danger-light;
+		color: $danger-active;
+		border-color: rgba($danger-active, 0.05);
+		.alert-link {
+			color: $danger;
+			text-decoration: underline;
+		}
+	}
+	&.alert-warning {
+		background-color: $warning-light;
+		color: $warning-active;
+		border-color: rgba($warning-active, 0.05);
+		.alert-link {
+			color: $warning;
+			text-decoration: underline;
+		}
+	}
+	&.alert-secondary {
+		background-color: $secondary-light;
+		color: $secondary-active;
+		border-color: rgba($secondary-active, 0.05);
+		.alert-link {
+			color: $secondary;
+			text-decoration: underline;
+		}
+	}
+	&.alert-dark {
+		background-color: $dark-light;
+		color: $dark-active;
+		border-color: rgba($dark-active, 0.05);
+		.alert-link {
+			color: $dark;
+			text-decoration: underline;
+		}
+	}
+	&.alert-light {
+		background-color: $light;
+		color: $text-heading;
+		border-color: rgba($border, 1);
+		.alert-link {
+			color: $text-heading;
+			text-decoration: underline;
+		}
+	}
+	&.alert-icon {
+		position: relative;
+		padding-left: 60px;
+		> i {
+			display: -ms-flexbox;
+			display: flex;
+			font-size: 20px;
+			-ms-flex-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			justify-content: center;
+			width: 50px;
+			height: 100%;
+			line-height: 1;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba($dark, 0.05);
+			color: inherit;
+			opacity: 0.75;
+		}
+	}
+}

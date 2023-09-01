@@ -1,0 +1,400 @@
+/*
+form custom ui style for assan admin....
+*/
+.tooltip {
+	z-index: 9999;
+}
+.form-control::-webkit-input-placeholder,
+.note-placeholder {
+	transition: opacity 0.3s;
+	color: rgba($text-body, 0.5);
+	font-weight: 400;
+	opacity: 1;
+}
+
+.form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+	transition: opacity 0.3s;
+	color: rgba($text-body, 0.5);
+	font-weight: 400;
+	opacity: 1;
+}
+
+.form-control::placeholder,
+.form-control-plaintext[value] {
+	transition: opacity 0.3s;
+	color: rgba($text-heading, 0.5);
+	font-weight: 400;
+	opacity: 0.95;
+}
+.form-control.form-control-light::placeholder,
+.form-control-plaintext[value] {
+	color: rgba($text-heading, 0.5);
+}
+.form-control:focus::-webkit-input-placeholder {
+	opacity: 0.5;
+}
+
+.form-control:focus:-ms-input-placeholder,
+.form-control:focus::-ms-input-placeholder {
+	opacity: 0.5;
+}
+
+.form-control:focus::placeholder {
+	opacity: 0.5;
+}
+.form-control {
+	border-color: $border;
+	font-size: 0.8rem;
+	font-weight: 400;
+	&.error {
+		border: 1px solid $danger;
+		&:focus {
+			border-color: $danger;
+			box-shadow: 0px 0px 2px 0px rgba($danger, 0.5);
+		}
+	}
+	&.success {
+		border-color: $success;
+		&:focus {
+			box-shadow: 0px 0px 2px 0px rgba($danger, 0.5);
+		}
+	}
+	&:focus {
+		border-color: $primary;
+		box-shadow: 0px 0px 2px 0px rgba($primary, 0.5);
+	}
+}
+.form-control:disabled,
+.form-control[readonly] {
+	background-color: $light;
+}
+.input-group-text {
+	background-color: $light;
+	border-color: $border;
+}
+//**custom inputs**//
+.custom-checkbox {
+	position: relative;
+	height: 1.25rem;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 28px;
+	line-height: 1.25rem;
+	input {
+		width: 1.25rem;
+		left: 0;
+		top: 0;
+		height: 1.25rem;
+		position: absolute;
+		opacity: 0;
+	}
+	span {
+		display: inline-block;
+		vertical-align: middle;
+		margin-top: -2px;
+		&:before {
+			content: "";
+			font-family: "Linearicons";
+			width: 1.25rem;
+			height: 1.25rem;
+			line-height: 1.25rem;
+			font-size: 12px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			border: 1px solid $light;
+			border-radius: 4px;
+			text-align: center;
+			padding-left: 0.1rem;
+		}
+	}
+	input:checked + span:before {
+		content: "\e934";
+		font-weight: 700;
+	}
+	&.checkbox-primary {
+		span {
+			&:before {
+				border-color: $primary-light;
+				color: $primary;
+			}
+		}
+	}
+	&.checkbox-danger {
+		span {
+			&:before {
+				border-color: $danger-light;
+				color: $danger;
+			}
+		}
+	}
+	&.checkbox-info {
+		span {
+			&:before {
+				border-color: $info-light;
+				color: $info;
+			}
+		}
+	}
+	&.checkbox-warning {
+		span {
+			&:before {
+				border-color: $warning-light;
+				color: $warning;
+			}
+		}
+	}
+	&.checkbox-success {
+		span {
+			&:before {
+				border-color: $success-light;
+				color: $success;
+			}
+		}
+	}
+	&.rounded {
+		span {
+			&:before {
+				border-radius: 5rem;
+			}
+		}
+	}
+	&.square {
+		span {
+			&:before {
+				border-radius: 0rem;
+			}
+		}
+	}
+	&.checkbox-lg {
+		height: 1.5rem;
+		padding-left: 2rem;
+		line-height: 1.5rem;
+		span {
+			&:before {
+				width: 1.5rem;
+				font-size: 16px;
+				height: 1.5rem;
+				line-height: 1.5rem;
+			}
+		}
+	}
+	&.checkbox-sm {
+		height: 1rem;
+		padding-left: 1.5rem;
+		line-height: 1rem;
+		span {
+			&:before {
+				font-size: 8px;
+				font-weight: normal;
+				width: 1rem;
+				height: 1rem;
+				line-height: 1rem;
+			}
+		}
+	}
+}
+.custom-radio {
+	position: relative;
+	height: 1.25rem;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 28px;
+	line-height: 1.25rem;
+	input {
+		width: 1.25rem;
+		left: 0;
+		top: 0;
+		height: 1.25rem;
+		position: absolute;
+		opacity: 0;
+	}
+	span {
+		display: inline-block;
+		vertical-align: middle;
+		margin-top: -2px;
+		&:before {
+			content: "";
+			font-family: "Linearicons";
+			width: 1.25rem;
+			height: 1.25rem;
+			line-height: 1.25rem;
+			font-size: 12px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			border: 1px solid $light;
+			border-radius: 4px;
+			text-align: center;
+			padding-left: 0.1rem;
+		}
+		&:after {
+			content: "";
+			width: 6px;
+			height: 6px;
+			background-color: $faded-active;
+			border-radius: 1px;
+			position: absolute;
+			left: 7px;
+			top: 7px;
+			transform: scale(0);
+			-webkit-transform: scale(0);
+			transition: all 0.15s;
+			-webkit-transition: all 0.15s;
+		}
+	}
+	input:checked + span:after {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+	&.rounded {
+		span {
+			&:after,
+			&:before {
+				border-radius: 100px;
+			}
+		}
+	}
+	&.radio-lg {
+		height: 1.5rem;
+		line-height: 1.5rem;
+		input {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+		span {
+			line-height: 1.5rem;
+			&:before {
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+			&:after {
+				width: 0.5rem;
+				height: 0.5rem;
+				left: 0.5rem;
+				top: 0.5rem;
+			}
+		}
+	}
+	&.radio-sm {
+		height: 1rem;
+		line-height: 1rem;
+		padding-left: 1.5rem;
+		input {
+			width: 1rem;
+			height: 1rem;
+		}
+		span {
+			line-height: 1rem;
+			font-size: 0.8rem;
+			&:before {
+				width: 1rem;
+				height: 1rem;
+			}
+			&:after {
+				width: 6px;
+				height: 6px;
+				left: 5px;
+				top: 5px;
+			}
+		}
+	}
+	&.radio-primary {
+		span {
+			&:after {
+				background-color: $primary;
+			}
+			&:before {
+				border-color: $primary-light;
+			}
+		}
+	}
+	&.radio-success {
+		span {
+			&:after {
+				background-color: $success;
+			}
+			&:before {
+				border-color: $success-light;
+			}
+		}
+	}
+	&.radio-info {
+		span {
+			&:after {
+				background-color: $info;
+			}
+			&:before {
+				border-color: $info-light;
+			}
+		}
+	}
+	&.radio-danger {
+		span {
+			&:after {
+				background-color: $danger;
+			}
+			&:before {
+				border-color: $danger-light;
+			}
+		}
+	}
+	&.radio-warning {
+		span {
+			&:after {
+				background-color: $primary;
+			}
+			&:before {
+				border-color: $warning-light;
+			}
+		}
+	}
+}
+.input-group-text {
+	font-size: 0.85rem;
+}
+.custom-file-label::after {
+	background-color: $light;
+	border-color: $border;
+	border-radius: 0px;
+	line-height: 1.8;
+}
+.custom-file-label {
+	border-color: $border;
+}
+.error {
+	display: block;
+	font-size: 0.8rem;
+	color: $danger;
+}
+label .error {
+	position: absolute;
+}
+.custom-select.is-valid,
+.form-control.is-valid,
+.was-validated .custom-select:valid,
+.was-validated .form-control:valid {
+	border-color: $success;
+	&:focus {
+		box-shadow: 0px 0px 2px 0px rgba($success, 0.5);
+	}
+}
+.custom-select.is-invalid,
+.form-control.is-invalid,
+.was-validated .custom-select:invalid,
+.was-validated .form-control:invalid {
+	border-color: $danger;
+	&:focus {
+		box-shadow: 0px 0px 2px 0px rgba($danger, 0.5);
+	}
+}
+.valid-feedback {
+	color: $success;
+}
+.invalid-feedback {
+	color: $danger;
+}
+select.form-control:not([size]):not([multiple]) {
+	height: auto;
+}

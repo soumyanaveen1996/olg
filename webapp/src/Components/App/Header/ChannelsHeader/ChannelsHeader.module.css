@@ -1,0 +1,30 @@
+.container {
+	height: 100%;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+}
+
+.flex_alignItemsCenter_JustifyContentEnd {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+.flex_alignItemsCenter_JustifyContentCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.height_100_percent {
+	height: 100%;
+}
+
+.btn_title {
+	font-size: 1em;
+}
+
+.icon_styling {
+	font-weight: 700;
+	color: rgb(255, 255, 255);
+	font-size: 0.9rem;
+}

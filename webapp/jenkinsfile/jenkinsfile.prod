@@ -1,0 +1,57 @@
+node {
+    
+    currentBuild.result = "SUCCESS"
+
+    try {
+    
+       slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#439FE0', message: "STARTED - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+       stage('Checkout'){
+
+          checkout scm
+       }
+       //stage('Build') {
+         //       script {
+           //         node {
+                        // Increase memory limit for Node.js
+             //           env.NODE_OPTIONS = "--max-old-space-size=4096"
+               //         sh 'rm -rf node_modules'
+                 //       sh '. ~/.bashrc && nvm use 16 | npm install --unsafe-perm'
+                   //     sh 'CI=false npm run build:${env}'
+                   // }
+                //}
+        //}
+       stage('Build'){
+
+         //sh 'rm -rf node_modules'
+         sh 'npm install --unsafe-perm'
+         //sh 'npm run build:${env}'
+	 sh 'cp config-overrides.js_prod config-overrides.js' 
+         //sh 'env-cmd -f ./.env.prod react-app-rewired build &max_old_space_size=4096 && npm run build-sw'
+         sh 'CI=false npm run build:${env} && sleep 360'
+
+       }
+
+       stage('Deploy to S3'){
+
+            sh 'aws s3 sync build s3://${S3}'
+            //sh 'aws s3 ls'
+	    //sh 'echo $?'
+       }
+
+       stage('Invalidate Cloudfront Cache'){
+         
+         sh 'aws cloudfront create-invalidation --distribution-id ${CloudFront_DistributionID} --paths "/*"'
+         slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#43e046', message: "BUILD SUCCESS - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+       }
+
+    }
+    catch (err) {
+
+        currentBuild.result = "FAILURE"
+
+            slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#ci-alerts', color: '#FF0000', message: "BUILD FAILED - Pipeline: ${env.JOB_NAME}", teamDomain: 'Front M Ltd', tokenCredentialId: 'ci-alerts-SLACK'
+
+        throw err
+    }
+
+}

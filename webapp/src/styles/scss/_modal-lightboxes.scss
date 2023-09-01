@@ -1,0 +1,21 @@
+/*
+Modal and lightboxes;
+*/
+.modal-content {
+	border: 0px;
+	box-shadow: 0px 0px 20px rgba($primary-active, 0.25);
+	border-radius: 0.5rem;
+}
+.modal-dialog {
+}
+.modal {
+	.close {
+		position: absolute;
+		right: -1.2rem;
+		top: -1.2rem;
+		font-size: 20px;
+		opacity: 1;
+		text-shadow: none;
+		color: $secondary-light;
+	}
+}

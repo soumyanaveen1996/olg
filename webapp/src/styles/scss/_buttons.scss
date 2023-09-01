@@ -1,0 +1,573 @@
+/*
+Buttons style
+*/
+
+.btn {
+	font-family: $font-primary;
+	font-size: 0.85rem;
+	font-weight: 400;
+	text-transform: capitalize;
+	border-radius: 4px;
+	&.btn-sm {
+		font-size: 0.75rem;
+		&.btn-icon > * {
+			font-size: 13px;
+		}
+	}
+	&.btn-lg {
+		font-size: 0.95rem;
+		&.btn-icon > * {
+			font-size: 20px;
+		}
+	}
+	&.btn-icon {
+		> * {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 0.4rem;
+			font-size: 16px;
+			position: relative;
+			margin-top: -2px;
+		}
+	}
+	&.btn-icon-o {
+		font-size: 20px;
+		> * {
+			display: block;
+			line-height: 1;
+		}
+		&.btn-sm {
+			font-size: 16px;
+		}
+		&.btn-lg {
+			font-size: 24px;
+		}
+	}
+}
+.btn-group.btn-group-sm {
+	.btn {
+		font-size: 0.7rem;
+	}
+}
+/**fill buttons**/
+.btn.btn-primary {
+	color: #fff;
+	background-color: $primary;
+	border-color: rgba($primary-active, 0.4);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $primary-active;
+		box-shadow: none;
+		border-color: rgba($primary-active, 0.5);
+		color: $primary-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($primary, 0.24) !important;
+	}
+}
+.btn.btn-success {
+	color: #fff;
+	background-color: $success;
+	border-color: rgba($success-active, 0.7);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $success-active;
+		box-shadow: none;
+		border-color: rgba($success-active, 1);
+		color: $success-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($success, 0.24) !important;
+	}
+}
+.btn.btn-info {
+	color: #fff;
+	background-color: $info;
+	border-color: rgba($info-active, 0.7);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $info-active;
+		box-shadow: none;
+		border-color: rgba($info-active, 1);
+		color: $info-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($info, 0.24) !important;
+	}
+}
+.btn.btn-danger {
+	color: #fff;
+	background-color: $danger;
+	border-color: rgba($danger-active, 0.7);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $danger-active;
+		box-shadow: none;
+		border-color: rgba($danger-active, 1);
+		color: $danger-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($danger, 0.24) !important;
+	}
+}
+.btn.btn-warning {
+	color: #fff;
+	background-color: $warning;
+	border-color: rgba($warning-active, 0.7);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $warning-active;
+		box-shadow: none;
+		border-color: rgba($warning-active, 1);
+		color: #fff;
+		color: $warning-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($warning, 0.24) !important;
+	}
+}
+.btn.btn-secondary {
+	color: #fff;
+	background-color: $secondary;
+	border-color: rgba($secondary-active, 0.1);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $secondary-active;
+		box-shadow: none;
+		border-color: rgba($secondary-active, 1);
+		color: $secondary-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($secondary, 0.24) !important;
+	}
+}
+.btn.btn-dark {
+	color: #fff;
+	background-color: $dark;
+	border-color: rgba($dark-active, 0.7);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $dark-active;
+		box-shadow: none;
+		color: $dark-light;
+		border-color: rgba($dark-active, 1);
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($dark, 0.24) !important;
+	}
+}
+.btn.btn-light {
+	color: $text-heading;
+	background-color: $light;
+	border-color: rgba($border, 1);
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $faded;
+		box-shadow: none;
+		border-color: rgba($border, 1);
+		color: $dark;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($faded, 0.99) !important;
+		border-color: rgba($dark, 0.1);
+	}
+}
+.btn.btn-link {
+	color: $primary !important;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid;
+	border-radius: 0px;
+	border-bottom-color: rgba($primary-active, 0.2);
+}
+/**outline buttons**/
+.btn.btn-outline-primary {
+	border-color: $primary;
+	color: $primary;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $primary;
+		box-shadow: none;
+		border-color: rgba($primary-active, 0.5);
+		color: $primary-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($primary, 0.24) !important;
+	}
+}
+.btn.btn-outline-light {
+	border-color: $faded;
+	color: $faded;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $faded;
+		box-shadow: none;
+		border-color: rgba($border, 1);
+		color: $text-body;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($dark, 0.1) !important;
+		border-color: rgba($dark, 0.1);
+	}
+}
+.btn.btn-outline-success {
+	border-color: $success;
+	color: $success;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $success;
+		box-shadow: none;
+		border-color: rgba($success-active, 0.5);
+		color: $success-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($success, 0.24) !important;
+	}
+}
+.btn.btn-outline-info {
+	border-color: $info;
+	color: $info;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $info;
+		box-shadow: none;
+		border-color: rgba($info-active, 0.5);
+		color: $info-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($info, 0.24) !important;
+	}
+}
+.btn.btn-outline-warning {
+	border-color: $warning;
+	color: $warning;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $warning;
+		box-shadow: none;
+		border-color: rgba($warning-active, 0.5);
+		color: #fff;
+		color: $warning-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($warning, 0.24) !important;
+	}
+}
+.btn.btn-outline-danger {
+	border-color: $danger;
+	color: $danger;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $danger;
+		box-shadow: none;
+		border-color: rgba($danger-active, 0.5);
+		color: $danger-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($danger, 0.24) !important;
+	}
+}
+.btn.btn-outline-secondary {
+	border-color: $secondary;
+	color: $secondary;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $secondary;
+		box-shadow: none;
+		border-color: rgba($secondary-active, 0.5);
+		color: $secondary-light;
+	}
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($secondary, 0.24) !important;
+	}
+}
+.btn.btn-outline-dark {
+	border-color: $dark;
+	color: $dark;
+	background-color: transparent;
+	&:hover,
+	&:focus:not(.disabled):not([disabled]),
+	&.focus:not(.disabled):not([disabled]),
+	&:active:not(.disabled):not([disabled]),
+	&.active:not(.disabled):not([disabled]) {
+		background-color: $dark;
+		box-shadow: none;
+		border-color: rgba($dark-active, 0.5);
+		color: #fff;
+		color: $dark-light;
+	}
+
+	&.btn-shadow {
+		box-shadow: 0px 5px 10px 2px rgba($dark, 0.24) !important;
+	}
+}
+.disabled {
+	opacity: 0.6 !important;
+	> * {
+		opacity: 0.6 !important;
+	}
+}
+/**social buttons**/
+
+.si-colored-twitter,
+.si-twitter:hover {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #00acee !important;
+	color: #fff !important;
+}
+
+.si-colored-g-plus,
+.si-g-plus:hover {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #dd4b39 !important;
+	color: #fff !important;
+}
+
+.si-colored-skype,
+.si-skype:hover {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #00aff0 !important;
+	color: #fff !important;
+}
+
+.si-linkedin:hover,
+.si-colored-linkedin {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #0e76a8 !important;
+	color: #fff !important;
+}
+
+.si-pin:hover,
+.si-colored-pinterest {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #c8232c !important;
+	color: #fff !important;
+}
+
+.si-rss:hover,
+.si-colored-rss {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #ee802f !important;
+	color: #fff !important;
+}
+
+.si-pinterest:hover,
+.si-colored-pinterest {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #c8232c !important;
+	color: #fff !important;
+}
+
+.si-tumblr:hover,
+.si-colored-tumblr {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #34526f !important;
+	color: #fff !important;
+}
+
+.si-vimeo:hover,
+.si-colored-vimeo {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #86c9ef !important;
+	color: #fff !important;
+}
+
+.si-digg:hover,
+.si-colored-digg {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #191919 !important;
+	color: #fff !important;
+}
+
+.si-instagram:hover,
+.si-colored-instagram {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #3f729b !important;
+	color: #fff !important;
+}
+
+.si-flickr:hover,
+.si-colored-flickr {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #ff0084 !important;
+	color: #fff !important;
+}
+
+.si-paypal:hover,
+.si-colored-paypal {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #00588b !important;
+	color: #fff !important;
+}
+
+.si-yahoo:hover,
+.si-colored-yahoo {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #720e9e !important;
+	color: #fff !important;
+}
+
+.si-android:hover,
+.si-colored-andriod {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #a4c639 !important;
+	color: #fff !important;
+}
+
+.si-appstore:hover,
+.si-colored-appstore {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #000 !important;
+	color: #fff !important;
+}
+
+.si-dropbox:hover,
+.si-colored-dropbox {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #3d9ae8 !important;
+	color: #fff !important;
+}
+
+.si-dribbble:hover,
+.si-colored-dribbble {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #ea4c89 !important;
+	color: #fff !important;
+}
+
+.si-soundcloud:hover,
+.si-colored-soundcloud {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #f70 !important;
+	color: #fff !important;
+}
+
+.si-xing:hover,
+.si-colored-xing {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #126567 !important;
+	color: #fff !important;
+}
+
+.si-phone:hover,
+.si-colored-phone {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #444 !important;
+	color: #fff !important;
+}
+
+.si-behance:hover,
+.si-colored-behance {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #053eff !important;
+	color: #fff !important;
+}
+
+.si-github:hover,
+.si-colored-github {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #171515 !important;
+	color: #fff !important;
+}
+
+.si-stumbleupon:hover,
+.si-colored-stumbleupon {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #f74425 !important;
+	color: #fff !important;
+}
+
+.si-email:hover,
+.si-colored-email {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #6567a5 !important;
+	color: #fff !important;
+}
+
+.si-wordpress:hover,
+.si-colored-wordpress {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #1e8cbe !important;
+	color: #fff !important;
+}
+
+.si-adn:hover,
+.si-colored-adn {
+	background-color: #b94630 !important;
+	color: #fff !important;
+}
+
+.si-bitbucket:hover,
+.si-colored-bitbucket {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #0f253c !important;
+	color: #fff !important;
+}
+
+.si-window:hover,
+.si-colored-window {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #0f4bac !important;
+	color: #fff !important;
+}
+
+.si-reddit:hover,
+.si-colored-reddit {
+	border-color: rgba(44, 45, 58, 0.15) !important;
+	background-color: #bcddff !important;
+	color: #2c2d3a !important;
+	border-color: rgba(44, 45, 58, 0.1) !important;
+}

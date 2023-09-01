@@ -1,0 +1,176 @@
+/*
+Metis menu
+*/
+.metisMenu {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 1.5rem;
+	a {
+		color: inherit;
+	}
+	.nav-thumbnail,
+	.nav-title-text {
+		font-size: 0.75rem;
+	}
+	> li {
+		> .nav-thumbnail {
+			opacity: 0.75;
+		}
+		> a {
+			font-size: 0.9rem;
+			font-weight: 400;
+			text-transform: capitalize;
+		}
+	}
+	li > ul > li {
+		.nav-thumbnail {
+			opacity: 0.6;
+		}
+		a {
+			font-size: 0.8rem;
+			opacity: 0.75;
+			font-weight: 400;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+	ul {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	li {
+		position: relative;
+		display: block;
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.nav-thumbnail {
+			position: absolute;
+			left: 0;
+			display: flex;
+			line-height: 1;
+			white-space: nowrap;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-ms-flex-align: center;
+			align-items: center;
+			text-align: left;
+			left: 1rem;
+			top: 4px;
+			margin-top: 0px;
+			width: 32px;
+			height: 32px;
+			font-size: 20px;
+		}
+	}
+	> li a {
+		padding: 0 1rem;
+		height: 40px;
+		position: relative;
+		display: block;
+		line-height: 40px;
+		padding: 0rem 1rem;
+		padding-left: 4rem;
+	}
+	> li > ul > li {
+		a {
+			height: 32px;
+			line-height: 32px;
+		}
+		.nav-thumbnail {
+			width: 24px;
+			height: 24px;
+			font-size: 0.8rem;
+			left: 1.2rem;
+			> i {
+				font-size: 16px;
+			}
+		}
+	}
+	.nav-title {
+		color: inherit;
+		opacity: 0.6;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+		height: 28px;
+		font-weight: 400;
+		.nav-thumbnail {
+			font-size: 0.75rem;
+			top: 0;
+			width: 28px;
+			height: 28px;
+		}
+		.nav-title-text {
+			display: block;
+			position: relative;
+			padding-left: 4rem;
+			height: 28px;
+			line-height: 28px;
+		}
+	}
+
+	> li.active > ul {
+		background-color: rgba($light, 0.25);
+	}
+	li {
+		> a.has-arrow {
+			&:after {
+				content: "\e93c";
+				font-family: "Linearicons";
+				font-size: 0.6rem;
+				width: 1rem;
+				height: 1rem;
+				text-align: center;
+				line-height: 1rem;
+				display: block;
+				position: absolute;
+				right: 1.5rem;
+				top: 50%;
+				margin-top: -0.5rem;
+				transition: all 0.3s;
+			}
+		}
+		&.active {
+			> a.has-arrow:after {
+				transform: rotate(90deg);
+			}
+		}
+	}
+	> li > ul {
+		> li:first-child {
+			padding-top: 1rem;
+			> .nav-thumbnail {
+				top: calc(4px + 1rem);
+			}
+		}
+		> li:last-child {
+			padding-bottom: 1rem;
+			> .nav-thumbnail {
+			}
+		}
+	}
+	> li > li > ul > li {
+		> a,
+		> .nav-thumbnail {
+			opacity: 0.6;
+		}
+	}
+	> li > ul > li.active {
+		> .nav-thumbnail {
+			opacity: 1;
+		}
+		> a {
+			opacity: 1;
+		}
+	}
+}
