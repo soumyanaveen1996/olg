@@ -2,6 +2,7 @@ const lodash = require('lodash');
 const sha1 = require('sha1');
 const R = require('ramda');
 const Frontmlib = require('./Frontmlib');
+const RedisWriteQueue = require('./RedisWriteQueue');
 
 class CapabilityExecutor {
   constructor() {
@@ -21,6 +22,7 @@ class CapabilityExecutor {
   }
 
   setUpCapabilities() {
+    this.dependencies.capabilities["RedisWriteQueue"] = RedisWriteQueue;
 
   }
 
