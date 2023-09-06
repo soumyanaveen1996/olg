@@ -22,6 +22,7 @@ import {
 	INTELL4DESK_LOGIN_BACKGROUND,
 	VIKAND_DIRECT_SIGNUP_BACKGROUND,
 	ONSHIP_LANDING,
+	ONELEARN_LANDING,
 	ONSHIP_LOGIN_BACKGROUND,
 	ONSHIP_SIGNUP_BACKGROUND,
 	THURAYA_T2M_LANDING,
@@ -93,6 +94,12 @@ const Landing = (props) => {
 			bgPosition = "center";
 			poweredBy = POWERED_BY;
 			break;
+		case ONELEARN_LANDING:
+			signupBackground = ONSHIP_SIGNUP_BACKGROUND;
+			loginBackground = ONSHIP_LOGIN_BACKGROUND;
+			bgPosition = "center";
+			poweredBy = POWERED_BY;
+			break;
 		case SIGMA_LANDING:
 			signupBackground = SIGMA_SIGNUP_BACKGROUND;
 			loginBackground = SIGMA_LOGIN_BACKGROUND;
@@ -108,6 +115,7 @@ const Landing = (props) => {
 	}
 	const noSignUp = [
 		ONSHIP_LANDING,
+		ONELEARN_LANDING,
 		THURAYA_T2M_LANDING,
 		STATION_SATCOM_LANDING,
 		ONECARE_LANDING,

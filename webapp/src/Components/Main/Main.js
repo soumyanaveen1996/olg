@@ -128,6 +128,7 @@ if (window?.location?.pathname) {
 		"/stationsatcom",
 		"/sigma",
 		"/onship",
+		"/onelearn",
 		"/sattrackland",
 	];
 	if (window.location.pathname === "/") {
@@ -239,6 +240,11 @@ const Main = () => {
 							<ProtectedRoute
 								exact
 								path="/onship/signup"
+								component={SignupView}
+							/>
+							<ProtectedRoute
+								exact
+								path="/onelearn"
 								component={SignupView}
 							/>
 							<ProtectedRoute

@@ -38,6 +38,7 @@ export const VIKAND_DIRECT_LANDING = "/vikandconnect";
 export const INTELL4DESK_LANDING = "/intelli4desks";
 export const THURAYA_LANDING = "/thuraya";
 export const ONSHIP_LANDING = "/onship";
+export const ONELEARN_LANDING = "/onelearn";
 export const THURAYA_T2M_LANDING = "/sattrackland";
 export const ONSHIP_SIGNUP_LANDING = "/onship/signup";
 export const THURAYA_T2M_SIGNUP_LANDING = "/sattrackland/signup";
