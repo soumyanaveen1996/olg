@@ -5,6 +5,7 @@ const moment = require('moment');
 const momentTimezone = require('moment-timezone');
 const Frontmlib = require('./Frontmlib');
 const RedisWriteQueue = require('./RedisWriteQueue');
+const RedisReadQueue = require('./RedisReadQueue');
 const MongoDBManager = require('./MongoDBManager');
 
 class CapabilityExecutor {
@@ -28,6 +29,7 @@ class CapabilityExecutor {
 
   setUpCapabilities() {
     this.dependencies.capabilities["RedisWriteQueue"] = RedisWriteQueue;
+    this.dependencies.capabilities["RedisReadQueue"] = RedisReadQueue;
     this.dependencies.capabilities["MongoDBManager"] = MongoDBManager;
 
   }
