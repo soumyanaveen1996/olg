@@ -6,10 +6,13 @@ class Frontmlib {
   async invokeLambda(functionName, _, jsonPayload) {
     try {
       let response = await this._capabilityExecutor.runCapability(functionName, jsonPayload) || {};
-      return { Payload: JSON.stringify(response)};
+      return { Payload: JSON.stringify(response) };
     } catch (err) {
-      console.log(err.message);
-      return { Payload: "{}" };
+      if (err.message === "Capability not supported") {
+        console.log("Capability not supported ",  err.cause);
+        return { Payload: "{}" };
+      }
+      return { Payload: `{error: ${err.message}}` };
     }
   }
 
