@@ -48,6 +48,8 @@ async function validateConversation(conversation, userId) {
     if(_.isEmpty(dbConv)) {
         await new Conversation(conversation).save();
     }
+    
+    return {botData: dbBot};
 }
 async function validate(req) {
     const { error } = validateInput(req.body);
@@ -63,7 +65,8 @@ async function validate(req) {
 
     let conversation = _.get(req, 'body.conversation');
     let userId = _.get(req, 'user.userId');
-    await validateConversation(conversation, userId);
+    let {botData} = await validateConversation(conversation, userId);
+    req.botData = botData;
 }
 
 router.post('/AgentGuardService/Execute', doAuth, async (req, res) => {
@@ -71,7 +74,8 @@ router.post('/AgentGuardService/Execute', doAuth, async (req, res) => {
         await validate(req);
         let {capability, parameters, requestUuid, conversation} = req.body;
         let user = req.user;
-        await runtime.execute({capability, parameters, requestUuid, conversation, user});
+        let botData = req.botData;
+        await runtime.execute({capability, parameters, requestUuid, conversation, user, botData});
         return res.status(200).json({message: 'success'});
     } catch(err) {
         return res.status(500).json({error: err.message});
