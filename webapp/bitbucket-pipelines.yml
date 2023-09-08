@@ -1,0 +1,325 @@
+definitions:
+  caches:
+    npm: .npmcache
+  steps:
+    - step: &build-dev
+        name: Build Dev
+        image: node:11
+        caches:
+          - node
+          - npm
+        size: 2x
+        script:
+          - export NODE_OPTIONS=--max-old-space-size=8192
+          - npm install --cache .npmcache --unsafe-perm
+          - CI=false npm run build:dev
+        artifacts:
+          - build/**
+    - step: &build-prod
+        name: Build Prod
+        image: node:11
+        caches:
+          - node
+          - npm
+        size: 2x
+        script:
+          - export NODE_OPTIONS=--max-old-space-size=8192
+          - npm install --cache .npmcache --unsafe-perm
+          - CI=false npm run build:prod
+        artifacts:
+          - build/**
+
+pipelines:
+  branches:
+    staging:
+      - step:
+          name: Build for stage
+          script:
+            - echo "Build for stage"
+      - step:
+          name: Build Staging
+          trigger: manual
+          <<: *build-dev
+      - step:
+          name: Deploy to S3
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $QA_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $QA_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $QA_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $QA_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $QA_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $QA_DISTRIBUTION_ID
+    offline-feature:
+      - step:
+          name: Build for dev2
+          script:
+            - echo "Build for dev2"
+      - step:
+          name: Build Staging
+          trigger: manual
+          <<: *build-dev
+      - step:
+          name: Deploy to S3
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $QA_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $QA_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $DEV2_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $QA_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $QA_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $DEV2_DISTRIBUTION_ID
+    master:
+      - step:
+          name: Build for stage
+          script:
+            - echo "Build for stage"
+      - step:
+          name: Build Master
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $PROD_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $PROD_DISTRIBUTION_ID
+    offline-feature-stage:
+      - step:
+          name: Build for stage
+          script:
+            - echo "Build for stage"
+      - step:
+          name: Build for stage
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3 (stage) - FrontM
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $STAGE_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache (stage)
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $STAGE_DISTRIBUTION_ID
+    offline-feature-stage1:
+      - step:
+          name: Build for stage1
+          script:
+            - echo "Build for stage1"
+      - step:
+          name: Build for stage
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3 (stage1) - AGH
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $STAGE1_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache (stage1)
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $STAGE1_DISTRIBUTION_ID
+      - step:
+          name: Deploy to S3 (stage2) - Vikand
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $STAGE2_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache (stage2)
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $STAGE2_DISTRIBUTION_ID
+      - step:
+          name: Deploy to S3 (stage3) - Beacon Assist
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $STAGE3_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache (stage3)
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $STAGE3_DISTRIBUTION_ID
+    offline-feature-test1:
+      - step:
+          name: Build for test1
+          script:
+            - echo "Build for test1"
+      - step:
+          name: Build for test1
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3 test1
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $TEST1_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $TEST1_DISTRIBUTION_ID
+    offline-feature-AGH:
+      - step:
+          name: Build for AGH PROD
+          script:
+            - echo "Build for AGH PROD"
+      - step:
+          name: Build for AGH PROD
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3 AGH PROD
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $AGH_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $AGH_DISTRIBUTION_ID
+    offline-feature-onship:
+      - step:
+          name: Build for onship PROD
+          script:
+            - echo "Build for Onship PROD"
+      - step:
+          name: Build for Onship PROD
+          trigger: manual
+          <<: *build-prod
+      - step:
+          name: Deploy to S3 Onship PROD
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.4.4
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $ONSHIP_S3_BUCKET
+                ACL: $S3_ACL
+                LOCAL_PATH: $LOCAL_PATH
+                CACHE_CONTROL: "no-cache"
+                DELETE_FLAG: "true"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+              variables:
+                AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $ONSHIP_DISTRIBUTION_ID

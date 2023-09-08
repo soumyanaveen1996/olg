@@ -1,0 +1,17 @@
+.card_conatiner {
+	max-height: 150px;
+}
+
+.form_styling {
+	width: 100%;
+	overflow-y: auto;
+}
+
+.custom_field_container {
+	flex: auto;
+}
+.custom_field_container > div {
+	padding: 0 1.2rem !important;
+	margin: 0 0 1rem 0 !important;
+	border-bottom: none;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "botId": "bot1",
+    "userDomain": "olg",
+    "botName": "Test",
+    "botUrl": "botfarm/olg/bot1/bot1.js",
+    "category": ["Fun"],
+    "conversational": false,
+    "createdBy": "userId",
+    "createdOn": 1694142915000,
+    "dependencies": {
+      "agentGuardService": { "url": "botfarm/rc/frontmai/agentGuardService.js"},
+      "authContext": {"url": "botfarm/rc/frontmai/authContext.js"}
+    },
+    "description": "Test Desc",
+    "developer": "FrontM",
+    "featured": false,
+    "frameworkVersion": "v4",
+    "logoUrl": "botlogos/bot1.png",
+    "modifiedBy": "userId",
+    "modifiedOn": 1694142915000,
+    "userRoles": [
+      "developer"
+    ]
+  }
+]

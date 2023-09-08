@@ -1,0 +1,37 @@
+// module.exports = {
+// 	parser: "babel-eslint",
+// 	extends: [
+// 		"eslint:recommended",
+// 		"prettier",
+// 		"plugin:prettier/recommended",
+// 		"plugin:react/recommended",
+// 	],
+// 	plugins: [
+// 		"react",
+// 		"jsx-a11y",
+// 		"import",
+// 		"eslint-plugin-prettier",
+// 		"eslint-plugin-react",
+// 	],
+// 	rules: {
+// 		"import/prefer-default-export": "off",
+// 		"react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+// 		"react/prefer-stateless-function": [1],
+// 		"react/jsx-indent": [0],
+// 		"react/no-unsafe": [1],
+// 		"react/sort-comp": [0],
+// 		"react/destructuring-assignment": [0],
+// 		"react/prop-types": [0],
+// 		"react/forbid-prop-types": [0],
+// 		"react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+// 		camelcase: "off",
+// 		"no-use-before-define": "off",
+// 		semi: ["error", "always"],
+// 		"prettier/prettier": ["error"],
+// 	},
+// 	env: {
+// 		jest: true,
+// 		es6: true,
+// 		browser: true,
+// 	},
+// };

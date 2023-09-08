@@ -1,0 +1,29 @@
+.container {
+	background-color: rgb(255, 255, 255);
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+	flex: 1.5;
+	font-family: "SF Pro Display Regular";
+}
+
+.sticky_header_div {
+	background-color: rgb(255, 255, 255);
+	height: 100%;
+	margin-right: 22px;
+}
+
+.title_h5 {
+	margin-bottom: 0px;
+}
+
+.userInfoContainer {
+	background-color: rgb(255, 255, 255);
+	height: 100%;
+}
+
+.flex_alignItemsCenter_justifyContentEnd {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}

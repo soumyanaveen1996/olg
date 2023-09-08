@@ -1,0 +1,74 @@
+import {
+	RENDER_MESSAGE_TYPE_TABLE,
+	RENDER_MESSAGE_TYPE_CONTAINER,
+	CHANGE_CONTAINER_SELECTED_TAB,
+	RENDER_MESSAGE_TYPE_FORM2,
+	RENDER_MESSAGE_TYPE_MENU,
+	RENDER_MESSAGE_TYPE_MAP,
+	RENDER_MESSAGE_TYPE_CALENDAR,
+	RENDER_MESSAGE_TYPE_HTML,
+	RESET_FORM2_FIELDS,
+	RESET_CONTAINER_FIELDS,
+	CHANGE_CALENDAR,
+	BG_CALENDAR_TOOLBAR,
+	SAVE_MAP_SETTINGS,
+	REMOVE_APP,
+	RENDER_MESSAGE_TYPE_VIDEOCALL,
+	RENDER_CHANGE_NONCONVERSATION_SELECTED_TAB,
+	RESET_NONCONVENTIONAL,
+	RENDER_MESSAGE_TYPE_TIMELINE,
+	RENDER_MESSAGE_TYPE_CHAT,
+	RENDER_MESSAGE_TYPE_SURVEY,
+	RENDER_MESSAGE_TYPE_DASHBOARD,
+} from "./types";
+
+let initialState = {};
+
+function NonConversationalReducer(state = initialState, action) {
+	switch (action.type) {
+		case RENDER_CHANGE_NONCONVERSATION_SELECTED_TAB:
+		case REMOVE_APP:
+		case RENDER_MESSAGE_TYPE_MENU:
+		case RENDER_MESSAGE_TYPE_CONTAINER:
+		case CHANGE_CONTAINER_SELECTED_TAB:
+		case RENDER_MESSAGE_TYPE_TABLE:
+		case RENDER_MESSAGE_TYPE_MAP:
+		case RENDER_MESSAGE_TYPE_FORM2:
+		case RENDER_MESSAGE_TYPE_VIDEOCALL:
+		case RENDER_MESSAGE_TYPE_CALENDAR:
+		case RENDER_MESSAGE_TYPE_HTML:
+		case RENDER_MESSAGE_TYPE_TIMELINE:
+		case RENDER_MESSAGE_TYPE_CHAT:
+		case RENDER_MESSAGE_TYPE_SURVEY:
+		case RENDER_MESSAGE_TYPE_DASHBOARD:
+		case RESET_FORM2_FIELDS:
+		case RESET_CONTAINER_FIELDS:
+		case CHANGE_CALENDAR:
+			return {
+				...state,
+				...action.data,
+			};
+		case BG_CALENDAR_TOOLBAR:
+			return {
+				...state,
+				bgClndrToolBarState: {
+					...state.bgClndrToolBarState,
+					...action.data["bgClndrToolBarState"],
+				},
+			};
+		case SAVE_MAP_SETTINGS:
+			return {
+				...state,
+				mapSettingsState: {
+					...state.mapSettingsState,
+					...action.data["mapSettingsState"],
+				},
+			};
+		case RESET_NONCONVENTIONAL:
+			return action.data;
+		default:
+			return state;
+	}
+}
+
+export default NonConversationalReducer;

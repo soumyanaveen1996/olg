@@ -1,0 +1,13 @@
+.Signup-input {
+	border-color: red;
+}
+.Signup-input:focus {
+	border-color: red;
+}
+
+.Signup-error {
+	/*color: orangered;*/
+	color: #de5345;
+	/*font-weight: 600;*/
+	/*text-transform: capitalize;*/
+}

@@ -1,0 +1,148 @@
+.Catalog-contentarea {
+	display: flex;
+	flex: 1;
+}
+
+.Catalog-main {
+	display: flex;
+	flex-direction: column;
+}
+
+.Catalog-tabs {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.Catalog-sidebar {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	/*z-index: 500;*/
+	/*width: 350px;*/
+	/*width: 37%;*/
+	/* background-color: rgba(244, 244, 244, 0.4); */
+	background-color: #f6f8fc;
+}
+.Catalog-sidebarRole {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background-color: #fff;
+}
+
+.Catalog-messages {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+}
+.Catalog-chatarea {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.7);
+	border-right: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.Catalog-bp {
+	margin-bottom: 10px;
+}
+
+.ArrowIcon {
+	right: 5%;
+	position: absolute;
+	width: 24px;
+	height: 18px;
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.ic-Heading {
+	color: #44485a;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: normal;
+	text-align: left;
+}
+
+.ic-HeadingParent {
+	text-align: left;
+	width: 100%;
+	margin-top: 60px;
+	margin-left: 100px;
+}
+
+.ic-Container {
+	width: 100%;
+	padding: 0 20%;
+	margin-top: 50px;
+	margin-bottom: -60px;
+}
+
+.ic-Box {
+	display: flex;
+	min-height: 62px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 0 0 #e9eef7;
+	background-color: #fff;
+	border-radius: 2px;
+	padding-left: 15px !important;
+}
+
+.ic-nameAndPositions {
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.ic-Name {
+	font-size: 14px;
+	font-weight: 600;
+	font-style: normal;
+	color: #000;
+	font-family: "SF Pro Display Regular";
+}
+
+.ic-Positions-Container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: -5px;
+}
+
+.ic-Domain {
+	border-radius: 4px;
+	font-family: "SF Pro Display Regular";
+	font-size: 12px;
+	color: #3559bd;
+	font-weight: 300;
+	margin-top: 1px;
+	background-color: rgba(53, 89, 189, 0.1);
+}
+
+.ic-Position-Name {
+	font-size: 12px;
+	font-weight: 300;
+	font-style: normal;
+	color: #000;
+	font-family: "SF Pro Display Regular";
+}
+
+.ic-AddButton {
+	border-radius: 6px;
+	background-color: #fceceb;
+	color: #e5453b;
+	font-family: "SF Pro Display Regular";
+	font-weight: normal;
+	font-style: normal;
+	border: none;
+	margin-left: auto;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.ic-NotFoundHeading {
+	margin-top: 100px;
+}

@@ -1,0 +1,24 @@
+/* config-overrides.js */
+const webpack = require("webpack");
+module.exports = function override(config, env) {
+	//do stuff with the webpack config...
+
+	config.resolve.fallback = {
+		assert: require.resolve("assert"),
+		os: require.resolve("os"),
+		stream: require.resolve("stream-browserify"),
+		fs: false,
+		child_process: false,
+		path: require.resolve("path"),
+		constants: require.resolve("constants"),
+	};
+	config.plugins.push(
+		new webpack.ProvidePlugin({
+			process: "process/browser",
+			Buffer: ["buffer", "Buffer"],
+		})
+	);
+//	config.optimization.splitChunks = { chunks: 'all', name: false };
+
+	return config;
+};

@@ -1,0 +1,29 @@
+.bg-grey {
+	background: #151c24;
+	height: 100vh;
+}
+.voyagevoice-text-center,
+.icon-circle-arrow-right {
+	color: #ffffff !important;
+}
+.voyagercustomcss {
+	color: #fff;
+	margin-bottom: "10px";
+	text-align: center;
+}
+.signupvoyagerrect {
+	background: #1f2630;
+	opacity: 0.7;
+	margin-top: 20%;
+	margin-left: 25%;
+	margin-right: 10%;
+	max-width: 50%;
+}
+input.createvoyagerbox::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: white;
+	opacity: 1; /* Firefox */
+}
+.alert-danger-custom {
+	font-size: 10px;
+}

@@ -1,0 +1,328 @@
+.Interactions-contentarea {
+	display: flex;
+	flex: 1;
+	width: 100%;
+}
+
+.Interactions-main {
+	display: flex;
+	flex-direction: column;
+}
+
+.Interactions-sidebar {
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*position: relative;*/
+	/*z-index: 500;*/
+	/*width: 320px;*/
+	/*width: 350px;*/
+}
+
+.Interactions-messages {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+}
+
+.Interactions-chatarea {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	flex: 1;
+}
+
+.Interactions-chat__self__div {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-around;
+	position: relative;
+	background: #e1f2f3;
+	border-radius: 0.4em;
+	flex-wrap: wrap;
+}
+
+.Interactions-chat__self__div:after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 11px solid transparent;
+	border-left-color: #e1f2f3;
+	border-right: 0;
+	margin-top: -11px;
+	margin-right: -11px;
+}
+
+.Interactions-chat__self__div>p {
+	margin: 0;
+}
+
+.Interactions-chat__others__div {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	background: #804c8d;
+	border-radius: 0.4em;
+}
+
+.Interactions-chat__others__div:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 11px solid transparent;
+	border-right-color: #804c8d;
+	border-left: 0;
+	margin-top: -11px;
+	margin-left: -11px;
+}
+
+.Interaction-icon-magnifier {
+	font-size: larger;
+	font-weight: bolder;
+}
+
+.trackerNotification {
+	font-size: 12px;
+	color: #4a4a4a;
+	background: #fef0a1;
+	height: 9%;
+	padding: 0.4rem 0 0.2rem 1.4rem;
+}
+
+.readOnlyForm {
+	border-bottom: 1px solid rgb(222, 222, 222);
+	margin: 0 2rem;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+.chat-popup {
+	position: absolute;
+	right: 2vw;
+	margin-bottom: 0.7rem;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	overflow-y: auto;
+}
+
+.notification-count {
+	width: 20px;
+	height: 20px;
+	border-radius: 40px;
+	top: 14px;
+	left: -2px;
+	position: absolute;
+	background: red;
+	color: white;
+	text-align: center;
+}
+
+.with-chat-icon {
+	width: 12%;
+}
+
+.without-chat-icon {
+	width: 15%;
+}
+
+.plain-notifications {
+	height: 10%;
+	padding: 0.5rem 1rem;
+	background: #fff;
+	border-radius: 10px 10px 0 10px;
+	margin-top: 0.5rem;
+	text-align: left;
+	overflow-y: auto;
+	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.notification-with-action {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 9%;
+	padding: 0.5rem 1rem;
+	background: #fff;
+	border-radius: 10px 10px 10px 10px;
+	margin-top: 0.5rem;
+	overflow-y: auto;
+}
+
+.dismiss-chat-notification {
+	color: #00a7d6;
+	cursor: pointer;
+	height: 6vh;
+	padding: 0.5rem 0.5rem;
+}
+
+.shape-polygon {
+	height: 50px;
+	width: 50px;
+	background-color: #dedede;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.shape-active {
+	border: 2px solid slategrey;
+}
+
+.shape-triangle {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid #dedede;
+	cursor: pointer;
+}
+
+.shape-triangle-active {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid #fedede;
+	cursor: pointer;
+}
+
+.shape-circle {
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.shape-circle-blue {
+	background-color: #0078ff;
+}
+
+.shape-circle-light-blue {
+	background-color: #24caff;
+}
+
+.shape-circle-green {
+	background-color: #00df51;
+}
+
+.shape-circle-orange {
+	background-color: #ffcb00;
+}
+
+.shape-circle-red {
+	background-color: #ff0f17;
+}
+
+.shape-circle-pink {
+	background-color: #ff00b0;
+}
+
+.shape-color-active {
+	height: 55px;
+	width: 55px;
+}
+
+@media (max-width: 768px) {
+	.shape-circle {
+		height: 30px;
+		width: 30px;
+	}
+
+	.shape-color-active {
+		height: 35px;
+		width: 35px;
+	}
+}
+
+.text-area-coords {
+	height: 70px;
+	resize: none;
+}
+
+.flight-number-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.flight-prefix {
+	font-weight: 500;
+	/* color: #DF1737; */
+	margin-right: 4px;
+	font-size: 0.9rem;
+}
+
+.ai-form-input {
+	width: 90%;
+}
+
+.ads-experimental {
+	position: absolute;
+	top: 2vh;
+	right: 5vw;
+	height: 50vh;
+	width: 10vw;
+	display: flex;
+	background-image: url("../../styles/images/demo-thumbs/print-banners-lush-sale-advertising-01.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.ads-experimental-header {
+	height: 50px;
+	width: 400px;
+	display: flex;
+	background-image: url("../../styles/images/demo-thumbs/MobileannerAds.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.emojis {
+	position: absolute;
+	left: 5px;
+	bottom: 85px;
+}
+
+.emojis button {
+	position: relative !important;
+	right: 0 !important;
+	width: 0;
+}
+
+.emoji-mart-search {
+	display: none !important;
+}
+
+.emoji-mart-scroll::-webkit-scrollbar {
+	scroll-behavior: smooth;
+	width: 0.6rem;
+	height: 7px;
+	visibility: visible;
+}
+
+.emoji-mart-scroll::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
+.emoji-mart-scroll::-webkit-scrollbar-thumb {
+	background: #e3e4e6;
+	border-radius: 10px;
+}
+
+.emoji-mart-scroll::-webkit-scrollbar-thumb:hover {
+	background: lightgray;
+}

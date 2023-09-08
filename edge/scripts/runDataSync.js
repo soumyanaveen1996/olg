@@ -14,6 +14,7 @@ async function getClient() {
     let client = await getClient();
     console.log('Connected to DB. Starting DB data population');
     await populateCrews(client);
+    await populateBotFarm(client);
     await client.close();
 })();
 
@@ -29,5 +30,20 @@ async function populateCrews(client) {
         await crews.createIndex({userId: 1}, {unique: true});
     } catch(err) {
         console.log("Error occurred while trying to load the crews collection. Error:", err.message);
+    }
+}
+
+async function populateBotFarm(client) {
+    try {
+        const database = client.db("olg");
+        const botFarm = database.collection("botfarm");
+        const botFarmData = require('../data/botFarm');
+
+        const result = await botFarm.insertMany(botFarmData);
+        console.log(`${result.insertedCount} bots were inserted`);
+        console.log('Creating indexes on botFarm table');
+        await botFarm.createIndex({botId: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the botFarm collection. Error:", err.message);
     }
 }

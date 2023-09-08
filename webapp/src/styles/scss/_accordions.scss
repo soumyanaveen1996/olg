@@ -1,0 +1,50 @@
+/*
+Accordions
+*/
+.card-accordions {
+	padding: 0;
+	.card,
+	.accordion-header {
+		border: 0px;
+		margin: 0px;
+	}
+}
+.accordion-body {
+	padding: 1rem 0;
+	padding-top: 0.5rem;
+}
+.accordion-title {
+	position: relative;
+	display: block;
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: $light;
+	color: $primary;
+	margin-bottom: 0.5rem;
+	&:before {
+		position: absolute;
+		display: inline-block;
+		transition: all 0.2s;
+		-webkit-transition: all 0.2s;
+		right: 1rem;
+		top: 50%;
+		height: 12px;
+		width: 12px;
+		text-align: center;
+		line-height: 12px;
+		margin-top: -4px;
+		font-size: 12px;
+		content: "\e93a";
+		font-family: "Linearicons";
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		font-weight: 900;
+	}
+	&.collapsed:before {
+		transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+	}
+	&.collapsed {
+		color: inherit;
+	}
+}

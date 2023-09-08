@@ -1,0 +1,30 @@
+.signup-box {
+	width: 515px;
+	height: 574px;
+	background: rgba(31, 38, 48, 0.7);
+	font-family: sans-serif;
+	border-radius: 10px;
+}
+
+.signup-box-header {
+	font-family: sans-serif;
+	color: #ffffff;
+}
+
+.signup-box-header > h2 {
+	font-size: 38px;
+	line-height: 45px;
+	letter-spacing: -0.84px;
+	font-weight: 900;
+}
+
+.signup-box-header > h3 {
+	font-size: 22px;
+	letter-spacing: -0.73px;
+	line-height: 26px;
+	text-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.textBox-rev {
+	border-radius: 10px 0 10px 10px;
+}

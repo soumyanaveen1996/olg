@@ -1,0 +1,18 @@
+{
+	"short_name": "onship",
+	"name": "onship",
+	"icons": [
+		{
+			"src": "img/oneCare.ico",
+			"sizes": "16x16",
+			"type": "image/x-icon"
+		}
+	],
+	"start_url": "./",
+	"id": "./",
+	"scope": ".",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#ffffff",
+	"prefer_related_applications": false
+}

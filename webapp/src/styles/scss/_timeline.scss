@@ -1,0 +1,76 @@
+/*
+Timeline
+*/
+
+.timeline-sm {
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 10px;
+		top: 1rem;
+		width: 1px;
+		height: 100%;
+		background-color: $light;
+	}
+	> li {
+		padding-bottom: 1rem;
+		padding-left: 2.5rem;
+		&:last-child {
+			padding-bottom: 0px;
+		}
+	}
+}
+.timeline-alt {
+	position: relative;
+
+	> li {
+		padding-bottom: 1rem;
+		padding-left: 2.5rem;
+		position: relative;
+		&:last-child {
+			padding-bottom: 0px;
+		}
+	}
+	&:before {
+		content: "";
+		position: absolute;
+		left: 10px;
+		margin-left: 1px;
+		top: 1rem;
+		width: 2px;
+		height: 100%;
+		background-color: $primary;
+		z-index: 0;
+	}
+	.tl-thumb {
+		z-index: 2;
+		position: absolute;
+		top: 5px;
+		left: -4px;
+		display: inline-flex;
+		width: 32px;
+		height: 32px;
+		border: 2px solid #fff;
+		border-radius: 100px;
+		-webkit-box-align: center !important;
+		-ms-flex-align: center !important;
+		align-items: center !important;
+		-webkit-box-pack: center !important;
+		-ms-flex-pack: center !important;
+		justify-content: center !important;
+	}
+	.tl-content {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		p {
+			opacity: 0.75;
+			font-size: 0.8rem;
+		}
+		.list-inline-item {
+			font-size: 0.8rem;
+		}
+	}
+}
