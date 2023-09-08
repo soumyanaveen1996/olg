@@ -9,7 +9,7 @@ class FrontmRuntime {
       this.overwriteConfig(config);
     }
     this.capabilityExecutor = new CapabilityExecutor();
-    this.botsRunner = new BotsRunner(this.capabilityExecutor);
+    this.botsRunner = new BotsRunner(this.capabilityExecutor, config);
   }
 
   overwriteConfig(config) {
@@ -25,15 +25,15 @@ class FrontmRuntime {
 
   async execute(event) {
     console.log("event in runtime::", event);
-    event.parameters.conversation = event.conversation;
+    let payload = event.parameters;
+    payload.conversation = event.conversation;
+    payload.bot = event.bot;
+    payload.user = event.user;
     try {
       return await this.botsRunner.execute(event.parameters);
     } catch (err) {
       console.log(err.message);
     }
-    // - main entry of the runtime
-    // - more or less the same logic of AG but simplified
-    // - call the bots runner
   }
 
 }

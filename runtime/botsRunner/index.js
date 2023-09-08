@@ -1,24 +1,25 @@
 const fs = require('fs').promises;
-const config = require('./config.js');
+const path = require('path');
 
 class BotsRunner {
-  constructor(capabilityExecutor) {
+  constructor(capabilityExecutor, config) {
     this.capabilityExecutor = capabilityExecutor;
+    this.assetRootPath = config.ASSET_ROOT_PATH;
+    this.assetLocation = config.ASSETS_LOCATION;
   }
 
   async execute(event) {
     console.log("event in bots runner::", event);
     let {
       command,
-      userId,
+      user,
       bot,
-      botVersion = null,
       conversation,
       data
     } = event;
     try {
-      let botModule = await this.getBotModule(bot, botVersion);
-      let user = { userId, userDomains: [{ domain: 'frontmai', roles: ["enduser"] }] };
+      let botModule = await this.getBotModule(bot);
+      user.userDomains = [{ domain: 'frontmai', roles: ["enduser"] }];
 
       if (command === 'asyncRequest') {
         return await this.handleAsyncRequest(data, conversation, user, botModule);
@@ -30,8 +31,8 @@ class BotsRunner {
     }
   }
 
-  async getBotModule(bot, botVersion) {
-    let botFileName = `${__dirname}/${config.botsFolder}/${bot.botId}_${botVersion}.js`;
+  async getBotModule(bot) {
+    let botFileName = path.join(this.assetRootPath, this.assetLocation, bot.botUrl);
     try {
       const bot = await fs.readFile(botFileName, 'utf-8');
       if (!bot) {

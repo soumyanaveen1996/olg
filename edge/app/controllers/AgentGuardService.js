@@ -9,8 +9,9 @@ const doAuth = passport.authenticate('jwt', {
 });
 const Conversation = require('../models/conversation');
 const Bot = require('../models/bot');
+const config = require('../../config');
 const FrontmRuntime = require('runtime').FrontmRuntime;
-const runtime = new FrontmRuntime();
+const runtime = new FrontmRuntime(config);
 
 function validateInput(params) {
     const conversationSchema = Joi.object().keys({
