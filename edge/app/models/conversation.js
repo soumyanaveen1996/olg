@@ -5,6 +5,7 @@ const ConversationSchema = new mongoose.Schema(
         conversationId: { type: String, required: true},
         bot: { type: String, required: true},
         participants: [{ type: String, required: true}],
+        userDomain: { type: String, required: true},
     },
     {
         collection: 'conversations',

@@ -17,6 +17,7 @@ async function getClient() {
     await populateCrews(client);
     await populateBotFarm(client);
     await createConversationCollection(client);
+    await populateDomains(client);
     await client.close();
 })();
 
@@ -58,5 +59,19 @@ async function createConversationCollection(client) {
         await botFarm.createIndex({conversationId: 1}, {unique: true});
     } catch(err) {
         console.log("Error occurred while trying to load the conversations collection. Error:", err.message);
+    }
+}
+async function populateDomains(client) {
+    try {
+        const database = client.db("olg");
+        const domains = database.collection("domains");
+        const domainsData = require('../data/domains');
+
+        const result = await domains.insertMany(domainsData);
+        console.log(`${result.insertedCount} domains were inserted`);
+        console.log('Creating indexes on domains table');
+        await domains.createIndex({userDomain: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the domains collection. Error:", err.message);
     }
 }

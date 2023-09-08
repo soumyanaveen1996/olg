@@ -9,6 +9,7 @@ const doAuth = passport.authenticate('jwt', {
 });
 const Conversation = require('../models/conversation');
 const Bot = require('../models/bot');
+const Domain = require('../models/domain');
 const config = require('../../config');
 const FrontmRuntime = require('runtime').FrontmRuntime;
 const runtime = new FrontmRuntime(config);
@@ -17,7 +18,8 @@ function validateInput(params) {
     const conversationSchema = Joi.object().keys({
         conversationId: Joi.string().required(),
         bot: Joi.string().required(),
-        participants: Joi.array().items(Joi.string()).required()
+        participants: Joi.array().items(Joi.string()).required(),
+        userDomain: Joi.string().required(),
     });
     const inputSchema = Joi.object().keys({
         capability: Joi.string().required(),
@@ -34,10 +36,15 @@ function validateConversationId(userId, botId, inputConvId) {
     return (inputConvId === convId);
 }
 async function validateConversation(conversation, userId) {
-    let {conversationId, bot} = conversation;
+    let {conversationId, bot, userDomain} = conversation;
     let dbBot = await Bot.findOne({botId: bot});
     if(_.isEmpty(dbBot)) {
         throw new Error('Invalid bot');
+    }
+
+    let dbDomain = await Domain.findOne({userDomain});
+    if(_.isEmpty(dbDomain)) {
+        throw new Error('Invalid domain');
     }
 
     if(!validateConversationId(userId, bot, conversationId)) {
@@ -49,7 +56,7 @@ async function validateConversation(conversation, userId) {
         await new Conversation(conversation).save();
     }
     
-    return {botData: dbBot};
+    return {botData: dbBot, domainData: dbDomain};
 }
 async function validate(req) {
     const { error } = validateInput(req.body);
@@ -65,17 +72,17 @@ async function validate(req) {
 
     let conversation = _.get(req, 'body.conversation');
     let userId = _.get(req, 'user.userId');
-    let {botData} = await validateConversation(conversation, userId);
+    let {botData, domainData} = await validateConversation(conversation, userId);
     req.botData = botData;
+    req.domainData = domainData;
 }
 
 router.post('/AgentGuardService/Execute', doAuth, async (req, res) => {
     try {
         await validate(req);
-        let {capability, parameters, requestUuid, conversation} = req.body;
-        let user = req.user;
-        let botData = req.botData;
-        await runtime.execute({capability, parameters, requestUuid, conversation, user, botData});
+        let {user, botData, domainData, body} = req;
+        let {capability, parameters, requestUuid, conversation} = body;
+        await runtime.execute({capability, parameters, requestUuid, conversation, user, botData, domainData});
         return res.status(200).json({message: 'success'});
     } catch(err) {
         return res.status(500).json({error: err.message});
