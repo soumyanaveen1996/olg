@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const {MONGO_URI} = require('../config');
 const crewData = require("../data/crews.json");
+const botFarmData = require("../data/botfarm.json");
 
 async function getClient() {
     try {
@@ -15,6 +16,7 @@ async function getClient() {
     console.log('Connected to DB. Starting DB data population');
     await populateCrews(client);
     await populateBotFarm(client);
+    await createConversationCollection(client);
     await client.close();
 })();
 
@@ -45,5 +47,16 @@ async function populateBotFarm(client) {
         await botFarm.createIndex({botId: 1}, {unique: true});
     } catch(err) {
         console.log("Error occurred while trying to load the botFarm collection. Error:", err.message);
+    }
+}
+
+async function createConversationCollection(client) {
+    try {
+        const database = client.db("olg");
+        const botFarm = database.collection("conversations");
+        console.log('Creating indexes on conversations table');
+        await botFarm.createIndex({conversationId: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the conversations collection. Error:", err.message);
     }
 }

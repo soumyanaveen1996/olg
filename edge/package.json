@@ -6,6 +6,7 @@
     "start": "DEBUG=express*,ioredis* nodemon --ignore scripts/ --ignore test/ server.js"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
     "dotenv": "^16.3.1",
@@ -19,6 +20,8 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "runtime": "file:../runtime",
+    "sha1": "^1.1.1",
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
