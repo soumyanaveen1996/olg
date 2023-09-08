@@ -27,7 +27,7 @@ class FrontmRuntime {
     console.log("event in runtime::", event);
     let payload = event.parameters;
     payload.conversation = event.conversation;
-    payload.bot = event.bot;
+    payload.bot = event.botData;
     payload.user = event.user;
     try {
       return await this.botsRunner.execute(event.parameters);
