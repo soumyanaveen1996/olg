@@ -4,5 +4,5 @@ module.exports = {
   REDIS_PORT: 6379,
   EXPRESS_PORT: 4001,
   ASSET_ROOT_PATH: __dirname,
-  ASSETS_LOCATION: 'assets',
+  ASSETS_LOCATION: '../bots',
 }

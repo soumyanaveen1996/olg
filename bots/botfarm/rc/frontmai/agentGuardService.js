@@ -25,18 +25,12 @@
     return await AgentGuard.execute(postReq);
   };
 
-  const addConversationDetailsToRequest = function(botId, conversation, postReq, _) {
+  const addConversationDetailsToRequest = function(botId, conversation, postReq) {
     postReq.conversation = {
       conversationId: conversation.conversationId,
       bot: botId,
+      participants: conversation.participants
     };
-
-    if (_.isUndefined(conversation.created)) {
-      postReq.conversation.participants = conversation.participants;
-      postReq.conversation.onChannels = conversation.onChannels;
-      postReq.conversation.closed = false;
-      postReq.conversation.allowNonContactMessages = conversation.allowNonContactMessages;
-    }
   };
 
   return {
