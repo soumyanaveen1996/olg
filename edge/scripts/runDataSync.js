@@ -1,7 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 const {MONGO_URI} = require('../config');
-const crewData = require("../data/crews.json");
-const botFarmData = require("../data/botfarm.json");
 
 async function getClient() {
     try {
@@ -12,6 +10,7 @@ async function getClient() {
 }
 
 (async () => {
+    console.log('Running sync file');
     let client = await getClient();
     console.log('Connected to DB. Starting DB data population');
     await populateCrews(client);
@@ -40,7 +39,7 @@ async function populateBotFarm(client) {
     try {
         const database = client.db("olg");
         const botFarm = database.collection("botfarm");
-        const botFarmData = require('../data/botFarm');
+        const botFarmData = require('../data/botfarm');
 
         const result = await botFarm.insertMany(botFarmData);
         console.log(`${result.insertedCount} bots were inserted`);

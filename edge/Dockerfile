@@ -13,4 +13,7 @@ COPY . .
 
 EXPOSE 4001
 
-CMD [ "node", "server.js" ]
+#ENTRYPOINT [ "node", "server.js" ]
+
+# temp script to load the mongo db
+CMD node "scripts/runDataSync.js"  & node server.js

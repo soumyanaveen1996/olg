@@ -22,9 +22,11 @@ services:
     image: redis
     restart: always
     expose:
-      - 6379:6379
+      - 6379
     networks:
       - redis-net
+    ports:
+      - "6379:6379"
 
   mongo:
     image: mongo
@@ -34,7 +36,9 @@ services:
     networks:
       - mongo-net
     expose:
-      - 27017:27017
+      - 27017
+    ports:
+      - "27017:27017"
 
 networks:
   mongo-net:
