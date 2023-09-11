@@ -1,0 +1,42 @@
+services:
+  edge:
+    restart: always
+    build:
+      context: edge
+    volumes:
+      - ./edge:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./bots:/usr/src/bots
+      - ./runtime:/usr/src/runtime
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - mongo-net
+      - redis-net
+      - express-net
+    expose:
+      - 4001:4001
+
+  redis:
+    image: redis
+    restart: always
+    expose:
+      - 6379:6379
+    networks:
+      - redis-net
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    networks:
+      - mongo-net
+    expose:
+      - 27017:27017
+
+networks:
+  mongo-net:
+  redis-net:
+  express-net:

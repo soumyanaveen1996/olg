@@ -1,8 +1,9 @@
 const { MongoClient } = require("mongodb");
+const config = require('../config');
 
 class MongoDBHandler {
   constructor() {
-    this.uri = "mongodb://localhost:27017/"; //default
+    this.uri = config.MONGO_URI;
     this._mongoConnection = new MongoClient(this.uri);
   }
 
