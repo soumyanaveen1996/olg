@@ -4,8 +4,6 @@ services:
     build:
       context: edge
     volumes:
-      - ./edge:/usr/src/app
-      - /usr/src/app/node_modules
       - ./bots:/usr/src/bots
       - ./runtime:/usr/src/runtime
     depends_on:
@@ -16,7 +14,9 @@ services:
       - redis-net
       - express-net
     expose:
-      - 4001:4001
+      - 4001
+    ports:
+      - "4001:4001"
 
   redis:
     image: redis
