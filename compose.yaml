@@ -5,7 +5,6 @@ services:
       context: edge
     volumes:
       - ./bots:/usr/src/bots
-      - ./runtime:/usr/src/runtime
     depends_on:
       - mongo
       - redis
