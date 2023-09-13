@@ -37,6 +37,7 @@ import {
 	SIGMA_LANDING,
 	SIGMA_LOGIN_BACKGROUND,
 	SIGMA_SIGNUP_BACKGROUND,
+	ONELEARN_BACKGROUND,
 } from "../../../Utils/Constants";
 import HomeSlidesNavigation from "../../Home/HomeSlidesNavigation";
 
@@ -95,9 +96,9 @@ const Landing = (props) => {
 			poweredBy = POWERED_BY;
 			break;
 		case ONELEARN_LANDING:
-			signupBackground = ONSHIP_SIGNUP_BACKGROUND;
-			loginBackground = ONSHIP_LOGIN_BACKGROUND;
-			bgPosition = "center";
+			signupBackground = ONELEARN_BACKGROUND;
+			loginBackground = ONELEARN_BACKGROUND;
+			bgPosition = "top";
 			poweredBy = POWERED_BY;
 			break;
 		case SIGMA_LANDING:
@@ -164,6 +165,7 @@ const Landing = (props) => {
 						<a
 							href="https://frontm.com/"
 							className="d-flex justify-content-center p-2 align-items-center"
+							style={{ position: "absolute", bottom: "10px" }}
 						>
 							{/* <span style={{ fontSize: "18px", fontWeight: "600" }}>
 								{poweredBy}

@@ -182,6 +182,7 @@ export const STATION_SATCOM_LOGIN_BACKGROUND = "#ffff";
 export const ONSHIP_LOGIN_BACKGROUND = "#fff";
 export const SIGMA_LOGIN_BACKGROUND = "#fff";
 export const ONSHIP_SIGNUP_BACKGROUND = "img/onship-loginNew2.png";
+export const ONELEARN_BACKGROUND = "img/onelearn-login-bg.jpg";
 export const SIGMA_SIGNUP_BACKGROUND = "img/SIGMA_SIGNUP_IMAGE.jpg";
 export const ONSHIP_VERIFY_BACKGROUND = "img/onboarding-onship-img@2x.png";
 export const THURAYA_T2M_LOGIN_BACKGROUND = "#ffff";

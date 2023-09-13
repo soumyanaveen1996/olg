@@ -1,21 +1,29 @@
-import { toast } from "react-toastify";
 
-
-export const registerOneLearnUser = (payload) => {
+const postToEdgeServer = async (route, payload) => {
     // let baseURL = Config.edgeURL;
-    const url = `http://localhost:4001/register`;
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    })
-        .then(function (response) {
-            return response.json();
+    const url = `http://localhost:4001${route}`;
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
         })
-        .catch((error) => {
-            // toast("error")(error.message)
-            console.error("error occured in api", error)
-        })
+        return response.json()
+    } catch (error) {
+        console.error("error occured in api", error)
+    }
+}
+
+export const register = async (payload) => {
+    return postToEdgeServer("/register", payload)
+}
+
+export const forgotPin = async (payload) => {
+    return postToEdgeServer("/forgotPin", payload)
+}
+
+export const login = async (payload) => {
+    return postToEdgeServer("/login", payload)
 }

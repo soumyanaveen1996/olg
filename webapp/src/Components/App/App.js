@@ -156,8 +156,8 @@ class App extends Component {
 						// console.log("1.App component props ========= ", storedDomain);
 					} else if (!storedUser.isAnonymousUser) {
 						// getVoipDevice();
-						getAllDomains();
-						fetchWalletBalanceService();
+						// getAllDomains();
+						// fetchWalletBalanceService();
 					}
 
 					if (storedLoginState) {
