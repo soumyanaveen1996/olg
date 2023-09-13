@@ -1,0 +1,13 @@
+[
+  {
+    "userDomain": "olg",
+    "logoUrl": "domainlogos/logo_olg.png",
+    "name": "OneLearn Global",
+    "viewModes": {
+      "apps": true,
+      "channels": false,
+      "chat": false,
+      "voip": false
+    }
+  }
+]

@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const {MONGO_URI} = require('../config');
 const crewData = require("../data/crews.json");
+const botFarmData = require("../data/botfarm.json");
 
 async function getClient() {
     try {
@@ -14,6 +15,9 @@ async function getClient() {
     let client = await getClient();
     console.log('Connected to DB. Starting DB data population');
     await populateCrews(client);
+    await populateBotFarm(client);
+    await createConversationCollection(client);
+    await populateDomains(client);
     await client.close();
 })();
 
@@ -29,5 +33,45 @@ async function populateCrews(client) {
         await crews.createIndex({userId: 1}, {unique: true});
     } catch(err) {
         console.log("Error occurred while trying to load the crews collection. Error:", err.message);
+    }
+}
+
+async function populateBotFarm(client) {
+    try {
+        const database = client.db("olg");
+        const botFarm = database.collection("botfarm");
+        const botFarmData = require('../data/botFarm');
+
+        const result = await botFarm.insertMany(botFarmData);
+        console.log(`${result.insertedCount} bots were inserted`);
+        console.log('Creating indexes on botFarm table');
+        await botFarm.createIndex({botId: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the botFarm collection. Error:", err.message);
+    }
+}
+
+async function createConversationCollection(client) {
+    try {
+        const database = client.db("olg");
+        const botFarm = database.collection("conversations");
+        console.log('Creating indexes on conversations table');
+        await botFarm.createIndex({conversationId: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the conversations collection. Error:", err.message);
+    }
+}
+async function populateDomains(client) {
+    try {
+        const database = client.db("olg");
+        const domains = database.collection("domains");
+        const domainsData = require('../data/domains');
+
+        const result = await domains.insertMany(domainsData);
+        console.log(`${result.insertedCount} domains were inserted`);
+        console.log('Creating indexes on domains table');
+        await domains.createIndex({userDomain: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the domains collection. Error:", err.message);
     }
 }

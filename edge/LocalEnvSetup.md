@@ -66,3 +66,30 @@ In the test folder, there are scripts/curl commands to test the edge server
 2. There is a client for redis - this will publish messages to a user (based on user id)
 3. There is a collection of insomnia requests - you can choose to import these into your client to test the commands
 
+### <span style="color: green"> After user login
+After the user logs in successfully, do the following:
+
+1. Get bots data - http://localhost:4001/UserService/GetUserBotMetaData. This will give you all the details of the bots the user has access to.
+2. Get the bot files - http://localhost:4001/FileService/Get. Each URL of the bot metadata (botUrl, logoUrl, dependencies - url) has to be downloaded.
+3. Get domains data - http://localhost:4001/UserService/GetDomainsMetaData. This will give you all the details of the bots the user has access to.
+4. Create context - you will need to create the bot context and plug in all the dependencies. Look at the logic of existing web app.
+   This context will usually have
+   
+   - conversation context -
+     - this will have the botId,
+     - the conversation id (check the id creation logic in web app - this is a hash of the userId and bot Id)
+     - the participants - this will be an array and have the user id
+     - domain - the domain in which the conversation is being created in
+     
+   - Auth - this will give details of the user
+   - AgentGuard - this is a wrapper around the rest call - http://localhost:4001/AgentGuardService/Execute
+   - remote dependencies - the files that were downloaded via bot metadata
+   - Utils - with Lodash, for now.
+
+### <span style="color: green"> Basic bot execution
+Execute the life cycle method of the bot. 
+
+1. When the bot opens, you have to call init method.
+2. When the user does some action, call next
+3. when there is a message from the socket for the bot, call the asyncResult method
+4. when the user closes the bot, call done method.
