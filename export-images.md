@@ -1,4 +1,4 @@
-To export and share the images follow the next steps:
+## To export and share the images follow the next steps:
 
  1. Run `docker compose up`
  2. Run `docker ps` and check the docker container ids
@@ -14,7 +14,8 @@ docker commit <id4> mongo
 5. Compress the out folder. That zip file is the one to be shared
 
 
-To import the images follow the next steps:
+## To import the images follow the next steps:
+
 1. Download the zip file created in the previous step
 2. Extract the file and open a terminal in the extracted folder
 3. Run: `docker load --input ./out.tar `
