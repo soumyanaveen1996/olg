@@ -10,7 +10,9 @@ docker commit <id2> webapp
 docker commit <id3> redis
 docker commit <id4> mongo
 ```
-4. Run: `docker save webapp edge mongo redis -o ./out/out.tar`
+
+4. Run: `docker save webapp edge mongo redis -o ./out/out.tar`. 
+
 5. Compress the out folder. That zip file is the one to be shared
 
 
