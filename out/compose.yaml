@@ -1,0 +1,57 @@
+services:
+  edge:
+    restart: always
+    image: edge
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - mongo-net
+      - redis-net
+      - express-net
+    expose:
+      - 4001
+    ports:
+      - "4001:4001"
+  webapp:
+    image: webapp
+    depends_on:
+      - mongo
+      - redis
+      - edge
+    networks:
+      - mongo-net
+      - redis-net
+      - express-net
+      - webapp-net
+    expose:
+      - 8080 
+    ports:
+      - "8080:80"
+
+  redis:
+    image: redis
+    restart: always
+    expose:
+      - 6379
+    networks:
+      - redis-net
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo
+    restart: always
+    networks:
+      - mongo-net
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+
+networks:
+  mongo-net:
+  redis-net:
+  express-net:
+  webapp-net:
+
