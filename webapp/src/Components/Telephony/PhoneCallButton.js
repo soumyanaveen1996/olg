@@ -3,7 +3,6 @@ import { makeCall, resetCallInfo } from "../../State/actions/phone";
 import { connect } from "react-redux";
 import { fetchWalletBalanceService } from "../../State/actions/user";
 import { doE164, formatPhoneNumber, getCallMode } from "./Utils";
-import { ReactSipPhone, phoneStore } from "react-sip-phone";
 import DiallerKeyPad from "./DiallerKeyPad";
 import ModalPopup from "../ModalMessages/ModalPopup";
 
