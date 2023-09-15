@@ -104,7 +104,6 @@
 		"react-script-loader-hoc": "^1.2.2",
 		"react-scripts": "^5.0.1",
 		"react-select": "5.5.0",
-		"react-sip-phone": "bitbucket:frontm/react-sip-phone",
 		"react-spinkit": "^3.0.0",
 		"react-super-responsive-table": "^5.1.1",
 		"react-toastify": "^6.0.5",

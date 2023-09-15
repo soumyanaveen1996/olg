@@ -2,9 +2,7 @@ import React from "react";
 import CountrySelector from "./CountrySelector";
 import { doE164, formatPhoneNumber, getCallMode } from "./Utils";
 import NumberPad from "./NumberPad";
-import { ReactSipPhone, phoneStore } from "react-sip-phone";
 import _ from "lodash";
-import "react-sip-phone/dist/index.css";
 import "./DiallerKeyPad.css";
 import { connect } from "react-redux";
 import UserServiceClient from "../../Services/Clients/UserServiceClient";
@@ -145,99 +143,6 @@ class DiallerKeyPad extends React.PureComponent {
 	};
 
 	makeCall = () => {
-		let number = doE164(this.state.fullPhoneNumber);
-
-		if (!this.props.user.user.isPostpaidUser) {
-			if (this.props.user.balance <= 0) {
-				this.props.onClose();
-				this.props.noBalance();
-				return;
-			}
-		}
-		if (number) {
-			if (
-				phoneStore.getState().sipAccounts.sipAccount &&
-				number.formatted.substring(1)
-			) {
-				phoneStore
-					.getState()
-					.sipAccounts.sipAccount.makeCall(number.formatted.substring(1));
-			}
-			phoneStore.subscribe(() => {
-				console.log(
-					">>> make call",
-					phoneStore.getState().sipSessions.sessions
-				);
-				if (!_.isEmpty(phoneStore.getState().sipSessions.sessions)) {
-					let callObject = {
-						userId: number.formatted.substring(1), // The receiver userId
-						callerUserId: this.props.user.user.userId, // the user initiating the call
-						videoSessionId: null,
-						video: false,
-					};
-
-					switch (
-					phoneStore.getState().sipSessions.sessions[
-						Object.keys(phoneStore.getState().sipSessions.sessions)[0]
-					]._state
-					) {
-						case "Established":
-							if (this.state.duration === 0) {
-								UserServiceClient.sendVoipCall({
-									...callObject,
-									callAction: "CallStart",
-								});
-								this.setState({
-									duration: performance.now(),
-									callStartTime: Date.now(),
-									showNumberPlate: true,
-								});
-							}
-							break;
-						case "Terminated":
-							let isSatCall = getCallMode(number.countryCode) === "sat";
-							if (this.state.duration) {
-								UserServiceClient.sendVoipCall({
-									...callObject,
-									callAction: "CallEnd",
-								});
-								UserServiceClient.sendVoipCall({
-									...callObject,
-									callAction: "CallSummary",
-									callStartTime: this.state.callStartTime,
-									callDuration:
-										(performance.now() - this.state.duration) / 1000, // in sec,
-									callType: isSatCall ? "SAT" : "PSTN",
-									calledNumber: isSatCall ? "+12124010649" : number.formatted,
-									dialledSatPhoneNumber: number.formatted,
-									isLocalContact: false,
-									showNumberPlate: true,
-								});
-							}
-							break;
-						default:
-							break;
-					}
-
-					this.setState({
-						phoneState:
-							phoneStore.getState().sipSessions.sessions[
-								Object.keys(phoneStore.getState().sipSessions.sessions)[0]
-							]._state,
-					});
-				} else {
-					this.setState({
-						phoneState: null,
-						duration: 0,
-						callStartTime: null,
-						fullPhoneNumber: "+",
-						country: null,
-						showNumberPlate: true,
-					});
-					this.props.resetCallInfo();
-				}
-			});
-		}
 	};
 
 	clearText = () => {
@@ -310,31 +215,6 @@ class DiallerKeyPad extends React.PureComponent {
 							: "d-block react-sip-phone"
 					}
 				>
-					<ReactSipPhone
-						name={name || ""}
-						sipCredentials={{
-							sipuri: sipuri || "",
-							password: password || "",
-						}}
-						sipConfig={{
-							websocket: websocket || "",
-							defaultCountryCode: "",
-						}}
-						phoneConfig={{
-							disabledButtons: disabledButtons || "", // Will remove button(s) from Phone component. E.g. hold transfer dialpadopen mute '
-							disabledFeatures: disabledFeatures || "", // Will remove feature(s) from application. E.g. settings remoteid
-							defaultDial: "", // (strict-mode only) the default destination. E.g. 1234567890
-							sessionsLimit: 3, // limits amount of sessions user can have active
-							attendedTransferLimit: 2, // limits amount of attendedTransfer sessions user can have active
-							autoAnswer: false, // enable the auto-answer on incoming calls
-						}}
-						appConfig={{
-							mode: mode || "", // 'strict' will activate a simple and limited user experience. set to sessionLimit 1 if using 'strict'
-							started: false, // (strict-mode only) keeps track of call button visability during strict-mode
-							appSize: "large", // assign 'large' for larger font in status-name and session-status (not session remote-id/display name)
-						}}
-						width={0}
-					/>
 				</div>
 
 				{showNumberPlate && (
