@@ -103,7 +103,7 @@ function CorporateLogo(props) {
 	return (
 		<div
 			className="d-flex justify-content-center p-2 align-items-center"
-			style={{ flex: 1 }}
+			style={{ flex: 0.5 }}
 		>
 			<span className="logo-text d-flex align-items-center flex-column">
 				{/* {landingPath === THURAYA_LANDING ? (

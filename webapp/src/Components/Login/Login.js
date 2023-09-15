@@ -20,8 +20,10 @@ import {
 	STATION_SATCOM_TITLE,
 	SIGMA_LANDING,
 	SIGMA_TITLE,
+	ONELEARN_LANDING,
 } from "../../Utils/Constants";
 import history from "../../Services/History";
+import OneLearnLogin from "./OneLearnLogin";
 
 class Login extends Component {
 	constructor(props) {
@@ -88,6 +90,7 @@ class Login extends Component {
 			this.props.landingPath === "/thuraya" ||
 			this.props.landingPath === STATION_SATCOM_LANDING ||
 			this.props.landingPath === ONECARE_LANDING ||
+			this.props.landingPath === ONELEARN_LANDING ||
 			this.props.landingPath === SIGMA_LANDING
 		) {
 			return null;
@@ -125,7 +128,10 @@ class Login extends Component {
 			>
 				<div>
 					<div className="px-4 py-2">
-						<FrontMLogin {...this.props} />
+						{this.props.landingPath === ONELEARN_LANDING
+							? (<OneLearnLogin {...this.props} />)
+							: (<FrontMLogin {...this.props} />)
+						}
 					</div>
 					<div
 						className={`p-4 flex`}

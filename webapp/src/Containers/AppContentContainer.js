@@ -73,16 +73,16 @@ class AppContentContainer extends Component {
 		if (props.voipStatus) {
 			this.setState({ userVoipStatus: { ...props.voipStatus } });
 		}
-		UserServiceClient.getAppBroadcastMessages()
-			.then((broadcast) => {
-				const { messages } = broadcast;
-				messages.forEach(({ message }) => {
-					Notify({ type: "info", message });
-				});
-			})
-			.catch((error) => {
-				console.error("Error Occurred Getting Broadcast messages", error);
-			});
+		// UserServiceClient.getAppBroadcastMessages()
+		// 	.then((broadcast) => {
+		// 		const { messages } = broadcast;
+		// 		messages.forEach(({ message }) => {
+		// 			Notify({ type: "info", message });
+		// 		});
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error("Error Occurred Getting Broadcast messages", error);
+		// 	});
 
 		let {
 			getTimeLine,
@@ -119,13 +119,13 @@ class AppContentContainer extends Component {
 				await this.props.initiateConversationForLink();
 			}, 0);
 
-		setInterval(() => {
-			const agInput = {
-				capability: "PingAgentGuardCapability",
-			};
-			console.info("Health Checkup: ", new Date());
-			AgentGuardServiceClient.execute(agInput);
-		}, 300000);
+		// setInterval(() => {
+		// 	const agInput = {
+		// 		capability: "PingAgentGuardCapability",
+		// 	};
+		// 	console.info("Health Checkup: ", new Date());
+		// 	AgentGuardServiceClient.execute(agInput);
+		// }, 300000);
 
 		window.addEventListener("resize", () => {
 			let { isMobile, orientation = ORIENTATION.PORTRAIT } = isMobileDevice();
@@ -151,20 +151,20 @@ class AppContentContainer extends Component {
 							selectedDomain: JSON.parse(getFromLocalStorage)?.userDomain,
 						};
 					}
-					Promise.all([
-						fetchWalletBalanceService(),
-						getGeoLocationData(),
-						fetchBotSubscriptions(selectedDomain),
-						fetchContacts(selectedDomain, true),
-						getFavourite(selectedDomain),
-						fetchSubscribedChannels(selectedDomain),
-						getTimeLine(),
-						streamChatMessages(),
-					]).catch(() => {
-						console.error(
-							"Failed to Fetch data at same time and fill the redux state"
-						);
-					});
+					// Promise.all([
+					// 	fetchWalletBalanceService(),
+					// 	getGeoLocationData(),
+					// 	fetchBotSubscriptions(selectedDomain),
+					// 	fetchContacts(selectedDomain, true),
+					// 	getFavourite(selectedDomain),
+					// 	fetchSubscribedChannels(selectedDomain),
+					// 	getTimeLine(),
+					// 	streamChatMessages(),
+					// ]).catch(() => {
+					// 	console.error(
+					// 		"Failed to Fetch data at same time and fill the redux state"
+					// 	);
+					// });
 				});
 			});
 		}
@@ -336,26 +336,26 @@ const mapActionsToProps = {
 const mapDataToProps = (state) => {
 	const chats = state.chats;
 	return {
-		user: state.user.user,
+		user: state.user?.user,
 		userDetails: state.user,
-		isOnline: state.user.isOnline,
+		isOnline: state.user?.isOnline,
 		chats: state.chats,
-		isAnonymousUser: state.user.isAnonymousUser,
+		isAnonymousUser: state.user?.isAnonymousUser,
 		notification: state.notification,
-		newUser: state.user.auth.newUser,
-		tncAccept: state.user.user?.tncAccept,
-		geoData: state.user.geoData,
+		newUser: state.user?.auth?.newUser,
+		tncAccept: state.user?.user?.tncAccept,
+		geoData: state.user?.geoData,
 		selectedDomain: state.selectedDomain,
 		selectedContactStore: state.contacts.selectedContact,
 		navbar: chats.navigationBar.navbar,
-		isLicenseValid: state.user.isLicenseValid,
-		voipStatus: state.user.voipStatus,
-		loginState: state.user.loginState,
+		isLicenseValid: state.user?.isLicenseValid,
+		voipStatus: state.user?.voipStatus,
+		loginState: state.user?.loginState,
 		mfaBotId:
 			state.chats?.selectedConversation?.bot?.botId ||
 			state.catalogue?.selectedBotId,
-		softwareMfaStatus: state.user.softwareMfaStatus,
-		isMFAenabled: state.user.softwareMfaEnabled,
+		softwareMfaStatus: state.user?.softwareMfaStatus,
+		isMFAenabled: state.user?.softwareMfaEnabled,
 	};
 };
 export default connect(mapDataToProps, mapActionsToProps)(AppContentContainer);

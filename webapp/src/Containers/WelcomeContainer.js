@@ -300,11 +300,11 @@ class WelcomeContainer extends React.Component {
 							imgClassName="catalog-card__icon"
 							// imgKey={"homeAssistantIcon"}
 							// image={"img/home-icon-assistant@2x.png"}
-							image={`${R.prop("contentURL", Config)}` + this.props.selectedDomain.assistantBotConfig.logoUrl}
+							image={`${R.prop("contentURL", Config)}` + this.props?.selectedDomain?.assistantBotConfig?.logoUrl}
 						/>
 					</a>
 					<label className="catalog-card__fontStyle catalog-card__label">
-						{isOnboarding ? "FrontM Assistant" : this.props.selectedDomain?.assistantBotConfig?.name.replace("Onship", "onship")}
+						{isOnboarding ? "FrontM Assistant" : this.props?.selectedDomain?.assistantBotConfig?.name.replace("Onship", "onship")}
 					</label>
 				</div>
 

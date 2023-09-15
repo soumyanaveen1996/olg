@@ -269,14 +269,14 @@ class AppNav extends Component {
 				className="in-nav in-nav-dark"
 				style={{ height: window.innerHeight + "px" }}
 			>
-				{this.props.isLicenseValid && !this.props.isAnonymousUser && (
+				{/* {this.props.isLicenseValid && !this.props.isAnonymousUser && (
 					<AppTour
 						newUser={this.props.newUser}
 						userName={this.props.userName}
 						selectedDomain={this.props.selectedDomain}
 						updateAuthUser={this.props.updateAuthUser}
 					/>
-				)}
+				)} */}
 
 				<div
 					className="d-flex flex-row navbar px-2 justify-content-between"

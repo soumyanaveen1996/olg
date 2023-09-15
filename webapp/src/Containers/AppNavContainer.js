@@ -69,10 +69,10 @@ const mapDataToProps = (state, props) => {
 	// console.log("selected contact ", state.contacts.selectedContact);
 
 	return {
-		userId: user.user.userId,
-		userName: user.user.userName,
-		userEmail: user.user.emailAddress,
-		botSubscriptions: user.botSubscriptions,
+		userId: user.user?.userId,
+		userName: user.user?.userName,
+		userEmail: user.user?.emailAddress,
+		botSubscriptions: user?.botSubscriptions,
 		subscribedChannels: state.channels.subscribed,
 		timeLine: state.chats.timeLine,
 		contacts: state.contacts.accepted,
@@ -80,11 +80,11 @@ const mapDataToProps = (state, props) => {
 		vessels: state.contacts.vessels,
 		selectedConversation: state.chats.selectedConversation,
 		hiddenTimeLine: state.chats.hiddenTimeLine,
-		newUser: user.auth.newUser,
+		newUser: user.auth?.newUser,
 		domains: state.domains,
 		selectedDomain: state.selectedDomain,
 		selectedContactStore: state.contacts.selectedContact,
-		sessionId: user.auth.sessionId,
+		sessionId: user.auth?.sessionId,
 	};
 };
 

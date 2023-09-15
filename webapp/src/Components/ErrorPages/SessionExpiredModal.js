@@ -11,7 +11,7 @@ const SessionExpiredModal = (props) => {
 
     const handleLogoutUser = () => {
         dispatch(showSessionExpiredModal(false))
-        props.logout()
+        // props.logout()
     }
 
     return (

@@ -12,6 +12,7 @@ export default {
 	mapboxApiAccessToken:
 		"pk.eyJ1IjoiZ2FjaWx1IiwiYSI6ImNqcHh0azRhdTFjbXQzeW8wcW5vdXhlMzkifQ.qPfpVkrWbk-GSBY3uc6z3A",
 	gRPCURL: "https://gwdev.frontm.ai",
+	edgeURL: "http://localhost:4001",
 	webertcSignalServer: "gwdev.frontm.ai",
 	mapURL: "https://devproxymaps.frontm.ai/styles/klokantech-basic/style.json",
 	gnsDomain: "gnsTestBots",
