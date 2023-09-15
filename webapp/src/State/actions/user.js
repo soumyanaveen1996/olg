@@ -309,60 +309,60 @@ export async function selectedUserDomain() {
 export function getAllDomains() {
 	return async (dispatch) => {
 		try {
-			let domainsList = await getDataFromLFStorage(LFStorageKeys.DOMAINS);
-			if (!domainsList?.length) {
-				let domainsListRes = await UserServiceClient.getDomain();
-				domainsList = domainsListRes.domains;
-				if (getSignupPath() !== "/login") {
-					domainsList = domainsList.filter(
-						(domain) => domain.userDomain !== FRONTM_DOMAIN
-					);
-					loadAllDomainsListInLFStorage(domainsList);
-				} else {
-					loadAllDomainsListInLFStorage(domainsList);
-				}
-			}
+			// let domainsList = await getDataFromLFStorage(LFStorageKeys.DOMAINS);
+			// if (!domainsList?.length) {
+			// 	let domainsListRes = await UserServiceClient.getDomain();
+			// 	domainsList = domainsListRes.domains;
+			// 	if (getSignupPath() !== "/login") {
+			// 		domainsList = domainsList.filter(
+			// 			(domain) => domain.userDomain !== FRONTM_DOMAIN
+			// 		);
+			// 		loadAllDomainsListInLFStorage(domainsList);
+			// 	} else {
+			// 		loadAllDomainsListInLFStorage(domainsList);
+			// 	}
+			// }
 
-			// dispatch(removeSelectedDomain());
-			let isLastLogin = false;
-			let lastLoginDomain = null;
+			// // dispatch(removeSelectedDomain());
+			// let isLastLogin = false;
+			// let lastLoginDomain = null;
 
-			domainsList.forEach((elem) => {
-				if (elem && elem.lastLoggedIn) {
-					isLastLogin = true;
-					lastLoginDomain = elem;
-				}
-			});
+			// domainsList.forEach((elem) => {
+			// 	if (elem && elem.lastLoggedIn) {
+			// 		isLastLogin = true;
+			// 		lastLoginDomain = elem;
+			// 	}
+			// });
 
-			let lastLoggedInDomain = _.cloneDeep(lastLoginDomain);
-			let responseDomain = _.cloneDeep(domainsList[0]);
+			// let lastLoggedInDomain = _.cloneDeep(lastLoginDomain);
+			// let responseDomain = _.cloneDeep(domainsList[0]);
 
-			if (lastLoggedInDomain && lastLoggedInDomain.lockInUsers) {
-				//when lockInUsers true dropdown will show the Plus but hiding frontm.ai
-				let allDomains = _.cloneDeep(domainsList);
-				_.remove(allDomains, (domain) => {
-					return domain.userDomain === "frontmai";
-				});
-				domainsList = allDomains;
-			}
+			// if (lastLoggedInDomain && lastLoggedInDomain.lockInUsers) {
+			// 	//when lockInUsers true dropdown will show the Plus but hiding frontm.ai
+			// 	let allDomains = _.cloneDeep(domainsList);
+			// 	_.remove(allDomains, (domain) => {
+			// 		return domain.userDomain === "frontmai";
+			// 	});
+			// 	domainsList = allDomains;
+			// }
 
-			if (isLastLogin) {
-				dispatch({
-					type: SELECTED_DOMAIN,
-					data: { selectedDomain: lastLoggedInDomain },
-				});
-			} else {
-				dispatch({
-					type: SELECTED_DOMAIN,
-					data: { selectedDomain: responseDomain },
-				});
-			}
-			dispatch(onFirstSelectDomain(lastLoggedInDomain));
-			dispatch(getVoipStatus());
-			dispatch({
-				type: DOMAIN_RECEIVED,
-				data: { domains: { domains: domainsList } },
-			});
+			// if (isLastLogin) {
+			// 	dispatch({
+			// 		type: SELECTED_DOMAIN,
+			// 		data: { selectedDomain: lastLoggedInDomain },
+			// 	});
+			// } else {
+			// 	dispatch({
+			// 		type: SELECTED_DOMAIN,
+			// 		data: { selectedDomain: responseDomain },
+			// 	});
+			// }
+			// dispatch(onFirstSelectDomain(lastLoggedInDomain));
+			// dispatch(getVoipStatus());
+			// dispatch({
+			// 	type: DOMAIN_RECEIVED,
+			// 	data: { domains: { domains: domainsList } },
+			// });
 		} catch (error) {
 			console.error("%c Error in getAllDomains: ", "color: red;", error);
 		}

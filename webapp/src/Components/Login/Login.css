@@ -2,6 +2,10 @@
 	background-color: #0095f2;
 	text-transform: none !important;
 }
+#bootstrap-overrides button.oneLearn-btn {
+	background-color: #008726;
+	text-transform: none !important;
+}
 #bootstrap-overrides a.onship-txt {
 	color: #0095f2 !important;
 	text-transform: none !important;

@@ -2,3 +2,6 @@
 /node_modules
 /db
 /.env
+/scripts/.env
+/scripts/db
+/.DS_Store

@@ -285,13 +285,13 @@ class ContentView extends Component {
 	};
 
 	acceptTerms = () => {
-		this.props.updateTnC(true);
-		this.goToLandingBot();
+		// this.props.updateTnC(true);
+		// this.goToLandingBot();
 	};
 
 	rejectTerms = () => {
-		this.props.updateTnC(false);
-		this.props.logout();
+		// this.props.updateTnC(false);
+		// this.props.logout();
 	};
 
 	hideNewProvideDialog = () => {
@@ -309,27 +309,27 @@ class ContentView extends Component {
 
 	licenseCodeValidationRender = () => {
 		const { selectedDomain, userId, getAllDomains } = this.props;
-		if (this.props.isLicenseValid) {
-			if (!this.props.tncAccept && !this.props.isAnonymousUser) {
-				return (
-					<ModalPopup size="sm" noHeader>
-						<Suspense
-							fallback={
-								<div>
-									<SpinnerFM show={true} />
-								</div>
-							}
-						>
-							<TermsAndConditions
-								selectedDomain={this.state.selectedDomain}
-								acceptTerms={this.acceptTerms}
-								rejectTerms={this.rejectTerms}
-							/>
-						</Suspense>
-					</ModalPopup>
-				);
-			}
-		}
+		// if (this.props.isLicenseValid) {
+		// 	if (!this.props.tncAccept && !this.props.isAnonymousUser) {
+		// 		return (
+		// 			<ModalPopup size="sm" noHeader>
+		// 				<Suspense
+		// 					fallback={
+		// 						<div>
+		// 							<SpinnerFM show={true} />
+		// 						</div>
+		// 					}
+		// 				>
+		// 					<TermsAndConditions
+		// 						selectedDomain={this.state.selectedDomain}
+		// 						acceptTerms={this.acceptTerms}
+		// 						rejectTerms={this.rejectTerms}
+		// 					/>
+		// 				</Suspense>
+		// 			</ModalPopup>
+		// 		);
+		// 	}
+		// }
 		if (!this.props.isLicenseValid) {
 			if (this.state.newProvider) {
 				return (
