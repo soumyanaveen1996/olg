@@ -112,6 +112,7 @@ const OneLearnLogin = (props) => {
 
 			if (res?.success) {
 				// Login the user here
+				handleFormSubmit()
 			}
 			if (res?.error) {
 				return setForm((prev) => ({ ...prev, pinError: true, errorMessage: res.error }))
@@ -169,7 +170,7 @@ const OneLearnLogin = (props) => {
 					onChange={(e) => handleFormChange(e, "pin")}
 					autoComplete="current-password"
 					value={form?.password}
-					error={true}
+					error="true"
 				/>
 				<i className={"fa fa-eye" + (!form?.showPassword ? "-slash" : "")}
 					onClick={() => { setForm((prev) => ({ ...prev, showPassword: !prev.showPassword })) }}
