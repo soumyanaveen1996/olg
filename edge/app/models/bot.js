@@ -10,7 +10,6 @@ const BotFarmSchema = new mongoose.Schema(
         conversational: { type: Boolean},
         createdBy: { type: String},
         createdOn: { type: Number, required: true},
-        dependencies: { type: Array},
         description: { type: String},
         developer: { type: String},
         featured: { type: Boolean},
