@@ -9,8 +9,8 @@ const doAuth = passport.authenticate('jwt', {
     session: false
 });
 
-router.post('/FileService/Get', doAuth, (req, res) => {
-    let fileName = req.body.fileName;
+router.get('/FileService/Get', doAuth, (req, res) => {
+    let fileName = req.query.path;
     if(_.isEmpty(fileName)) {
         return res.status(500).json({error: 'Required Fields Missing'});
     }
