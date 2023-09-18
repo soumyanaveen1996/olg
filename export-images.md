@@ -7,8 +7,8 @@
 ```bash
 docker commit <id1> edge
 docker commit <id2> webapp
-docker commit <id3> redis
-docker commit <id4> mongo
+docker commit <id3> redis-frontm
+docker commit <id4> mongo-frontm
 ```
 
 4. Run: `docker save webapp edge mongo redis -o ./out/out.tar`. 

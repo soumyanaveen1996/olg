@@ -27,10 +27,10 @@ services:
     expose:
       - 8080 
     ports:
-      - "8080:80"
+      - "8080:8080"
 
   redis:
-    image: redis
+    image: redis-frontm
     restart: always
     expose:
       - 6379
@@ -40,7 +40,7 @@ services:
       - "6379:6379"
 
   mongo:
-    image: mongo
+    image: mongo-frontm
     restart: always
     networks:
       - mongo-net

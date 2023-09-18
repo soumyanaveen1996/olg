@@ -13,9 +13,10 @@ RUN CI=false npm run build:prod
 # Step 2: Set up the production environment
 FROM nginx:stable-alpine
 COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/src/sw-custom.js /usr/share/nginx/html/
 
-EXPOSE 80
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 
 
