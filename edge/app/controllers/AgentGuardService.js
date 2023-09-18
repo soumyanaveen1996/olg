@@ -19,12 +19,12 @@ function validateInput(params) {
         conversationId: Joi.string().required(),
         bot: Joi.string().required(),
         participants: Joi.array().items(Joi.string()).required(),
-        userDomain: Joi.string().required(),
+        userDomain: Joi.string(),
     });
     const inputSchema = Joi.object().keys({
         capability: Joi.string().required(),
         parameters: Joi.string().required(),
-        requestUuid: Joi.string().required(),
+        requestUuid: Joi.string(),
         conversation: conversationSchema.required(),
     });
     return inputSchema.validate(params, { allowUnknown: true, });
