@@ -1,10 +1,11 @@
 const Redis = require('ioredis');
+const config = require('../../config');
 
 class RedisHandler {
   constructor() {
     this._redisConnection = null;
-    this.host = "0.0.0.0"; //default
-    this.port = 6379; //default
+    this.host = config.REDIS_HOST;
+    this.port = config.REDIS_PORT;
   }
 
   set host(host) {

@@ -1,5 +1,4 @@
 const webpack = require("webpack");
-
 module.exports = function override(config, env) {
 	// Existing fallbacks
 	config.resolve.fallback = {

@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+    "process": "^0.11.10",
 		"@date-io/moment": "^1.3.13",
 		"@emoji-mart/data": "^1.1.0",
 		"@emoji-mart/react": "^1.1.0",
@@ -130,7 +131,7 @@
 		"analyze": "source-map-explorer 'build/static/js/*.js'",
 		"start": "react-app-rewired start",
 		"build": "react-app-rewired build",
-		"build:prod": "env-cmd -f ./.env.prod react-app-rewired build &max_old_space_size=12096 && npm run build-sw",
+		"build:prod": "env-cmd -f ./.env.prod react-app-rewired build max_old_space_size=12096 && npm run build-sw",
 		"build:dev": "env-cmd -f ./.env.dev react-app-rewired build max_old_space_size=8000 && npm run build-sw",
 		"test": "jest",
 		"test:watch": "jest --watchAll --coverage",

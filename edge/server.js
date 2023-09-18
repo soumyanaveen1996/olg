@@ -1,15 +1,17 @@
 require('dotenv').config();
-const REQUIRED_ENV_VARS = ['JWT_SECRET'];
+process.env.JWT_SECRET = require('crypto').randomBytes(32).toString('hex');
+console.log('Got JWT_SECRET', process.env.JWT_SECRET );
+
 const config = require('./config.js');
 const express = require('express');
 const _ = require('lodash');
 const socket = require('socket.io');
 const compression = require('compression');
+const cors = require('cors');
 const redisUtils = require('./utils/redisUtils');
 const mongoose = require('mongoose');
 require('./passport');
 const passport = require('passport');
-const cors = require('cors');
 
 function setupExpress() {
 	console.log('Setting up express server');
@@ -85,11 +87,6 @@ async function connectToMongo() {
 }
 
 (() => {
-	let requiredEnvVars = _.pick(process.env, REQUIRED_ENV_VARS);
-	if (_.size(_.keys(requiredEnvVars)) !== _.size(REQUIRED_ENV_VARS)) {
-		console.error('ERROR!!! ==== Environment variables not set properly. Exiting without server startup ====');
-		return;
-	}
 	connectToMongo().then(() => {
 		let server = setupExpress();
 		let socketIO = setupSocketIO(server);
