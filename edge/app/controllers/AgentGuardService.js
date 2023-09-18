@@ -19,7 +19,6 @@ function validateInput(params) {
         conversationId: Joi.string().required(),
         bot: Joi.string().required(),
         participants: Joi.array().items(Joi.string()).required(),
-        userDomain: Joi.string(),
     });
     const inputSchema = Joi.object().keys({
         capability: Joi.string().required(),
@@ -42,9 +41,9 @@ async function validateConversation(conversation, userId) {
         throw new Error('Invalid bot');
     }
 
-    let dbDomain = await Domain.findOne({userDomain});
+    let dbDomain = await Domain.findOne({userDomain: dbBot.userDomain});
     if(_.isEmpty(dbDomain)) {
-        throw new Error('Invalid domain');
+        throw new Error('Bot setup with invalid domain');
     }
 
     if(!validateConversationId(userId, bot, conversationId)) {
@@ -53,10 +52,11 @@ async function validateConversation(conversation, userId) {
 
     let dbConv = await Conversation.findOne({conversationId});
     if(_.isEmpty(dbConv)) {
+        conversation.userDomain = dbBot.userDomain;
         await new Conversation(conversation).save();
     }
-    
-    return {botData: dbBot, domainData: dbDomain};
+
+    return {botData: dbBot, domainData: dbDomain, convData: dbConv ? dbConv : conversation};
 }
 async function validate(req) {
     const { error } = validateInput(req.body);
@@ -72,17 +72,18 @@ async function validate(req) {
 
     let conversation = _.get(req, 'body.conversation');
     let userId = _.get(req, 'user.userId');
-    let {botData, domainData} = await validateConversation(conversation, userId);
+    let {botData, domainData, convData} = await validateConversation(conversation, userId);
     req.botData = botData;
     req.domainData = domainData;
+    req.convData = convData;
 }
 
 router.post('/AgentGuardService/Execute', doAuth, async (req, res) => {
     try {
         await validate(req);
-        let {user, botData, domainData, body} = req;
-        let {capability, parameters, requestUuid, conversation} = body;
-        await runtime.execute({capability, parameters, requestUuid, conversation, user, botData, domainData});
+        let {user, botData, domainData, body, convData} = req;
+        let {capability, parameters, requestUuid} = body;
+        await runtime.execute({capability, parameters, requestUuid, conversation: convData, user, botData, domainData});
         return res.status(200).json({message: 'success'});
     } catch(err) {
         return res.status(500).json({error: err.message});

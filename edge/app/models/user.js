@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
         userName: { type: String, required: true},
         pin: { type: String, required: true},
         dateOfBirth: { type: Number, required: true},
+        domains: {type: Array, required: true}
     },
     {
         collection: 'users',
