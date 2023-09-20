@@ -47,7 +47,7 @@ function setupSocketIO(expressServer) {
 		allowUpgrades: true,
 		allowEIO3: true,
 		cors: {
-			origin: ['http://localhost:3000'],
+      origin: ['http://localhost:3000', 'http://localhost:8080'],
 			methods: ['GET', 'PUT', 'DELETE', 'OPTIONS', 'POST'],
 			allowEIO3: true,
 			credentials: true
