@@ -142,26 +142,27 @@ export const initializeBotContext = async ({ userDomain, botId }) => {
         return shouldWait;
       };
 
-      // botContext.log = (payload) => {
-      //   if (store.getState().user.isOnline) {
-      //     return new Promise((resolve) => {
-      //       if (botContext.log) {
-      //         setTimeout(() => {
-      //           addLog(payload)
-      //             .then(() => {
-      //               resolve();
-      //             })
-      //             .catch((err) => {
-      //               resolve();
-      //               console.error("Error in bot context log: ", err);
-      //             });
-      //         }, 2000);
-      //       } else {
-      //         resolve();
-      //       }
-      //     });
-      //   }
-      // };
+      botContext.log = (payload) => {
+        // if (store.getState().user.isOnline) {
+        //   return new Promise((resolve) => {
+
+        //     if (botContext.log) {
+        //       setTimeout(() => {
+        //         addLog(payload)
+        //           .then(() => {
+        //             resolve();
+        //           })
+        //           .catch((err) => {
+        //             resolve();
+        //             console.error("Error in bot context log: ", err);
+        //           });
+        //       }, 2000);
+        //     } else {
+        //       resolve();
+        //     }
+        //   });
+        // }
+      };
 
       botContext.devMode = (payload) =>
         new Promise((resolve) => {

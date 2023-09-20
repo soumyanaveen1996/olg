@@ -1,3 +1,4 @@
+import { getAuthData } from "../../Services/StorageService";
 import { Auth } from "./Auth";
 import { default as Network } from "./Network";
 
@@ -57,11 +58,13 @@ class AgentGuard {
 				// let newNetwork = new Network();
 				const user = await newAuth.getUser();
 				const key = R.pathOr(null, ["conversation", "bot"], params);
+				const auth = getAuthData();
 				if (user) {
 					const options = {
 						serviceName: "AgentGuardServiceClient",
 						action: "execute",
-						sessionId: user.creds.sessionId,
+						// sessionId: user.creds.sessionId,
+						token: auth?.token,
 						params,
 						key,
 					};

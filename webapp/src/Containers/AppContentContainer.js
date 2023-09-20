@@ -102,10 +102,10 @@ class AppContentContainer extends Component {
 		this.setState({ isMobile, orientation });
 
 		if (isOnline) {
-			// SOCKET.STREAM_QUEUE_MSG = QueueServiceClient.setupQueueMessageStream(
-			// 	this.receiveIncoming
-			// );
-			// SOCKET.STREAM_QUEUE_MSG.connect();
+			SOCKET.STREAM_QUEUE_MSG = QueueServiceClient.setupQueueMessageStream(
+				this.receiveIncoming
+			);
+			SOCKET.STREAM_QUEUE_MSG.connect();
 		}
 
 		if (this.props.selectedDomain) {
@@ -210,15 +210,15 @@ class AppContentContainer extends Component {
 		this.resetRTC();
 	}
 	resetRTC = () => {
-		// if (this.props.isOnline && SOCKET.STREAM_QUEUE_MSG === null) {
-		// 	SOCKET.STREAM_QUEUE_MSG = QueueServiceClient.setupQueueMessageStream(
-		// 		this.receiveIncoming
-		// 	);
-		// 	SOCKET.STREAM_QUEUE_MSG.connect();
-		// } else if (!this.props.isOnline && SOCKET.STREAM_QUEUE_MSG !== null) {
-		// 	SOCKET.STREAM_QUEUE_MSG.disconnect();
-		// 	SOCKET.STREAM_QUEUE_MSG = null;
-		// }
+		if (this.props.isOnline && SOCKET.STREAM_QUEUE_MSG === null) {
+			SOCKET.STREAM_QUEUE_MSG = QueueServiceClient.setupQueueMessageStream(
+				this.receiveIncoming
+			);
+			SOCKET.STREAM_QUEUE_MSG.connect();
+		} else if (!this.props.isOnline && SOCKET.STREAM_QUEUE_MSG !== null) {
+			SOCKET.STREAM_QUEUE_MSG.disconnect();
+			SOCKET.STREAM_QUEUE_MSG = null;
+		}
 	};
 
 	receiveIncoming = (message) => {

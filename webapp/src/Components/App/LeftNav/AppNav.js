@@ -52,9 +52,19 @@ class AppNav extends Component {
 		};
 	}
 
+	getDomainLogo = async (selectedDomain) => {
+		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain.logoUrl)
+		if (res) {
+			console.log("res", res)
+			this.setState({ logo: URL.createObjectURL(res) });
+		}
+	}
+
 	componentWillMount() {
-		if (this.props.selectedDomain)
+		if (this.props.selectedDomain) {
 			this.getDomainLogo(this.props.selectedDomain);
+		}
+
 	}
 
 	componentDidMount() {
@@ -79,13 +89,6 @@ class AppNav extends Component {
 		}
 	}
 
-	getDomainLogo = async (selectedDomain) => {
-		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain.logoUrl)
-		if (res) {
-			console.log("res", res)
-			this.setState({ logo: URL.createObjectURL(res) })
-		}
-	}
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.updateDimensions);
 	}
@@ -102,10 +105,11 @@ class AppNav extends Component {
 			this.setState({
 				selected: true,
 				domainName: selectedDomain.name,
-				logo: selectedDomain.logoUrl,
+				// logo: selectedDomain.logoUrl,
 				homeLogoUrl: homeUrl,
 				homeLogoName: selectedDomain?.homeLogoConfig?.name || "FrontM",
 			});
+			this.getDomainLogo(selectedDomain);
 		}
 
 		if (

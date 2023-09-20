@@ -11,7 +11,8 @@ export default {
 	mapboxApiAccessToken:
 		"pk.eyJ1IjoiZ2FjaWx1IiwiYSI6ImNqcHh0azRhdTFjbXQzeW8wcW5vdXhlMzkifQ.qPfpVkrWbk-GSBY3uc6z3A",
 	// gRPCURL: "https://prod2.frontm.com:8080", prev -grpc url
-	gRPCURL: "https://gw.frontm.ai", //new grpc url
+	// gRPCURL: "https://gw.frontm.ai", //new grpc url
+	gRPCURL: "http://localhost:4001",
 	webertcSignalServer: "gw.frontm.ai",
 	mapURL: "https://maps.frontm.ai/styles/klokantech-basic/style.json",
 	gnsDomain: "voyagervoice",

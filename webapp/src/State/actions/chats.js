@@ -1921,6 +1921,10 @@ export function updateContainerFormSelectedTab(messageId, selectedTab) {
 	};
 }
 
+export const handleSocketMessages = (data) => (dispatch, getState) => {
+	console.log("SOCKET DATA", data)
+}
+
 // streamChatMessages is used to pool all chat messages every 10 sec
 export const streamChatMessages = () => (dispatch, getState) => {
 	if (!_.isEmpty(getState().user.user) && getState().user.isOnline) {
@@ -1957,124 +1961,101 @@ export const streamChatMessages = () => (dispatch, getState) => {
 		// 				);
 		// 			});
 
-		// 			// Set startTime timestamp to last messages timestamp + 1
-		// 			setUserMessagePoolTimestamp(
-		// 				parsedQueueMessages[parsedQueueMessages.length - 1].createdOn + 1
-		// 			);
+				// 	// Set startTime timestamp to last messages timestamp + 1
+				// 	setUserMessagePoolTimestamp(
+				// 		parsedQueueMessages[parsedQueueMessages.length - 1].createdOn + 1
+				// 	);
 
-		// 			console.log(
-		// 				"%c Received new message:",
-		// 				"color: green;",
-		// 				parsedQueueMessages
-		// 			);
+				// 	console.log(
+				// 		"%c Received new message:",
+				// 		"color: green;",
+				// 		parsedQueueMessages
+				// 	);
 
-		// 			// If the new msg is about being added in a new group, fetch the list of groups.
-		// 			let isGroupUpdate = parsedQueueMessages.some(
-		// 				(msg) =>
-		// 					msg.messageType ===
-		// 					MessageTypeConstants.MESSAGE_TYPE_STD_NOTIFICATION &&
-		// 					msg.message &&
-		// 					msg.message.includes("joined the group")
-		// 			);
-		// 			if (isGroupUpdate) {
-		// 				store.dispatch(fetchAllChannels(domain));
-		// 				store.dispatch(fetchSubscribedChannels(domain));
-		// 			}
+				// 	// If the new msg is about being added in a new group, fetch the list of groups.
+				// 	let isGroupUpdate = parsedQueueMessages.some(
+				// 		(msg) =>
+				// 			msg.messageType ===
+				// 			MessageTypeConstants.MESSAGE_TYPE_STD_NOTIFICATION &&
+				// 			msg.message &&
+				// 			msg.message.includes("joined the group")
+				// 	);
+				// 	if (isGroupUpdate) {
+				// 		store.dispatch(fetchAllChannels(domain));
+				// 		store.dispatch(fetchSubscribedChannels(domain));
+				// 	}
 
-		// 			// As we pool for all chats we need to update messages
-		// 			// for each conversation individually
-		// 			let conversationMessages = _.groupBy(
-		// 				parsedQueueMessages,
-		// 				"conversation"
-		// 			);
-		// 			Object.entries(conversationMessages).forEach(
-		// 				async ([conversationId, messages]) => {
-		// 					let cacheMessages =
-		// 						(await getDataFromLFStorage(
-		// 							`${LFStorageKeys.MESSAGES}_${conversationId}`
-		// 						)) || [];
+				// 	// As we pool for all chats we need to update messages
+				// 	// for each conversation individually
+				// 	let conversationMessages = _.groupBy(
+				// 		parsedQueueMessages,
+				// 		"conversation"
+				// 	);
+				// 	Object.entries(conversationMessages).forEach(
+				// 		async ([conversationId, messages]) => {
+				// 			let cacheMessages =
+				// 				(await getDataFromLFStorage(
+				// 					`${LFStorageKeys.MESSAGES}_${conversationId}`
+				// 				)) || [];
 
-		// 					if (
-		// 						getState().chats.chatLog.get(conversationId) &&
-		// 						getState().chats.chatLog.get(conversationId).length >= 0
-		// 					) {
-		// 						const userId = getState().user?.user?.userId;
-		// 						if (userId && messages) {
-		// 							// Update redux
-		// 							dispatch(
-		// 								onArchivedMessagesReceived(
-		// 									conversationId,
-		// 									messages,
-		// 									false,
-		// 									userId
-		// 								)
-		// 							);
-		// 						}
-		// 					}
-		// 					// Update cache
-		// 					cacheMessages = cacheMessages.concat(messages);
-		// 					let uniqueMessages = _.uniqBy(cacheMessages, "messageId");
-		// 					uniqueMessages = _.orderBy(
-		// 						uniqueMessages,
-		// 						["createdOn"],
-		// 						["desc"]
-		// 					);
+				// 			if (
+				// 				getState().chats.chatLog.get(conversationId) &&
+				// 				getState().chats.chatLog.get(conversationId).length >= 0
+				// 			) {
+				// 				const userId = getState().user?.user?.userId;
+				// 				if (userId && messages) {
+				// 					// Update redux
+				// 					dispatch(
+				// 						onArchivedMessagesReceived(
+				// 							conversationId,
+				// 							messages,
+				// 							false,
+				// 							userId
+				// 						)
+				// 					);
+				// 				}
+				// 			}
+				// 			// Update cache
+				// 			cacheMessages = cacheMessages.concat(messages);
+				// 			let uniqueMessages = _.uniqBy(cacheMessages, "messageId");
+				// 			uniqueMessages = _.orderBy(
+				// 				uniqueMessages,
+				// 				["createdOn"],
+				// 				["desc"]
+				// 			);
 
-		// 					saveDataInLFStorage(
-		// 						`${LFStorageKeys.MESSAGES}_${conversationId}`,
-		// 						uniqueMessages
-		// 					);
+				// 			saveDataInLFStorage(
+				// 				`${LFStorageKeys.MESSAGES}_${conversationId}`,
+				// 				uniqueMessages
+				// 			);
 
-		// 					// Update the unread messages count in timeline
-		// 					let timeLine = _.cloneDeep(getState().chats.timeLine);
-		// 					let timelineConversation = _.find(timeLine, {
-		// 						conversationId,
-		// 					});
-		// 					if (timelineConversation) {
-		// 						uniqueMessages.forEach((message) => {
-		// 							if (
-		// 								message.createdOn > timelineConversation.modifiedOn &&
-		// 								!message.isOpened
-		// 							) {
-		// 								_.find(timeLine, { conversationId }).unreadCount += 1;
-		// 							}
-		// 						});
-		// 						_.find(timeLine, {
-		// 							conversationId,
-		// 						}).modifiedOn = uniqueMessages[0].createdOn;
-		// 						setUserMessagePoolTimestamp(uniqueMessages[0].createdOn + 1);
-		// 						dispatch({
-		// 							type: UPDATE_TIME_LINE,
-		// 							data: {
-		// 								timeLine,
-		// 							},
-		// 						});
-		// 					}
-		// 				}
-		// 			);
-
-		// 			// Queue Message is paginated and only send 30 messages at a time.
-		// 			// So we pool again to get the data
-		// 			setTimeout(() => {
-		// 				dispatch(streamChatMessages());
-		// 			}, 30000);
-		// 		} else {
-		// 			// Set startTime timestamp
-		// 			setUserMessagePoolTimestamp(startTime);
-		// 			// In case there is no new messages on pooling, then pool again after 10 sec
-		// 			setTimeout(() => {
-		// 				dispatch(streamChatMessages());
-		// 			}, 30000);
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error("ERROR in GetPaginatedQueueMessages", error)
-		// 		// When session is expired after 1 hour, we receive status 500 with code 16
-		// 		if (error.response?.status === 500 && error.response?.data?.code === 16 && error.response?.data?.details === 'UNAUTHORIZED') {
-		// 			dispatch(showSessionExpiredModal(true))
-		// 		}
-		// 	}
-		// 	);
+				// 			// Update the unread messages count in timeline
+				// 			let timeLine = _.cloneDeep(getState().chats.timeLine);
+				// 			let timelineConversation = _.find(timeLine, {
+				// 				conversationId,
+				// 			});
+				// 			if (timelineConversation) {
+				// 				uniqueMessages.forEach((message) => {
+				// 					if (
+				// 						message.createdOn > timelineConversation.modifiedOn &&
+				// 						!message.isOpened
+				// 					) {
+				// 						_.find(timeLine, { conversationId }).unreadCount += 1;
+				// 					}
+				// 				});
+				// 				_.find(timeLine, {
+				// 					conversationId,
+				// 				}).modifiedOn = uniqueMessages[0].createdOn;
+				// 				setUserMessagePoolTimestamp(uniqueMessages[0].createdOn + 1);
+				// 				dispatch({
+				// 					type: UPDATE_TIME_LINE,
+				// 					data: {
+				// 						timeLine,
+				// 					},
+				// 				});
+				// 			}
+				// 		}
+				// 	);
 	}
 };
 
