@@ -125,13 +125,13 @@ export default function UserInfo(props) {
 							</DropdownToggle>
 
 							<DropdownMenu className="user-profile-dd-menu">
-								<a
+								{/* <a
 									className="nav-link mt-3 mb-1"
 									style={{ color: "#666666" }}
 									onClick={gotoUserProfile}
 								>
 									<span style={{ padding: 2 }}>My profile</span>
-								</a>
+								</a> */}
 								{/* <a
 									className="nav-link mb-3 mt-1"
 									style={{ color: "#E5453B" }}
@@ -143,7 +143,7 @@ export default function UserInfo(props) {
 									<span style={{ padding: 2 }}>Log out</span>
 								</a> */}
 								<a
-									className="nav-link mt-3 mb-1"
+									className="nav-link mt-1 mb-1"
 									style={{ color: "#E5453B" }}
 									onClick={() => LogoutAndReset()}
 								>

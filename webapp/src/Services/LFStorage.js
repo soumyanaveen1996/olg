@@ -7,6 +7,7 @@ import _ from "lodash";
 import store from "../State/configureStore";
 import { hideLoader, showLoader } from "../State/actions/loader";
 import { fetchCompanies, fetchCategories } from "../State/actions/catalogue";
+import { fileService } from "./OneLearnServices";
 
 const R = require("ramda");
 
@@ -244,21 +245,22 @@ export const setBotsDependenciesList = async (bots) => {
 		bots.forEach((bot) => {
 			Object.entries(bot.dependencies).forEach(([key, value]) => {
 				if (!_.isEmpty(value)) {
-					let checkDuplicateDependencies = dependenciesList.filter(
-						(dependency) =>
-							dependency.remoteDependencies === key &&
-							dependency.version === value.version
-					);
-					if (!checkDuplicateDependencies.length) {
+					// let checkDuplicateDependencies = dependenciesList.filter(
+					// 	(dependency) =>
+					// 		dependency.remoteDependencies === key &&
+					// 		dependency.version === value.version
+					// );
+					// if (!checkDuplicateDependencies.length) {
 						dependenciesList.push({
 							...value,
 							remoteDependencies: key,
 						});
-					}
+					// }
 				}
 			});
 		});
-		store.dispatch(showLoader("Setting up dependencies"));
+		console.log("<<< dependenciesList", dependenciesList);
+
 		await Promise.all(
 			dependenciesList.map((dependency) => {
 				if (!dependency.Content?.length) {

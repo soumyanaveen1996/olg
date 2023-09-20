@@ -60,15 +60,14 @@ class ContentView extends Component {
 
 	selectDomain = (domainData) => {
 		UserServiceClient.fetchBotSubscriptions(domainData).then((data) => {
-			const botIds =
-				data.content && data.content.subscribed ? data.content.subscribed : [];
-
-			ConversationServiceClient.getCatalog({
-				isWebRequest: true,
-				selectedDomain: domainData.userDomain
-			}).then((response) => {
-				this.parseCatalogResponse(response, botIds, domainData);
-			});
+			const botIds = (data?.botList && Array.isArray(data.botList) && data.botList.length > 0) ? data.botList.map((bot) => bot.botId) : []
+			// data.content && data.content.subscribed ? data.content.subscribed : [];
+			// ConversationServiceClient.getCatalog({
+			// 	isWebRequest: true,
+			// 	selectedDomain: domainData.userDomain
+			// }).then((response) => {
+			this.parseCatalogResponse(data, botIds, domainData);
+			// });
 		});
 	};
 
@@ -234,17 +233,14 @@ class ContentView extends Component {
 		// 	categories: {},
 		// };
 		// let bots = duplicateData.bots || [];
-		let bots = data.bots || [];
-		// console.log("ADITYA323 checking bots", bots);
+		let bots = data?.botList || [];
 		const subscribedBots = bots.filter((bot) => botIds.includes(bot.botId));
-		// console.log("ADITYA323 checking subscribedBots", subscribedBots);
-		const convBot = subscribedBots.filter(
-			(bot) => bot.botId === domainData.landingBotId
-		);
-		// console.log("ADITYA323 checking convBot", convBot);
-		if (convBot.length) {
-			this.props.createConversation(convBot[0], this.props.userId);
-		}
+		const convBot = subscribedBots.filter((bot) => bot.botId === domainData.landingBotId);
+
+		// if (convBot.length) {
+		console.log("props", this.props);
+		this.props.createConversation(bots[0], this.props?.userId);
+		// }
 		this.props.history.push("/app/chats");
 		this.props.hideSpinner();
 	};
@@ -261,22 +257,22 @@ class ContentView extends Component {
 				let domainsList = await getDataFromLFStorage(LFStorageKeys.DOMAINS);
 				if (_.isEmpty(domainsList)) {
 					let domainsListRes = await UserServiceClient.getDomain();
-					domainsList = domainsListRes.domains;
+					domainsList = domainsListRes.domainsList;
 					loadAllDomainsListInLFStorage(domainsList);
 				}
 
 				// console.log("ADITYA323 checking domain list", domainsList);
 
 				domainsList.forEach((elem) => {
-					if (elem.landingBotId) {
+					// if (elem.landingBotId) {
 						this.props.showSpinner();
-						updateLastLoggedInDomain(elem.userDomain).then(() => {
+						// updateLastLoggedInDomain(elem.userDomain).then(() => {
 							this.props.setSelectedDomain(elem);
 							storeDomainSelected(elem);
 							// console.log("ADITYA323 checking selected domain", elem);
 							this.selectDomain(elem);
-						});
-					}
+						// });
+					// }
 				});
 			}
 		} catch (error) {

@@ -46,7 +46,7 @@ export const initializeBotContext = async ({ userDomain, botId }) => {
     );
 
     if (userDomainBots?.length && dependencyList?.length) {
-      botContext = userDomainBots.filter((bot) => bot.botId === botId)[0];
+      botContext = userDomainBots.filter((bot) => bot?.botId === botId)[0];
       botContext.botManifest = botContext;
       botContext.userDetails = getAuthData().user;
       botContext.botState = {};
@@ -108,12 +108,12 @@ export const initializeBotContext = async ({ userDomain, botId }) => {
       };
 
       botContext.getBotKey = () => {
-        return botContext.botId;
+        return botContext?.botId;
       };
 
       // Actual botId.
       botContext.getBotId = () => {
-        return botContext.botId;
+        return botContext?.botId;
       };
 
       botContext.tell = (payload) =>
@@ -143,24 +143,25 @@ export const initializeBotContext = async ({ userDomain, botId }) => {
       };
 
       botContext.log = (payload) => {
-        if (store.getState().user.isOnline) {
-          return new Promise((resolve) => {
-            if (botContext.log) {
-              setTimeout(() => {
-                addLog(payload)
-                  .then(() => {
-                    resolve();
-                  })
-                  .catch((err) => {
-                    resolve();
-                    console.error("Error in bot context log: ", err);
-                  });
-              }, 2000);
-            } else {
-              resolve();
-            }
-          });
-        }
+        // if (store.getState().user.isOnline) {
+        //   return new Promise((resolve) => {
+
+        //     if (botContext.log) {
+        //       setTimeout(() => {
+        //         addLog(payload)
+        //           .then(() => {
+        //             resolve();
+        //           })
+        //           .catch((err) => {
+        //             resolve();
+        //             console.error("Error in bot context log: ", err);
+        //           });
+        //       }, 2000);
+        //     } else {
+        //       resolve();
+        //     }
+        //   });
+        // }
       };
 
       botContext.devMode = (payload) =>
@@ -191,7 +192,7 @@ export const initializeBotContext = async ({ userDomain, botId }) => {
       console.log("%c Initialized BotContext >> ", "color: green;", botContext);
 
       // correting necessary fields for the im-bot
-      if (botContext.botId === "im-bot") {
+      if (botContext?.botId === "im-bot") {
         botContext = await adjustIMBotContext(botContext);
       }
       return botContext;
@@ -372,7 +373,7 @@ export const callBotContextAsyncResult = async (rawMessage) => {
     }
   }
   // Check if the botId in current botContext and the async msg are same
-  else if (rawMessage.bot === botContext.botId) {
+  else if (rawMessage.bot === botContext?.botId) {
     rawMessage.details = ServiceClientUtils.parseBytesContent(
       rawMessage.details
     );
@@ -540,7 +541,7 @@ function parseInputMessage(data) {
 
 const sendMessage = async (message) => {
   let conversationId = botContext?.conversationContext?.conversationId;
-  if (botContext.botId === "im-bot") {
+  if (botContext?.botId === "im-bot") {
     if(message?.type === "chatInWindow") {
       const data = store.getState()?.chats?.message?.conversation?.allowNonContactMessages;
       message.conversation = {
@@ -579,7 +580,7 @@ const sendMessage = async (message) => {
 }
 
 export const sendSocketReconnectionEvent = () => {
-  if (_.isEmpty(botContext) || botContext.botId === 'im-bot') return;
+  if (_.isEmpty(botContext) || botContext?.botId === 'im-bot') return;
   const Message = botContext.getCapability("Message");
   let message = new Message({ messageType: 'onSocketReconnection', messageTypeInt: 170 });
   botContext.botContent.open instanceof Function &&

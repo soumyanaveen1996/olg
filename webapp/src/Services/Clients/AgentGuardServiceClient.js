@@ -3,8 +3,9 @@ import RPC from "./RPC";
 
 class AgentGuardServiceClient {
 	static execute(agInput) {
+		if (!agInput?.requestUuid) agInput.requestUuid = "somerandomid369";
 		return RPC.rpcCall(
-			"/agentguard.AgentGuardService/Execute",
+			"/AgentGuardService/Execute",
 			agInput,
 			agentguard.AgentGuardStringResponse,
 			(request) => {

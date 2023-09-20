@@ -1,16 +1,18 @@
 import axios from "axios/index";
 import store from "../State/configureStore";
 import { NotifyClassComp } from "../Components/ModalMessages/ToastNotif";
+import { getAuthData } from "./StorageService";
 
 const request = axios.create({
 	timeout: 100000,
 });
 
 function getHeaders() {
-	let auth = store.getState().user ? store.getState().user.auth : null;
+	// let auth = store.getState().user ? store.getState().user.auth : null;
+	let auth = getAuthData();
 	if (auth) {
 		return {
-			sessionId: auth.sessionId,
+			token: auth?.token,
 		};
 	}
 }

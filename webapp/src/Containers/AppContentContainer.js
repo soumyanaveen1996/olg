@@ -151,20 +151,20 @@ class AppContentContainer extends Component {
 							selectedDomain: JSON.parse(getFromLocalStorage)?.userDomain,
 						};
 					}
-					// Promise.all([
+					Promise.all([
 					// 	fetchWalletBalanceService(),
 					// 	getGeoLocationData(),
-					// 	fetchBotSubscriptions(selectedDomain),
+						fetchBotSubscriptions(selectedDomain),
 					// 	fetchContacts(selectedDomain, true),
 					// 	getFavourite(selectedDomain),
 					// 	fetchSubscribedChannels(selectedDomain),
 					// 	getTimeLine(),
 					// 	streamChatMessages(),
-					// ]).catch(() => {
-					// 	console.error(
-					// 		"Failed to Fetch data at same time and fill the redux state"
-					// 	);
-					// });
+					]).catch(() => {
+						console.error(
+							"Failed to Fetch data at same time and fill the redux state"
+						);
+					});
 				});
 			});
 		}

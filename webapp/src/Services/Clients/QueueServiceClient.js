@@ -1,10 +1,11 @@
 import RPC from "./RPC";
 import { queue } from "../gRPC/Generated/QueueService";
-import { fetchArchivedMessages } from "../../State/actions/chats";
+import { fetchArchivedMessages, handleSocketMessages } from "../../State/actions/chats";
 import store from "../../State/configureStore";
 import Config from "./../../Utils/Config";
 import _ from "lodash";
 import {
+	getAuthData,
 	getSelectedConversation, putInStorage
 } from "../../Services/StorageService";
 import { sendSocketReconnectionEvent } from "../BotsService";
@@ -17,19 +18,20 @@ export default class QueueServiceClient {
 		let userData = store.getState().user ? store.getState().user : null;
 		let email = userData?.user?.emailAddress;
 		let socketParams;
+		let auth = getAuthData();
 		socketParams = {
-			path: "/grpc/clientConn",
+			path: "/clientConn",
 			// Config.envName == "development" ? "/grpc/clientConn" : "/clientConn",
 			transports: ["polling", "websocket"],
 			transportOptions: {
 				polling: {
 					extraHeaders: {
-						sessionId: _.get(userData, "auth.sessionId", null),
+						token: auth?.token,
 					},
 				},
 				websocket: {
 					extraHeaders: {
-						sessionId: _.get(userData, "auth.sessionId", null),
+						token: auth?.token,
 					},
 				},
 			},
@@ -60,11 +62,11 @@ export default class QueueServiceClient {
 			}
 		});
 
-		socket.on(email, (data) => {
+		socket.on(auth?.user?.userId, (data) => {
 			if (typeof data.data === "string") {
-				receiveIncoming && receiveIncoming(JSON.parse(data.data));
+				receiveIncoming(JSON.parse(data.data));
 			} else {
-				receiveIncoming && receiveIncoming(data.data);
+				receiveIncoming(data.data);
 			}
 		});
 		socket.io.on("reconnect_attempt", () => {
@@ -83,7 +85,7 @@ export default class QueueServiceClient {
 
 	static GetPaginatedQueueMessages(args) {
 		return RPC.rpcCall(
-			"/queue.QueueService/GetPaginatedQueueMessages",
+			"clientConn",
 			args,
 			queue.QueueResponseList,
 			(request) => {

@@ -1,12 +1,15 @@
+import { getAuthData } from "./StorageService";
 
 const postToEdgeServer = async (route, payload) => {
     // let baseURL = Config.edgeURL;
+    let auth = getAuthData();
     const url = `http://localhost:4001${route}`;
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "token": auth?.token
             },
             body: JSON.stringify(payload),
         })
@@ -26,4 +29,8 @@ export const forgotPin = async (payload) => {
 
 export const login = async (payload) => {
     return postToEdgeServer("/login", payload)
+}
+
+export const fileService = async (payload) => {
+    return postToEdgeServer("/FileService/Get", payload)
 }

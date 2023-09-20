@@ -35,6 +35,7 @@ import {
 	updateSoftwareMfaStatus,
 } from "../../../State/actions/user";
 import { updateLastLoggedInDomain } from "../../../Services/UserService";
+import GenericAjax from "../../../Services/GenericAjax";
 const R = require("ramda");
 
 class AppNav extends Component {
@@ -51,6 +52,21 @@ class AppNav extends Component {
 		};
 	}
 
+	getDomainLogo = async (selectedDomain) => {
+		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain.logoUrl)
+		if (res) {
+			console.log("res", res)
+			this.setState({ logo: URL.createObjectURL(res) });
+		}
+	}
+
+	componentWillMount() {
+		if (this.props.selectedDomain) {
+			this.getDomainLogo(this.props.selectedDomain);
+		}
+
+	}
+
 	componentDidMount() {
 		this.updateDimensions();
 		window.addEventListener("resize", this.updateDimensions);
@@ -64,12 +80,15 @@ class AppNav extends Component {
 			this.setState({
 				selected: true,
 				domainName: selectedDomain.name,
-				logo: selectedDomain.logoUrl,
+				// logo: selectedDomain.logoUrl,
 				homeLogoUrl: homeUrl,
 				homeLogoName: selectedDomain?.homeLogoConfig?.name || "FrontM",
 			});
+			this.getDomainLogo(selectedDomain);
+
 		}
 	}
+
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.updateDimensions);
 	}
@@ -86,10 +105,11 @@ class AppNav extends Component {
 			this.setState({
 				selected: true,
 				domainName: selectedDomain.name,
-				logo: selectedDomain.logoUrl,
+				// logo: selectedDomain.logoUrl,
 				homeLogoUrl: homeUrl,
 				homeLogoName: selectedDomain?.homeLogoConfig?.name || "FrontM",
 			});
+			this.getDomainLogo(selectedDomain);
 		}
 
 		if (
@@ -253,9 +273,9 @@ class AppNav extends Component {
 		}
 
 		let bsMap = {};
-		this.props.botSubscriptions.forEach((bot) => {
+		this.props.botSubscriptions?.forEach((bot) => {
 			let category = bot.category;
-			category.forEach((cat) => {
+			category?.forEach((cat) => {
 				if (bsMap[cat]) {
 					bsMap[cat].push(bot);
 				} else {
@@ -297,10 +317,11 @@ class AppNav extends Component {
 								}}
 							>
 								<Avatar
-									imgSrc={
-										`${R.prop("contentURL", Config)}` +
-										(this.state.logo || this.props.selectedDomain?.logoUrl)
-									}
+									imgSrc={this.state?.logo}
+									// imgSrc={
+									// 	`${R.prop("contentURL", Config)}` +
+									// 	(this.state.logo || this.props.selectedDomain?.logoUrl)
+									// }
 									size={25}
 									height={25}
 								/>
@@ -360,13 +381,13 @@ class AppNav extends Component {
 									</React.Fragment>
 								)}
 
-							<HelpNav
+							{/* <HelpNav
 								{...this.props}
 								startConversation={this.startConversation}
 								startFrontMAssistantConversation={
 									this.startFrontMAssistantConversation
 								}
-							/>
+							/> */}
 
 							<div className="rectangle-copy" />
 						</ul>
@@ -381,8 +402,8 @@ class AppNav extends Component {
 						>
 							<span className="sidebar-brand logo-text d-inline-flex align-items-center">
 								{!this.state.homeLogoUrl ||
-								(this.state.homeLogoUrl &&
-									this.state.homeLogoUrl === "FrontMlogo") ? (
+									(this.state.homeLogoUrl &&
+										this.state.homeLogoUrl === "FrontMlogo") ? (
 									<img
 										loading="lazy"
 										alt="logo"
@@ -398,8 +419,8 @@ class AppNav extends Component {
 									/>
 								)}
 								{!this.state.homeLogoName ||
-								(this.state.homeLogoName &&
-									this.state.homeLogoName === "FrontM") ? (
+									(this.state.homeLogoName &&
+										this.state.homeLogoName === "FrontM") ? (
 									<span className="ml-2" color="#fff">
 										front<b>M</b>
 									</span>
