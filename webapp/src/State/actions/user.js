@@ -277,12 +277,12 @@ export function setSelectedDomain(data) {
 			type: SELECTED_DOMAIN,
 			data: { selectedDomain: newData },
 		});
-		dispatch(getTimeLine("domainChange"));
-		dispatch(getFavourite(selectedDomain));
-		dispatch(fetchContacts(selectedDomain));
+		// dispatch(getTimeLine("domainChange"));
+		// dispatch(getFavourite(selectedDomain));
+		// dispatch(fetchContacts(selectedDomain));
 		dispatch(fetchBotSubscriptions(selectedDomain));
-		dispatch(fetchSubscribedChannels(selectedDomain));
-		dispatch(fetchAllChannels(selectedDomain));
+		// dispatch(fetchSubscribedChannels(selectedDomain));
+		// dispatch(fetchAllChannels(selectedDomain));
 	};
 }
 
@@ -801,15 +801,15 @@ export function fetchBotSubscriptions(
 				} catch (error) {
 					console.error("Error in fetchBotSubscriptions: ", error);
 				}
-				const allSystemBots = await UserServiceClient.getAllSystemBots();
+				// const allSystemBots = await UserServiceClient.getAllSystemBots();
 
 				// add the IM-BOT stuff here
-				allSystemBots.content.Items.forEach((item) => {
-					if (item.botId === "im-bot" || item.botId === "onboarding-bot") {
-						item.botClients.web = true;
-						botsListRes.content.subscribed.push(item);
-					}
-				});
+				// allSystemBots.content.Items.forEach((item) => {
+				// 	if (item.botId === "im-bot" || item.botId === "onboarding-bot") {
+				// 		item.botClients.web = true;
+				// 		botsListRes.content.subscribed.push(item);
+				// 	}
+				// });
 
 				if (botsListRes.error) {
 					dispatch({
@@ -820,7 +820,7 @@ export function fetchBotSubscriptions(
 				}
 
 				if (botId !== null) {
-					let filteredBotsList = botsListRes?.content?.subscribed?.filter(
+					let filteredBotsList = botsListRes?.botList?.filter(
 						(bot) => bot.botId === botId
 					);
 					updateBotForSelectedDomainInLFStorage(
@@ -829,12 +829,12 @@ export function fetchBotSubscriptions(
 					);
 					setBotsDependenciesList(filteredBotsList);
 				} else {
-					botsList = botsListRes.content.subscribed;
+					botsList = botsListRes?.botList;
 					setAllBotsForSelectedDomainInLFStorage(selectedDomain, botsList);
 					setBotsDependenciesList(botsList);
 				}
 			}
-			botsList = updateNow === true ? botsListRes.content.subscribed : botsList;
+			botsList = updateNow === true ? botsListRes.botList : botsList;
 			dispatch({
 				type: BOT_SUBSCRIPTIONS_RECEIVED,
 				data: { botSubscriptions: botsList },
@@ -883,24 +883,24 @@ export function fetchBotsForInstalledTab() {
 			}
 		});
 
-		ConversationServiceClient.getCatalog({
-			isWebRequest: true,
-			selectedDomain: seleDom,
-		}).then((response) => {
-			let subscribedBots = response.bots || [];
+		// ConversationServiceClient.getCatalog({
+		// 	isWebRequest: true,
+		// 	selectedDomain: seleDom,
+		// }).then((response) => {
+		// 	let subscribedBots = response.bots || [];
 
-			if (botIds.length > 0) {
-				subscribedBots = subscribedBots.filter((eachBot) =>
-					botIds.includes(eachBot.botId)
-				);
-				subscribedBots = [...subscribedBots, ...systemBots];
+		// 	if (botIds.length > 0) {
+		// 		subscribedBots = subscribedBots.filter((eachBot) =>
+		// 			botIds.includes(eachBot.botId)
+		// 		);
+		// 		subscribedBots = [...subscribedBots, ...systemBots];
 
-				dispatch({
-					type: BOT_SUBSCRIPTIONS_RECEIVED,
-					data: { botSubscriptions: subscribedBots },
-				});
-			}
-		});
+		// 		dispatch({
+		// 			type: BOT_SUBSCRIPTIONS_RECEIVED,
+		// 			data: { botSubscriptions: subscribedBots },
+		// 		});
+		// 	}
+		// });
 	};
 }
 
@@ -912,81 +912,86 @@ export function unsavedForm(bol) {
 }
 
 export function logout(paramAppType) {
-	AudioElement.pauseRing();
-	if (SOCKET.STREAM_QUEUE_MSG !== null) {
-		SOCKET.STREAM_QUEUE_MSG.disconnect();
-		SOCKET.STREAM_QUEUE_MSG = null;
-	}
+	// AudioElement.pauseRing();
+	// if (SOCKET.STREAM_QUEUE_MSG !== null) {
+	// 	SOCKET.STREAM_QUEUE_MSG.disconnect();
+	// 	SOCKET.STREAM_QUEUE_MSG = null;
+	// }
 
-	if (paramAppType === "onecare") {
-		let loginPath = "/onecare";
-		history.push({
-			pathname: loginPath,
-		});
-	} else {
-		let loginPath = getSignupPath();
-		if (loginPath && loginPath.includes("/signup")) {
-			loginPath = loginPath.replace("/signup", "");
-		}
+	// if (paramAppType === "onecare") {
+	// 	let loginPath = "/onecare";
+	// 	history.push({
+	// 		pathname: loginPath,
+	// 	});
+	// } else {
+	// 	let loginPath = getSignupPath();
+	// 	if (loginPath && loginPath.includes("/signup")) {
+	// 		loginPath = loginPath.replace("/signup", "");
+	// 	}
 
-		if (loginPath && loginPath.length) {
-			if (loginPath === FRONTM_LANDING || loginPath === FRONTM_LOGIN) {
-				removePathName();
-				history.push("/login");
-			}
-			history.push({
-				pathname: loginPath,
-			});
-		} else {
-			removePathName();
-			history.push("/login");
-		}
-	}
-	// destructLFStorage();
+	// 	if (loginPath && loginPath.length) {
+	// 		if (loginPath === FRONTM_LANDING || loginPath === FRONTM_LOGIN) {
+	// 			removePathName();
+	// 			history.push("/login");
+	// 		}
+	// 		history.push({
+	// 			pathname: loginPath,
+	// 		});
+	// 	} else {
+	// removePathName();
 	return (dispatch, getState) => {
-		// degenerating push notifications
-		let currentUserDomain = getState().selectedDomain.userDomain;
-		let sessionId = getState().user.auth.sessionId;
-		let shouldSendPushNotification = false;
-		let baseURL = `${Config.gRPCURL}/grpc/user.UserService/DeregisterWebApp`;
-		let userEmail = getState().user.user.userEmail;
+		removeAuthData();
+		dispatch({ type: LOGOUT_USER });
+		history.push("/onelearn");
+	}
 
-		let webPushAppType;
-		if (currentUserDomain == "onecare") {
-			webPushAppType = "onecare_dev";
-			shouldSendPushNotification = true;
-		}
+	// 	}
+	// }
+	// destructLFStorage();
+	// return (dispatch, getState) => {
+	// 	// degenerating push notifications
+	// 	let currentUserDomain = getState().selectedDomain.userDomain;
+	// 	let sessionId = getState().user.auth.sessionId;
+	// 	let shouldSendPushNotification = false;
+	// 	let baseURL = `${Config.gRPCURL}/grpc/user.UserService/DeregisterWebApp`;
+	// 	let userEmail = getState().user.user.userEmail;
 
-		if (shouldSendPushNotification) {
-			dispatch(
-				pushNotificationDegerator({
-					currentUserDomain,
-					sessionId,
-					baseURL,
-					webPushAppType,
-					userEmail,
-				})
-			);
-		}
-		let checkFormUnsaved = getState().user.formUnsaved;
-		if (!checkFormUnsaved) {
-			window.document.title = "FrontM Platform";
-			clearTimeout(window.interval);
-			removeAuthData();
-			removeOpenForm();
-			removeDomainSelcted();
-			removeFromStorage();
-			removeLoginState();
-			removeLinkData();
-			removeSelectedConversation();
-			dispatch({ type: LOGOUT_USER });
-			dispatch(removeSelectedDomain());
-			dispatch(removeDomains());
-			dispatch(resetNonConversational());
-			setUserManualOnline(true);
-			dispatch(setUserOnlineStatus(true));
-		}
-	};
+	// 	let webPushAppType;
+	// 	if (currentUserDomain == "onecare") {
+	// 		webPushAppType = "onecare_dev";
+	// 		shouldSendPushNotification = true;
+	// 	}
+
+	// 	if (shouldSendPushNotification) {
+	// 		dispatch(
+	// 			pushNotificationDegerator({
+	// 				currentUserDomain,
+	// 				sessionId,
+	// 				baseURL,
+	// 				webPushAppType,
+	// 				userEmail,
+	// 			})
+	// 		);
+	// 	}
+	// 	let checkFormUnsaved = getState().user.formUnsaved;
+	// 	if (!checkFormUnsaved) {
+	// 		window.document.title = "FrontM Platform";
+	// 		clearTimeout(window.interval);
+	// 		removeAuthData();
+	// 		removeOpenForm();
+	// 		removeDomainSelcted();
+	// 		removeFromStorage();
+	// 		removeLoginState();
+	// 		removeLinkData();
+	// 		removeSelectedConversation();
+	// 		dispatch({ type: LOGOUT_USER });
+	// 		dispatch(removeSelectedDomain());
+	// 		dispatch(removeDomains());
+	// 		dispatch(resetNonConversational());
+	// 		setUserManualOnline(true);
+	// 		dispatch(setUserOnlineStatus(true));
+	// 	}
+	// };
 }
 
 export function updateUserProfile(data) {

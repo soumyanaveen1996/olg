@@ -191,9 +191,9 @@ class App extends Component {
 			data: data,
 		};
 
-		axios(config)
-			.then(function (response) { })
-			.catch(function (error) { });
+		// axios(config)
+		// 	.then(function (response) { })
+		// 	.catch(function (error) { });
 	}
 
 	shouldFollowAnonymousUserFlow = (storedLinkData, storedUser) => {

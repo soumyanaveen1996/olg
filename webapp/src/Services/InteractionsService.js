@@ -772,9 +772,9 @@ export function updateConversationMetaData(
 				tempMessages.length &&
 				!_.isEmpty(selectedConversation)
 			) {
-				store.dispatch(
-					updateMessageStatusForUser(selectedConversation, tempMessages)
-				);
+				// store.dispatch(
+				// 	updateMessageStatusForUser(selectedConversation, tempMessages)
+				// );
 				tempMessages = [];
 				clearInterval(tempMessageIntervel);
 			}

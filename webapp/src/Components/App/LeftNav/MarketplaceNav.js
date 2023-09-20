@@ -107,9 +107,9 @@ class MarketplaceNav extends Component {
 		// console.log("all bots ", this.state.botSubscriptions);
 
 		let bsMap = {};
-		botSubscriptions.forEach((bot) => {
+		botSubscriptions?.forEach((bot) => {
 			let category = bot.category;
-			category.forEach((cat) => {
+			category?.forEach((cat) => {
 				if (bsMap[cat]) {
 					bsMap[cat].push(bot);
 				} else {
@@ -120,7 +120,7 @@ class MarketplaceNav extends Component {
 		let botList;
 
 		botList = botSubscriptions.filter(
-			(elem) => !elem.systemBot && !elem.botClients.web == false
+			(elem) => !elem.systemBot && !elem.botClients?.web == false
 		);
 		// systemBot;
 
@@ -202,7 +202,7 @@ class MarketplaceNav extends Component {
 									</div>
 								</li>
 							))}
-							<li style={{ margin: "0px", padding: "8px 0" }}>
+							{/* <li style={{ margin: "0px", padding: "8px 0" }}>
 								<NavLink
 									to="/app/catalog"
 									style={{
@@ -223,7 +223,7 @@ class MarketplaceNav extends Component {
 									/>{" "}
 									<span>Add apps</span>
 								</NavLink>
-							</li>
+							</li> */}
 						</ul>
 						{/* )} */}
 					</CustomizedAccordion>

@@ -204,18 +204,18 @@ const PingStatusPage = () => {
 	};
 
 	const testThirdPartyCookiesEnabled = () => {
-		let testSocket = QueueServiceClient.setupQueueMessageStream(
-		);
-		testSocket.connect();
-		setTimeout(() => {
-			let isCookieAcc = localStorage.getItem("thirdPartyEnabled")
-			if (isCookieAcc === "false") {
-				setIsCookieAccepted("Failed")
-			} else {
-				setIsCookieAccepted("Success")
-			}
-			testSocket = null;
-		}, 1000);
+		// let testSocket = QueueServiceClient.setupQueueMessageStream(
+		// );
+		// testSocket.connect();
+		// setTimeout(() => {
+		// 	let isCookieAcc = localStorage.getItem("thirdPartyEnabled")
+		// 	if (isCookieAcc === "false") {
+		// 		setIsCookieAccepted("Failed")
+		// 	} else {
+		// 		setIsCookieAccepted("Success")
+		// 	}
+		// 	testSocket = null;
+		// }, 1000);
 	}
 
 	const runAllTest = () => {

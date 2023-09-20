@@ -3,8 +3,10 @@ import Config from "./../../Utils/Config";
 import { storeLatestCall } from "../../State/actions/offlineBanner";
 import axios from "axios";
 import _ from "lodash";
+import { getAuthData } from "../StorageService";
 
-let baseURL = `${Config.gRPCURL}/grpc`;
+// let baseURL = `${Config.gRPCURL}/`;
+let baseURL = "http://localhost:4001/";
 // Config.envName == "development" ? `${Config.gRPCURL}/grpc` : Config.gRPCURL;
 
 export default class RPC {
@@ -25,9 +27,10 @@ export default class RPC {
 				method: "POST",
 				data: request,
 			};
-			if (_.get(auth, "sessionId", null)) {
+			let auth = getAuthData();
+			if (auth?.token) {
 				config["headers"] = {
-					sessionId: _.get(auth, "sessionId", null),
+					token: auth.token,
 				};
 			}
 			// ServiceClientUtils.requestInterceptor();

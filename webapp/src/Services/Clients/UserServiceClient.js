@@ -108,7 +108,7 @@ class UserServiceClient {
 	}
 	static getBotSubscriptionsInfo(data) {
 		return RPC.rpcCall(
-			"/user.UserService/GetBotSubscriptionsInfo",
+			"/UserService/GetUserBotMetaData",
 			data,
 			user.BotSubscriptionsInfoResponse,
 			(request) => {
@@ -144,7 +144,7 @@ class UserServiceClient {
 
 	static fetchBotSubscriptions(data) {
 		return RPC.rpcCall(
-			"/user.UserService/GetBotSubscriptions",
+			"/UserService/GetUserBotMetaData",
 			data,
 			user.BotSubscriptionsResponse,
 			(request) => {
@@ -220,7 +220,7 @@ class UserServiceClient {
 
 	static getDomain() {
 		return RPC.rpcCall(
-			"/user.UserService/GetUserDomains",
+			"/UserService/GetDomainsMetaData",
 			{},
 			user.UserDomainsResponse,
 			(request) => {

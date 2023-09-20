@@ -93,17 +93,18 @@ export async function fetchWalletBalance() {
 		},
 		sync: true,
 	};
+	return 0;
 
-	return AgentGuardServiceClient.execute(data).then((response) => {
-		let available = 0;
-		if (response && response.content && response.content[0]) {
-			let pstn = response?.content[0]["pstn-balance"];
-			if (pstn?.available) {
-				available = Math.ceil(pstn.available * 1000) / 1000;
-			}
-		}
-		return available;
-	});
+	// return AgentGuardServiceClient.execute(data).then((response) => {
+	// 	let available = 0;
+	// 	if (response && response.content && response.content[0]) {
+	// 		let pstn = response?.content[0]["pstn-balance"];
+	// 		if (pstn?.available) {
+	// 			available = Math.ceil(pstn.available * 1000) / 1000;
+	// 		}
+	// 	}
+	// 	return available;
+	// });
 }
 
 export async function getCallHistory() {
