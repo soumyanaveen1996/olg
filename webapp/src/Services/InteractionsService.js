@@ -352,9 +352,9 @@ export async function createNewConversation(
 		},
 		sync: false,
 	};
-	AgentGuardServiceClient.execute(data).catch((error) => {
-		throw new Error(error);
-	});
+	// AgentGuardServiceClient.execute(data).catch((error) => {
+	// 	throw new Error(error);
+	// });
 	return {
 		createdOn: dayjs().valueOf(),
 		modifiedOn: dayjs().valueOf(),
@@ -390,24 +390,24 @@ export function startChannelConversation(userId, channel) {
 		},
 		sync: false,
 	};
-	return AgentGuardServiceClient.execute(data)
-		.then((response) => {
-			return {
-				createdOn: dayjs().valueOf(),
-				modifiedOn: dayjs().valueOf(),
-				conversationId: channel.channelId,
-				bot: { botId: IM_BOT },
-				createdBy: userId,
-				participants: [],
-				channel: channel,
-				userDomain: "frontmai",
-				// channelName: channel.channelName,
-				// channelDescription: channel.description
-			};
-		})
-		.catch((error) => {
-			throw new Error(error);
-		});
+	// return AgentGuardServiceClient.execute(data)
+	// 	.then((response) => {
+	// 		return {
+	// 			createdOn: dayjs().valueOf(),
+	// 			modifiedOn: dayjs().valueOf(),
+	// 			conversationId: channel.channelId,
+	// 			bot: { botId: IM_BOT },
+	// 			createdBy: userId,
+	// 			participants: [],
+	// 			channel: channel,
+	// 			userDomain: "frontmai",
+	// 			// channelName: channel.channelName,
+	// 			// channelDescription: channel.description
+	// 		};
+	// 	})
+	// 	.catch((error) => {
+	// 		throw new Error(error);
+	// 	});
 }
 
 export function getArchivedMessages(conversation) {
@@ -554,13 +554,13 @@ function getChannelConversationParticipants(selectedConv) {
 		conversation: conversation,
 		sync: true,
 	};
-	return AgentGuardServiceClient.execute(data)
-		.then((data) => {
-			return data ? (data.content ? data.content[0] : null) : null;
-		})
-		.catch((error) => {
-			throw new Error(error);
-		});
+	// return AgentGuardServiceClient.execute(data)
+	// 	.then((data) => {
+	// 		return data ? (data.content ? data.content[0] : null) : null;
+	// 	})
+	// 	.catch((error) => {
+	// 		throw new Error(error);
+	// 	});
 }
 
 export function getConversationDescription(lastMessage, description) {

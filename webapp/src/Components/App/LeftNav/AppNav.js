@@ -70,10 +70,11 @@ class AppNav extends Component {
 			this.setState({
 				selected: true,
 				domainName: selectedDomain.name,
-				logo: selectedDomain.logoUrl,
+				// logo: selectedDomain.logoUrl,
 				homeLogoUrl: homeUrl,
 				homeLogoName: selectedDomain?.homeLogoConfig?.name || "FrontM",
 			});
+			this.getDomainLogo(selectedDomain);
 
 		}
 	}
@@ -83,7 +84,6 @@ class AppNav extends Component {
 		if (res) {
 			console.log("res", res)
 			this.setState({ logo: URL.createObjectURL(res) })
-
 		}
 	}
 	componentWillUnmount() {
@@ -313,7 +313,7 @@ class AppNav extends Component {
 								}}
 							>
 								<Avatar
-									imgSrc={this.state.logo}
+									imgSrc={this.state?.logo}
 									// imgSrc={
 									// 	`${R.prop("contentURL", Config)}` +
 									// 	(this.state.logo || this.props.selectedDomain?.logoUrl)

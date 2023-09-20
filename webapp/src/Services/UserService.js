@@ -20,11 +20,11 @@ export function savePushSubscription(conversation, deviceId, subscription) {
 		sync: true,
 	};
 
-	return AgentGuardServiceClient.execute(reqData)
-		.then((response) => {})
-		.catch((error) => {
-			throw new Error(error);
-		});
+	// return AgentGuardServiceClient.execute(reqData)
+	// 	.then((response) => {})
+	// 	.catch((error) => {
+	// 		throw new Error(error);
+	// 	});
 }
 
 export function updateLastLoggedInDomain(selectedDomain) {
