@@ -24,7 +24,7 @@ class FrontmRuntime {
   }
 
   async execute(event) {
-    console.log("event in runtime::", event);
+    console.log("event in runtime::", JSON.stringify(event));
     let payload = event.parameters;
     payload.conversation = event.conversation;
     payload.bot = event.botData;

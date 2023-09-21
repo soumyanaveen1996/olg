@@ -93,3 +93,8 @@ Execute the life cycle method of the bot.
 2. When the user does some action, call next
 3. when there is a message from the socket for the bot, call the asyncResult method
 4. when the user closes the bot, call done method.
+
+### <span style="color: green"> Updating the bot file 
+1. Generate the bundle for the bot file from [olg-edge-bot](https://bitbucket.org/frontm/olg-edge-bot) repository
+2. Copy the `dit/main.js` file into `edge/bots/botfarm/olg/bot1/bot1.js` (keep the same `bot1.js` name)
+

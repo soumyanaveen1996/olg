@@ -9,7 +9,7 @@ class BotsRunner {
   }
 
   async execute(event) {
-    console.log("event in bots runner::", event);
+    console.log("event in bots runner::", JSON.stringify(event));
     let {
       command,
       user,
@@ -53,7 +53,6 @@ class BotsRunner {
 
   async handleAsyncRequest(data, conversation, user, botModule) {
     try {
-      console.log('In asyncRequest:::Got data:', JSON.stringify(data));
       if (!data.conversation) {
         data.conversation = conversation;
       }
