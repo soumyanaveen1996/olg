@@ -1,5 +1,6 @@
 services:
   edge:
+    image: edge
     restart: always
     build:
       context: edge
@@ -15,6 +16,7 @@ services:
     ports:
       - "4001:4001"
   webapp:
+    image: webapp 
     build:
       context: webapp 
     depends_on:

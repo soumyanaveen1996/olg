@@ -1,4 +1,13 @@
-## To export and share the images follow the next steps:
+## NEW: script to build the images
+To automate the process there are 2 scripts
+The first script is `build.sh` that will build the images, export and generate
+the `out.zip` file. The `out.zip` file is the one to share with the client
+
+The second script `cleanup.sh` is a script to delete all the current images related to the project
+
+To run the scripts first make the script executable: chmod +x build.sh and chmod +x cleanup.sh 
+
+## Option 2: manually export and share the images:
 
  1. Run `docker compose up`
  2. Run `docker ps` and check the docker container ids
