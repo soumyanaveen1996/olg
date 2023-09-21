@@ -22,6 +22,7 @@ import {
 	ONSHIP_PROD_URL,
 	STATIONSATCOM_PROD_URL,
 	VIKAND_CONNECT_PROD_URL,
+	ONELEARN_LANDING,
 } from "../../Utils/Constants";
 import { updateManifestFile } from "../../Utils/Helpers";
 
@@ -128,7 +129,7 @@ if (window?.location?.pathname) {
 		"/stationsatcom",
 		"/sigma",
 		"/onship",
-		"/onelearn",
+		ONELEARN_LANDING,
 		"/sattrackland",
 	];
 	if (window.location.pathname === "/") {
@@ -244,7 +245,7 @@ const Main = () => {
 							/>
 							<ProtectedRoute
 								exact
-								path="/onelearn"
+								path={ONELEARN_LANDING}
 								component={SignupView}
 							/>
 							<ProtectedRoute
