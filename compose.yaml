@@ -3,8 +3,6 @@ services:
     restart: always
     build:
       context: edge
-    volumes:
-      - ./bots:/usr/src/bots
     depends_on:
       - mongo
       - redis
