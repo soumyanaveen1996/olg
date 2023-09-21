@@ -13,7 +13,7 @@ import { user } from "../../Services/gRPC/Generated/UserService";
 import moment from "moment";
 import Config from "../../Utils/Config";
 import { toast } from "react-toastify";
-import { forgotPin, login, register } from "../../Services/OneLearnServices";
+import { forgotPin, login, register, verifyUser } from "../../Services/OneLearnServices";
 import { ArrowBack } from "@mui/icons-material";
 import { ONECARE_MAIN_HEADER_TEXT_COLOR, ONECARE_SUB_HEADER_TEXT_COLOR, POWERED_BY_LOGO_T2M } from "../../Utils/Constants";
 const HELPER_MESSAGE =
@@ -129,12 +129,19 @@ const OneLearnLogin = (props) => {
 		}
 	}
 
-	const handleCreatePin = () => {
+	const handleCreatePin = async () => {
 		// console.log("form", form)
-		if (!form.userId || !form.dateOfBirth) {
-			return setForm((prev) => ({ ...prev, createError: true, errorMessage: "Please use your ID (e.g Seafarer ID) and Date of Birth to set-up the PIN-code." }))
+		let { userId, dateOfBirth } = form;
+		if (!userId || !dateOfBirth) {
+			return setForm((prev) => ({ ...prev, createError: true, errorMessage: "Please use your ID (e.g Seafarer ID) and Date of Birth to set-up the PIN-code." }));
 		}
-		setForm((prev) => ({ ...prev, page: "CONFIRM_PIN" }))
+
+		let result = await verifyUser({ userId, dateOfBirth });
+		if (result?.success) {
+			setForm((prev) => ({ ...prev, page: "CONFIRM_PIN" }))
+		} else {
+			return setForm((prev) => ({ ...prev, createError: true, errorMessage: result.error }))
+		}
 
 	}
 
@@ -155,8 +162,8 @@ const OneLearnLogin = (props) => {
 				headerText = " Please enter your User ID and Date of birth";
 				break;
 			case "CONFIRM_PIN":
-				mainHeader = "Welcome!"
-				headerText = "Confim Pin";
+				mainHeader = "Create PIN"
+				headerText = "Please enter a 4 digit PIN";
 				break;
 			default:
 				break;
@@ -173,7 +180,6 @@ const OneLearnLogin = (props) => {
 
 	return <Box className={"align-items-center d-flex flex-column"}>
 		{/* LOGIN FORM */}
-
 		{getPageHeader()}
 		{form?.loginError && <Error message={form.errorMessage} />}
 		{form?.page === "LOGIN" && (<form role="form" style={{ width: "250px" }} >
@@ -244,13 +250,11 @@ const OneLearnLogin = (props) => {
 			</Box>
 
 
-			<Box className={"mt-20 mb-30 d-flex align-items-center justify-content-center font500"}>
-				New User?
-				<span>
-					<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`ml-2 btn btn-open btn-block btn-icon oneLearn-btn`} >
-						Create PIN
-					</Button>
-				</span>
+			<Box className={"mt-20 mb-30 d-flex align-items-center justify-content-center font500 flex-column"}>
+				<Box className={"mb-10"}>New User?</Box>
+				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`ml-2 btn btn-open btn-icon oneLearn-btn`} >
+					Create PIN
+				</Button>
 			</Box>
 		</form>)}
 
@@ -315,29 +319,37 @@ const OneLearnLogin = (props) => {
 				{form?.pinError && <Error message={form.errorMessage} />}
 				<form role="form" style={{ width: "250px" }} onSubmit={() => { }} >
 					{/* New Pin */}
-					<div className="form-group align-items-center d-flex flex-column">
+					<div className="form-group align-items-center d-flex flex-column" style={{ position: "relative" }}>
 						{/* <label className="font500 my-2" style={{ color: "#666666", marginBottom: "-0.1rem" }}>
 							New Pin
 						</label> */}
 						<input
-							placeholder={"New Pin"}
-							type="text"
+							placeholder={"New PIN"}
+							type={!form?.newPassword ? "text" : "password"}
 							className="form-control form-content-input"
 							onChange={(e) => handleFormChange(e, "newPin")}
 							value={form?.newPin}
 						/>
+						<i className={"fa fa-eye" + (form?.newPassword ? "-slash" : "")}
+							onClick={() => { setForm((prev) => ({ ...prev, newPassword: !prev.newPassword })) }}
+							style={styleObj.password}
+						/>
 					</div>
 					{/* New Pin */}
-					<div className="form-group align-items-center d-flex flex-column">
+					<div className="form-group align-items-center d-flex flex-column" style={{ position: "relative" }}>
 						{/* <label className="font500 my-2" style={{ color: "#666666", marginBottom: "-0.1rem" }}>
 							Confirm Pin
 						</label> */}
 						<input
-							placeholder={"Confirm Pin"}
-							type="text"
+							placeholder={"Confirm PIN"}
+							type={form?.confirmPassword ? "text" : "password"}
 							className="form-control form-content-input"
 							onChange={(e) => handleFormChange(e, "confirmPin")}
 							value={form?.confirmPin}
+						/>
+						<i className={"fa fa-eye" + (!form?.confirmPassword ? "-slash" : "")}
+							onClick={() => { setForm((prev) => ({ ...prev, confirmPassword: !prev.confirmPassword })) }}
+							style={styleObj.password}
 						/>
 					</div>
 

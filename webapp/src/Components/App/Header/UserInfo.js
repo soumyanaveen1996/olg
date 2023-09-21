@@ -46,15 +46,15 @@ export default function UserInfo(props) {
 		if (userProfileImage && !newPic) {
 			setProfilePhoto(userProfileImage);
 		} else {
-			getProfilePhoto(userId + "_75x75.png")
-				.then((file) => {
-					setProfilePhoto(file);
-					dispatch(setUserProfileImage(file));
-				})
-				.catch((error) => {
-					console.error("loadProfilePic error", error);
-					setProfilePhoto(null);
-				});
+			// getProfilePhoto(userId + "_75x75.png")
+			// 	.then((file) => {
+			// 		setProfilePhoto(file);
+			// 		dispatch(setUserProfileImage(file));
+			// 	})
+			// 	.catch((error) => {
+			// 		console.error("loadProfilePic error", error);
+			// 		setProfilePhoto(null);
+			// 	});
 		}
 	};
 

@@ -23,6 +23,10 @@ export const register = async (payload) => {
     return postToEdgeServer("/register", payload)
 }
 
+export const verifyUser = async (payload) => {
+    return postToEdgeServer("/verifyUser", payload)
+}
+
 export const forgotPin = async (payload) => {
     return postToEdgeServer("/forgotPin", payload)
 }

@@ -920,10 +920,10 @@ export function unsavedForm(bol) {
 
 export function logout(paramAppType) {
 	// AudioElement.pauseRing();
-	// if (SOCKET.STREAM_QUEUE_MSG !== null) {
-	// 	SOCKET.STREAM_QUEUE_MSG.disconnect();
-	// 	SOCKET.STREAM_QUEUE_MSG = null;
-	// }
+	if (SOCKET.STREAM_QUEUE_MSG !== null) {
+		SOCKET.STREAM_QUEUE_MSG.disconnect();
+		SOCKET.STREAM_QUEUE_MSG = null;
+	}
 
 	// if (paramAppType === "onecare") {
 	// 	let loginPath = "/onecare";
