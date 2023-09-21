@@ -55,4 +55,16 @@ router.post('/login', (req, res) => {
 
 });
 
+router.post('/verifyUser', async (req, res) => {
+  let {userId, dateOfBirth} = req.body;
+  try {
+    validateFields(req.body, ['userId', 'dateOfBirth']);
+    let user = await getUserFromDB(userId);
+    verifyDateOfBirth(user, dateOfBirth);
+    return res.status(200).json({success: true, message: 'userId is valid'});
+  } catch(err) {
+    return res.status(500).json({error: err.message});
+  }
+});
+
 module.exports = router;
