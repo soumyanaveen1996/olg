@@ -9,6 +9,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import withStyles from "@mui/styles/withStyles";
 import { styled } from "@mui/material";
+import { getAuthData } from "../../../Services/StorageService";
+import { connect } from "react-redux";
 
 // const styles = {
 // 	root: {
@@ -59,7 +61,7 @@ class MarketplaceNav extends Component {
 	//   const convBot = botSubscriptions.filter(bot => bot.botId === botId);
 	//   createConversation(convBot[0], userId);
 	//   history.push("/app/chats");
-	// };
+	// }	 
 
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (
@@ -158,7 +160,7 @@ class MarketplaceNav extends Component {
 									selectedDomain.viewModes &&
 									selectedDomain.viewModes.apps && (
 										<NavLink
-											to="/app/catalog"
+										to="/app/chats"
 											className="appnav-link-gear  d-flex align-items-center justify-content-between"
 											activeClassName="appnav-link-active"
 											style={{ margin: "0px" }}
@@ -175,7 +177,7 @@ class MarketplaceNav extends Component {
 
 					<CustomizedAccordion>
 						<ul>
-							{botList.map((bot, index) => (
+							{this.state?.botSubscriptions.map((bot, index) => (
 								<li key={index} style={{ margin: "0px", padding: "8px 0" }}>
 									<div>
 										{selectedConversation ? (
@@ -233,5 +235,15 @@ class MarketplaceNav extends Component {
 	}
 }
 
+
+
+const mapActionToProps = {};
+
+const mapDataToProps = (state) => {
+
+	return {
+		botSubscriptions: state.user?.botSubscriptions,
+	};
+};
 // export default withStyles(styles)(MarketplaceNav);
-export default MarketplaceNav;
+export default connect(mapDataToProps, mapActionToProps)(MarketplaceNav);

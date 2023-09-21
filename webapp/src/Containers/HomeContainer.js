@@ -5,6 +5,10 @@ import { hydrateUserData } from "../State/actions/user";
 import { getFromStorage, putInStorage } from "../Services/StorageService";
 
 class HomeContainer extends Component {
+	constructor(props) {
+		super(props);
+		props.history.push("/onelearn");
+	}
 	acceptCookiePolicy = () => {
 		putInStorage("cookiePolicyAccepted", true);
 		this.setState({ cookiePolicyAccepted: true });

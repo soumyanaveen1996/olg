@@ -35,6 +35,9 @@ import {
 	SIGMA_LANDING,
 	SIGMA_LOGO,
 	SIGMA_LOGO_ALT,
+	ONELEARN_LANDING,
+	ONELEARN_LOGO,
+	ONELEARN_LOGO_ALT,
 } from "../../../Utils/Constants";
 function CorporateLogo(props) {
 	const { landingPath } = props;
@@ -79,6 +82,10 @@ function CorporateLogo(props) {
 		case ONECARE_LANDING:
 			src = ONECARE_LOGO;
 			alt = ONECARE_LOGO_ALT;
+			break;
+		case ONELEARN_LANDING:
+			src = ONELEARN_LOGO;
+			alt = ONELEARN_LOGO_ALT;
 			break;
 		case SIGMA_LANDING:
 			src = SIGMA_LOGO;
@@ -131,7 +138,7 @@ function CorporateLogo(props) {
 					/>
 				)} */}
 				<img
-					className="pt-2 pl-2"
+					className="pt-4 pl-2"
 					src={src}
 					width={width}
 					height={height}

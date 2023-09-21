@@ -99,7 +99,7 @@ const Landing = (props) => {
 			signupBackground = ONELEARN_BACKGROUND;
 			loginBackground = ONELEARN_BACKGROUND;
 			bgPosition = "top";
-			poweredBy = POWERED_BY;
+			poweredByTop = POWERED_BY;
 			break;
 		case SIGMA_LANDING:
 			signupBackground = SIGMA_SIGNUP_BACKGROUND;
@@ -149,7 +149,7 @@ const Landing = (props) => {
 							<img src={POWERED_BY_LOGO_T2M} alt="frontm-logo" width="220px" />
 						</a>
 					)}
-					<LoginWelcomeText landingPath={landingPath} />
+					{landingPath !== ONELEARN_LANDING && <LoginWelcomeText landingPath={landingPath} />}
 					<LoginContainer {...props} />
 					{/* {props.fromCarousel && (
 						<HomeSlidesNavigation

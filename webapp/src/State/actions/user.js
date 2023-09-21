@@ -798,6 +798,13 @@ export function fetchBotSubscriptions(
 			if (!botsList?.length || forceUpdate) {
 				try {
 					botsListRes = await UserServiceClient.getBotSubscriptionsInfo(domain);
+					if (botsListRes) {
+						dispatch({
+							type: BOT_SUBSCRIPTIONS_RECEIVED,
+							data: { botSubscriptions: botsListRes.botsList },
+						});
+					}
+
 				} catch (error) {
 					console.error("Error in fetchBotSubscriptions: ", error);
 				}
@@ -834,7 +841,7 @@ export function fetchBotSubscriptions(
 					setBotsDependenciesList(botsList);
 				}
 			}
-			botsList = updateNow === true ? botsListRes.botList : botsList;
+			botsList = botsListRes.botList;
 			dispatch({
 				type: BOT_SUBSCRIPTIONS_RECEIVED,
 				data: { botSubscriptions: botsList },

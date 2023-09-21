@@ -159,7 +159,7 @@ class ConversationMenu extends React.Component {
 		return (
 			<div className="d-flex pt-5">
 				{/* Fav icon */}
-				{conversation && conversation.contact ? (
+				{/* {conversation && conversation.contact ? (
 					<>
 						{conversation &&
 							conversation.contact &&
@@ -191,7 +191,7 @@ class ConversationMenu extends React.Component {
 							!isOnBoardingBot &&
 							this.showRemoveFavBtn()}
 					</>
-				)}
+				)} */}
 				{conversation &&
 					conversation.contact &&
 					selectedDomain?.viewModes?.voip &&

@@ -13,6 +13,7 @@ import { AirlinesAdsHeader } from "../Interactions/content/AIAdsExperimental/Air
 import CollapsableSidebar from "../CollapsableNavBar/CollapsableSidebar";
 import OfflineSwitch from "../OfflineSwitch/OfflineSwitch";
 import { FMPullDownMenu } from "../../v2/Components/Common";
+import GenericAjax from "../../Services/GenericAjax";
 const R = require("ramda");
 
 class ConversationTitle extends React.PureComponent {
@@ -43,6 +44,18 @@ class ConversationTitle extends React.PureComponent {
 					this.props.allProfileImages &&
 					this.props.allProfileImages[newConversation.contact.userId],
 			});
+		}
+	}
+
+	componentWillMount() {
+		this.getBotLogo(this.props.conversation.bot);
+	}
+
+	getBotLogo = async (bot) => {
+		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot.logoUrl)
+		if (res) {
+			console.log("res", res)
+			this.setState({ botLogo: URL.createObjectURL(res) });
 		}
 	}
 
@@ -201,10 +214,11 @@ class ConversationTitle extends React.PureComponent {
 			name = conversation.bot ? conversation.bot.botName : "";
 			description = conversation.bot ? conversation.bot.description : "";
 			type = "bots";
-			imgSrc = `${R.prop("contentURL", Config)}${R.prop(
-				"logoUrl",
-				conversation.bot
-			)}`;
+			// imgSrc = `${R.prop("contentURL", Config)}${R.prop(
+			// 	"logoUrl",
+			// 	conversation.bot
+			// )}`;
+			imgSrc = this.state?.botLogo;
 
 			if (conversation.bot && conversation.bot.botName === "Assistant") {
 				name = "FrontM Assistant";
