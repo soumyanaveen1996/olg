@@ -210,7 +210,6 @@ const OneLearnLogin = (props) => {
 					placeholder={"PIN"}
 					type={form?.showPassword ? "text" : "password"}
 					className="form-control form-content-input"
-					style={{ backgroundColor: "#f4f4f4" }}
 					onChange={(e) => handleFormChange(e, "pin")}
 					autoComplete="current-password"
 					value={form?.password}
