@@ -1,10 +1,9 @@
 services:
   edge:
+    image: edge
     restart: always
     build:
       context: edge
-    volumes:
-      - ./bots:/usr/src/bots
     depends_on:
       - mongo
       - redis
@@ -17,6 +16,7 @@ services:
     ports:
       - "4001:4001"
   webapp:
+    image: webapp 
     build:
       context: webapp 
     depends_on:
