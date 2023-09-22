@@ -12,6 +12,7 @@ import {
 	storeDomainSelected,
 	getSignupPath,
 	getAuthData,
+	storeAuthData,
 } from "../../Services/StorageService";
 import { updateLastLoggedInDomain } from "../../Services/UserService";
 
@@ -34,6 +35,8 @@ import {
 } from "../../Services/LFStorage";
 import { element } from "prop-types";
 import LoftContainer from '../../v2/Components/Loft/LoftContainer';
+import store from "../../State/configureStore";
+import { BOT_SUBSCRIPTIONS_RECEIVED } from "../../State/actions/user";
 
 class ContentView extends Component {
 	constructor(props) {
@@ -60,6 +63,7 @@ class ContentView extends Component {
 
 	selectDomain = (domainData) => {
 		UserServiceClient.fetchBotSubscriptions(domainData).then((data) => {
+			store.dispatch({ type: BOT_SUBSCRIPTIONS_RECEIVED, data: { botSubscriptions: data?.botList } });
 			const botIds = (data?.botList && Array.isArray(data.botList) && data.botList.length > 0) ? data.botList.map((bot) => bot.botId) : []
 			// data.content && data.content.subscribed ? data.content.subscribed : [];
 			// ConversationServiceClient.getCatalog({

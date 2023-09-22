@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Config from "../../../Utils/Config";
 import Avatar from "../../Common/Avatar";
+import GenericAjax from "../../../Services/GenericAjax";
 
 const R = require("ramda");
 
@@ -12,6 +13,18 @@ const LeftNavBot = ({
 	firstLevel,
 	from,
 }) => {
+	const [state, setState] = useState({ botLogo: "" });
+	useEffect(() => {
+		getBotLogo(bot);
+	}, []);
+
+	const getBotLogo = async (bot) => {
+		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot.logoUrl)
+		if (res) {
+			console.log("res", res)
+			setState({ botLogo: URL.createObjectURL(res) });
+		}
+	}
 	if (bot ? bot.botId : false) {
 		return (
 			<div className="d-flex align-items-center">
@@ -34,10 +47,7 @@ const LeftNavBot = ({
 							style={{
 								marginRight: "10px",
 							}}
-							imgSrc={`${R.prop("contentURL", Config)}${R.prop(
-								"logoUrl",
-								bot
-							)}`}
+							imgSrc={state?.botLogo}
 							size={14}
 							height={14}
 						/>

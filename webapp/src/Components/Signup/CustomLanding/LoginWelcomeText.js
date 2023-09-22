@@ -38,6 +38,8 @@ import {
 	SIGMA_LANDING,
 	SIGMA_LOGIN_MAIN_HEADER_TEXT,
 	SIGMA_LOGIN_SUB_HEADER_TEXT,
+	ONELEARN_LANDING,
+	ONELEARN_LOGIN_SUB_HEADER_TEXT,
 } from "../../../Utils/Constants";
 function LoginWelcomeText(props) {
 	const { landingPath } = props;
@@ -97,6 +99,12 @@ function LoginWelcomeText(props) {
 		case ONECARE_LANDING:
 			mainHeader = ONECARE_LOGIN_MAIN_HEADER_TEXT;
 			subHeader = ONECARE_LOGIN_SUB_HEADER_TEXT;
+			mainHeaderTextColor = ONECARE_MAIN_HEADER_TEXT_COLOR;
+			subHeaderTextColor = ONECARE_SUB_HEADER_TEXT_COLOR;
+			break;
+		case ONELEARN_LANDING:
+			mainHeader = ONECARE_LOGIN_MAIN_HEADER_TEXT;
+			subHeader = ONELEARN_LOGIN_SUB_HEADER_TEXT;
 			mainHeaderTextColor = ONECARE_MAIN_HEADER_TEXT_COLOR;
 			subHeaderTextColor = ONECARE_SUB_HEADER_TEXT_COLOR;
 			break;

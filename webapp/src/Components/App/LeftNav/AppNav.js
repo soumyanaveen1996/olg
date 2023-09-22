@@ -55,7 +55,7 @@ class AppNav extends Component {
 	getDomainLogo = async (selectedDomain) => {
 		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain.logoUrl)
 		if (res) {
-			console.log("res", res)
+			// console.log("res", res)
 			this.setState({ logo: URL.createObjectURL(res) });
 		}
 	}
@@ -138,7 +138,7 @@ class AppNav extends Component {
 	startConversation = (botId) => {
 		const { userId, botSubscriptions, createConversation, history } =
 			this.props;
-		const convBot = botSubscriptions.filter((bot) => bot.botId === botId);
+		const convBot = botSubscriptions?.filter((bot) => bot.botId === botId);
 		this.props.selectedBotId({ botId: botId, conversationBot: convBot[0] });
 
 		if ((convBot[0] && convBot[0].authorisedAccess) || false) {
@@ -273,7 +273,7 @@ class AppNav extends Component {
 		}
 
 		let bsMap = {};
-		this.props.botSubscriptions?.forEach((bot) => {
+		this.props?.botSubscriptions?.forEach((bot) => {
 			let category = bot.category;
 			category?.forEach((cat) => {
 				if (bsMap[cat]) {
@@ -396,7 +396,7 @@ class AppNav extends Component {
 					{/* ========== Side nav footer =========== */}
 					<div className="d-flex flex flex-row align-items-center overflow-hidden">
 						<Link
-							to={{ pathname: "/app/home", state: { checkDomain: true } }}
+							to={{ pathname: "/app/chats", state: { checkDomain: true } }}
 							style={{ height: "60px", padding: "0 15px" }}
 							className="in-nav-dark d-flex flex flex-row align-items-center overflow-hidden justify-content-center"
 						>
@@ -474,6 +474,7 @@ const mapDataToProps = (state) => {
 		userDetails: state.user,
 		user: state.user.user,
 		userId: state.user.user.userId,
+		botSubscriptions: state.user.botSubscriptions,
 		domains:
 			state.domains && state.domains.domains ? state.domains.domains : [],
 		newTimeline: state.chats.timeline,

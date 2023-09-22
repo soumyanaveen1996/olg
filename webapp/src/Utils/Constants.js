@@ -108,6 +108,7 @@ export const ONSHIP_LOGIN_SUB_HEADER_TEXT = "";
 export const SIGMA_LOGIN_SUB_HEADER_TEXT = "";
 export const ONECARE_LOGIN_MAIN_HEADER_TEXT = "Welcome!";
 export const ONECARE_LOGIN_SUB_HEADER_TEXT = "Log in to OneCare Solutions";
+export const ONELEARN_LOGIN_SUB_HEADER_TEXT = "Log in to Onelearn Solutions";
 export const THURAYA_T2M_LOGIN_MAIN_HEADER_TEXT = "";
 export const THURAYA_T2M_LOGIN_SUB_HEADER_TEXT = "";
 /* ======= Sign-up form Text ===== */
@@ -171,7 +172,9 @@ export const SIGMA_LOGO_ALT = "Sigma Logo";
 export const THURAYA_T2M_LOGO = "img/sattrack-2022.png";
 export const THURAYA_T2M_LOGO_ALT = "Thuraya Logo";
 export const ONECARE_LOGO = "img/OC_logoLandingPage.png";
+export const ONELEARN_LOGO = "img/onelearn-login-logo2.png";
 export const ONECARE_LOGO_ALT = "Onecare Logo";
+export const ONELEARN_LOGO_ALT = "OneLearn Logo";
 export const FRONTM_VERSION_CHECK_LOGO = "img/frontmLogoVersionCheckLogo.png";
 
 export const VOYAGER_LOGIN_BACKGROUND = "#151C24";

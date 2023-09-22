@@ -475,97 +475,97 @@ export function updateMessageStatusForUser(conversation, messages) {
 
 export function fetchArchivedMessages(conversation, createdOn, fetchDirection) {
 	return async (dispatch, getState) => {
-		try {
-			if (!_.isEmpty(conversation)) {
-				let messages =
-					(await getDataFromLFStorage(
-						`${LFStorageKeys.MESSAGES}_${conversation.conversationId}`
-					)) || [];
-				let moreMessagesExist = false;
+		// try {
+		// 	if (!_.isEmpty(conversation)) {
+		// 		let messages =
+		// 			(await getDataFromLFStorage(
+		// 				`${LFStorageKeys.MESSAGES}_${conversation.conversationId}`
+		// 			)) || [];
+		// 		let moreMessagesExist = false;
 
-				// If online the make api call and override message and store latest msg in LFStorage
-				if (getState().user.isOnline) {
-					getPaginatedArchiveMessages(conversation, createdOn, fetchDirection).then(
-						(response) => {
-							messages = response.messages;
-							moreMessagesExist = response.moreMessagesExist;
-							let usersAssociation = getState().contacts.usersAssociation;
+		// 		// If online the make api call and override message and store latest msg in LFStorage
+		// 		if (getState().user.isOnline) {
+		// 			getPaginatedArchiveMessages(conversation, createdOn, fetchDirection).then(
+		// 				(response) => {
+		// 					messages = response.messages;
+		// 					moreMessagesExist = response.moreMessagesExist;
+		// 					let usersAssociation = getState().contacts.usersAssociation;
 
-							// scan the timeline and fill the user details
-							messages.forEach((ele) => {
-								if (
-									ele.conversationOwner &&
-									usersAssociation &&
-									!usersAssociation[ele.conversationOwner.userId]
-								) {
-									dispatch({
-										type: ADD_NEW_USER_ASSOCIATION,
-										data: ele.conversationOwner,
-									});
-								}
-							});
+		// 					// scan the timeline and fill the user details
+		// 					messages.forEach((ele) => {
+		// 						if (
+		// 							ele.conversationOwner &&
+		// 							usersAssociation &&
+		// 							!usersAssociation[ele.conversationOwner.userId]
+		// 						) {
+		// 							dispatch({
+		// 								type: ADD_NEW_USER_ASSOCIATION,
+		// 								data: ele.conversationOwner,
+		// 							});
+		// 						}
+		// 					});
 
-							// FR 561 fix, loads message on single tap to contact
-							// change the condition to load the messages even if chatlog
-							// is there, avoid the slow load problem
-							if (
-								getState().chats.chatLog.get(conversation.conversationId)
-									.length >= 0
-							) {
-								const userId = getState().user?.user?.userId;
-								if (userId && messages) {
-									dispatch(
-										onArchivedMessagesReceived(
-											conversation.conversationId,
-											messages,
-											moreMessagesExist,
-											userId
-										)
-									);
-								}
-							}
+		// 					// FR 561 fix, loads message on single tap to contact
+		// 					// change the condition to load the messages even if chatlog
+		// 					// is there, avoid the slow load problem
+		// 					if (
+		// 						getState().chats.chatLog.get(conversation.conversationId)
+		// 							.length >= 0
+		// 					) {
+		// 						const userId = getState().user?.user?.userId;
+		// 						if (userId && messages) {
+		// 							dispatch(
+		// 								onArchivedMessagesReceived(
+		// 									conversation.conversationId,
+		// 									messages,
+		// 									moreMessagesExist,
+		// 									userId
+		// 								)
+		// 							);
+		// 						}
+		// 					}
 
-							saveDataInLFStorage(
-								`${LFStorageKeys.MESSAGES}_${conversation.conversationId}`,
-								messages
-							);
-						}
-					);
-				}
+		// 					saveDataInLFStorage(
+		// 						`${LFStorageKeys.MESSAGES}_${conversation.conversationId}`,
+		// 						messages
+		// 					);
+		// 				}
+		// 			);
+		// 		}
 
-				if (!_.isEmpty(messages)) {
-					let unreadMessages = [];
-					messages.forEach((msg) => {
-						if (!msg.isOpened) {
-							unreadMessages.push({
-								conversation: conversation.conversationId,
-								...msg,
-							});
-						}
-					});
-					// only update the messages status for selected conversation
-					if (
-						store?.getState()?.chats?.selectedConversation?.conversationId ===
-						conversation.conversationId
-					) {
-						// dispatch(updateMessageStatusForUser(conversation, unreadMessages));
-					}
-				}
-				const userId = getState().user?.user?.userId;
-				if (userId && messages) {
-					dispatch(
-						onArchivedMessagesReceived(
-							conversation.conversationId,
-							messages,
-							moreMessagesExist,
-							userId
-						)
-					);
-				}
-			}
-		} catch (error) {
-			console.error("Error in fetching Archived Messages: ", error);
-		}
+		// 		if (!_.isEmpty(messages)) {
+		// 			let unreadMessages = [];
+		// 			messages.forEach((msg) => {
+		// 				if (!msg.isOpened) {
+		// 					unreadMessages.push({
+		// 						conversation: conversation.conversationId,
+		// 						...msg,
+		// 					});
+		// 				}
+		// 			});
+		// 			// only update the messages status for selected conversation
+		// 			if (
+		// 				store?.getState()?.chats?.selectedConversation?.conversationId ===
+		// 				conversation.conversationId
+		// 			) {
+		// 				// dispatch(updateMessageStatusForUser(conversation, unreadMessages));
+		// 			}
+		// 		}
+		// 		const userId = getState().user?.user?.userId;
+		// 		if (userId && messages) {
+		// 			dispatch(
+		// 				onArchivedMessagesReceived(
+		// 					conversation.conversationId,
+		// 					messages,
+		// 					moreMessagesExist,
+		// 					userId
+		// 				)
+		// 			);
+		// 		}
+		// 	}
+		// } catch (error) {
+		// 	console.error("Error in fetching Archived Messages: ", error);
+		// }
 	};
 }
 
