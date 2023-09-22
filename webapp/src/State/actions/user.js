@@ -56,6 +56,7 @@ import {
 	ONECARE,
 	onecare_pushkey,
 	ONECARE_STAGE,
+	ONELEARN_LANDING,
 	SOCKET,
 	VIKAND_DIRECT,
 	vikand_direct_pushkey,
@@ -949,7 +950,7 @@ export function logout(paramAppType) {
 	return (dispatch, getState) => {
 		removeAuthData();
 		dispatch({ type: LOGOUT_USER });
-		history.push("/onelearn");
+		history.push(ONELEARN_LANDING);
 	}
 
 	// 	}

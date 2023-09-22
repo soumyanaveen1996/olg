@@ -27,6 +27,8 @@ import {
 	SIGMA_LANDING,
 	STATIONSATCOM_PROD_URL,
 	VIKAND_PROD_URL,
+	ONELEARN_LANDING,
+	ONELEARN_LANDING_2,
 } from "../Utils/Constants";
 import Error404 from "./ErrorPages/Error404";
 
@@ -84,7 +86,7 @@ const getCurrentDomainPaths = (currentHostName, customLandingPathList) => {
 			return [SIGMA_LANDING];
 
 		default:
-			return customLandingPathList;
+			return [ONELEARN_LANDING, ONELEARN_LANDING_2];
 	};
 };
 

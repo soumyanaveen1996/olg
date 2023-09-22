@@ -38,7 +38,8 @@ export const VIKAND_DIRECT_LANDING = "/vikandconnect";
 export const INTELL4DESK_LANDING = "/intelli4desks";
 export const THURAYA_LANDING = "/thuraya";
 export const ONSHIP_LANDING = "/onship";
-export const ONELEARN_LANDING = "/onelearn";
+export const ONELEARN_LANDING_2 = "/onelearn";
+export const ONELEARN_LANDING = "/offlinelms";
 export const THURAYA_T2M_LANDING = "/sattrackland";
 export const ONSHIP_SIGNUP_LANDING = "/onship/signup";
 export const THURAYA_T2M_SIGNUP_LANDING = "/sattrackland/signup";
@@ -68,9 +69,11 @@ export const LANDING_PATH_LIST = [
 	ONECARE_LANDING,
 	FRONTM_LANDING,
 	FRONTM_LOGIN,
+	ONELEARN_LANDING
 ];
 
 export const CUSTOM_LANDING_PATH_LIST = [
+	ONELEARN_LANDING,
 	VOYAGER_LANDING,
 	VIKAND_LANDING,
 	VIKAND_DIRECT_LANDING,
