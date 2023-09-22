@@ -72,7 +72,8 @@ export const MessageTypeConstants = {
 	MESSAGE_TYPE_SURVEY: "survey",
 	MESSAGE_TYPE_SURVEY_RESPONSE: "surveyResponse",
 	MESSAGE_TYPE_DASHBOARD: "dashboardMessage",
-	MESSAGE_TYPE_CHAT: "chat"
+	MESSAGE_TYPE_CHAT: "chat",
+	MESSAGE_TYPE_AICC: "aiicPlayer"
 };
 
 export const IntToMessageTypeConstants = {
@@ -135,4 +136,5 @@ export const IntToMessageTypeConstants = {
 	3000: MessageTypeConstants.MESSAGE_TYPE_SURVEY,
 	3001: MessageTypeConstants.MESSAGE_TYPE_SURVEY_RESPONSE,
 	5000: MessageTypeConstants.MESSAGE_TYPE_DASHBOARD,
+	2500: MessageTypeConstants.MESSAGE_TYPE_AICC,
 };

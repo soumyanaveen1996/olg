@@ -84,7 +84,8 @@ export const MessageTypeConstants = {
   MESSAGE_TYPE_SURVEY_RESPONSE: "surveyResponse",
   MESSAGE_TYPE_DASHBOARD: "dashboardMessage",
   MESSAGE_TYPE_ON_SOCKET_RECONNECTION: 'onSocketReconnection',
-  MESSAGE_TYPE_CHAT: 'chat'
+  MESSAGE_TYPE_CHAT: 'chat',
+  MESSAGE_TYPE_AICC: 'aiicPlayer'
 };
 
 export const IntToMessageTypeConstants = {
@@ -138,6 +139,7 @@ export const IntToMessageTypeConstants = {
   3000: MessageTypeConstants.MESSAGE_TYPE_SURVEY,
   3001: MessageTypeConstants.MESSAGE_TYPE_SURVEY_RESPONSE,
   5000: MessageTypeConstants.MESSAGE_TYPE_DASHBOARD,
+  2500: MessageTypeConstants.MESSAGE_TYPE_AICC
 };
 
 export const MessageTypeConstantsToInt = _.invert(IntToMessageTypeConstants);
@@ -514,6 +516,14 @@ export class Message {
     this._messageType = MessageTypeConstants.MESSAGE_TYPE_DASHBOARD;
   };
 
+  aiccPlayer = (data, options) => {
+    this._msg = JSON.stringify(data || []);
+    if (options) {
+      this._options = JSON.stringify(options);
+    }
+    this._messageType = MessageTypeConstants.MESSAGE_TYPE_AICC;
+  };
+
   timelinesResponseMessage = (data, options) => {
     this._msg = data || [];
     if (options) {
@@ -724,6 +734,7 @@ export class Message {
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_CHAT ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SURVEY ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_DASHBOARD ||
+      this._messageType === MessageTypeConstants.MESSAGE_TYPE_AICC ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_CHART ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_TABLE ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_CONTAINER ||
@@ -785,6 +796,7 @@ export class Message {
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_CHAT ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SURVEY ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_DASHBOARD ||
+      this._messageType === MessageTypeConstants.MESSAGE_TYPE_AICC ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SESSION_START ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_WAIT ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_FORM_RESPONSE ||
@@ -890,6 +902,7 @@ export class Message {
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_CHAT ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SURVEY ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_DASHBOARD ||
+      this._messageType === MessageTypeConstants.MESSAGE_TYPE_AICC ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_FORM_CANCEL ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SLIDER_CANCEL ||
       this._messageType === MessageTypeConstants.MESSAGE_TYPE_SESSION_START ||
@@ -1057,6 +1070,7 @@ export class Message {
       MessageTypeConstants.MESSAGE_TYPE_CHAT,
       MessageTypeConstants.MESSAGE_TYPE_SURVEY,
       MessageTypeConstants.MESSAGE_TYPE_DASHBOARD,
+      MessageTypeConstants.MESSAGE_TYPE_AICC,
       MessageTypeConstants.MESSAGE_TYPE_FORM_CANCEL,
       MessageTypeConstants.MESSAGE_TYPE_SLIDER_CANCEL,
       MessageTypeConstants.MESSAGE_TYPE_SMART_SUGGESTIONS,

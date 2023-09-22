@@ -19,7 +19,7 @@ import {
   RENDER_MESSAGE_TYPE_VIDEOCALL,
   RENDER_CHANGE_NONCONVERSATION_SELECTED_TAB,
   RESET_NONCONVENTIONAL,
-  RENDER_MESSAGE_TYPE_DASHBOARD, RENDER_MESSAGE_TYPE_CHAT,
+  RENDER_MESSAGE_TYPE_DASHBOARD, RENDER_MESSAGE_TYPE_CHAT, RENDER_MESSAGE_TYPE_AICC,
 } from './types';
 import store from "../../../../State/configureStore";
 import _ from "lodash";
@@ -80,6 +80,9 @@ export const v2HandleNonConversationalServerMessages =
         break;
       case MessageTypeConstants.MESSAGE_TYPE_DASHBOARD:
         dispatch(handleMessageTypeDashboard(conversationId, message));
+        break;
+      case MessageTypeConstants.MESSAGE_TYPE_AICC:
+        dispatch(handleMessageTypeForm2(conversationId, message));
         break;
       case MessageTypeConstants.MESSAGE_TYPE_CALENDAR:
         if (["changeFilter", "validationFilter", "resultsFilter", "updateFilter"].includes(message.options.action)) {
@@ -1908,5 +1911,17 @@ export const handleMessageTypeDashboard = (conversationId, message) => (dispatch
     handleExistsNonConversationalDashboard(conversationId, message, dispatch);
   } else {
     handleNewNonConversationalDashboard(conversationId, message, dispatch);
+  }
+};
+
+export const handleMessageTypeAiic = (conversationId, message) => (dispatch) => {
+  console.log("Handle Message Type AIIC******", conversationId, message);
+  if (message) {
+      dispatch({
+        type: RENDER_MESSAGE_TYPE_AICC,
+        data: {
+            [conversationId]: message,
+        },
+      });
   }
 };

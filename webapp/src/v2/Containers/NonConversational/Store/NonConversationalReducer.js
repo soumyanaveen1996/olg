@@ -20,6 +20,7 @@ import {
 	RENDER_MESSAGE_TYPE_CHAT,
 	RENDER_MESSAGE_TYPE_SURVEY,
 	RENDER_MESSAGE_TYPE_DASHBOARD,
+	RENDER_MESSAGE_TYPE_AICC,
 } from "./types";
 
 let initialState = {};
@@ -41,6 +42,7 @@ function NonConversationalReducer(state = initialState, action) {
 		case RENDER_MESSAGE_TYPE_CHAT:
 		case RENDER_MESSAGE_TYPE_SURVEY:
 		case RENDER_MESSAGE_TYPE_DASHBOARD:
+		case RENDER_MESSAGE_TYPE_AICC:
 		case RESET_FORM2_FIELDS:
 		case RESET_CONTAINER_FIELDS:
 		case CHANGE_CALENDAR:

@@ -302,7 +302,13 @@ function chatsReducer(state = initialState, action) {
           ...state,
           message: action.data?.message,
         };
-      } else if (messageType === MessageTypeConstants.MESSAGE_TYPE_MENU) {
+      } else if (messageType === MessageTypeConstants.MESSAGE_TYPE_AICC) {
+        return {
+          ...state,
+          message: action.data?.message,
+        };
+      }
+       else if (messageType === MessageTypeConstants.MESSAGE_TYPE_MENU) {
         let menuMsgObj = {};
         menuMsgObj[conversationId] = { ...message.message };
         return {

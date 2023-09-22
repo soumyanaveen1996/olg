@@ -28,7 +28,7 @@ import ComponentInWindow from "../../../../Components/Interactions/content/Compo
 import MainTimeline from "../../../Components/TimelineComponent/MainTimeline";
 import MainSurvey from "../../../Components/SurveyComponent/MainSurvey";
 import Chart from "../../../Components/MongoDBChart/chart";
-import ChatComponentInWindow from '../../../../Components/Interactions/content/ChatComponentInWindow';
+import AiccPlayer from "../../../Components/AiccPlayer/aiccPlayer";
 
 const PaperContainer = styled(Paper)(() => ({
 	flexGrow: 1,
@@ -136,7 +136,11 @@ function TabPanel(props) {
 	);
 }
 
-export default function NonConversationalComponent({ conversationId, NonConversationalComponents, selectedTab }) {
+export default function NonConversationalComponent({
+	conversationId,
+	NonConversationalComponents,
+	selectedTab,
+}) {
 	const dispatch = useDispatch();
 	const [NonConversationalAppCount, setNonConversationalAppCount] = useState(0);
 	const appNotifications = useSelector(
@@ -148,10 +152,7 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 		if (NonConversationalComponents) {
 			setNonConversationalAppCount(NonConversationalComponents.length);
 		}
-	}, [
-		selectedTab,
-		NonConversationalComponents,
-	]);
+	}, [selectedTab, NonConversationalComponents]);
 
 	const handleCloseApp = (message) => {
 		let responseChat = {};
@@ -279,7 +280,6 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 		return output;
 	}
 
-
 	const renderMessage = (message) => {
 		console.log("Render message", message);
 		let component = null;
@@ -312,14 +312,24 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 			case MessageTypeConstants.MESSAGE_TYPE_FORM2:
 				let fields;
 				let collectionData;
-				if (Object.prototype.toString.call(message.message) === '[object Array]') {
+				if (
+					Object.prototype.toString.call(message.message) === "[object Array]"
+				) {
 					fields = message.message;
-				}
-				else if (Object.prototype.toString.call(message.message) === '[object Object]') {
+				} else if (
+					Object.prototype.toString.call(message.message) === "[object Object]"
+				) {
 					fields = message.message.fields;
 					collectionData = message.message.collectionData;
 				}
-				component = <FMForm {...message} fields={fields} collectionData={collectionData} parentTabId={message?.options?.tabId} />;
+				component = (
+					<FMForm
+						{...message}
+						fields={fields}
+						collectionData={collectionData}
+						parentTabId={message?.options?.tabId}
+					/>
+				);
 				break;
 			case MessageTypeConstants.MESSAGE_TYPE_CALENDAR:
 				component = <FMCalendar {...message} />;
@@ -344,7 +354,9 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 			case MessageTypeConstants.MESSAGE_TYPE_DASHBOARD:
 				component = <Chart {...message} />;
 				break;
-
+			case MessageTypeConstants.MESSAGE_TYPE_AICC:
+				component = <AiccPlayer {...message} />;
+				break;
 			// case MessageTypeConstants.MESSAGE_TYPE_CHAT:
 			// 	component = <ChatComponentInWindow conversationId={conversationId} {...message} />;
 			// 	break;
@@ -368,9 +380,7 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 	};
 
 	const handleTabChange = (e, newValue) => {
-		if (
-			NonConversationalComponents.length === NonConversationalAppCount
-		) {
+		if (NonConversationalComponents.length === NonConversationalAppCount) {
 			dispatch(
 				handleChangeNonConversationalMessagesTab(conversationId, newValue)
 			);
@@ -388,14 +398,19 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 
 	if (!_.isEmpty(NonConversationalComponents)) {
 		// Below condition is for form2, update the filter condition based on requirement in future
-		let tabComponentsList = NonConversationalComponents.filter((tabs) =>
-		(
-			tabs.messageType !== MessageTypeConstants.MESSAGE_TYPE_FORM2
-			|| (tabs.options?.modal && tabs.messageType !== MessageTypeConstants.MESSAGE_TYPE_FORM2)
-			|| tabs.options.modal === undefined
-			|| tabs.options?.modal === false
-		));
-		let modalComponentsList = NonConversationalComponents.filter((tabs) => (tabs.messageType === MessageTypeConstants.MESSAGE_TYPE_FORM2 && tabs.options?.modal === true))
+		let tabComponentsList = NonConversationalComponents.filter(
+			(tabs) =>
+				tabs.messageType !== MessageTypeConstants.MESSAGE_TYPE_FORM2 ||
+				(tabs.options?.modal &&
+					tabs.messageType !== MessageTypeConstants.MESSAGE_TYPE_FORM2) ||
+				tabs.options.modal === undefined ||
+				tabs.options?.modal === false
+		);
+		let modalComponentsList = NonConversationalComponents.filter(
+			(tabs) =>
+				tabs.messageType === MessageTypeConstants.MESSAGE_TYPE_FORM2 &&
+				tabs.options?.modal === true
+		);
 		return (
 			<>
 				<PaperContainer square elevation={0}>
@@ -436,9 +451,7 @@ export default function NonConversationalComponent({ conversationId, NonConversa
 				))}
 				{/* When the form needs to be rendered in a modal instead of opening in a new tab */}
 				{modalComponentsList.map((item) => (
-					<>
-						{renderMessage(item)}
-					</>
+					<>{renderMessage(item)}</>
 				))}
 				{appNotifications &&
 					!_.isEmpty(appNotifications) &&
