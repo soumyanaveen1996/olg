@@ -194,7 +194,7 @@ class LookUpField extends Component {
 										{!valueSelected && (
 											<span>
 												{!showSpinner && (
-													<img src="/img/search-icon@2x.png" width="12" />
+												<img src="/offlinelms/img/search-icon@2x.png" width="12" />
 												)}
 												{showSpinner && (
 													<div>
@@ -204,7 +204,7 @@ class LookUpField extends Component {
 											</span>
 										)}
 										{valueSelected && (
-											<img src="/img/search-clear-icon@2x.png" width="12" />
+										<img src="/offlinelms/img/search-clear-icon@2x.png" width="12" />
 										)}
 										{/*{showSpinner && (*/}
 										{/*  <div>*/}

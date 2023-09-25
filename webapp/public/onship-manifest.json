@@ -3,27 +3,27 @@
 	"name": "onship",
 	"icons": [
 		{
-			"src": "img/onship.ico",
+			"src": "offlinelms/img/onship.ico",
 			"sizes": "16x16",
 			"type": "image/x-icon"
 		},
 		{
-			"src": "img/onship192.png",
+			"src": "offlinelms/img/onship192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "img/onship256.png",
+			"src": "offlinelms/img/onship256.png",
 			"type": "image/png",
 			"sizes": "256x256"
 		},
 		{
-			"src": "img/onship384.png",
+			"src": "offlinelms/img/onship384.png",
 			"type": "image/png",
 			"sizes": "384x384"
 		},
 		{
-			"src": "img/onship512.png",
+			"src": "offlinelms/img/onship512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}

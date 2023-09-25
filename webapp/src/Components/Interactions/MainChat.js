@@ -31,7 +31,7 @@ class MainChat extends React.Component {
 		let selectedDomainObj = _.cloneDeep(selectedDomain);
 		let bgUrl = selectedDomainObj?.backgroundUrl
 			? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-			: "/img/welcomescreen-background.png";
+			: "/offlinelms/img/welcomescreen-background.png";
 
 		if (showHTMLContent) {
 			this.setState({ showHTMLContent: showHTMLContent, showHtmlPopUp: true });
@@ -56,7 +56,7 @@ class MainChat extends React.Component {
 			let selectedDomainObj = _.cloneDeep(selectedDomain);
 			let bgUrl = selectedDomainObj?.backgroundUrl
 				? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-				: "/img/welcomescreen-background.png";
+				: "/offlinelms/img/welcomescreen-background.png";
 			this.setState({
 				backgroundUrl: bgUrl,
 			});
@@ -99,7 +99,7 @@ class MainChat extends React.Component {
 				return "#ffffff";
 			} else return `url(${this.state.backgroundUrl}) no-repeat center`;
 		} else {
-			return 'url("/img/welcomescreen-background.png") no-repeat center';
+			return 'url("/offlinelms/img/welcomescreen-background.png") no-repeat center';
 		}
 	};
 	render() {
@@ -257,7 +257,7 @@ class MainChat extends React.Component {
 						>
 							<div className="d-flex flex-row minimize-close-icon-container">
 								<a className="close-icon" onClick={this.hideHTMLPopup}>
-									<img src="/img/close-icon@2x.png" alt="close-icon" />
+									<img src="/offlinelms/img/close-icon@2x.png" alt="close-icon" />
 								</a>
 							</div>
 						</div>

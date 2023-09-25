@@ -372,7 +372,7 @@ class AddNewContactForm extends Component {
 					padding: "30%",
 					background: "#f4f4f4",
 			  };
-		profilePhoto = profilePhoto || "/img/avatar-icon-placeholder.png";
+		profilePhoto = profilePhoto || "/offlinelms/img/avatar-icon-placeholder.png";
 		return (
 			<React.Fragment>
 				{this.state.errorMsg && this.state.errorMsg.length > 0 && (
@@ -398,7 +398,7 @@ class AddNewContactForm extends Component {
 									name={name}
 									size={120}
 									height={
-										profilePhoto === "/img/avatar-icon-placeholder.png"
+										profilePhoto === "/offlinelms/img/avatar-icon-placeholder.png"
 											? "auto"
 											: 120
 									}
@@ -469,7 +469,7 @@ class AddNewContactForm extends Component {
 												<img
 													loading="lazy"
 													className="icon-contact-phoneType mr-2"
-													src="/img/phone icon@2x.png"
+													src="/offlinelms/img/phone icon@2x.png"
 													alt="mobile"
 												/>
 											)}
@@ -477,7 +477,7 @@ class AddNewContactForm extends Component {
 												<img
 													loading="lazy"
 													className="icon-contact-phoneType mr-2"
-													src="/img/phone icon@2x.png"
+													src="/offlinelms/img/phone icon@2x.png"
 													alt="landline"
 												/>
 											)}
@@ -486,7 +486,7 @@ class AddNewContactForm extends Component {
 													loading="lazy"
 													className="icon-contact-phoneType mr-2"
 													style={{ width: "14px", height: "auto" }}
-													src="/img/satellite phone ico@2x.png"
+													src="/offlinelms/img/satellite phone ico@2x.png"
 													alt="satellite"
 												/>
 											)}
@@ -545,7 +545,7 @@ class AddNewContactForm extends Component {
 											<img
 												loading="lazy"
 												style={{ width: "10px", height: "10px" }}
-												src="/img/search-clear-icon@2x.png"
+												src="/offlinelms/img/search-clear-icon@2x.png"
 												alt=""
 											/>
 										</a>
@@ -566,7 +566,7 @@ class AddNewContactForm extends Component {
 											loading="lazy"
 											className="mr-1"
 											style={{ width: "10px", height: "10px" }}
-											src="/img/plus-icon.png"
+											src="/offlinelms/img/plus-icon.png"
 											alt=""
 										/>{" "}
 										Add phone
@@ -586,7 +586,7 @@ class AddNewContactForm extends Component {
 											<img
 												loading="lazy"
 												className="icon-contact-emailType mr-2"
-												src="/img/email-icon@2x.png"
+												src="/offlinelms/img/email-icon@2x.png"
 												alt=""
 											/>
 											<span>{elem.placeholder}</span>
@@ -609,7 +609,7 @@ class AddNewContactForm extends Component {
 											<img
 												loading="lazy"
 												style={{ width: "10px", height: "10px" }}
-												src="/img/search-clear-icon@2x.png"
+												src="/offlinelms/img/search-clear-icon@2x.png"
 												alt=""
 											/>
 										</a>
@@ -630,7 +630,7 @@ class AddNewContactForm extends Component {
 											loading="lazy"
 											className="mr-1"
 											style={{ width: "10px", height: "10px" }}
-											src="/img/plus-icon.png"
+											src="/offlinelms/img/plus-icon.png"
 											alt=""
 										/>{" "}
 										Add email

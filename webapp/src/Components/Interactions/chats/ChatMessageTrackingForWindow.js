@@ -75,7 +75,7 @@ class ChatMessageTrackingForWindow extends PureComponent {
 					<img
 						id="flight-icon"
 						style={{ left: "calc(" + coveredPercentage + "% - 14px )" }}
-						src="./img/moving-maps-plane-blue-icon@3x.png"
+						src="./offlinelms/img/moving-maps-plane-blue-icon@3x.png"
 						alt="flight"
 					/>
 					<Tooltip
@@ -115,7 +115,7 @@ class ChatMessageTrackingForWindow extends PureComponent {
 					<img
 						id="vessel-icon"
 						style={{ left: "calc(" + coveredPercentage + "% - 14px )" }}
-						src="./img/vessel-trajectory-direction@2x.png"
+						src="./offlinelms/img/vessel-trajectory-direction@2x.png"
 						alt="flight"
 					/>
 					<Tooltip
@@ -246,7 +246,7 @@ class ChatMessageTrackingForWindow extends PureComponent {
 							onClick={() => this.handleRefresh(options)}
 						>
 							<img
-								src="/img/refresh-btn@2x.png"
+								src="/offlinelms/img/refresh-btn@2x.png"
 								alt="close-icon"
 								style={{
 									width: "25px",

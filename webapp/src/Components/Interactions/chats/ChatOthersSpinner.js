@@ -13,7 +13,7 @@ const ChatOthersSpinner = ({
 			<ChatOthersUI conversation={conversation} chat={chat}>
 				<div className="d-flex justify-content-lg-start">
 					<img
-						src={"/img/loading-ship-v1.gif"}
+						src={"/offlinelms/img/loading-ship-v1.gif"}
 						width={50}
 						alt="flight-loader"
 					/>
@@ -25,7 +25,7 @@ const ChatOthersSpinner = ({
 			<ChatOthersUI conversation={conversation} chat={chat}>
 				<div className="d-flex justify-content-lg-start">
 					{!conversational ? (
-						<img src={"/img/loading-v2.gif"} width={50} alt="flight-loader" />
+						<img src={"/offlinelms/img/loading-v2.gif"} width={50} alt="flight-loader" />
 					) : (
 						<Spinner name="three-bounce" color="steelblue" />
 					)}

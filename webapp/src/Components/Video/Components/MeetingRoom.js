@@ -936,7 +936,7 @@ const MeetingWaiting = ({
 								<img
 									loading="lazy"
 									alt="User Icon"
-									src="/img/called-emptyavatar.png"
+									src="/offlinelms/img/called-emptyavatar.png"
 									width="90"
 								/>
 							</div>

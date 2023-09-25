@@ -124,10 +124,10 @@ class DiallingScreen extends PureComponent {
 								trailColor: "rgb(44, 49, 54)",
 							})}
 						>
-							<img src="/img/calling-emptyavatar.png" />
+							<img src="/offlinelms/img/calling-emptyavatar.png" />
 						</CircularProgressbarWithChildren>
 					) : (
-						<img src="/img/calling-emptyavatar.png" />
+							<img src="/offlinelms/img/calling-emptyavatar.png" />
 					)}
 				</div>
 
@@ -146,7 +146,7 @@ class DiallingScreen extends PureComponent {
 							backgroundColor="#2A2D3C"
 							color="#fff"
 							iconFile={
-								this.state.showNumPad ? null : "/img/tab-dialpad-icon@2x.png"
+								this.state.showNumPad ? null : "/offlinelms/img/tab-dialpad-icon@2x.png"
 							}
 							iconClass={this.state.showNumPad ? "icon-cross" : null}
 							onClick={
@@ -188,8 +188,8 @@ class DiallingScreen extends PureComponent {
 						style={{ height: "60px", width: "60px" }}
 						onClick={disconnectCall}
 					>
-						{/*<img src="/img/call-endcall-btn.png" />*/}
-						<img src="/img/call-endcall-btn@2x.png" width="60" />
+						{/*<img src="/offlinelms/img/call-endcall-btn.png" />*/}
+						<img src="/offlinelms/img/call-endcall-btn@2x.png" width="60" />
 					</a>
 				</div>
 			</div>

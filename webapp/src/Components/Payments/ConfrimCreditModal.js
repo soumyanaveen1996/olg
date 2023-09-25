@@ -311,7 +311,7 @@ class ConfrimCreditModal extends Component {
 				{/*    this.props.onClose();*/}
 				{/*  }}*/}
 				{/*>*/}
-				{/*  <img src="/img/close-icon.png" alt="close-icon" />*/}
+				{/*  <img src="/offlinelms/img/close-icon.png" alt="close-icon" />*/}
 				{/*</a>*/}
 				<div className="confirmCredit-header d-flex align-items-center">
 					<a
@@ -321,7 +321,7 @@ class ConfrimCreditModal extends Component {
 					>
 						<img
 							style={{ width: "16px", height: "15px", marginRight: "10px" }}
-							src="/img/header-back-arrow@2x.png"
+							src="/offlinelms/img/header-back-arrow@2x.png"
 							alt=""
 						/>
 					</a>

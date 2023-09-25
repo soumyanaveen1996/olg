@@ -3,27 +3,27 @@
 	"name": "SEAMPLIFY",
 	"icons": [
 		{
-			"src": "img/seamplify-favicon.ico",
+			"src": "offlinelms/img/seamplify-favicon.ico",
 			"sizes": "48x48",
 			"type": "image/x-icon"
 		},
 		{
-			"src": "img/seamplify-logo-white192.png",
+			"src": "offlinelms/img/seamplify-logo-white192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "img/seamplify-logo-white256.png",
+			"src": "offlinelms/img/seamplify-logo-white256.png",
 			"type": "image/png",
 			"sizes": "256x256"
 		},
 		{
-			"src": "img/seamplify-logo-white384.png",
+			"src": "offlinelms/img/seamplify-logo-white384.png",
 			"type": "image/png",
 			"sizes": "384x384"
 		},
 		{
-			"src": "img/seamplify-logo-white512.png",
+			"src": "offlinelms/img/seamplify-logo-white512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}

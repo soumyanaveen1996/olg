@@ -469,7 +469,7 @@ const ShowRowComponent = ({
 							<span>
 								<CachedImage
 									imgKey="warningIcon"
-									image="/img/Shape@2x.png"
+									image="/offlinelms/img/Shape@2x.png"
 									width="14px"
 								/>
 							</span>
@@ -479,7 +479,7 @@ const ShowRowComponent = ({
 							<span>
 								<CachedImage
 									imgKey="errorIcon"
-									image="/img/error-icon@2x.png"
+									image="/offlinelms/img/error-icon@2x.png"
 									width="14px"
 								/>
 							</span>
@@ -650,7 +650,7 @@ const ShowRowComponent = ({
 						>
 							<img
 								style={{ width: "25px" }}
-								src="./img/dashboard-icon-hover@2x.png"
+								src="./offlinelms/img/dashboard-icon-hover@2x.png"
 								alt="actionableRow"
 							/>
 						</a>

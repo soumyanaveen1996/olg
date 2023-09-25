@@ -278,7 +278,7 @@ class AppContentContainer extends Component {
 		}
 
 		if (isLoading) {
-			return <img style={{ position: "fixed", left: "45%", top: "45%", width: "5%" }} src="/img/loft-loading.gif" alt="Loading..." />;
+			return <img style={{ position: "fixed", left: "45%", top: "45%", width: "5%" }} src="/offlinelms/img/loft-loading.gif" alt="Loading..." />;
 		}
 
 		return (

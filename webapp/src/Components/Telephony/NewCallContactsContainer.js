@@ -335,7 +335,7 @@ class NewCallContactsContainer extends Component {
               onClick={this.showCreateConversation}
               className="btn btn-default d-inline-flex justify-content-center align-items-center"
             >
-              <img src="/img/tab-dialpad-icon@2x.png" width="10" alt="" />
+              <img src="/offlinelms/img/tab-dialpad-icon@2x.png" width="10" alt="" />
               <span>Dialpad</span>
             </a>
           </div> */}

@@ -245,7 +245,7 @@ class GetCreditModal extends Component {
 									<img
 										id="promoInfo"
 										style={{ width: "18px", cursor: "pointer" }}
-										src="/img/infoIcon.png"
+										src="/offlinelms/img/infoIcon.png"
 										alt="info"
 									/>
 								</span>

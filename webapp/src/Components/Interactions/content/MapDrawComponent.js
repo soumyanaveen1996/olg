@@ -153,7 +153,7 @@ const MapDrawComponent = ({
 						<div className="d-flex draggable-icon-container flex-row align-items-center p-2">
 							<img
 								className="draggable-icon"
-								src="/img/move-icon@2x.png"
+								src="/offlinelms/img/move-icon@2x.png"
 								alt="draggable-icon"
 							/>
 						</div>

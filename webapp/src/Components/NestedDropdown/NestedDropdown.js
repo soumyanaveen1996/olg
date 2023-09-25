@@ -29,7 +29,7 @@ class NestedDropdown extends Component {
 						{title}
 						<img
 							style={{ width: "6px", height: "10px" }}
-							src="/img/menu-chevron-right@2x.png"
+							src="/offlinelms/img/menu-chevron-right@2x.png"
 							alt=""
 						/>
 					</a>

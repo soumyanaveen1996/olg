@@ -252,7 +252,7 @@ class HomeSlide5 extends React.Component {
 				{!this.props.corporateScreen && (
 					<HomeSlideRight
 						imgKey="slider5"
-						image={"/img/onboarding-illus-5@2x.png"}
+						image={"/offlinelms/img/onboarding-illus-5@2x.png"}
 					/>
 				)}
 			</React.Fragment>

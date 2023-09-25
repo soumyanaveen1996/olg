@@ -40,7 +40,7 @@ class WelcomeContainer extends React.Component {
 		let selectedDomainObj = _.cloneDeep(selectedDomain);
 		let bgUrl = selectedDomainObj?.backgroundUrl
 			? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-			: "/img/welcomescreen-background.png";
+			: "/offlinelms/img/welcomescreen-background.png";
 
 		this.setState({
 			backgroundUrl: bgUrl,
@@ -78,7 +78,7 @@ class WelcomeContainer extends React.Component {
 			let selectedDomainObj = _.cloneDeep(selectedDomain);
 			let bgUrl = selectedDomainObj?.backgroundUrl
 				? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-				: "/img/welcomescreen-background.png";
+				: "/offlinelms/img/welcomescreen-background.png";
 			this.setState({
 				backgroundUrl: bgUrl,
 			});
@@ -273,7 +273,7 @@ class WelcomeContainer extends React.Component {
 						<img
 							loading="lazy"
 							className="catalog-card__icon"
-							src="img/home-icon-contacts@2x.svg"
+							src="offlinelms/img/home-icon-contacts@2x.svg"
 							alt="contact-card"
 						/>
 					</a>
@@ -299,7 +299,7 @@ class WelcomeContainer extends React.Component {
 						<CachedImage
 							imgClassName="catalog-card__icon"
 							// imgKey={"homeAssistantIcon"}
-							// image={"img/home-icon-assistant@2x.png"}
+							// image={"offlinelms/img/home-icon-assistant@2x.png"}
 							image={`${R.prop("contentURL", Config)}` + this.props?.selectedDomain?.assistantBotConfig?.logoUrl}
 						/>
 					</a>
@@ -314,7 +314,7 @@ class WelcomeContainer extends React.Component {
 							<CachedImage
 								imgClassName="catalog-card__icon"
 								// imgKey={"homeCallIcon"}
-								image={"img/home-icon-call@2x.svg"}
+								image={"offlinelms/img/home-icon-call@2x.svg"}
 							/>
 						</a>
 						<label className="catalog-card__fontStyle catalog-card__label">
@@ -343,7 +343,7 @@ class WelcomeContainer extends React.Component {
 							<CachedImage
 								imgClassName="catalog-card__icon"
 								// imgKey={"homeAppIcon"}
-								image={"img/home-icon-apps@2x.svg"}
+								image={"offlinelms/img/home-icon-apps@2x.svg"}
 							/>
 						</Link>
 						<label className="catalog-card__fontStyle catalog-card__label">
@@ -357,7 +357,7 @@ class WelcomeContainer extends React.Component {
 							<CachedImage
 								imgClassName="catalog-card__icon"
 								// imgKey={"homeChannelIcon"}
-								image={"img/home-icon-channels@2x.svg"}
+								image={"offlinelms/img/home-icon-channels@2x.svg"}
 							/>
 							<label className="catalog-card__fontStyle catalog-card__label">
 								Groups
@@ -372,7 +372,7 @@ class WelcomeContainer extends React.Component {
 				{/*		<CachedImage*/}
 				{/*			imgClassName="catalog-card__icon"*/}
 				{/*			imgKey={"homeChannelIcon"}*/}
-				{/*			image={"img/home-icon-channels@2x.png"}*/}
+				{/*			image={"offlinelms/img/home-icon-channels@2x.png"}*/}
 				{/*		/>*/}
 				{/*		<label className="catalog-card__fontStyle catalog-card__label">*/}
 				{/*			Loft*/}
@@ -396,7 +396,7 @@ class WelcomeContainer extends React.Component {
 		} else {
 			return {
 				background:
-					'url("/img/welcomescreen-background.png") no-repeat center ',
+					'url("/offlinelms/img/welcomescreen-background.png") no-repeat center ',
 				backgroundSize: "cover",
 			};
 		}

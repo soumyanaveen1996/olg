@@ -21,7 +21,7 @@ export default class Error404 extends Component {
 					}}
 				>
 					<img
-						src="/img/error-illustration@3x.png"
+						src="/offlinelms/img/error-illustration@3x.png"
 						alt={"Error page"}
 						style={{ width: "30vw", height: "auto" }}
 					/>

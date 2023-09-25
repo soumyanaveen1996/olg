@@ -29,14 +29,14 @@ const CollapsableLeftNav = (props) => {
 					<a onClick={toggleSideNavBar}>
 						<CachedImage
 							imgKey={"showSidebarIcon"}
-							image={"img/show-sidebar.png"}
+							image={"offlinelms/img/show-sidebar.png"}
 						/>
 					</a>
 				) : (
 					<a onClick={toggleSideNavBar}>
 						<CachedImage
 							imgKey={"hideSidebarIcon"}
-							image={"img/hide-sidebar.png"}
+								image={"offlinelms/img/hide-sidebar.png"}
 						/>
 					</a>
 				)}

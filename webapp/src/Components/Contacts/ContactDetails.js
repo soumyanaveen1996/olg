@@ -285,8 +285,8 @@ class ContactDetails extends Component {
 								phoneNumbers.map((elem, index) => {
 									const phoneIcon =
 										elem.key === "satellite"
-											? "/img/satellite phone ico@2x.png"
-											: "/img/phone icon@2x.png";
+											? "/offlinelms/img/satellite phone ico@2x.png"
+											: "/offlinelms/img/phone icon@2x.png";
 									if (elem.key === "land") {
 										elem.key = "landline";
 									}
@@ -345,7 +345,7 @@ class ContactDetails extends Component {
 											>
 												<img
 													loading="lazy"
-													src="/img/call-icon-frontm1.png"
+												src="/offlinelms/img/call-icon-frontm1.png"
 													className="mr-2"
 													style={{ height: "20px", width: "14px" }}
 												/>
@@ -590,16 +590,16 @@ const CallHistory = (history) => {
 const getIcon = (call) => {
 	if (call.callDirection === "incoming") {
 		if (call.duration === 0) {
-			return "/img/call-received-red@2x.png";
+			return "/offlinelms/img/call-received-red@2x.png";
 		}
-		return "/img/call-received-green@2x.png";
+		return "/offlinelms/img/call-received-green@2x.png";
 	}
 
 	if (call.callDirection === "outgoing") {
 		if (call.duration === 0) {
-			return "/img/call-made-red@2x.png";
+			return "/offlinelms/img/call-made-red@2x.png";
 		}
-		return "/img/call-made-green@2x.png";
+		return "/offlinelms/img/call-made-green@2x.png";
 	}
 };
 

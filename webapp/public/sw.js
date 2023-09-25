@@ -26,8 +26,8 @@ function showNotification(event) {
 	const title = content.title;
 	const options = {
 		body: content.message,
-		icon: "img/logo.png",
-		badge: "img/logo.png",
+		icon: "offlinelms/img/logo.png",
+		badge: "offlinelms/img/logo.png",
 		data: { conversationId: content.conversationId },
 	};
 

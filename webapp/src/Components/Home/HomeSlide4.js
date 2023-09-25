@@ -13,7 +13,7 @@ const HomeSlide4 = (props) => {
 				activeIndex={props.activeIndex}
 				goTo={props.goTo}
 			/>
-			<HomeSlideRight imgKey="slider4" image="/img/onboarding-illus-4@2x.png" />
+			<HomeSlideRight imgKey="slider4" image="/offlinelms/img/onboarding-illus-4@2x.png" />
 		</React.Fragment>
 	);
 };

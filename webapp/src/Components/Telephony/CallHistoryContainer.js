@@ -136,16 +136,16 @@ class CallHistoryContainer extends PureComponent {
 	getIcon = (call) => {
 		if (call.callDirection === "incoming") {
 			if (call.duration === 0) {
-				return "/img/call-received-red@2x.png";
+				return "/offlinelms/img/call-received-red@2x.png";
 			}
-			return "/img/call-received-green@2x.png";
+			return "/offlinelms/img/call-received-green@2x.png";
 		}
 
 		if (call.callDirection === "outgoing") {
 			if (call.duration === 0) {
-				return "/img/call-made-red@2x.png";
+				return "/offlinelms/img/call-made-red@2x.png";
 			}
-			return "/img/call-made-green@2x.png";
+			return "/offlinelms/img/call-made-green@2x.png";
 		}
 	};
 

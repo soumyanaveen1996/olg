@@ -472,7 +472,7 @@ const EditRowComponent = ({
 							<span>
 								<CachedImage
 									imgKey="warningIcon"
-									image="/img/Shape@2x.png"
+									image="/offlinelms/img/Shape@2x.png"
 									width="14px"
 								/>
 							</span>
@@ -482,7 +482,7 @@ const EditRowComponent = ({
 							<span>
 								<CachedImage
 									imgKey="errorIcon"
-									image="/img/error-icon@2x.png"
+									image="/offlinelms/img/error-icon@2x.png"
 									width="14px"
 								/>
 							</span>

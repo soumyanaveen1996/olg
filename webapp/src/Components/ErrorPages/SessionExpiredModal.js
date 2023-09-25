@@ -26,7 +26,7 @@ const SessionExpiredModal = (props) => {
             >
                 <GridMainContainer container spacing={3}>
                     <Grid item xs={12}>
-                        <img src="./img/security-icon.png" alt="security" />
+                        <img src="./offlinelms/img/security-icon.png" alt="security" />
                     </Grid>
                     <Grid item xs={12}>
                         <Subtitle variant="subtitle1" gutterBottom>

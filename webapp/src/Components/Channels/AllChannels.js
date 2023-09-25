@@ -106,7 +106,7 @@ class AllChannels extends Component {
 									<div className="row justify-content-center">
 										<img
 											loading="lazy"
-											src="/img/empty-state-channels@2x.png"
+											src="/offlinelms/img/empty-state-channels@2x.png"
 											style={{ width: "400px" }}
 										/>
 									</div>

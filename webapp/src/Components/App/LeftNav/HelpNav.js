@@ -161,7 +161,7 @@ class HelpNav extends PureComponent {
             <div className="d-flex align-items-center">
               <img loading="lazy"
                 className="section-icon"
-                src="/img/sidebar-help@2x.png"
+                src="/offlinelms/img/sidebar-help@2x.png"
                 alt="contact"
               />
               <span className={"list-title text-white fs14 "}>Help</span>

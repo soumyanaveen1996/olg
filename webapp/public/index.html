@@ -32,9 +32,9 @@
 	<!-- <script src="https://js.stripe.com/v3/"></script> -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700" rel="stylesheet" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="fonts/linearicons/fonts.css" />
-	<link rel="stylesheet" href="fonts/font-awesome/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="offlinelms/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="offlinelms/fonts/linearicons/fonts.css" />
+	<link rel="stylesheet" href="offlinelms/fonts/font-awesome/css/fontawesome-all.min.css" />
 	<!--  <script src="https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js"></script>-->
 	<!-- <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' /> -->
 	<style>
@@ -100,7 +100,7 @@
 	<div id="root">
 		<div class="loader-container">
 			<!-- <div class="loader" id="pre-loader"><img style="position: fixed; left: 40%; top: 45%;"
-					src="/img/loft-loading.gif" alt="Loading..." /></div> -->
+					src="/offlinelms/img/loft-loading.gif" alt="Loading..." /></div> -->
 		</div>
 	</div>
 	<div id="external-root"></div>
@@ -177,7 +177,7 @@
 					() => {
 						var loader_image = document.createElement("img");
 						loader_image.class = "airplane";
-						loader_image.src = "./img/airplane_preloader.svg";
+						loader_image.src = "./offlinelms/offlinelms/img/airplane_preloader.svg";
 						document.getElementById("pre-loader").appendChild(loader_image);
 					};
 				}, 300);
@@ -196,7 +196,7 @@
 
 					//Load Even Source
 					var es = document.createElement("script");
-					es.src = "js/plugins/eventsource.js";
+					es.src = "offlinelms/js/plugins/eventsource.js";
 					document.body.appendChild(es);
 
 					//Load Outbrain

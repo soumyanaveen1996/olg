@@ -239,7 +239,7 @@ class AddContactMenu extends Component {
 								<img
 									loading="lazy"
 									className="icon-contact-menu"
-									src="/img/create new contact-icon@2x.png"
+									src="/offlinelms/img/create new contact-icon@2x.png"
 									alt="createNewIcon"
 								/>
 
@@ -251,7 +251,7 @@ class AddContactMenu extends Component {
 								<img
 									loading="lazy"
 									className="icon-contact-menu"
-									src="/img/send-invitation-icon@2x.png"
+									src="/offlinelms/img/send-invitation-icon@2x.png"
 									alt="sendEmailIcon"
 								/>
 								<span>Send an email invitation to a friend</span>

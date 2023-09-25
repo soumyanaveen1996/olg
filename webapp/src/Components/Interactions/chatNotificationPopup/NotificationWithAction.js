@@ -10,7 +10,7 @@ export default function NotificationWithAction({
 			<span> {message} </span>
 			<img
 				alt="close"
-				src="/img/close-icon-dark-3.png"
+				src="/offlinelms/img/close-icon-dark-3.png"
 				style={{
 					width: "15px",
 					height: "15px",

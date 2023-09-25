@@ -52,7 +52,7 @@ class ChatFieldForWindow extends Component {
 					className="d-flex flex-column container-showChat"
 					style={{
 						width: "100%",
-						background: "url('/img/welcomescreen-background.png')",
+						background: "url('/offlinelms/img/welcomescreen-background.png')",
 						backgroundSize: "cover",
 						backgroundPosition: "center",
 						backgroundRepeat: "no-repeat",

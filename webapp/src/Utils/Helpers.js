@@ -222,13 +222,13 @@ export const updateManifestFile = (manifestFileUrl = "./manifest.json") => {
 	}
 
 	if (manifestFileUrl === "./seamplify-manifest.json") {
-		favicon.href = window.location.origin + "/img/seamplify-favicon.ico";
+		favicon.href = window.location.origin + "/offlinelms/img/seamplify-favicon.ico";
 	} else if (manifestFileUrl === "./thuraya-sattrack-manifest.json") {
-		favicon.href = window.location.origin + "/img/icon-16x16.ico";
+		favicon.href = window.location.origin + "/offlinelms/img/icon-16x16.ico";
 	} else if (manifestFileUrl === "./oneCare-manifest.json") {
-		favicon.href = window.location.origin + "/img/oneCare.ico";
+		favicon.href = window.location.origin + "/offlinelms/img/oneCare.ico";
 	} else if (manifestFileUrl === "./stationSatcom-manifest.json") {
-		favicon.href = window.location.origin + "/img/satComFav.ico";
+		favicon.href = window.location.origin + "/offlinelms/img/satComFav.ico";
 	} else {
 		favicon.href = window.location.origin + "/favicon.png";
 	}

@@ -204,7 +204,7 @@ export default class UploadImage extends PureComponent {
 											>
 												<img
 													style={{ width: "50px" }}
-													src="./img/avatar-icon-placeholder@2x.png"
+															src="./offlinelms/img/avatar-icon-placeholder@2x.png"
 													alt=""
 												/>
 												<span style={{ color: "#9B9B9B", fontSize: "16px" }}>

@@ -26,7 +26,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/moving-maps-plane_zero.png"}
+				src={"/offlinelms/img/moving-maps-plane_zero.png"}
 				style={
 					iconDirection
 						? {
@@ -45,7 +45,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/arrow_image.png"}
+				src={"/offlinelms/img/arrow_image.png"}
 				style={
 					iconDirection
 						? {
@@ -64,7 +64,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/arrow_image.png"}
+				src={"/offlinelms/img/arrow_image.png"}
 				style={
 					iconDirection
 						? {

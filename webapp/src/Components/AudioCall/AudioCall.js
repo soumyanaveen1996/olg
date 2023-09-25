@@ -636,7 +636,7 @@ class AudioCall extends Component {
 						<img
 							loading="lazy"
 							height="auto"
-							src="/img/calling-emptyavatar.png"
+							src="/offlinelms/img/calling-emptyavatar.png"
 						/>
 					</div>
 					<div className="mt-2 pt-2 d-flex justify-content-center flex-row">
@@ -658,7 +658,7 @@ class AudioCall extends Component {
               backgroundColor="#2A2D3C"
               color="#fff"
               iconFile={
-                this.state.showNumPad ? null : "/img/tab-dialpad-icon@2x.png"
+                this.state.showNumPad ? null : "/offlinelms/img/tab-dialpad-icon@2x.png"
               }
               iconClass={this.state.showNumPad ? "icon-cross" : null}
               onClick={
@@ -678,7 +678,7 @@ class AudioCall extends Component {
 							<img
 								loading="lazy"
 								alt="End Audio Call"
-								src="/img/call-endcall-btn@2x.png"
+								src="/offlinelms/img/call-endcall-btn@2x.png"
 								width="60"
 							/>
 						</a>

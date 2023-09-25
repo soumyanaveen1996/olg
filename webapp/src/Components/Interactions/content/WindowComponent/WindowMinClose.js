@@ -24,9 +24,9 @@ const WindowMinClose = ({
 					}}
 				>
 					{iconType === "maximize-icon" ? (
-						<img src="/img/maximize-icon@2x.png" alt="maximize-icon" />
+						<img src="/offlinelms/img/maximize-icon@2x.png" alt="maximize-icon" />
 					) : (
-						<img src="/img/minimize-icon@2x.png" alt="minimize-icon" />
+							<img src="/offlinelms/img/minimize-icon@2x.png" alt="minimize-icon" />
 					)}
 				</a>
 			)}
@@ -42,7 +42,7 @@ const WindowMinClose = ({
 						closeWindow(index, responseMessageType, chat?.options);
 					}}
 				>
-					<img src="/img/close-icon@2x.png" alt="close-icon" />
+					<img src="/offlinelms/img/close-icon@2x.png" alt="close-icon" />
 				</a>
 			)}
 		</div>
@@ -60,7 +60,7 @@ export default WindowMinClose;
                               onClick={e => this.minimizeWindow(e, elem, index)}
                             >
                               <img
-                                src="/img/maximize-icon@2x.png"
+                                src="/offlinelms/img/maximize-icon@2x.png"
                                 alt="minimize-icon"
                               />
                             </a>
@@ -78,7 +78,7 @@ export default WindowMinClose;
                               }
                             >
                               <img
-                                src="/img/close-icon@2x.png"
+                                src="/offlinelms/img/close-icon@2x.png"
                                 alt="close-icon"
                               />
                             </a>

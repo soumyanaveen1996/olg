@@ -98,10 +98,10 @@ class DiallerPadButton extends Component {
 				>
 					<CachedImage
 						imgKey={"dialpadIcon"}
-						image={"/img/tab-dialpad-icon@2x.png"}
+						image={"/offlinelms/img/tab-dialpad-icon@2x.png"}
 						width={"12"}
 					/>
-					{/* <img src="/img/tab-dialpad-icon@2x.png" width="15" alt="" /> */}
+					{/* <img src="/offlinelms/img/tab-dialpad-icon@2x.png" width="15" alt="" /> */}
 				</a>
 
 				{this.state.openDialPad && (

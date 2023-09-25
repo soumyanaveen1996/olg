@@ -15,7 +15,7 @@ const CatalogView = (props) => {
 		<div
 			className="Catalog-contentarea"
 			style={{
-				background: "url('/img/welcomescreen-background.png')",
+				background: "url('/offlinelms/img/welcomescreen-background.png')",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",

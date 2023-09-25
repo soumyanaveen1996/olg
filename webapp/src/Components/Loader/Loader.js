@@ -41,7 +41,7 @@ const Loader = () => {
 							</DialogContentText>
 						))}
 					<div>
-						<img src="/img/setupSpinner.svg" height="200" width="200" />
+						<img src="/offlinelms/img/setupSpinner.svg" height="200" width="200" />
 					</div>
 				</DialogContent> */}
 				<div className="circularBarComponent">

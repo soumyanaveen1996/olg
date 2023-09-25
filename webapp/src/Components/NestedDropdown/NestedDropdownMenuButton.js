@@ -55,11 +55,11 @@ class NestedDropdownMenuButton extends Component {
 			<div className="nestedDropDown">
 				{!this.state.mainMenuToggle ? (
 					<div className="menu-circle-bg" onClick={this.openMenu}>
-						<img src="/img/map-menu-icon@2x.png" alt="menu-bg" />
+						<img src="/offlinelms/img/map-menu-icon@2x.png" alt="menu-bg" />
 					</div>
 				) : (
 					<div className="menu-circle-bg-open" onClick={this.openMenu}>
-						<img src="/img/map-menu-close-icon@2x.png" alt="menu-close-bg" />
+							<img src="/offlinelms/img/map-menu-close-icon@2x.png" alt="menu-close-bg" />
 					</div>
 				)}
 
