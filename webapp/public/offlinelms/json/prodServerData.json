@@ -1,0 +1,96 @@
+{
+	"servers": [
+		{
+			"location": "All",
+			"urls": [
+				{
+					"address": "frontm.ai",
+					"description": "",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/manifest.json",
+							"ports": [
+								443
+							]
+						}
+					]
+				},
+				{
+					"address": "onship.app",
+					"description": "",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/manifest.json",
+							"ports": [
+								443
+							]
+						}
+					]
+				},
+				{
+					"address": "gw.frontm.ai",
+					"description": "",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/health",
+							"ports": [
+								8080
+							]
+						}
+					]
+				},
+				{
+					"address": "loft.frontm.ai",
+					"description": "video conferencing",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/manifest.json",
+							"ports": [
+								443
+							]
+						}
+					]
+				},
+				{
+					"address": "telemed.frontm.ai",
+					"description": "Telemedicine",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/manifest.json",
+							"ports": [
+								443
+							]
+						}
+					]
+				},
+				{
+					"address": "pstn-prod.frontm.ai",
+					"description": "PSTN calls",
+					"protocols": [
+						{
+							"name": "TCP",
+							"testPath": "/asteriskstate",
+							"ports": [
+								443
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"udpTestUrl": "pstn-prod.frontm.ai/udpstate?servername=",
+	"loopbackIframe1": {
+		"url": "https://loft.frontm.ai/loopback.html",
+		"title": "Loft"
+	},
+	"loopbackIframe2": {
+		"url": "https://telemed.frontm.ai/loopback.html",
+		"title": "TeleMedicine"
+	}
+}

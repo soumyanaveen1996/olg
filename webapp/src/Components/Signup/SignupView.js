@@ -21,6 +21,7 @@ import {
 	ONSHIP_LANDING,
 	THURAYA_T2M_SIGNUP_LANDING,
 	THURAYA_T2M_LANDING,
+	ONELEARN_LANDING,
 } from "../../Utils/Constants";
 import Landing from "./CustomLanding/Landing";
 import appType from "../../Utils/ApiConfig";
@@ -33,6 +34,7 @@ import { loadAllDomainsListInLFStorage } from "../../Services/LFStorage";
 class SignupView extends Component {
 	constructor(props) {
 		super(props);
+		history.push(ONELEARN_LANDING);
 		this.state = {
 			submitting: false,
 			email: "",
