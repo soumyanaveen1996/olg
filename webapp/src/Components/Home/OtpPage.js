@@ -163,7 +163,7 @@ const OtpPage = (props) => {
 										<div className="p-4 text-dark text-center d-flex flex-column justify-content-between align-items-center">
 											<img
 												className="mb-40 mt-40"
-												src="./img/security-icon.png"
+												src="./offlinelms/img/security-icon.png"
 												alt="security"
 											/>
 											<h2 className="fs26 font100 lineH-1 mb-0">

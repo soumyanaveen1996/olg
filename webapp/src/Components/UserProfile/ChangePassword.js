@@ -253,12 +253,12 @@ class ChangePassword extends Component {
 																<li key={index} style={{ marginBottom: "5px" }}>
 																	{elem.isDone ? (
 																		<img
-																			src="/img/pass-checkbox-checked.png"
+																			src="/offlinelms/img/pass-checkbox-checked.png"
 																			alt="pass-checkbox-checked.png"
 																		/>
 																	) : (
 																		<img
-																			src="/img/pass-checkbox-empty.png"
+																				src="/offlinelms/img/pass-checkbox-empty.png"
 																			alt="pass-checkbox-empty.png"
 																		/>
 																	)}

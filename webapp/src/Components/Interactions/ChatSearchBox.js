@@ -246,7 +246,7 @@ class ChatSearchBox extends Component {
 							}
 						>
 							{!showSpinner && (
-								<img src="/img/send-icon@2x.png" width="20" alt="send-button" />
+								<img src="/offlinelms/img/send-icon@2x.png" width="20" alt="send-button" />
 							)}
 							{showSpinner && (
 								<div>

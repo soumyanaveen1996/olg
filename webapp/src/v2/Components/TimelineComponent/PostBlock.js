@@ -152,7 +152,7 @@ const PostBlock = ({
 					}}
 				/>
 				<img
-					src="./img/starIconNewPost.png"
+					src="./offlinelms/img/starIconNewPost.png"
 					style={{
 						position: "absolute",
 						top: "15px",

@@ -52,7 +52,7 @@ const CallSummary = (props) => {
 				className="d-flex justify-content-center align-items-center"
 				style={{ margin: "75px auto" }}
 			>
-				<img src="/img/called-emptyavatar.png" />
+				<img src="/offlinelms/img/called-emptyavatar.png" />
 			</div>
 		</div>
 	);

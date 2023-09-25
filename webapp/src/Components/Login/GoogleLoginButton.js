@@ -35,7 +35,7 @@ class GoogleLoginButton extends Component {
 						className="d-block rounded si-colored-g-plus mb-2"
 					>
 						<img
-							src="/img/GoogleButtonWideWidth.png"
+							src="/offlinelms/img/GoogleButtonWideWidth.png"
 							alt=""
 							className="socialLogin-btn-wide"
 							// style={{ width: "250px", height: "40px" }}
@@ -47,7 +47,7 @@ class GoogleLoginButton extends Component {
 						className="d-block rounded si-colored-g-plus mb-2"
 					>
 						<img
-							src="/img/btn-google@2x.png"
+								src="/offlinelms/img/btn-google@2x.png"
 							alt=""
 							className="socialLogin-btn"
 							// style={{ width: "250px", height: "40px" }}

@@ -45,7 +45,7 @@ const IncomingCallScreen = (props) => {
 				className="d-flex justify-content-center align-items-center"
 				style={{ marginTop: "50px" }}
 			>
-				<img src="/img/calling-emptyavatar.png" />
+				<img src="/offlinelms/img/calling-emptyavatar.png" />
 			</div>
 
 			<div className="d-flex justify-content-center align-items-center mt-4">
@@ -60,7 +60,7 @@ const IncomingCallScreen = (props) => {
 							style={{ color: "#fff", backgroundColor: "#2fc76f" }}
 						></i>
 					) : (
-						<img src="/img/call-receivecall-btn@2x.png" width="60" />
+							<img src="/offlinelms/img/call-receivecall-btn@2x.png" width="60" />
 					)}
 				</a>
 				<a
@@ -68,7 +68,7 @@ const IncomingCallScreen = (props) => {
 					style={{ height: "60px", width: "60px" }}
 					onClick={rejectCall}
 				>
-					<img src="/img/call-endcall-btn@2x.png" width="60" />
+					<img src="/offlinelms/img/call-endcall-btn@2x.png" width="60" />
 				</a>
 			</div>
 		</div>

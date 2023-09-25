@@ -145,40 +145,40 @@ export const POWERED_BY = "Powered By";
 
 /* =========== Login page ======== */
 
-export const POWERED_BY_LOGO = "/img/frontm-header-logo@2x.png";
-export const POWERED_BY_LOGO_T2M = "/img/poweredByFrontM.png";
-export const POWERED_BY_B_N_W = "/img/poweredByBlackAndWhite.png";
-export const FRONTM_LOGO = "/img/frontm-header-logo@3x.png";
+export const POWERED_BY_LOGO = "/offlinelms/img/frontm-header-logo@2x.png";
+export const POWERED_BY_LOGO_T2M = "/offlinelms/img/poweredByFrontM.png";
+export const POWERED_BY_B_N_W = "/offlinelms/img/poweredByBlackAndWhite.png";
+export const FRONTM_LOGO = "/offlinelms/img/frontm-header-logo@3x.png";
 export const FRONTM_LOGO_ALT = "FrontM Logo";
-export const VOYAGER_LOGO = "/img/VoyagerVoice-HORZÔÇôlogoREV-master-CMYK.svg";
+export const VOYAGER_LOGO = "/offlinelms/img/VoyagerVoice-HORZÔÇôlogoREV-master-CMYK.svg";
 export const VOYAGER_LOGO_ALT = "Voyager Logo";
-// export const THURAYA_LOGO = "img/thuraya_logo.png";
-export const THURAYA_LOGO = "img/Thuraya-StarTrack-logo-new.png";
+// export const THURAYA_LOGO = "offlinelms/img/thuraya_logo.png";
+export const THURAYA_LOGO = "offlinelms/img/Thuraya-StarTrack-logo-new.png";
 export const THURAYA_URL = "https://www.thuraya.com/thuraya-marinestar";
-export const THURAYA_ICON = "img/app-icon.png";
+export const THURAYA_ICON = "offlinelms/img/app-icon.png";
 export const THURAYA_LOGO_ALT = "Thuraya Logo";
-// export const THURAYA_T2M_LOGO = "img/Thuraya-StarTrack-logo-new.png";
+// export const THURAYA_T2M_LOGO = "offlinelms/img/Thuraya-StarTrack-logo-new.png";
 export const THURAYA_T2M_URL = "https://www.thuraya.com";
-export const THURAYA_T2M_ICON = "img/t2m_icon-200x150.jpg";
+export const THURAYA_T2M_ICON = "offlinelms/img/t2m_icon-200x150.jpg";
 // export const THURAYA_T2M_LOGO_ALT = "Thuraya Logo";
-export const VIKAND_LOGO = "img/logos5.jpg";
-export const VIKAND_DIRECT_LOGO = "img/VikandLogo.png";
-export const INTELL4DESK_LOGO = "img/Intelli4Desks_200x100.png";
+export const VIKAND_LOGO = "offlinelms/img/logos5.jpg";
+export const VIKAND_DIRECT_LOGO = "offlinelms/img/VikandLogo.png";
+export const INTELL4DESK_LOGO = "offlinelms/img/Intelli4Desks_200x100.png";
 export const VIKAND_LOGO_ALT = "Vikand Logo";
 export const INTELL4DESK_LOGO_ALT = "Intelli4Desks Logo";
-export const STATION_SATCOM_LOGO = "img/StationSatcomNewLogo.png";
+export const STATION_SATCOM_LOGO = "offlinelms/img/StationSatcomNewLogo.png";
 export const STATION_SATCOM_LOGO_ALT = "Station Satcom Logo";
-export const ONSHIP_LOGO = "img/onship-logo-with-tagline2.svg";
+export const ONSHIP_LOGO = "offlinelms/img/onship-logo-with-tagline2.svg";
 export const ONSHIP_LOGO_ALT = "Onship Logo";
-export const SIGMA_LOGO = "img/SIGMA_CORPORATE_LOGO.png";
+export const SIGMA_LOGO = "offlinelms/img/SIGMA_CORPORATE_LOGO.png";
 export const SIGMA_LOGO_ALT = "Sigma Logo";
-export const THURAYA_T2M_LOGO = "img/sattrack-2022.png";
+export const THURAYA_T2M_LOGO = "offlinelms/img/sattrack-2022.png";
 export const THURAYA_T2M_LOGO_ALT = "Thuraya Logo";
-export const ONECARE_LOGO = "img/OC_logoLandingPage.png";
-export const ONELEARN_LOGO = "img/onelearn-login-logo2.png";
+export const ONECARE_LOGO = "offlinelms/img/OC_logoLandingPage.png";
+export const ONELEARN_LOGO = "offlinelms/img/onelearn-login-logo2.png";
 export const ONECARE_LOGO_ALT = "Onecare Logo";
 export const ONELEARN_LOGO_ALT = "OneLearn Logo";
-export const FRONTM_VERSION_CHECK_LOGO = "img/frontmLogoVersionCheckLogo.png";
+export const FRONTM_VERSION_CHECK_LOGO = "offlinelms/img/frontmLogoVersionCheckLogo.png";
 
 export const VOYAGER_LOGIN_BACKGROUND = "#151C24";
 export const THURAYA_LOGIN_BACKGROUND = "#ffff";
@@ -187,14 +187,14 @@ export const INTELL4DESK_LOGIN_BACKGROUND = "#ffff";
 export const STATION_SATCOM_LOGIN_BACKGROUND = "#ffff";
 export const ONSHIP_LOGIN_BACKGROUND = "#fff";
 export const SIGMA_LOGIN_BACKGROUND = "#fff";
-export const ONSHIP_SIGNUP_BACKGROUND = "img/onship-loginNew2.png";
-export const ONELEARN_BACKGROUND = "img/onelearn-login-bg.jpg";
-export const SIGMA_SIGNUP_BACKGROUND = "img/SIGMA_SIGNUP_IMAGE.jpg";
-export const ONSHIP_VERIFY_BACKGROUND = "img/onboarding-onship-img@2x.png";
+export const ONSHIP_SIGNUP_BACKGROUND = "offlinelms/img/onship-loginNew2.png";
+export const ONELEARN_BACKGROUND = "offlinelms/img/onelearn-login-bg.jpg";
+export const SIGMA_SIGNUP_BACKGROUND = "offlinelms/img/SIGMA_SIGNUP_IMAGE.jpg";
+export const ONSHIP_VERIFY_BACKGROUND = "offlinelms/img/onboarding-onship-img@2x.png";
 export const THURAYA_T2M_LOGIN_BACKGROUND = "#ffff";
-export const THURAYA_T2M_SIGNUP_BACKGROUND = "img/t2m_background_1800x2000.jpg";
-export const THURAYA_T2M_VERIFY_BACKGROUND = "img/t2m_background_2880x1580.jpg";
-export const ONECARE_SIGNUP_BACKGROUND = "img/OC_newLandingPage.jpg";
+export const THURAYA_T2M_SIGNUP_BACKGROUND = "offlinelms/img/t2m_background_1800x2000.jpg";
+export const THURAYA_T2M_VERIFY_BACKGROUND = "offlinelms/img/t2m_background_2880x1580.jpg";
+export const ONECARE_SIGNUP_BACKGROUND = "offlinelms/img/OC_newLandingPage.jpg";
 
 export const VOYAGER_LOGIN_MAIN_HEADER_TEXT_COLOR = "#fff";
 export const VOYAGER_LOGIN_SUB_HEADER_TEXT_COLOR = "#fff";
@@ -211,30 +211,30 @@ export const ONECARE_SUB_HEADER_TEXT_COLOR = "#666666";
 
 /* ========= Signup background ======== */
 
-export const VOYAGER_SIGNUP_BACKGROUND = "/img/voyagervoice.jpg";
-// export const THURAYA_SIGNUP_BACKGROUND = "/img/thuraya-onboarding-img@3x.png";
-export const THURAYA_SIGNUP_BACKGROUND = "/img/new_thuraya_bg.jpg";
-export const VIKAND_SIGNUP_BACKGROUND = "/img/Frontm-rhs-no-text.jpg";
-export const VIKAND_DIRECT_SIGNUP_BACKGROUND = "/img/Vikand_Login_Page_3.png";
-export const INTELL4DESK_SIGNUP_BACKGROUND = "/img/intelli4desk_bg.jpg";
-export const STATION_SATCOM_SIGNUP_BACKGROUND = "/img/newStationSatcomBG.PNG";
-export const FRONTM_SIGNUP_BACKGROUND = "/img/green-background@2x.png";
+export const VOYAGER_SIGNUP_BACKGROUND = "/offlinelms/img/voyagervoice.jpg";
+// export const THURAYA_SIGNUP_BACKGROUND = "/offlinelms/img/thuraya-onboarding-img@3x.png";
+export const THURAYA_SIGNUP_BACKGROUND = "/offlinelms/img/new_thuraya_bg.jpg";
+export const VIKAND_SIGNUP_BACKGROUND = "/offlinelms/img/Frontm-rhs-no-text.jpg";
+export const VIKAND_DIRECT_SIGNUP_BACKGROUND = "/offlinelms/img/Vikand_Login_Page_3.png";
+export const INTELL4DESK_SIGNUP_BACKGROUND = "/offlinelms/img/intelli4desk_bg.jpg";
+export const STATION_SATCOM_SIGNUP_BACKGROUND = "/offlinelms/img/newStationSatcomBG.PNG";
+export const FRONTM_SIGNUP_BACKGROUND = "/offlinelms/img/green-background@2x.png";
 
 /* ======= Login background ======== */
 
 /* ======= Reset password ======== */
-// export const THURAYA_RESET_BACKGROUND = "/img/thuraya-ship-bg.png";
-export const THURAYA_RESET_BACKGROUND = "/img/new_thuraya_bg.jpg";
-export const VIKAND_RESET_BACKGROUND = "/img/Frontm-rhs-no-text.jpg";
+// export const THURAYA_RESET_BACKGROUND = "/offlinelms/img/thuraya-ship-bg.png";
+export const THURAYA_RESET_BACKGROUND = "/offlinelms/img/new_thuraya_bg.jpg";
+export const VIKAND_RESET_BACKGROUND = "/offlinelms/img/Frontm-rhs-no-text.jpg";
 export const VIKAND_DIRECT_RESET_BACKGROUND =
-	"/img/AccountResetPasswordBackgroundImage.png";
-export const INTELL4DESK_RESET_BACKGROUND = "/img/intelli4desk_bg.jpg";
+	"/offlinelms/img/AccountResetPasswordBackgroundImage.png";
+export const INTELL4DESK_RESET_BACKGROUND = "/offlinelms/img/intelli4desk_bg.jpg";
 export const STATION_SATCOM_RESET_BACKGROUND =
-	"/img/stationsatcom-onboarding-img.png";
-export const ONSHIP_RESET_BACKGROUND = "/img/onboarding-onship-img@2x.png";
-export const SIGMA_RESET_BACKGROUND = "/img/onboarding-onship-img@2x.png";
-export const THURAYA_T2M_RESET_BACKGROUND = "/img/t2m_background_2880x1580.jpg";
-export const ONECARE_RESET_BACKGROUND = "/img/OC_PasswordReset.jpg";
+	"/offlinelms/img/stationsatcom-onboarding-img.png";
+export const ONSHIP_RESET_BACKGROUND = "/offlinelms/img/onboarding-onship-img@2x.png";
+export const SIGMA_RESET_BACKGROUND = "/offlinelms/img/onboarding-onship-img@2x.png";
+export const THURAYA_T2M_RESET_BACKGROUND = "/offlinelms/img/t2m_background_2880x1580.jpg";
+export const ONECARE_RESET_BACKGROUND = "/offlinelms/img/OC_PasswordReset.jpg";
 
 // CLIENT PROD URLS
 

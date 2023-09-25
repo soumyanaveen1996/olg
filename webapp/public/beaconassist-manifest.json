@@ -8,22 +8,22 @@
 			"type": "image/x-icon"
 		},
 		{
-			"src": "img/logo192.png",
+			"src": "offlinelms/img/logo192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "img/logo256.png",
+			"src": "offlinelms/img/logo256.png",
 			"type": "image/png",
 			"sizes": "256x256"
 		},
 		{
-			"src": "img/logo384.png",
+			"src": "offlinelms/img/logo384.png",
 			"type": "image/png",
 			"sizes": "384x384"
 		},
 		{
-			"src": "img/logo512.png",
+			"src": "offlinelms/img/logo512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}

@@ -22,7 +22,7 @@ const HomeSlide1 = (props) => {
 
 						<HomeSlideRight
 							imgKey="vikandSlider1"
-							image={"/img/vikandDirect1.png"}
+							image={"/offlinelms/img/vikandDirect1.png"}
 						/>
 					</React.Fragment>
 				);
@@ -45,7 +45,7 @@ const HomeSlide1 = (props) => {
 
 				<HomeSlideRight
 					imgKey="slider1"
-					image={"/img/onboarding-illus-1@3x.png"}
+					image={"/offlinelms/img/onboarding-illus-1@3x.png"}
 				/>
 			</React.Fragment>
 		);

@@ -179,7 +179,7 @@ const TextInput = (props) => {
 						<InputAdornment position="end">
 							<CachedImage
 								imgKey="warningIcon"
-								image="/img/Shape@2x.png"
+								image="/offlinelms/img/Shape@2x.png"
 								width="12px"
 							/>
 						</InputAdornment>
@@ -212,7 +212,7 @@ const TextInput = (props) => {
 						<InputAdornment position="end">
 							<CachedImage
 								imgKey="warningIcon"
-								image="/img/Shape@2x.png"
+								image="/offlinelms/img/Shape@2x.png"
 								width="12px"
 							/>
 						</InputAdornment>
@@ -255,7 +255,7 @@ const TextInput = (props) => {
 					<InputAdornment position="end">
 						<CachedImage
 							imgKey="warningIcon"
-							image="/img/Shape@2x.png"
+							image="/offlinelms/img/Shape@2x.png"
 							width="12px"
 						/>
 					</InputAdornment>
@@ -293,7 +293,7 @@ const TextInput = (props) => {
 					<InputAdornment position="end">
 						<CachedImage
 							imgKey="warningIcon"
-							image="/img/Shape@2x.png"
+							image="/offlinelms/img/Shape@2x.png"
 							width="12px"
 						/>
 					</InputAdornment>

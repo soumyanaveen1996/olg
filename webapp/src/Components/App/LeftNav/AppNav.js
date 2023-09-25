@@ -407,7 +407,7 @@ class AppNav extends Component {
 									<img
 										loading="lazy"
 										alt="logo"
-										src="img/logo.png"
+											src="offlinelms/img/logo.png"
 										height={22}
 									/>
 								) : (

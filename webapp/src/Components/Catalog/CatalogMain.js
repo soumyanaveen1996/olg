@@ -189,7 +189,7 @@ class CatalogMain extends Component {
 				<div
 					className="Catalog-chatarea catalog-left"
 					style={{
-						background: "url('/img/welcomescreen-background.png')",
+						background: "url('/offlinelms/img/welcomescreen-background.png')",
 						backgroundSize: "cover",
 						backgroundPosition: "center",
 						backgroundRepeat: "no-repeat",
@@ -203,7 +203,7 @@ class CatalogMain extends Component {
 							textAlign: "center",
 						}}
 					>
-						<img src="/img/sad-cloud.png" height="65" />
+						<img src="/offlinelms/img/sad-cloud.png" height="65" />
 						<p className="font-weight-bold mt-3 mb-0">
 							Apps are not available offline.
 						</p>

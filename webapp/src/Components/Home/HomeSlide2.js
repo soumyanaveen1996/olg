@@ -20,7 +20,7 @@ const HomeSlide2 = (props) => {
 
 						<HomeSlideRight
 							imgKey="vikandSlider2"
-							image={"/img/vikandDirect2.png"}
+							image={"/offlinelms/img/vikandDirect2.png"}
 						/>
 					</React.Fragment>
 				);
@@ -41,7 +41,7 @@ const HomeSlide2 = (props) => {
 				/>
 				<HomeSlideRight
 					imgKey="slider2"
-					image="/img/internet-voice-calls.svg"
+					image="/offlinelms/img/internet-voice-calls.svg"
 				/>
 			</React.Fragment>
 		);

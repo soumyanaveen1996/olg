@@ -82,9 +82,9 @@ class DiallerKeyPad extends React.PureComponent {
 			);
 			const children1 = elements1?.querySelectorAll(":scope > button > img");
 			const children2 = elements1?.querySelectorAll(":scope > div > img");
-			children1[0]?.setAttribute("src", "/img/call_end-24px.svg");
-			children1[1]?.setAttribute("src", "/img/phone_paused-24px.svg");
-			children2[0]?.setAttribute("src", "/img/mic_off-24px.svg");
+			children1[0]?.setAttribute("src", "/offlinelms/img/call_end-24px.svg");
+			children1[1]?.setAttribute("src", "/offlinelms/img/phone_paused-24px.svg");
+			children2[0]?.setAttribute("src", "/offlinelms/img/mic_off-24px.svg");
 		}
 	}
 
@@ -242,7 +242,7 @@ class DiallerKeyPad extends React.PureComponent {
 									onClick={this.makeCall}
 								>
 									<img
-										src="/img/call-receivecall-btn@2x.png"
+										src="/offlinelms/img/call-receivecall-btn@2x.png"
 										width="60"
 										alt="call-receivecall-btn@2x.png"
 									/>

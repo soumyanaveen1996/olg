@@ -365,7 +365,7 @@ class ChatMessageTabFormForWindow extends Component {
 							>
 								{/* need the icon for download */}
 								{/* <img
-                  src="/img/refresh-btn@2x.png"
+                  src="/offlinelms/img/refresh-btn@2x.png"
                   alt="close-icon"
                   style={{
                     width: "25px",
@@ -387,7 +387,7 @@ class ChatMessageTabFormForWindow extends Component {
 								onClick={() => this.handleRefresh()}
 							>
 								<img
-									src="/img/refresh-btn@2x.png"
+									src="/offlinelms/img/refresh-btn@2x.png"
 									alt="close-icon"
 									style={{
 										width: "25px",

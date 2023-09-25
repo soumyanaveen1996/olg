@@ -32,7 +32,7 @@ class SelectedContact extends React.Component {
 					loading="lazy"
 					width="25px"
 					style={{ position: "absolute", right: "30px" }}
-					src="/img/tx-loading.gif"
+					src="/offlinelms/img/tx-loading.gif"
 					alt="spinner"
 				/>
 			);

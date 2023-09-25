@@ -218,7 +218,7 @@ class MarketplaceNav extends Component {
 								>
 									<img
 										loading="lazy"
-										src="/img/plus-icon.png"
+										src="/offlinelms/img/plus-icon.png"
 										alt="plus"
 										width={10}
 										className="mr-2"

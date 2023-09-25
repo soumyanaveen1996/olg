@@ -6227,7 +6227,7 @@ input:-webkit-autofill:active {
 }
 
 .greenBackground {
-	background: "/img/green-background@2x.png";
+	background: "/offlinelms/img/green-background@2x.png";
 	background-repeat: no-repeat;
 	background-position: top;
 	background-size: cover;
@@ -6238,7 +6238,7 @@ input:-webkit-autofill:active {
 }
 
 .voyagerBackground {
-	background-image: "public/img/voyagervoice.jpg";
+	background-image: "public/offlinelms/img/voyagervoice.jpg";
 	background-repeat: no-repeat;
 	background-size: cover;
 }

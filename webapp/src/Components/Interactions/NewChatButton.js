@@ -37,7 +37,7 @@ class NewChatButton extends Component {
 							}}
 						/>
 					</span>
-					{/*<img className="dot ml-2" src="/img/circled-plus.png" />*/}
+					{/*<img className="dot ml-2" src="/offlinelms/img/circled-plus.png" />*/}
 				</a>
 
 				{this.state.createConv && (

@@ -402,9 +402,9 @@ export default class SignupForm extends React.Component {
 										return (
 											<li key={index} style={{ marginBottom: "5px" }}>
 												{elem.isDone ? (
-													<img src="/img/pass-checkbox-checked.png" />
+													<img src="/offlinelms/img/pass-checkbox-checked.png" />
 												) : (
-													<img src="/img/pass-checkbox-empty.png" />
+														<img src="/offlinelms/img/pass-checkbox-empty.png" />
 												)}
 												{"\u00A0"}
 												{"\u00A0"}

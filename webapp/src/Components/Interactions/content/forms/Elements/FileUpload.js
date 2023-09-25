@@ -243,7 +243,7 @@ export default class FileUpload extends PureComponent {
 														marginRight: "10px",
 														cursor: "pointer",
 													}}
-													src="./img/upload_icon.png"
+															src="./offlinelms/img/upload_icon.png"
 													alt="upload-file"
 												/>
 												<span

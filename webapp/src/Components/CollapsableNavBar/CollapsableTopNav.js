@@ -35,14 +35,14 @@ class CollapsableTopNav extends Component {
 						<a onClick={toggleTopNavBar}>
 							<CachedImage
 								imgKey={"headerExpandIcon"}
-								image={"img/header-expand-btn.png"}
+								image={"offlinelms/img/header-expand-btn.png"}
 							/>
 						</a>
 					) : (
 						<a onClick={toggleTopNavBar}>
 							<CachedImage
 								imgKey={"headerCollapseIcon"}
-								image={"img/header-collapse-btn.png"}
+									image={"offlinelms/img/header-collapse-btn.png"}
 							/>
 						</a>
 					)}

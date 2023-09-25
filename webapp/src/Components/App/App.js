@@ -301,7 +301,7 @@ class App extends Component {
 				{this.state.isLoading ? (
 					<img
 						style={{ position: "fixed", left: "45%", top: "45%", width: "5%" }}
-						src="/img/loft-loading.gif"
+						src="/offlinelms/img/loft-loading.gif"
 						alt="Loading..."
 					/>
 				) : (

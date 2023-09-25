@@ -209,7 +209,7 @@ class ConversationMenu extends React.Component {
 									<CachedImage
 										id="callBtn"
 										imgKey="makeCallIcon"
-										image="/img/call-grey-icon.png"
+									image="/offlinelms/img/call-grey-icon.png"
 										width="14px"
 										style={{
 											width: "30px",
@@ -244,7 +244,7 @@ class ConversationMenu extends React.Component {
 									<CachedImage
 										id="videoCallBtn"
 										imgKey="makeVideoCallIcon"
-										image="/img/video-outline-icon.png"
+									image="/offlinelms/img/video-outline-icon.png"
 										width="14px"
 										style={{
 											width: "30px",

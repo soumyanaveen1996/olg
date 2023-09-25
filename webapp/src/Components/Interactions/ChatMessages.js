@@ -383,7 +383,7 @@ class ChatMessages extends Component {
 							height: "50vh",
 						}}
 					>
-						<CachedImage imgKey={"newChatIcon"} image={"/img/new-chat.png"} />
+						<CachedImage imgKey={"newChatIcon"} image={"/offlinelms/img/new-chat.png"} />
 						<p className="text-muted">
 							Start a conversation with {conversation?.contact?.userName || ""}
 						</p>

@@ -50,7 +50,7 @@ class NewContactButton extends Component {
 					<img
 						loading="lazy"
 						className="dot ml-2"
-						src="/img/circled-plus.png"
+						src="/offlinelms/img/circled-plus.png"
 						alt="Not found"
 					/>
 				</a>

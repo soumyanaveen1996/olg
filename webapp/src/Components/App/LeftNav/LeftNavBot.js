@@ -58,7 +58,7 @@ const LeftNavBot = ({
 							<img
 								loading="lazy"
 								className="section-icon"
-								src="/img/sidebar-help@2x.png"
+								src="/offlinelms/img/sidebar-help@2x.png"
 								alt="contact"
 							/>
 						)}

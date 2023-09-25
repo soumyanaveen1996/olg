@@ -3,7 +3,7 @@
 	"name": "onship",
 	"icons": [
 		{
-			"src": "img/oneCare.ico",
+			"src": "offlinelms/img/oneCare.ico",
 			"sizes": "16x16",
 			"type": "image/x-icon"
 		}

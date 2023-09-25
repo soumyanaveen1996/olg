@@ -49,14 +49,14 @@ class DomainsFilterMenu extends Component {
 						{!this.state.dropdownOpen && (
 							<img
 								loading="lazy"
-								src="/img/dropdown-arrow-down.png"
+								src="/offlinelms/img/dropdown-arrow-down.png"
 								alt="down-arrow"
 							/>
 						)}
 						{this.state.dropdownOpen && (
 							<img
 								loading="lazy"
-								src="/img/dropdown-arrow-up.png"
+								src="/offlinelms/img/dropdown-arrow-up.png"
 								alt="up-arrow"
 							/>
 						)}
@@ -105,7 +105,7 @@ class DomainsFilterMenu extends Component {
 						>
 							<img
 								loading="lazy"
-								src="/img/plus-icon.png"
+								src="/offlinelms/img/plus-icon.png"
 								alt="plus"
 								width={10}
 								className="mr-1"

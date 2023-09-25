@@ -1,12 +1,12 @@
 .start-marker {
-	background-image: "public/img/starting-point.png";
+	background-image: "public/offlinelms/img/starting-point.png";
 	background-size: cover;
 	border-radius: 50%;
 	cursor: pointer;
 }
 
 .end-marker {
-	background-image: "public/img/arrival-point.png";
+	background-image: "public/offlinelms/img/arrival-point.png";
 	background-size: cover;
 	border-radius: 50%;
 	cursor: pointer;

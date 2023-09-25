@@ -59,7 +59,7 @@ class AppNotificationModal extends Component {
 					<img
 						loading="lazy"
 						alt="notificationIcon"
-						src="img/bell.svg"
+						src="offlinelms/img/bell.svg"
 						height={40}
 					/>
 				</div>

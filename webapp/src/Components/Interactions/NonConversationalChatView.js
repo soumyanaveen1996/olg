@@ -143,7 +143,7 @@ class NonConversationalChatView extends Component {
 		let selectedDomainObj = _.cloneDeep(selectedDomain);
 		let bgUrl = selectedDomainObj?.backgroundUrl
 			? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-			: "/img/welcomescreen-background.png";
+			: "/offlinelms/img/welcomescreen-background.png";
 
 		this.setState({
 			backgroundUrl: bgUrl,
@@ -395,7 +395,7 @@ class NonConversationalChatView extends Component {
 			let selectedDomainObj = _.cloneDeep(selectedDomain);
 			let bgUrl = selectedDomainObj?.backgroundUrl
 				? R.prop("contentURL", Config) + selectedDomainObj.backgroundUrl
-				: "/img/welcomescreen-background.png";
+				: "/offlinelms/img/welcomescreen-background.png";
 			this.setState({
 				backgroundUrl: bgUrl,
 			});
@@ -742,7 +742,7 @@ class NonConversationalChatView extends Component {
 				my_view = (
 					<div style={{ width: "100%", height: "100%" }} tabIndex="0">
 						<img
-							src="/img/welcomescreen-background.png"
+							src="/offlinelms/img/welcomescreen-background.png"
 							style={{
 								backgroundSize: "cover",
 								backgroundPosition: "center",
@@ -887,7 +887,7 @@ class NonConversationalChatView extends Component {
 				return "#ffffff";
 			} else return `url(${this.state.backgroundUrl}) no-repeat center`;
 		} else {
-			return 'url("/img/welcomescreen-background.png") no-repeat center';
+			return 'url("/offlinelms/img/welcomescreen-background.png") no-repeat center';
 		}
 	};
 
@@ -1014,7 +1014,7 @@ class NonConversationalChatView extends Component {
 									<div
 										className="d-flex flex-column container-showChat"
 										style={{
-											background: "url('/img/welcomescreen-background.png')",
+											background: "url('/offlinelms/img/welcomescreen-background.png')",
 											backgroundSize: "cover",
 											backgroundPosition: "center",
 											backgroundRepeat: "no-repeat",
@@ -1091,12 +1091,12 @@ class NonConversationalChatView extends Component {
 														{notificationCount}
 													</span>
 												)}
-												<img src="/img/map-chat-icon@2x.png" alt="chat-icon" />
+												<img src="/offlinelms/img/map-chat-icon@2x.png" alt="chat-icon" />
 											</div>
 										) : (
 											<img
 												style={{ width: "15px", height: "15px" }}
-												src="/img/map-chat-close-icon@2x.png"
+													src="/offlinelms/img/map-chat-close-icon@2x.png"
 												alt="close-icon"
 											/>
 										)}
@@ -1240,7 +1240,7 @@ class NonConversationalChatView extends Component {
 								>
 									<div className="d-flex flex-row minimize-close-icon-container">
 										<a className="close-icon" onClick={this.hideHTMLPopup}>
-											<img src="/img/close-icon@2x.png" alt="close-icon" />
+											<img src="/offlinelms/img/close-icon@2x.png" alt="close-icon" />
 										</a>
 									</div>
 								</div>
@@ -1277,7 +1277,7 @@ class NonConversationalChatView extends Component {
 									>
 										<div className="d-flex flex-row minimize-close-icon-container">
 											<a className="close-icon" onClick={this.hideHTMLPopup}>
-												<img src="/img/close-icon@2x.png" alt="close-icon" />
+											<img src="/offlinelms/img/close-icon@2x.png" alt="close-icon" />
 											</a>
 										</div>
 									</div>
@@ -1409,7 +1409,7 @@ const IncomingCallModal = ({
 				<div className="d-flex align-items-center justify-content-center">
 					<div className="button-frontm" onClick={acceptCall}>
 						<img
-							src="/img/call-receivecall-btn@2x.png"
+							src="/offlinelms/img/call-receivecall-btn@2x.png"
 							width="40"
 							alt="accept call"
 							className="m-2"
@@ -1418,7 +1418,7 @@ const IncomingCallModal = ({
 
 					<div className="button-frontm" onClick={rejectCall}>
 						<img
-							src="/img/call-endcall-btn@2x.png"
+							src="/offlinelms/img/call-endcall-btn@2x.png"
 							width="40"
 							alt="reject call"
 							className="m-2"
@@ -1472,14 +1472,14 @@ const CardsContainerMobile = ({
 						{state.showCards && hasCards ? (
 							<img
 								style={{ width: "18px" }}
-								src="/img/collapse-carda-bg-arrow@2x.png"
+								src="/offlinelms/img/collapse-carda-bg-arrow@2x.png"
 								alt="down-arrow"
 							/>
 						) : (
 							<img
 								style={{ width: "18px" }}
 								className="rotate-down-arrow-up"
-								src="/img/collapse-carda-bg-arrow@2x.png"
+									src="/offlinelms/img/collapse-carda-bg-arrow@2x.png"
 								alt="up-arrow"
 							/>
 						)}
@@ -1569,14 +1569,14 @@ const CardsContainer = ({
 						{state.showCards && hasCards ? (
 							<img
 								style={{ width: "18px" }}
-								src="/img/collapse-carda-bg-arrow@2x.png"
+								src="/offlinelms/img/collapse-carda-bg-arrow@2x.png"
 								alt="down-arrow"
 							/>
 						) : (
 							<img
 								style={{ width: "18px" }}
 								className="rotate-down-arrow-up"
-								src="/img/collapse-carda-bg-arrow@2x.png"
+									src="/offlinelms/img/collapse-carda-bg-arrow@2x.png"
 								alt="up-arrow"
 							/>
 						)}

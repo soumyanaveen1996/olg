@@ -20,7 +20,7 @@ const HomeSlide3 = (props) => {
 
 						<HomeSlideRight
 							imgKey="vikandSlider3"
-							image={"/img/vikandDirect3.png"}
+							image={"/offlinelms/img/vikandDirect3.png"}
 						/>
 					</React.Fragment>
 				);
@@ -39,7 +39,7 @@ const HomeSlide3 = (props) => {
 					activeIndex={props.activeIndex}
 					goTo={props.goTo}
 				/>
-				<HomeSlideRight imgKey="slider3" image="/img/ai-applications.png" />
+				<HomeSlideRight imgKey="slider3" image="/offlinelms/img/ai-applications.png" />
 			</React.Fragment>
 		);
 };

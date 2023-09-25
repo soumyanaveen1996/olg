@@ -77,7 +77,7 @@ class FavouritesNavPeople extends PureComponent {
 								<CachedImage
 									imgClassName="section-icon"
 									imgKey={"menuFavIcon"}
-									image={"/img/menu-favs@2x.png"}
+									image={"/offlinelms/img/menu-favs@2x.png"}
 								/>
 								<span className={"list-title text-white fs14 "}>
 									Favourites

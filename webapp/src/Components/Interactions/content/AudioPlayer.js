@@ -119,7 +119,7 @@ function AudioPlayer({ data, id, conversationId, options }) {
 					left: 0,
 				}}>
 					<img
-						src="/img/progressBar.jpg"
+						src="/offlinelms/img/progressBar.jpg"
 						width="200px"
 						height="30px"
 						style={{
@@ -128,7 +128,7 @@ function AudioPlayer({ data, id, conversationId, options }) {
 						}}
 					/>
 					<img
-						src="/img/progressBar.jpg"
+						src="/offlinelms/img/progressBar.jpg"
 						width="200px"
 						height="30px"
 						style={{

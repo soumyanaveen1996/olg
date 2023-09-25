@@ -73,7 +73,7 @@ const ConversationRow = (props) => {
 					allData={props}
 				>
 					<img
-						src="/img/collapse-gray-arrow.png"
+						src="/offlinelms/img/collapse-gray-arrow.png"
 						style={{
 							height: "6px",
 							width: "11px",

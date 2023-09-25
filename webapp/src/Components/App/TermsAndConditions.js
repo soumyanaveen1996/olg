@@ -1127,7 +1127,7 @@ class TermsAndConditions extends PureComponent {
 						alignItems: "center",
 					}}
 				>
-					<img loading="lazy" src="/img/tx-loading.gif" alt="loader" />{" "}
+					<img loading="lazy" src="/offlinelms/img/tx-loading.gif" alt="loader" />{" "}
 				</div>
 			);
 		} else

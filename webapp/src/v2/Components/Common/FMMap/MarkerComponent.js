@@ -46,7 +46,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/moving-maps-plane_zero.png"}
+				src={"/offlinelms/img/moving-maps-plane_zero.png"}
 				style={
 					iconDirection
 						? {
@@ -75,7 +75,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/arrow_image.png"}
+				src={"/offlinelms/img/arrow_image.png"}
 				style={
 					iconDirection
 						? {
@@ -126,7 +126,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/yatchRBG.png"}
+				src={"/offlinelms/img/yatchRBG.png"}
 				style={newIconstyles}
 				onClick={onClick}
 				alt="yacht"
@@ -136,7 +136,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/yatchRBG.png"}
+				src={"/offlinelms/img/yatchRBG.png"}
 				style={newIconstyles}
 				onClick={onClick}
 				alt="yacht"
@@ -146,7 +146,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/jetskiRBG.png"}
+				src={"/offlinelms/img/jetskiRBG.png"}
 				style={newIconstyles}
 				onClick={onClick}
 				alt="yacht"
@@ -156,7 +156,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/lifeJacketRBG.png"}
+				src={"/offlinelms/img/lifeJacketRBG.png"}
 				style={newIconstyles}
 				onClick={onClick}
 				alt="yacht"
@@ -166,7 +166,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/vesselSuspended.png"}
+				src={"/offlinelms/img/vesselSuspended.png"}
 				style={forSideNav ? forSideNavSuspendedAndDisabled : newIconstyles}
 				onClick={onClick}
 				alt="yacht"
@@ -176,7 +176,7 @@ const MarkerComponent = (props) => {
 		node = (
 			<img
 				loading="lazy"
-				src={"/img/vesselDisabled.png"}
+				src={"/offlinelms/img/vesselDisabled.png"}
 				style={forSideNav ? forSideNavSuspendedAndDisabled : newIconstyles}
 				onClick={onClick}
 				alt="yacht"

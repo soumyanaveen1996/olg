@@ -40,7 +40,7 @@ class DiallerButton extends Component {
 				>
 					<CachedImage
 						imgKey={"callIcon"}
-						image={"/img/recent-calls-icon@2x.png"}
+						image={"/offlinelms/img/recent-calls-icon@2x.png"}
 						width={"32"}
 					/>
 
@@ -49,8 +49,8 @@ class DiallerButton extends Component {
 					{/*style={{ backgroundColor: "#2FC76F" }}*/}
 					{/*>*/}
 					{/*<img*/}
-					{/*// src="/img/tab-dialpad-icon@2x.png"*/}
-					{/*src="/img/call-receivecall-btn@2x.png"<img src="/img/call-receivecall-btn@2x.png" width="60" />*/}
+					{/*// src="/offlinelms/img/tab-dialpad-icon@2x.png"*/}
+					{/*src="/offlinelms/img/call-receivecall-btn@2x.png"<img src="/offlinelms/img/call-receivecall-btn@2x.png" width="60" />*/}
 					{/*style={{*/}
 					{/*height: "15px",*/}
 					{/*width: "10px"*/}

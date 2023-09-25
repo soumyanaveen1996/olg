@@ -479,7 +479,7 @@ class ComponentInWindow extends Component {
 											<div className="d-flex draggable-icon-container flex-row align-items-center">
 												<img
 													className="draggable-icon"
-													src="/img/move-icon@2x.png"
+													src="/offlinelms/img/move-icon@2x.png"
 													alt="draggable-icon"
 												/>
 											</div>
@@ -525,7 +525,7 @@ class ComponentInWindow extends Component {
 											<div className="d-flex draggable-icon-container">
 												<img
 													className="draggable-icon"
-													src="/img/move-icon@2x.png"
+													src="/offlinelms/img/move-icon@2x.png"
 													alt="draggable-icon"
 												/>
 											</div>
@@ -556,7 +556,7 @@ class ComponentInWindow extends Component {
 												<div className="d-flex draggable-icon-container flex-row align-items-center">
 													<img
 														className="draggable-icon"
-														src="/img/move-icon@2x.png"
+														src="/offlinelms/img/move-icon@2x.png"
 														alt="draggable-icon"
 													/>
 												</div>
@@ -743,7 +743,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container flex-row align-items-center">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -812,7 +812,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -894,7 +894,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -926,7 +926,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -1004,7 +1004,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -1032,7 +1032,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -1131,7 +1131,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -1174,7 +1174,7 @@ class ComponentInWindow extends Component {
 													<div className="d-flex draggable-icon-container">
 														<img
 															className="draggable-icon"
-															src="/img/move-icon@2x.png"
+															src="/offlinelms/img/move-icon@2x.png"
 															alt="draggable-icon"
 														/>
 													</div>
@@ -1261,7 +1261,7 @@ class ComponentInWindow extends Component {
 														<div className="d-flex draggable-icon-container">
 															<img
 																className="draggable-icon"
-																src="/img/move-icon@2x.png"
+																src="/offlinelms/img/move-icon@2x.png"
 																alt="draggable-icon"
 															/>
 														</div>
@@ -1337,7 +1337,7 @@ class ComponentInWindow extends Component {
 														<div className="d-flex draggable-icon-container">
 															<img
 																className="draggable-icon"
-																src="/img/move-icon@2x.png"
+																src="/offlinelms/img/move-icon@2x.png"
 																alt="draggable-icon"
 															/>
 														</div>
@@ -1358,7 +1358,7 @@ class ComponentInWindow extends Component {
 								className="toggle-mobile-view-component toggle-mobile-view-component-open"
 								onClick={this.hideAllComponents}
 							>
-								<img src="/img/collapse-blue-arrow-up@2x.png" alt="up-arrow" />
+								<img src="/offlinelms/img/collapse-blue-arrow-up@2x.png" alt="up-arrow" />
 							</div>
 						) : (
 							<div
@@ -1366,7 +1366,7 @@ class ComponentInWindow extends Component {
 								onClick={this.showAllComponents}
 							>
 								<img
-									src="/img/collapse-blue-arrow-down@2x.png"
+										src="/offlinelms/img/collapse-blue-arrow-down@2x.png"
 									alt="down-arrow"
 								/>
 							</div>

@@ -39,7 +39,7 @@
 	background-position: 50%;
 	background-size: 60%;
 	background-color: #fff;
-	background-image: url("/public/img/settings-black-24-dp.svg");
+	background-image: url("/public/offlinelms/img/settings-black-24-dp.svg");
 }
 
 .v2-map-menu-btn-ns .map-settings-panel {
@@ -85,7 +85,7 @@
 }
 
 .controls-custom-class button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
-	background-image: url("/public/img/map-plus-icon.svg");
+	background-image: url("/public/offlinelms/img/map-plus-icon.svg");
 	transform: scale(0.8);
 }
 
@@ -103,7 +103,7 @@
 }
 
 .controls-custom-class button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
-	background-image: url("/public/img/map-minus-icon.svg");
+	background-image: url("/public/offlinelms/img/map-minus-icon.svg");
 	transform: scale(0.8);
 }
 

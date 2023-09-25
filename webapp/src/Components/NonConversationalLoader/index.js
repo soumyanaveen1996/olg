@@ -42,7 +42,7 @@ const NonConversationalLoader = ({
 			(!conversational && showWaitSpinner && !showChat && (
 				<img
 					className="flight-loader"
-					src={"/img/loading-ship-v1.gif"}
+				src={"/offlinelms/img/loading-ship-v1.gif"}
 					style={imageStyle}
 					alt="loader"
 				/>
@@ -53,7 +53,7 @@ const NonConversationalLoader = ({
 			(!conversational && showWaitSpinner && !showChat && (
 				<img
 					className="flight-loader"
-					src={"/img/loading-v2.gif"}
+				src={"/offlinelms/img/loading-v2.gif"}
 					style={imageStyle}
 					alt="loader"
 				/>

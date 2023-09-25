@@ -328,7 +328,7 @@ export class FMChatWidget extends Component {
 						<div
 							className="d-flex flex-column container-showChat"
 							style={{
-								background: "url('/img/welcomescreen-background.png')",
+								background: "url('/offlinelms/img/welcomescreen-background.png')",
 								backgroundSize: "cover",
 								backgroundPosition: "center",
 								backgroundRepeat: "no-repeat",
@@ -409,7 +409,7 @@ export class FMChatWidget extends Component {
 											{notificationCount}{" "}
 										</span>
 									)}{" "}
-									<img src="/img/map-chat-icon@2x.png" alt="chat-icon" />
+									<img src="/offlinelms/img/map-chat-icon@2x.png" alt="chat-icon" />
 								</div>
 							) : (
 								<img
@@ -417,7 +417,7 @@ export class FMChatWidget extends Component {
 										width: "15px",
 										height: "15px",
 									}}
-									src="/img/map-chat-close-icon@2x.png"
+										src="/offlinelms/img/map-chat-close-icon@2x.png"
 									alt="close-icon"
 								/>
 							)}{" "}

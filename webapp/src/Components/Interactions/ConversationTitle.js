@@ -339,7 +339,7 @@ class ConversationTitle extends React.PureComponent {
 							allData={dataToSend}
 						>
 							<img
-								src="/img/collapse-gray-arrow.png"
+								src="/offlinelms/img/collapse-gray-arrow.png"
 								alt=""
 								style={{
 									height: "6px",

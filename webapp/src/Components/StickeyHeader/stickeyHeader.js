@@ -119,7 +119,7 @@ class StickeyHeader extends Component {
 								onClick={this.showGetCreditModal}
 							>
 								<img
-									src="./img/plus-icon@2x.png"
+									src="./offlinelms/img/plus-icon@2x.png"
 									style={{
 										width: "12px",
 										paddingBottom: "2px",
@@ -147,7 +147,7 @@ class StickeyHeader extends Component {
 					>
 						<CachedImage
 							imgKey={"speakerIcon"}
-							image={"/img/technology.png"}
+							image={"/offlinelms/img/technology.png"}
 							width={"12"}
 						/>
 					</div>

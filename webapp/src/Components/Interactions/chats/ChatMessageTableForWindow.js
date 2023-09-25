@@ -528,7 +528,7 @@ class ChatMessageTableForWindow extends PureComponent {
 						>
 							<img
 								style={{ width: "25px" }}
-								src="./img/dashboard-icon-hover@2x.png"
+								src="./offlinelms/img/dashboard-icon-hover@2x.png"
 								alt="actionableRow"
 							/>
 						</a>
@@ -568,13 +568,13 @@ class ChatMessageTableForWindow extends PureComponent {
 					>
 						{previous ? (
 							<img
-								src="./img/pagination-arrow-next.png"
+								src="./offlinelms/img/pagination-arrow-next.png"
 								style={{ paddingLeft: "5px", transform: "rotate(180deg)" }}
 								alt="page-arrow-next"
 							/>
 						) : (
 							<img
-								src="./img/pagination-arrow-previous.png"
+									src="./offlinelms/img/pagination-arrow-previous.png"
 								style={{ paddingRight: "5px" }}
 								alt="page-arrow-prev"
 							/>
@@ -588,13 +588,13 @@ class ChatMessageTableForWindow extends PureComponent {
 						<span className={nextLabelClass}>Next</span>
 						{next ? (
 							<img
-								src="./img/pagination-arrow-next.png"
+								src="./offlinelms/img/pagination-arrow-next.png"
 								style={{ paddingLeft: "5px" }}
 								alt="page-arrow-next"
 							/>
 						) : (
 							<img
-								src="./img/pagination-arrow-previous.png"
+									src="./offlinelms/img/pagination-arrow-previous.png"
 								style={{ paddingRight: "5px", transform: "rotate(180deg)" }}
 								alt="page-arrow-next"
 							/>
@@ -871,7 +871,7 @@ class ChatMessageTableForWindow extends PureComponent {
 								onClick={() => {
 									this.saveTheRow(index);
 								}}
-								src="/img/pass-checkbox-checked@2x.png"
+								src="/offlinelms/img/pass-checkbox-checked@2x.png"
 								alt="check"
 								style={{ width: "18px", cursor: "pointer", margin: "0 10px" }}
 							/>
@@ -879,7 +879,7 @@ class ChatMessageTableForWindow extends PureComponent {
 								onClick={() => {
 									this.cancelRowSave(index);
 								}}
-								src="/img/table-cancel.png"
+								src="/offlinelms/img/table-cancel.png"
 								alt="cancel"
 								style={{ width: "12px", cursor: "pointer", margin: "0 10px" }}
 							/>
@@ -913,7 +913,7 @@ class ChatMessageTableForWindow extends PureComponent {
 								<DropdownToggle tag="a" style={{ cursor: "pointer" }}>
 									<img
 										style={{ height: "18px", padding: "0 10px" }}
-										src="/img/table-menu-1@2x.png"
+										src="/offlinelms/img/table-menu-1@2x.png"
 										alt="more-options"
 									/>
 								</DropdownToggle>
@@ -1203,7 +1203,7 @@ class ChatMessageTableForWindow extends PureComponent {
 									>
 										{ }
 										<img
-											src="/img/refresh-btn@2x.png"
+											src="/offlinelms/img/refresh-btn@2x.png"
 											alt="close-icon"
 											style={{
 												width: "25px",
@@ -1247,7 +1247,7 @@ class ChatMessageTableForWindow extends PureComponent {
 											</span>
 										) : (
 											<span>
-												<img src="/img/search-icon@2x.png" width="12" />
+													<img src="/offlinelms/img/search-icon@2x.png" width="12" />
 											</span>
 										)}
 									</a>
@@ -1374,7 +1374,7 @@ class ChatMessageTableForWindow extends PureComponent {
 																			marginRight: "10px",
 																			cursor: "pointer",
 																		}}
-																		src="./img/upload_icon.png"
+																		src="./offlinelms/img/upload_icon.png"
 																		alt="upload-file"
 																	/>
 																</div>
@@ -1420,7 +1420,7 @@ class ChatMessageTableForWindow extends PureComponent {
 													onClick={() => {
 														this.saveEditTheRow(inx);
 													}}
-													src="/img/pass-checkbox-checked@2x.png"
+													src="/offlinelms/img/pass-checkbox-checked@2x.png"
 													alt="check"
 													style={{
 														width: "18px",
@@ -1432,7 +1432,7 @@ class ChatMessageTableForWindow extends PureComponent {
 													onClick={() => {
 														this.cancelEditRowSave();
 													}}
-													src="/img/table-cancel.png"
+													src="/offlinelms/img/table-cancel.png"
 													alt="cancel"
 													style={{
 														width: "12px",
@@ -1468,7 +1468,7 @@ class ChatMessageTableForWindow extends PureComponent {
 													<a onClick={() => this.checkingColumn(row, inx)}>
 														<img
 															style={{ width: "16px" }}
-															src="./img/checkbox-checked@2x.png"
+															src="./offlinelms/img/checkbox-checked@2x.png"
 															alt="checkbox"
 														/>
 													</a>
@@ -1476,7 +1476,7 @@ class ChatMessageTableForWindow extends PureComponent {
 													<a onClick={() => this.checkingColumn(row, inx)}>
 														<img
 															style={{ width: "16px" }}
-															src="./img/checkbox-empty@2x.png"
+																src="./offlinelms/img/checkbox-empty@2x.png"
 															alt="checkbox"
 														/>
 													</a>
@@ -1560,7 +1560,7 @@ class ChatMessageTableForWindow extends PureComponent {
 																				marginRight: "10px",
 																				cursor: "pointer",
 																			}}
-																			src="./img/upload_icon.png"
+																			src="./offlinelms/img/upload_icon.png"
 																			alt="upload-file"
 																		/>
 																	</div>
@@ -1616,7 +1616,7 @@ class ChatMessageTableForWindow extends PureComponent {
 															>
 																<img
 																	style={{ width: "20px" }}
-																	src="/img/map-chat-icon.png"
+																	src="/offlinelms/img/map-chat-icon.png"
 																	alt="chat-icon"
 																/>
 															</div>
@@ -1652,7 +1652,7 @@ class ChatMessageTableForWindow extends PureComponent {
                               >
                                 <img
                                   style={{ width: "30px", cursor: "pointer" }}
-                                  src="/img/call-icon-hover@2x.png"
+                                  src="/offlinelms/img/call-icon-hover@2x.png"
                                   alt="chat-icon"
                                 /> */}
 
@@ -1692,7 +1692,7 @@ class ChatMessageTableForWindow extends PureComponent {
 															>
 																<img
 																	style={{ width: "30px", cursor: "pointer" }}
-																	src="/img/header-new-call@2x.png"
+																	src="/offlinelms/img/header-new-call@2x.png"
 																	alt="chat-icon"
 																/>
 															</div>
@@ -1924,7 +1924,7 @@ class ChatMessageTableForWindow extends PureComponent {
 											>
 												<div>
 													<img
-														src="./img/table-alert-icon@3x.png"
+														src="./offlinelms/img/table-alert-icon@3x.png"
 														style={{ width: "20px", cursor: "pointer" }}
 														alt="table Alert Icon"
 													/>
