@@ -139,8 +139,8 @@ const OneLearnLogin = (props) => {
 		let result = await verifyUser({ userId, dateOfBirth });
 		if (result?.success) {
 			setForm((prev) => ({ ...prev, page: "CONFIRM_PIN" }))
-		} else {
-			return setForm((prev) => ({ ...prev, createError: true, errorMessage: result.error }))
+		} else if (result?.error) {
+			return setForm((prev) => ({ ...prev, createError: true, errorMessage: result?.error }));
 		}
 
 	}
