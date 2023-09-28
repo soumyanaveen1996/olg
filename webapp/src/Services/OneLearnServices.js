@@ -1,4 +1,5 @@
 import { getAuthData } from "./StorageService";
+import { toast } from "react-toastify";
 
 const postToEdgeServer = async (route, payload) => {
     // let baseURL = Config.edgeURL;
@@ -15,7 +16,8 @@ const postToEdgeServer = async (route, payload) => {
         })
         return response.json()
     } catch (error) {
-        console.error("error occured in api", error)
+        toast["error"]("Error occured in API. Error :" + error);
+        console.error("Error occured in API", error);
     }
 }
 
