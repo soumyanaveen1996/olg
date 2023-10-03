@@ -12,6 +12,9 @@ passport.use('local', new LocalStrategy({ usernameField: 'userId', passwordField
 		if (_.isEmpty(user)) {
 			return done({ message: 'User not found' });
 		}
+		if(_.isEmpty(_.get(user, 'pin'))) {
+			return done({ message: 'User PIN not setup yet' });
+		}
 		if (!await user.comparePin(pin)) {
 			return done({ message: 'Invalid PIN' });
 		}
