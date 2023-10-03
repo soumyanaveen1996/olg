@@ -165,38 +165,7 @@ const Main = () => {
 	}, []);
 
 	useEffect(() => {
-		if (
-			[
-				VIKAND_PROD_URL,
-				VIKAND_HEALTH_PROD_URL,
-				VIKAND_CONNECT_PROD_URL,
-				"stage2.frontm.com",
-			].includes(window.location.hostname)
-		) {
-			updateManifestFile("./vikand-manifest.json");
-		} else if (
-			[THURAYA_T2M_PROD_URL, "stage3.frontm.com"].includes(
-				window.location.hostname
-			)
-		) {
-			updateManifestFile("./thuraya-sattrack-manifest.json");
-		} else if ([ONSHIP_PROD_URL].includes(window.location.hostname)) {
-			updateManifestFile("./onship-manifest.json");
-		} else if (
-			["stage6.frontm.com", STATIONSATCOM_PROD_URL].includes(
-				window.location.hostname
-			)
-		) {
-			updateManifestFile("./stationSatcom-manifest.json");
-		} else if (
-			["onecare.frontm.com", "onecaresolutions.app"].includes(
-				window.location.hostname
-			)
-		) {
-			updateManifestFile("./oneCare-manifest.json");
-		} else {
-			updateManifestFile();
-		}
+		updateManifestFile();
 	}, [window.location.hostname]);
 	// console.log("window.location.hostname test", test);
 	return (
