@@ -2,6 +2,7 @@
 	"name": "frontm_webapp",
 	"version": "0.1.0",
 	"private": true,
+  "homepage": "/offlinelms/",
 	"dependencies": {
     "process": "^0.11.10",
 		"@date-io/moment": "^1.3.13",
