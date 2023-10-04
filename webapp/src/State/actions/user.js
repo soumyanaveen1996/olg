@@ -14,6 +14,7 @@ import {
 	removePathName,
 	setUserOnline,
 	setUserManualOnline,
+	storeSelectedConversation,
 } from "../../Services/StorageService";
 import _ from "lodash";
 import history from "./../../Services/History";
@@ -800,10 +801,12 @@ export function fetchBotSubscriptions(
 				try {
 					botsListRes = await UserServiceClient.getBotSubscriptionsInfo(domain);
 					if (botsListRes) {
+						storeSelectedConversation(botsListRes.botsList[0]);
 						dispatch({
 							type: BOT_SUBSCRIPTIONS_RECEIVED,
 							data: { botSubscriptions: botsListRes.botsList },
 						});
+						
 					}
 
 				} catch (error) {
@@ -949,6 +952,7 @@ export function logout(paramAppType) {
 	// removePathName();
 	return (dispatch, getState) => {
 		removeAuthData();
+		removeSelectedConversation();
 		dispatch({ type: LOGOUT_USER });
 		history.push(ONELEARN_LANDING);
 	}

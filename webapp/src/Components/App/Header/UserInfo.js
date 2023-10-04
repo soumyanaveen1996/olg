@@ -15,7 +15,7 @@ const AvatarForwarded = React.forwardRef((props, ref) => (
 ));
 
 export default function UserInfo(props) {
-	let { userName, logout, userId } = props;
+	let { userName, logout, user } = props;
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [profilePhoto, setProfilePhoto] = useState(null);
 	const userProfileImage = useSelector((state) => state.user.profileImage);
@@ -125,13 +125,14 @@ export default function UserInfo(props) {
 							</DropdownToggle>
 
 							<DropdownMenu className="user-profile-dd-menu">
-								{/* <a
-									className="nav-link mt-3 mb-1"
-									style={{ color: "#666666" }}
-									onClick={gotoUserProfile}
-								>
-									<span style={{ padding: 2 }}>My profile</span>
-								</a> */}
+								{user?.userRole === "admin" && (
+									<a
+										className="nav-link mt-2 mb-1"
+										style={{ color: "#666666" }}
+										onClick={gotoUserProfile}
+									>
+										<span style={{ padding: 2 }}>Admin profile</span>
+									</a>)}
 								{/* <a
 									className="nav-link mb-3 mt-1"
 									style={{ color: "#E5453B" }}
@@ -143,7 +144,7 @@ export default function UserInfo(props) {
 									<span style={{ padding: 2 }}>Log out</span>
 								</a> */}
 								<a
-									className="nav-link mt-1 mb-1"
+									className="nav-link mt-2 mb-2"
 									style={{ color: "#E5453B" }}
 									onClick={() => LogoutAndReset()}
 								>

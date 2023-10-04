@@ -13,6 +13,7 @@ import {
 	getSignupPath,
 	getAuthData,
 	storeAuthData,
+	storeSelectedConversation,
 } from "../../Services/StorageService";
 import { updateLastLoggedInDomain } from "../../Services/UserService";
 
@@ -64,6 +65,7 @@ class ContentView extends Component {
 	selectDomain = (domainData) => {
 		UserServiceClient.fetchBotSubscriptions(domainData).then((data) => {
 			store.dispatch({ type: BOT_SUBSCRIPTIONS_RECEIVED, data: { botSubscriptions: data?.botList } });
+			storeSelectedConversation(data?.botList[0]);
 			const botIds = (data?.botList && Array.isArray(data.botList) && data.botList.length > 0) ? data.botList.map((bot) => bot.botId) : []
 			// data.content && data.content.subscribed ? data.content.subscribed : [];
 			// ConversationServiceClient.getCatalog({
@@ -269,13 +271,13 @@ class ContentView extends Component {
 
 				domainsList.forEach((elem) => {
 					// if (elem.landingBotId) {
-						this.props.showSpinner();
-						// updateLastLoggedInDomain(elem.userDomain).then(() => {
-							this.props.setSelectedDomain(elem);
-							storeDomainSelected(elem);
-							// console.log("ADITYA323 checking selected domain", elem);
-							this.selectDomain(elem);
-						// });
+					this.props.showSpinner();
+					// updateLastLoggedInDomain(elem.userDomain).then(() => {
+					this.props.setSelectedDomain(elem);
+					storeDomainSelected(elem);
+					// console.log("ADITYA323 checking selected domain", elem);
+					this.selectDomain(elem);
+					// });
 					// }
 				});
 			}
@@ -370,31 +372,32 @@ class ContentView extends Component {
 						<Redirect exact from="/app" to="/app/chats" />
 						<Route exact path="/app/chats/:id" component={ChatsContainer} />
 						<Route path="/app/chats" component={ChatsContainer} />
-						<ProtectedRoute
+						{/* <ProtectedRoute
 							path="/app/groups"
 							component={ChannelsContainer}
 							{...this.props}
-						/>
-						<ProtectedRoute
+						/> */}
+						{/* <ProtectedRoute
 							path="/app/contacts"
 							component={ContactsContainer}
 							{...this.props}
-						/>
-						<ProtectedRoute
+						/> */}
+						{/* <ProtectedRoute
 							path="/app/catalog"
 							component={CatalogContainer}
 							{...this.props}
-						/>
-						<ProtectedRoute
-							path="/app/my-profile"
-							component={MyProfileContainer}
-							{...this.props}
-						/>
-						<ProtectedRoute
+						/> */}
+						{this.props.user?.userRole === "admin" && (
+							<ProtectedRoute
+								path="/app/my-profile"
+								component={MyProfileContainer}
+								{...this.props}
+							/>)}
+						{/* <ProtectedRoute
 							path="/app/loft"
 							component={LoftContainer}
 							{...this.props}
-						/>
+						/> */}
 						<ProtectedRoute
 							path="/app/home"
 							component={WelcomeContainer}

@@ -19,11 +19,14 @@ const LeftNavBot = ({
 	}, []);
 
 	const getBotLogo = async (bot) => {
-		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot.logoUrl)
-		if (res) {
-			console.log("res", res)
-			setState({ botLogo: URL.createObjectURL(res) });
+		if (bot) {
+			let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot?.logoUrl)
+			if (res) {
+				console.log("res", res)
+				setState({ botLogo: URL.createObjectURL(res) });
+			}
 		}
+
 	}
 	if (bot ? bot.botId : false) {
 		return (

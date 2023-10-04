@@ -221,7 +221,7 @@ export const sendChatViewMessage =
 		});
 	};
 
-export const getFavourite = (data) => (dispatch) => 
+export const getFavourite = (data) => (dispatch) =>
 	ConversationServiceClient.fetchFavourite(data).then((response) => {
 		let newFav = { ...response };
 		dispatch({
@@ -233,95 +233,95 @@ export const getFavourite = (data) => (dispatch) =>
 export const getTimeLine =
 	(data = null) =>
 		(dispatch, getState) => { }
-			// ConversationServiceClient.fetchTimeLine()
-			// 	.then((response) => {
-			// 		let timeLine = [];
-			// 		if (response) {
-			// 			let recants = response.content ? response.content.conversations : [];
+// ConversationServiceClient.fetchTimeLine()
+// 	.then((response) => {
+// 		let timeLine = [];
+// 		if (response) {
+// 			let recants = response.content ? response.content.conversations : [];
 
-			// 			let favorites = response.content ? response.content.favourites : [];
-			// 			favorites.forEach((conversation) => {
-			// 				conversation.favourite = true;
-			// 			});
-			// 			timeLine = [].concat(favorites).concat(recants);
+// 			let favorites = response.content ? response.content.favourites : [];
+// 			favorites.forEach((conversation) => {
+// 				conversation.favourite = true;
+// 			});
+// 			timeLine = [].concat(favorites).concat(recants);
 
-			// 			sortByModifiedOn(timeLine);
-			// 		}
+// 			sortByModifiedOn(timeLine);
+// 		}
 
-			// 		dispatch({
-			// 			type: TIME_LINE_RECEIVED,
-			// 			data: {
-			// 				timeLine: timeLine,
-			// 				userId: getState().user?.user && getState().user?.user?.userId,
-			// 			},
-			// 		});
+// 		dispatch({
+// 			type: TIME_LINE_RECEIVED,
+// 			data: {
+// 				timeLine: timeLine,
+// 				userId: getState().user?.user && getState().user?.user?.userId,
+// 			},
+// 		});
 
-			// 		let linkData = getState().chats.linkData;
-			// 		if (!linkData) {
-			// 			let timeLineEmpty = !timeLine || timeLine.length === 0;
-			// 			if (
-			// 				timeLineEmpty &&
-			// 				getConversationByBotId(getState().chats, FRONTM_BOT_ID)
-			// 			) {
-			// 				dispatch(addFrontMAssistantToTimeLine());
-			// 			} else if (!timeLineEmpty) {
-			// 				let conversation = getSelectedConversation();
-			// 				if (conversation) {
-			// 					const usersAssociation = getState()?.contacts?.usersAssociation;
-			// 					if (
-			// 						usersAssociation && Object.keys(usersAssociation).length > 0 && usersAssociation[conversation?.contact?.userId] !==
-			// 						conversation?.contact?.userName
-			// 					) {
-			// 						const contactInfo = {
-			// 							...conversation.contact,
-			// 							userName: usersAssociation[conversation.contact.userId],
-			// 						};
-			// 						conversation = {
-			// 							...conversation,
-			// 							contact: contactInfo,
-			// 						};
-			// 					}
-			// 					dispatch(changeSelectedConversation(conversation, true));
-			// 					initiateConversation(conversation);
-			// 				}
-			// 			} else {
-			// 				if (!data || data !== "domainChange") {
-			// 					const fmTimeLine = getConversationByBotId(
-			// 						getState().chats,
-			// 						FRONTM_BOT_ID
-			// 					);
-			// 					if (!fmTimeLine) {
-			// 						dispatch(addFrontMAssistantToTimeLine());
-			// 					} else {
-			// 						dispatch(changeConversation(fmTimeLine));
-			// 					}
-			// 				} else {
-			// 					const fmTimeLine = getConversationByBotId(
-			// 						getState().chats,
-			// 						FRONTM_BOT_ID
-			// 					);
-			// 					dispatch(changeSelectedConversation(null, true));
-			// 					dispatch(
-			// 						setScrollPositionForConversation(
-			// 							false,
-			// 							fmTimeLine || timeLine[0]
-			// 						)
-			// 					);
-			// 					dispatch(changeConversation(fmTimeLine || timeLine[0]));
-			// 				}
-			// 			}
-			// 		} else {
-			// 			dispatch(initiateConversationForLink());
-			// 		}
-			// 	})
-			// 	.catch((err) => {
-			// 		console.error("error in fetching timeline", err);
-			// 		let conversation = getSelectedConversation();
-			// 		if (conversation) {
-			// 			dispatch(changeSelectedConversation(conversation, true));
-			// 			initiateConversation(conversation);
-			// 		}
-			// 	});
+// 		let linkData = getState().chats.linkData;
+// 		if (!linkData) {
+// 			let timeLineEmpty = !timeLine || timeLine.length === 0;
+// 			if (
+// 				timeLineEmpty &&
+// 				getConversationByBotId(getState().chats, FRONTM_BOT_ID)
+// 			) {
+// 				dispatch(addFrontMAssistantToTimeLine());
+// 			} else if (!timeLineEmpty) {
+// 				let conversation = getSelectedConversation();
+// 				if (conversation) {
+// 					const usersAssociation = getState()?.contacts?.usersAssociation;
+// 					if (
+// 						usersAssociation && Object.keys(usersAssociation).length > 0 && usersAssociation[conversation?.contact?.userId] !==
+// 						conversation?.contact?.userName
+// 					) {
+// 						const contactInfo = {
+// 							...conversation.contact,
+// 							userName: usersAssociation[conversation.contact.userId],
+// 						};
+// 						conversation = {
+// 							...conversation,
+// 							contact: contactInfo,
+// 						};
+// 					}
+// 					dispatch(changeSelectedConversation(conversation, true));
+// 					initiateConversation(conversation);
+// 				}
+// 			} else {
+// 				if (!data || data !== "domainChange") {
+// 					const fmTimeLine = getConversationByBotId(
+// 						getState().chats,
+// 						FRONTM_BOT_ID
+// 					);
+// 					if (!fmTimeLine) {
+// 						dispatch(addFrontMAssistantToTimeLine());
+// 					} else {
+// 						dispatch(changeConversation(fmTimeLine));
+// 					}
+// 				} else {
+// 					const fmTimeLine = getConversationByBotId(
+// 						getState().chats,
+// 						FRONTM_BOT_ID
+// 					);
+// 					dispatch(changeSelectedConversation(null, true));
+// 					dispatch(
+// 						setScrollPositionForConversation(
+// 							false,
+// 							fmTimeLine || timeLine[0]
+// 						)
+// 					);
+// 					dispatch(changeConversation(fmTimeLine || timeLine[0]));
+// 				}
+// 			}
+// 		} else {
+// 			dispatch(initiateConversationForLink());
+// 		}
+// 	})
+// 	.catch((err) => {
+// 		console.error("error in fetching timeline", err);
+// 		let conversation = getSelectedConversation();
+// 		if (conversation) {
+// 			dispatch(changeSelectedConversation(conversation, true));
+// 			initiateConversation(conversation);
+// 		}
+// 	});
 
 export const setScrollPositionForConversation = (status, conversation) => {
 	return {
@@ -1099,7 +1099,7 @@ export const changeSelectedConversation = (conversation, moveToTop) => {
 			};
 		}
 		updateWindowTitle(conversationDetails);
-		storeSelectedConversation(conversationDetails);
+		if (conversationDetails) storeSelectedConversation(conversationDetails);
 		dispatch({
 			type: CHANGE_SELECTED_CONVERSATION,
 			data: { conversation: conversationDetails, toTop: moveToTop },
@@ -1961,101 +1961,101 @@ export const streamChatMessages = () => (dispatch, getState) => {
 		// 				);
 		// 			});
 
-				// 	// Set startTime timestamp to last messages timestamp + 1
-				// 	setUserMessagePoolTimestamp(
-				// 		parsedQueueMessages[parsedQueueMessages.length - 1].createdOn + 1
-				// 	);
+		// 	// Set startTime timestamp to last messages timestamp + 1
+		// 	setUserMessagePoolTimestamp(
+		// 		parsedQueueMessages[parsedQueueMessages.length - 1].createdOn + 1
+		// 	);
 
-				// 	console.log(
-				// 		"%c Received new message:",
-				// 		"color: green;",
-				// 		parsedQueueMessages
-				// 	);
+		// 	console.log(
+		// 		"%c Received new message:",
+		// 		"color: green;",
+		// 		parsedQueueMessages
+		// 	);
 
-				// 	// If the new msg is about being added in a new group, fetch the list of groups.
-				// 	let isGroupUpdate = parsedQueueMessages.some(
-				// 		(msg) =>
-				// 			msg.messageType ===
-				// 			MessageTypeConstants.MESSAGE_TYPE_STD_NOTIFICATION &&
-				// 			msg.message &&
-				// 			msg.message.includes("joined the group")
-				// 	);
-				// 	if (isGroupUpdate) {
-				// 		store.dispatch(fetchAllChannels(domain));
-				// 		store.dispatch(fetchSubscribedChannels(domain));
-				// 	}
+		// 	// If the new msg is about being added in a new group, fetch the list of groups.
+		// 	let isGroupUpdate = parsedQueueMessages.some(
+		// 		(msg) =>
+		// 			msg.messageType ===
+		// 			MessageTypeConstants.MESSAGE_TYPE_STD_NOTIFICATION &&
+		// 			msg.message &&
+		// 			msg.message.includes("joined the group")
+		// 	);
+		// 	if (isGroupUpdate) {
+		// 		store.dispatch(fetchAllChannels(domain));
+		// 		store.dispatch(fetchSubscribedChannels(domain));
+		// 	}
 
-				// 	// As we pool for all chats we need to update messages
-				// 	// for each conversation individually
-				// 	let conversationMessages = _.groupBy(
-				// 		parsedQueueMessages,
-				// 		"conversation"
-				// 	);
-				// 	Object.entries(conversationMessages).forEach(
-				// 		async ([conversationId, messages]) => {
-				// 			let cacheMessages =
-				// 				(await getDataFromLFStorage(
-				// 					`${LFStorageKeys.MESSAGES}_${conversationId}`
-				// 				)) || [];
+		// 	// As we pool for all chats we need to update messages
+		// 	// for each conversation individually
+		// 	let conversationMessages = _.groupBy(
+		// 		parsedQueueMessages,
+		// 		"conversation"
+		// 	);
+		// 	Object.entries(conversationMessages).forEach(
+		// 		async ([conversationId, messages]) => {
+		// 			let cacheMessages =
+		// 				(await getDataFromLFStorage(
+		// 					`${LFStorageKeys.MESSAGES}_${conversationId}`
+		// 				)) || [];
 
-				// 			if (
-				// 				getState().chats.chatLog.get(conversationId) &&
-				// 				getState().chats.chatLog.get(conversationId).length >= 0
-				// 			) {
-				// 				const userId = getState().user?.user?.userId;
-				// 				if (userId && messages) {
-				// 					// Update redux
-				// 					dispatch(
-				// 						onArchivedMessagesReceived(
-				// 							conversationId,
-				// 							messages,
-				// 							false,
-				// 							userId
-				// 						)
-				// 					);
-				// 				}
-				// 			}
-				// 			// Update cache
-				// 			cacheMessages = cacheMessages.concat(messages);
-				// 			let uniqueMessages = _.uniqBy(cacheMessages, "messageId");
-				// 			uniqueMessages = _.orderBy(
-				// 				uniqueMessages,
-				// 				["createdOn"],
-				// 				["desc"]
-				// 			);
+		// 			if (
+		// 				getState().chats.chatLog.get(conversationId) &&
+		// 				getState().chats.chatLog.get(conversationId).length >= 0
+		// 			) {
+		// 				const userId = getState().user?.user?.userId;
+		// 				if (userId && messages) {
+		// 					// Update redux
+		// 					dispatch(
+		// 						onArchivedMessagesReceived(
+		// 							conversationId,
+		// 							messages,
+		// 							false,
+		// 							userId
+		// 						)
+		// 					);
+		// 				}
+		// 			}
+		// 			// Update cache
+		// 			cacheMessages = cacheMessages.concat(messages);
+		// 			let uniqueMessages = _.uniqBy(cacheMessages, "messageId");
+		// 			uniqueMessages = _.orderBy(
+		// 				uniqueMessages,
+		// 				["createdOn"],
+		// 				["desc"]
+		// 			);
 
-				// 			saveDataInLFStorage(
-				// 				`${LFStorageKeys.MESSAGES}_${conversationId}`,
-				// 				uniqueMessages
-				// 			);
+		// 			saveDataInLFStorage(
+		// 				`${LFStorageKeys.MESSAGES}_${conversationId}`,
+		// 				uniqueMessages
+		// 			);
 
-				// 			// Update the unread messages count in timeline
-				// 			let timeLine = _.cloneDeep(getState().chats.timeLine);
-				// 			let timelineConversation = _.find(timeLine, {
-				// 				conversationId,
-				// 			});
-				// 			if (timelineConversation) {
-				// 				uniqueMessages.forEach((message) => {
-				// 					if (
-				// 						message.createdOn > timelineConversation.modifiedOn &&
-				// 						!message.isOpened
-				// 					) {
-				// 						_.find(timeLine, { conversationId }).unreadCount += 1;
-				// 					}
-				// 				});
-				// 				_.find(timeLine, {
-				// 					conversationId,
-				// 				}).modifiedOn = uniqueMessages[0].createdOn;
-				// 				setUserMessagePoolTimestamp(uniqueMessages[0].createdOn + 1);
-				// 				dispatch({
-				// 					type: UPDATE_TIME_LINE,
-				// 					data: {
-				// 						timeLine,
-				// 					},
-				// 				});
-				// 			}
-				// 		}
-				// 	);
+		// 			// Update the unread messages count in timeline
+		// 			let timeLine = _.cloneDeep(getState().chats.timeLine);
+		// 			let timelineConversation = _.find(timeLine, {
+		// 				conversationId,
+		// 			});
+		// 			if (timelineConversation) {
+		// 				uniqueMessages.forEach((message) => {
+		// 					if (
+		// 						message.createdOn > timelineConversation.modifiedOn &&
+		// 						!message.isOpened
+		// 					) {
+		// 						_.find(timeLine, { conversationId }).unreadCount += 1;
+		// 					}
+		// 				});
+		// 				_.find(timeLine, {
+		// 					conversationId,
+		// 				}).modifiedOn = uniqueMessages[0].createdOn;
+		// 				setUserMessagePoolTimestamp(uniqueMessages[0].createdOn + 1);
+		// 				dispatch({
+		// 					type: UPDATE_TIME_LINE,
+		// 					data: {
+		// 						timeLine,
+		// 					},
+		// 				});
+		// 			}
+		// 		}
+		// 	);
 	}
 };
 

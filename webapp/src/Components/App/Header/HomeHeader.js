@@ -82,6 +82,7 @@ const HomeHeader = (props) => {
 							userName={userName}
 							logout={logout}
 							notification={notification}
+							user={props.user}
 						/>
 					</div>
 				)}
