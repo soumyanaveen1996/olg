@@ -5,4 +5,5 @@ router.use('/', require('./auth'));
 router.use('/', require('./AgentGuardService'));
 router.use('/', require('./FileService'));
 router.use('/', require('./UserService'));
+router.use('/', require('./AdminService'));
 module.exports = router;

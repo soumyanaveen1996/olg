@@ -16,6 +16,7 @@ async function getClient() {
     await populateCrews(client);
     await populateBotFarm(client);
     await createConversationCollection(client);
+    await createKeyValuesCollection(client);
     await populateDomains(client);
     await client.close();
 })();
@@ -53,11 +54,22 @@ async function populateBotFarm(client) {
 async function createConversationCollection(client) {
     try {
         const database = client.db("olg");
-        const botFarm = database.collection("conversations");
+        const conversations = database.collection("conversations");
         console.log('Creating indexes on conversations table');
-        await botFarm.createIndex({conversationId: 1}, {unique: true});
+        await conversations.createIndex({conversationId: 1}, {unique: true});
     } catch(err) {
         console.log("Error occurred while trying to load the conversations collection. Error:", err.message);
+    }
+}
+
+async function createKeyValuesCollection(client) {
+    try {
+        const database = client.db("olg");
+        const keyValues = database.collection("keyValues");
+        console.log('Creating indexes on keyValues table');
+        await keyValues.createIndex({key: 1}, {unique: true});
+    } catch(err) {
+        console.log("Error occurred while trying to load the keyValues collection. Error:", err.message);
     }
 }
 async function populateDomains(client) {

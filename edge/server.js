@@ -1,6 +1,6 @@
 require('dotenv').config();
-process.env.JWT_SECRET = require('crypto').randomBytes(32).toString('hex');
-console.log('Got JWT_SECRET', process.env.JWT_SECRET );
+const crypto = require('crypto');
+process.env.JWT_SECRET = crypto.randomBytes(32).toString('hex');
 
 const config = require('./config.js');
 const express = require('express');
@@ -86,10 +86,43 @@ async function connectToMongo() {
 	}
 }
 
+async function setupAdminUser() {
+	try {
+		const User = require('./app/models/user');
+		let adminUserToCreate = config.ADMIN_USER;
+		let adminUser = await User.findOne({userId: adminUserToCreate.userId});
+		if(!_.isEmpty(adminUser)) {
+			console.log('Admin user already exists in the DB');
+			return;
+		}
+		await User.create(adminUserToCreate);
+	} catch(err) {
+		console.log('Unable to create admin user. Error:', err);
+	}
+}
+
+async function setupRegistrationData() {
+	try {
+		const KeyValue = require('./app/models/keyvalue');
+		let nodeIdKeyVal = await KeyValue.findOne({key: config.NODE_ID_KEY});
+		if(!_.isEmpty(nodeIdKeyVal)) {
+			console.log('Node Id already exists in the DB');
+			return;
+		}
+		let edgeNodeId = crypto.randomBytes(24).toString('hex');
+		await KeyValue.create({key: config.NODE_ID_KEY, value: edgeNodeId});
+	} catch(err) {
+		console.log('Unable to create edge nodeId. Error:', err);
+	}
+}
+
+
 (() => {
-	connectToMongo().then(() => {
+	connectToMongo().then(async () => {
 		let server = setupExpress();
 		let socketIO = setupSocketIO(server);
 		setupRedis(socketIO);
+		await setupAdminUser();
+		await setupRegistrationData();
 	});
 })();

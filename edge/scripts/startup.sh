@@ -36,7 +36,7 @@ echo "Installing node dependencies"
 npm install
 
 echo "Loading the DB"
-node "$(pwd)"/scripts/runDataSync.js
+ENV=local node "$(pwd)"/scripts/runDataSync.js
 
 echo "Creating env file"
 readonly envFile="$(pwd)"'/.env'

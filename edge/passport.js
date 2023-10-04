@@ -4,7 +4,7 @@ const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const User = require('./app/models/user');
-const USER_FIELDS_IN_AUTH_RESPONSE = ['userId', 'userName', 'dateOfBirth', 'domains'];
+const USER_FIELDS_IN_AUTH_RESPONSE = ['userId', 'userName', 'dateOfBirth', 'domains', 'userRole'];
 
 passport.use('local', new LocalStrategy({ usernameField: 'userId', passwordField: 'pin' },
 	async function (userId, pin, done) {

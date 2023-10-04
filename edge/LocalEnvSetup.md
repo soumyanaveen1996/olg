@@ -98,3 +98,9 @@ Execute the life cycle method of the bot.
 1. Generate the bundle for the bot file from [olg-edge-bot](https://bitbucket.org/frontm/olg-edge-bot) repository
 2. Copy the `dit/main.js` file into `edge/bots/botfarm/olg/bot1/bot1.js` (keep the same `bot1.js` name)
 
+### <span style="color: green"> Admin access
+1. An admin user is created on server startup with default pin of "7531". This pin to be changed.
+2. When the admin user logs in, a field called "userRole" = "admin" is returned in the response. Use this value to show/hide the configuration screen.
+3. GET endpoint "AdminService/getEdgeConfig" to get the configuration values - this will return 3 fields: nodeId, lastSyncTime and imo.
+4. POST endpoint "AdminService/updateEdgeConfig" - will take imo as input and update the DB.
+5. The AdminService endpoints are available ONLY to admin users. 
