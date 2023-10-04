@@ -198,6 +198,7 @@ class AppContent extends Component {
 						enable2faAuthModal={userDetails?.enable2faAuthModal}
 						isAnonymousUser={isAnonymousUser}
 						userId={user?.userId}
+						user={user}
 						userEamil={user?.emailAddress}
 						selectedDomain={selectedDomain}
 						selectedContactStore={this.props.selectedContactStore}
@@ -227,7 +228,7 @@ class AppContent extends Component {
 						updateQrCodeUri={this.props.updateQrCodeUri}
 						updateSoftwareMfaEnabled={this.props.updateSoftwareMfaEnabled}
 						updateBotIdForMFA={this.props.updateBotIdForMFA}
-						// newContactAdded={this.state.newContactAdded}
+					// newContactAdded={this.state.newContactAdded}
 					/>
 					{/* <PhoneDevice /> */}
 				</div>

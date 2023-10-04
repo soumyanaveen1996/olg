@@ -160,7 +160,7 @@ class MyProfileView extends Component {
 					backgroundColor: "#f6f8fc",
 				}}
 			>
-				<MySettings
+				{/* <MySettings
 					{...this.props}
 					showCPDialog={this.state.showCPDialog}
 					toggleCPDialog={this.toggleCPDialog}
@@ -170,7 +170,7 @@ class MyProfileView extends Component {
 					changePassword={this.changePassword}
 					profileScreenSetter={this.profileScreenSetter}
 					profileScreenType={this.state.profileScreenType}
-				/>
+				/> */}
 				{this.state.profileScreenType === "profileDetailsView" ? (
 					<ProfileDetailsView
 						{...this.props}
