@@ -12,11 +12,14 @@ const redisUtils = require('./utils/redisUtils');
 const mongoose = require('mongoose');
 require('./passport');
 const passport = require('passport');
+const CORS_ORIGINS = ['http://localhost:3000', 'http://localhost:8080', 'https://cdh.onelearn.global/'];
 
 function setupExpress() {
 	console.log('Setting up express server');
 	const app = express();
-	app.use(cors());
+	app.options('*', cors());
+	app.use(cors({origin: CORS_ORIGINS, methods: "GET,POST"}));
+
 	app.use(express.json({ limit: '100mb' }));
 	app.use(compression());
 	app.use(passport.initialize());
@@ -47,7 +50,7 @@ function setupSocketIO(expressServer) {
 		allowUpgrades: true,
 		allowEIO3: true,
 		cors: {
-      origin: ['http://localhost:3000', 'http://localhost:8080', 'https://cdh.onelearn.global/'],
+      		origin: CORS_ORIGINS,
 			methods: ['GET', 'PUT', 'DELETE', 'OPTIONS', 'POST'],
 			allowEIO3: true,
 			credentials: true
