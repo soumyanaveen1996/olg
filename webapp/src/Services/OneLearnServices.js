@@ -1,13 +1,13 @@
 import { getAuthData } from "./StorageService";
 import { toast } from "react-toastify";
 
-const postToEdgeServer = async (route, payload) => {
+const postToEdgeServer = async (route, payload, method = "POST") => {
     // let baseURL = Config.edgeURL;
     let auth = getAuthData();
     const url = `http://localhost:4001${route}`;
     try {
         const response = await fetch(url, {
-            method: "POST",
+            method,
             headers: {
                 "Content-Type": "application/json",
                 "token": auth?.token
@@ -35,6 +35,13 @@ export const forgotPin = async (payload) => {
 
 export const login = async (payload) => {
     return postToEdgeServer("/login", payload)
+}
+export const getEdgeConfig = async (payload) => {
+    return postToEdgeServer("/AdminService/getEdgeConfig", payload, "GET")
+}
+
+export const updateEdgeConfig = async (payload) => {
+    return postToEdgeServer("/AdminService/updateEdgeConfig", payload)
 }
 
 export const fileService = async (payload) => {

@@ -36,6 +36,7 @@ import {
 } from "../../../State/actions/user";
 import { updateLastLoggedInDomain } from "../../../Services/UserService";
 import GenericAjax from "../../../Services/GenericAjax";
+import { getSelectedConversation } from "../../../Services/StorageService";
 const R = require("ramda");
 
 class AppNav extends Component {
@@ -53,7 +54,7 @@ class AppNav extends Component {
 	}
 
 	getDomainLogo = async (selectedDomain) => {
-		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain.logoUrl)
+		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + selectedDomain?.logoUrl)
 		if (res) {
 			// console.log("res", res)
 			this.setState({ logo: URL.createObjectURL(res) });
@@ -138,7 +139,7 @@ class AppNav extends Component {
 	startConversation = (botId) => {
 		const { userId, botSubscriptions, createConversation, history } =
 			this.props;
-		const convBot = botSubscriptions?.filter((bot) => bot.botId === botId);
+		const convBot = botSubscriptions?.filter((bot) => bot.botId === botId) || [getSelectedConversation()?.bot];
 		this.props.selectedBotId({ botId: botId, conversationBot: convBot[0] });
 
 		if ((convBot[0] && convBot[0].authorisedAccess) || false) {

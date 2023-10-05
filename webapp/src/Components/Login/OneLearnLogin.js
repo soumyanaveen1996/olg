@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import Error from "../Common/Error";
 import { validateSignInForm } from "../../Utils/Validator";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getAuthCode, storeAuthData, unsetAuthCode } from "../../Services/StorageService";
 import { activateEnterpriseBots } from "../../Services/BotsService";
 import { updateLastLoggedInDomain } from "../../Services/UserService";
@@ -27,6 +27,7 @@ const ACTIVATE_ENTERPRISE_BOTS_ERROR_CODES = [
 
 const OneLearnLogin = (props) => {
 	const [form, setForm] = useState({});
+	const history = useHistory();
 	const styleObj = {
 		password: {
 			fontSize: "16px",
@@ -87,7 +88,7 @@ const OneLearnLogin = (props) => {
 				if (res.error) return setForm((prev) => ({ ...prev, loginError: true, errorMessage: res.error }))
 				// console.log("res", res)
 				storeAuthData(res.user);
-				window.location.href = "/app/home";
+				history.push("/app/home");
 
 			}
 

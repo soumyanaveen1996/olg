@@ -14,6 +14,7 @@ import CollapsableSidebar from "../CollapsableNavBar/CollapsableSidebar";
 import OfflineSwitch from "../OfflineSwitch/OfflineSwitch";
 import { FMPullDownMenu } from "../../v2/Components/Common";
 import GenericAjax from "../../Services/GenericAjax";
+import { getSelectedConversation } from "../../Services/StorageService";
 const R = require("ramda");
 
 class ConversationTitle extends React.PureComponent {
@@ -48,15 +49,24 @@ class ConversationTitle extends React.PureComponent {
 	}
 
 	componentWillMount() {
-		this.getBotLogo(this.props.conversation.bot);
+		let botData;
+		if (this.props.conversation.bot) {
+			botData = this.props.conversation.bot;
+		} else {
+			botData = getSelectedConversation()?.bot;
+		}
+		this.getBotLogo(botData);
 	}
 
 	getBotLogo = async (bot) => {
-		let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot.logoUrl)
-		if (res) {
-			console.log("res", res)
-			this.setState({ botLogo: URL.createObjectURL(res) });
+		if (bot) {
+			let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot?.logoUrl)
+			if (res) {
+				console.log("res", res)
+				this.setState({ botLogo: URL.createObjectURL(res) });
+			}
 		}
+		
 	}
 
 	closeStripePayment = () => this.setState({ showStripe: false });
