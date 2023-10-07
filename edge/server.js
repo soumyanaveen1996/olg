@@ -12,7 +12,7 @@ const redisUtils = require('./utils/redisUtils');
 const mongoose = require('mongoose');
 require('./passport');
 const passport = require('passport');
-const CORS_ORIGINS = ['http://localhost:3000', 'http://localhost:8080', 'https://cdh.onelearn.global/'];
+const CORS_ORIGINS = ['http://localhost:3000', 'http://localhost:8080', 'https://cdh.onelearn.global'];
 
 function setupExpress() {
 	console.log('Setting up express server');
