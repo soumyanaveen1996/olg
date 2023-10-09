@@ -118,7 +118,10 @@ async function setupRegistrationData() {
 		console.log('Unable to create edge nodeId. Error:', err);
 	}
 }
-
+function startBackgroundJob() {
+	let job = require('./remoteDataSyncJob/job');
+	job.start();
+}
 
 (() => {
 	connectToMongo().then(async () => {
@@ -127,5 +130,6 @@ async function setupRegistrationData() {
 		setupRedis(socketIO);
 		await setupAdminUser();
 		await setupRegistrationData();
+		startBackgroundJob();
 	});
 })();

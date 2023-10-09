@@ -7,7 +7,7 @@ const doAuth = passport.authenticate('jwt', {
 });
 const KeyValue = require('../models/keyvalue');
 const config = require('../../config');
-const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, ADMIN_ROLE} = config;
+const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, ADMIN_ROLE, CLOUD_TO_EDGE_SYNC_KEY, SYNC_STATUS} = config;
 
 function verifyAdminAccess(req) {
     let user = req.user;
@@ -25,13 +25,8 @@ router.post('/AdminService/updateEdgeConfig', doAuth, async (req, res) => {
             return res.status(500).json({error: 'IMO required'});
         }
 
-        let keyValue = await KeyValue.findOne({key: IMO_KEY});
-        if(_.isEmpty(keyValue)) {
-            await KeyValue.create({key: IMO_KEY, value: imo});
-        } else {
-            keyValue.value = imo;
-            await keyValue.save();
-        }
+        await KeyValue.updateOne({key: IMO_KEY}, {$set: {value: imo}}, {upsert: true});
+        await KeyValue.updateOne({key: CLOUD_TO_EDGE_SYNC_KEY}, {$set: {value: SYNC_STATUS.PENDING}}, {upsert: true});
         return res.status(200).json({success: true});
     } catch(err) {
         return res.status(500).json({error: err.message});
