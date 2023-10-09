@@ -5,7 +5,8 @@ const KeyValue = require('../app/models/keyvalue');
 const MongoDBManager = require('../runtime/capabilities/MongoDBManager');
 const config = require('../config');
 const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, CLOUD_TO_EDGE_SYNC_KEY,
-    SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH, API_KEY} = config;
+    SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH, API_KEY,
+    DEFAULT_USER_DOMAINS} = config;
 const REGISTER_SYNC_API_ENDPOINT = `${API_URL}/${EDGE_NODE_REGISTRATION_PATH}`;
 
 const COLLECTIONS = {
@@ -63,6 +64,10 @@ async function insertDocuments(collection, documents) {
 }
 
 async function loadCloudDataIntoEdge(users, userEnrollments, courses) {
+    users = _.map(users, user => {
+        user.domains = DEFAULT_USER_DOMAINS;
+        return user;
+    });
     await insertDocuments(COLLECTIONS.USERS, users);
     await insertDocuments(COLLECTIONS.USER_COURSES, userEnrollments);
     await insertDocuments(COLLECTIONS.COURSES, courses);

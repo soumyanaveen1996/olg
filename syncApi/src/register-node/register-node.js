@@ -35,7 +35,7 @@ registerNode.onResolution = async () => {
 };
 
 async function queryDB(collection, query) {
-    let response = await db.getDataFromCollection({collection, query});
+    let response = await db.getDataFromCollection({collection, query, projection: { projection: {"_id": 0}}});
     let body = state._.get(response, 'body');
     let statusCode = state._.get(response, 'statusCode');
     if(statusCode === DB_STATUS_CODE.ERROR) {

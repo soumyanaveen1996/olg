@@ -19,13 +19,14 @@ const config = {
   EXPRESS_PORT: 4001,
   ASSET_ROOT_PATH: __dirname,
   ASSETS_LOCATION: './bots',
-  ADMIN_USER: { "userName": "Admin", "userId": "admin", "domains": [{"domain": "olg", "roles": ["enduser"]}], "dateOfBirth": 949464502000, pin: '7531', "userRole": ADMIN_ROLE},
+  ADMIN_USER: { "name": "Admin", "userId": "admin", "domains": [{"domain": "olg", "roles": ["enduser"]}], "dob": 949464502000, pin: '7531', "userRole": ADMIN_ROLE},
   IMO_KEY: 'EDGE_IMO',
   LAST_SYNC_TIME_KEY: 'LAST_SYNC_TIME',
   NODE_ID_KEY: 'NODE_ID',
   CLOUD_TO_EDGE_SYNC_KEY: 'CLOUD_TO_EDGE_SYNC_KEY',
   SYNC_STATUS: {PENDING: 'PENDING', DONE: 'DONE'},
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
+  DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
 }
 config.ADMIN_ROLE = ADMIN_ROLE;
 

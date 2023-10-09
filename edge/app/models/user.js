@@ -6,9 +6,9 @@ const SALT_FACTOR = 5;
 const UserSchema = new mongoose.Schema(
     {
         userId: { type: String, required: true},
-        userName: { type: String, required: true},
+        name: { type: String, required: true},
         pin: { type: String, required: true},
-        dateOfBirth: { type: Number, required: true},
+        dob: { type: Number, required: true},
         domains: {type: Array, required: true},
         userRole: {type: String}
     },
@@ -36,7 +36,7 @@ UserSchema.methods.comparePin = async function (inputPin) {
 }
 
 UserSchema.methods.compareDOB = function (inputDOB) {
-    let dbDate = moment(this.dateOfBirth).format('YYYY-MM-DD');
+    let dbDate = moment(this.dob).format('YYYY-MM-DD');
     return moment(inputDOB).isSame(dbDate);
 }
 
