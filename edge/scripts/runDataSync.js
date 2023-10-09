@@ -25,10 +25,9 @@ async function populateCrews(client) {
     try {
         const database = client.db("olg");
         const crews = database.collection("users");
-        const crewData = require('../data/crews');
-
-        const result = await crews.insertMany(crewData);
-        console.log(`${result.insertedCount} crews were inserted`);
+        // const crewData = require('../data/crews');
+        // const result = await crews.insertMany(crewData);
+        // console.log(`${result.insertedCount} crews were inserted`);
         console.log('Creating indexes on crew table');
         await crews.createIndex({userId: 1}, {unique: true});
     } catch(err) {
