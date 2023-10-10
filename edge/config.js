@@ -1,17 +1,15 @@
+const _ = require("lodash");
 const DEFAULT_ENV = 'docker';
 const env = process.env.ENV || DEFAULT_ENV;
-console.log('ENV:::::', env);
 const LOCAL_CONFIG = {
   MONGO_URI: "mongodb://localhost:27017/olg",
   REDIS_HOST: "0.0.0.0",
   API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg',
-  API_KEY: 'OSRmQvZm3t8KVDecwdRHK28YXOuz0voE18TDsDJ3'
 };
 const DOCKER_CONFIG = {
   MONGO_URI: "mongodb://mongo:27017/olg",
   REDIS_HOST: "redis",
   API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg', // should point to PROD when we are ready
-  API_KEY: 'OSRmQvZm3t8KVDecwdRHK28YXOuz0voE18TDsDJ3'
 };
 const ADMIN_ROLE = 'admin';
 const config = {
@@ -28,12 +26,35 @@ const config = {
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
   DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
 }
-config.ADMIN_ROLE = ADMIN_ROLE;
 
-if(env === 'docker') {
-  Object.assign(config, DOCKER_CONFIG);
-} else {
-  Object.assign(config, LOCAL_CONFIG);
+function setEnvSpecificConfig() {
+  if(env === 'docker') {
+    Object.assign(config, DOCKER_CONFIG);
+  } else {
+    Object.assign(config, LOCAL_CONFIG);
+  }
 }
+
+function initializeAPIKeys() {
+  let errorMessage = '===== ERROR: API Key for Sync API not available in the environment. Exiting... ======';
+  try {
+    let apiKey = _.get(require('./.api_key'), `${env}.SYNC_API_KEY`);
+    if(_.isEmpty(apiKey)) {
+      console.log(errorMessage);
+      process.exit(1);
+    }
+    config.SYNC_API_KEY = apiKey;
+  } catch(err) {
+    console.log(errorMessage);
+    process.exit(1);
+  }
+}
+
+(() => {
+  console.log('Initializing config');
+  config.ADMIN_ROLE = ADMIN_ROLE;
+  setEnvSpecificConfig();
+  initializeAPIKeys();
+})();
 
 module.exports = config;

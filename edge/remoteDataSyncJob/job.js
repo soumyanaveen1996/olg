@@ -5,7 +5,7 @@ const KeyValue = require('../app/models/keyvalue');
 const MongoDBManager = require('../runtime/capabilities/MongoDBManager');
 const config = require('../config');
 const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, CLOUD_TO_EDGE_SYNC_KEY,
-    SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH, API_KEY,
+    SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH,
     DEFAULT_USER_DOMAINS} = config;
 const REGISTER_SYNC_API_ENDPOINT = `${API_URL}/${EDGE_NODE_REGISTRATION_PATH}`;
 
@@ -43,7 +43,7 @@ async function getRemoteNodeData() {
 async function getEdgeData(IMO, remoteNodeId) {
     let apiResponse = null;
     try {
-        apiResponse = await axios.post(REGISTER_SYNC_API_ENDPOINT, {IMO, remoteNodeId}, {headers: {'x-api-key': API_KEY}});
+        apiResponse = await axios.post(REGISTER_SYNC_API_ENDPOINT, {IMO, remoteNodeId}, {headers: {'x-api-key': config.SYNC_API_KEY}});
     } catch (e) {
         throw new Error(`Api error: "${_.get(e, 'response.data.error', e.message)}" for IMO: ${IMO} and nodeId: ${remoteNodeId}`);
     }

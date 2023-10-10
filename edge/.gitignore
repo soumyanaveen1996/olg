@@ -5,3 +5,4 @@
 /scripts/.env
 /scripts/db
 /.DS_Store
+/.api_key.json

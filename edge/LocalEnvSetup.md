@@ -104,3 +104,6 @@ Execute the life cycle method of the bot.
 3. GET endpoint "AdminService/getEdgeConfig" to get the configuration values - this will return 3 fields: nodeId, lastSyncTime and imo.
 4. POST endpoint "AdminService/updateEdgeConfig" - will take imo as input and update the DB.
 5. The AdminService endpoints are available ONLY to admin users. 
+
+### <span style="color: green"> API Keys
+1. These are set in a json file that is not checked into the repo. This has to be added manually into the workspace. Check with Rush what the values should be
