@@ -19,10 +19,15 @@ const config = {
   ASSETS_LOCATION: './bots',
   ADMIN_USER: { "name": "Admin", "userId": "admin", "domains": [{"domain": "olg", "roles": ["enduser"]}], "dob": 949464502000, pin: '7531', "userRole": ADMIN_ROLE},
   IMO_KEY: 'EDGE_IMO',
-  LAST_SYNC_TIME_KEY: 'LAST_SYNC_TIME',
   NODE_ID_KEY: 'NODE_ID',
-  CLOUD_TO_EDGE_SYNC_KEY: 'CLOUD_TO_EDGE_SYNC_KEY',
-  SYNC_STATUS: {PENDING: 'PENDING', DONE: 'DONE'},
+  C2E_STATUS_KEY: 'C2E_STATUS_KEY',
+  E2C_STATUS_KEY: 'E2C_STATUS_KEY',
+  SYNC_DATA_POINTS: {
+    SYNC_TIME: 'syncTime', 
+    SYNC_STATUS: 'syncStatus',
+    SYNC_MSG: 'syncMessage'
+  },
+  SYNC_STATUSES: {PENDING: 'PENDING', DONE: 'DONE'},
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
   DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
   MONGO_DB_COLLECTIONS: {

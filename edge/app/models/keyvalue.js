@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const KeyValueSchema = new mongoose.Schema(
     {
         key: { type: String, required: true},
-        value: { type: String, required: true}
+        value: { type: mongoose.Schema.Types.Mixed, required: true}
     },
     {
         collection: 'keyValues',

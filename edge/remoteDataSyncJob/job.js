@@ -3,12 +3,12 @@ const axios = require('axios');
 const _ = require("lodash");
 const KeyValue = require('../app/models/keyvalue');
 const MongoDBManager = require('../runtime/capabilities/MongoDBManager');
+
 const config = require('../config');
-const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, CLOUD_TO_EDGE_SYNC_KEY,
-    SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH,
+const {IMO_KEY, NODE_ID_KEY, C2E_STATUS_KEY, SYNC_DATA_POINTS,
+    SYNC_STATUSES, API_URL, EDGE_NODE_REGISTRATION_PATH,
     DEFAULT_USER_DOMAINS, MONGO_DB_COLLECTIONS} = config;
 const REGISTER_SYNC_API_ENDPOINT = `${API_URL}/${EDGE_NODE_REGISTRATION_PATH}`;
-
 
 const COLLECTION_FILTERS = {
     USERS: ['userId'],
@@ -23,21 +23,22 @@ const DB_STATUS_CODE = {
 exports.start = () => {
     const job = cron.schedule("* * * * *", async () => {
         await doCloudToEdgeSync();
+        await doEdgeToCloudSync();
     });
 
     job.start();
 }
 
 async function getRemoteNodeData() {
-    let response = await KeyValue.find({key: {$in: [IMO_KEY, NODE_ID_KEY, CLOUD_TO_EDGE_SYNC_KEY]}});
+    let response = await KeyValue.find({key: {$in: [IMO_KEY, NODE_ID_KEY, C2E_STATUS_KEY]}});
     let keyValues = _.chain(response).keyBy('key').mapValues('value').value();
     let imo = _.get(keyValues, IMO_KEY);
     let nodeId = _.get(keyValues, NODE_ID_KEY);
     if(_.isEmpty(imo) || _.isEmpty(nodeId)) {
         throw new Error(`ERROR: IMO or NodeId is not set. IMO: ${imo}. NodeId: ${nodeId}`);
     }
-    let syncStatus = _.get(keyValues, CLOUD_TO_EDGE_SYNC_KEY);
-    return {imo, nodeId, syncStatus};
+    let c2eSyncStatus = _.get(keyValues, `${C2E_STATUS_KEY}.${SYNC_DATA_POINTS.SYNC_STATUS}`);
+    return {imo, nodeId, c2eSyncStatus};
 }
 
 async function getEdgeData(IMO, remoteNodeId) {
@@ -75,20 +76,43 @@ async function loadCloudDataIntoEdge(users, userEnrollments, courses) {
     await upsertDocuments(userEnrollments, MONGO_DB_COLLECTIONS.USER_COURSES, COLLECTION_FILTERS.USER_COURSES);
     await upsertDocuments(courses, MONGO_DB_COLLECTIONS.COURSES, COLLECTION_FILTERS.COURSES);
 }
+
+async function logCloudToEdgeStatus(error) {
+    let cloudToEdgeStatus = {};
+    cloudToEdgeStatus[SYNC_DATA_POINTS.SYNC_TIME] = Date.now();
+    cloudToEdgeStatus[SYNC_DATA_POINTS.SYNC_STATUS] = error ? SYNC_STATUSES.PENDING : SYNC_STATUSES.DONE;
+    cloudToEdgeStatus[SYNC_DATA_POINTS.SYNC_MSG] = error ? error : `Successfully synced data between cloud and edge at ${Date.now()}`;
+    await KeyValue.updateOne({key: C2E_STATUS_KEY}, {$set: {value: cloudToEdgeStatus}}, {upsert: true});
+}
 async function doCloudToEdgeSync() {
     try {
-        let {imo, nodeId, syncStatus} = await getRemoteNodeData();
-        if(syncStatus !== SYNC_STATUS.PENDING) {
+        let {imo, nodeId, c2eSyncStatus} = await getRemoteNodeData();
+        if(c2eSyncStatus !== SYNC_STATUSES.PENDING) {
             return;
         }
-        // check if API gateway is reachable
         let {users, userEnrollments, courses} = await getEdgeData(imo, nodeId);
         await loadCloudDataIntoEdge(users, userEnrollments, courses);
-        await KeyValue.updateOne({key: CLOUD_TO_EDGE_SYNC_KEY}, {$set: {value: SYNC_STATUS.DONE}});
-        await KeyValue.updateOne({key: LAST_SYNC_TIME_KEY}, {$set: {value: Date.now()}}, {upsert: true});
-
+        await logCloudToEdgeStatus();
     } catch(e) {
-        // TODO: write to audit table instead of console.
-        console.log(`Error: ${e.message}`);
+        console.log(`Error occurred when syncing data between cloud and edge. Error message: ${e.message}`);
+        await logCloudToEdgeStatus(e.message);
     }
+}
+
+async function logEdgeToCloudStatus(error) {
+    let edgeToCloudStatus = {};
+    edgeToCloudStatus[SYNC_DATA_POINTS.SYNC_TIME] = Date.now();
+    edgeToCloudStatus[SYNC_DATA_POINTS.SYNC_MSG] = error ? error : `Successfully synced data between edge and Cloud`;
+    await KeyValue.updateOne({key: C2E_STATUS_KEY}, {$set: {value: edgeToCloudStatus}}, {upsert: true});
+}
+async function doEdgeToCloudSync() {
+    // try {
+    //     let {imo, nodeId} = await getRemoteNodeData();
+    //     let deltaUserProgress = await getDeltaUserProgress();
+    //     await sendEdgeDataToCloud(imo, nodeId, deltaUserProgress);
+    //     await logEdgeToCloudStatus();
+    // } catch(e) {
+    //     console.log(`Error occurred when syncing data between cloud and edge. Error message: ${e.message}`);
+    //     await logEdgeToCloudStatus(e.message);
+    // }
 }
