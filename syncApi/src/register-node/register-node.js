@@ -4,17 +4,9 @@ import {Intent} from "frontm.js/core/Intent";
 import {DB} from "frontm.js/core/DB";
 let db = new DB(state);
 
+import {COLLECTIONS, DB_STATUS_CODE} from "../constants";
+
 const REGISTER_NODE = 'registerNode';
-const COLLECTIONS = {
-    CREW: 'crews_olg',
-    USER_COURSES: 'userCourses_olg',
-    COURSES: 'courses_olg',
-    REMOTE_NODES: 'remoteNodes_olg'
-};
-const DB_STATUS_CODE = {
-    SUCCESS: 200,
-    ERROR: 500
-};
 
 let registerNode = new Intent(REGISTER_NODE, state);
 registerNode.runOnCloud();
