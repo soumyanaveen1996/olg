@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const {MONGO_URI} = require('../config');
+const {MONGO_URI, MONGO_DB_COLLECTIONS} = require('../config');
 
 async function getClient() {
     try {
@@ -12,33 +12,21 @@ async function getClient() {
 (async () => {
     console.log('Running sync file');
     let client = await getClient();
+    const database = client.db("olg");
     console.log('Connected to DB. Starting DB data population');
-    await populateCrews(client);
-    await populateBotFarm(client);
-    await createConversationCollection(client);
-    await createKeyValuesCollection(client);
-    await populateDomains(client);
+    await populateBotFarm(database);
+    await populateDomains(database);
+    await createIndex(database, MONGO_DB_COLLECTIONS.USERS, {userId: 1});
+    await createIndex(database, MONGO_DB_COLLECTIONS.CONVERSATIONS, {conversationId: 1});
+    await createIndex(database, MONGO_DB_COLLECTIONS.KEY_VALUES, {key: 1});
+    await createIndex(database, MONGO_DB_COLLECTIONS.COURSES, {courseId: 1});
+    await createIndex(database, MONGO_DB_COLLECTIONS.USER_COURSES, {userId: 1, courseId: 1});
     await client.close();
 })();
 
-async function populateCrews(client) {
+async function populateBotFarm(database) {
     try {
-        const database = client.db("olg");
-        const crews = database.collection("users");
-        // const crewData = require('../data/crews');
-        // const result = await crews.insertMany(crewData);
-        // console.log(`${result.insertedCount} crews were inserted`);
-        console.log('Creating indexes on crew table');
-        await crews.createIndex({userId: 1}, {unique: true});
-    } catch(err) {
-        console.log("Error occurred while trying to load the crews collection. Error:", err.message);
-    }
-}
-
-async function populateBotFarm(client) {
-    try {
-        const database = client.db("olg");
-        const botFarm = database.collection("botfarm");
+        const botFarm = database.collection(MONGO_DB_COLLECTIONS.BOTFARM);
         const botFarmData = require('../data/botfarm');
 
         const result = await botFarm.insertMany(botFarmData);
@@ -50,31 +38,20 @@ async function populateBotFarm(client) {
     }
 }
 
-async function createConversationCollection(client) {
+
+async function createIndex(database, collectionName, indexFields, options = {unique: true}) {
     try {
-        const database = client.db("olg");
-        const conversations = database.collection("conversations");
-        console.log('Creating indexes on conversations table');
-        await conversations.createIndex({conversationId: 1}, {unique: true});
+        const collection = database.collection(collectionName);
+        console.log(`Creating indexes on ${collectionName} table`);
+        await collection.createIndex(indexFields, options);
     } catch(err) {
-        console.log("Error occurred while trying to load the conversations collection. Error:", err.message);
+        console.log(`Error occurred while trying to load the ${collectionName} collection. Error:, ${err.message}`);
     }
 }
 
-async function createKeyValuesCollection(client) {
+async function populateDomains(database) {
     try {
-        const database = client.db("olg");
-        const keyValues = database.collection("keyValues");
-        console.log('Creating indexes on keyValues table');
-        await keyValues.createIndex({key: 1}, {unique: true});
-    } catch(err) {
-        console.log("Error occurred while trying to load the keyValues collection. Error:", err.message);
-    }
-}
-async function populateDomains(client) {
-    try {
-        const database = client.db("olg");
-        const domains = database.collection("domains");
+        const domains = database.collection(MONGO_DB_COLLECTIONS.DOMAINS);
         const domainsData = require('../data/domains');
 
         const result = await domains.insertMany(domainsData);

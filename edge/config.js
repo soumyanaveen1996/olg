@@ -25,6 +25,15 @@ const config = {
   SYNC_STATUS: {PENDING: 'PENDING', DONE: 'DONE'},
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
   DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
+  MONGO_DB_COLLECTIONS: {
+    USERS: 'users',
+    USER_COURSES: 'userCourses_olg',
+    COURSES: 'courses_olg',
+    CONVERSATIONS: 'conversations',
+    KEY_VALUES: 'keyValues',
+    BOTFARM: 'botfarm',
+    DOMAINS: 'domains'
+  }
 }
 
 function setEnvSpecificConfig() {

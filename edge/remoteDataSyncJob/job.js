@@ -6,14 +6,14 @@ const MongoDBManager = require('../runtime/capabilities/MongoDBManager');
 const config = require('../config');
 const {IMO_KEY, LAST_SYNC_TIME_KEY, NODE_ID_KEY, CLOUD_TO_EDGE_SYNC_KEY,
     SYNC_STATUS, API_URL, EDGE_NODE_REGISTRATION_PATH,
-    DEFAULT_USER_DOMAINS} = config;
+    DEFAULT_USER_DOMAINS, MONGO_DB_COLLECTIONS} = config;
 const REGISTER_SYNC_API_ENDPOINT = `${API_URL}/${EDGE_NODE_REGISTRATION_PATH}`;
 
-const COLLECTIONS = {
-    USERS: 'users',
-    USER_COURSES: 'userCourses_olg',
-    COURSES: 'courses_olg',
-    REMOTE_NODES: 'remoteNodes_olg'
+
+const COLLECTION_FILTERS = {
+    USERS: ['userId'],
+    USER_COURSES: ['userId', 'courseId'],
+    COURSES: ['courseId']
 };
 const DB_STATUS_CODE = {
     SUCCESS: 200,
@@ -54,8 +54,11 @@ async function getEdgeData(IMO, remoteNodeId) {
     return {users, userEnrollments, courses};
 }
 
-async function insertDocuments(collection, documents) {
-    let response = await MongoDBManager.execute({action: 'insertArray', collection, documents});
+async function upsertDocuments(documents, collection, queryFields) {
+    documents = _.map(documents, doc => {
+        return {updateOne: { filter: _.pick(doc, queryFields), update: {$set: doc}, upsert: true}}
+    });
+    let response = await MongoDBManager.execute({action: 'bulkWrite', db: 'olg', collection, documents});
     let statusCode = _.get(response, 'statusCode');
     if(statusCode === DB_STATUS_CODE.ERROR) {
         let body = _.get(response, 'body');
@@ -68,9 +71,9 @@ async function loadCloudDataIntoEdge(users, userEnrollments, courses) {
         user.domains = DEFAULT_USER_DOMAINS;
         return user;
     });
-    await insertDocuments(COLLECTIONS.USERS, users);
-    await insertDocuments(COLLECTIONS.USER_COURSES, userEnrollments);
-    await insertDocuments(COLLECTIONS.COURSES, courses);
+    await upsertDocuments(users, MONGO_DB_COLLECTIONS.USERS, COLLECTION_FILTERS.USERS);
+    await upsertDocuments(userEnrollments, MONGO_DB_COLLECTIONS.USER_COURSES, COLLECTION_FILTERS.USER_COURSES);
+    await upsertDocuments(courses, MONGO_DB_COLLECTIONS.COURSES, COLLECTION_FILTERS.COURSES);
 }
 async function doCloudToEdgeSync() {
     try {

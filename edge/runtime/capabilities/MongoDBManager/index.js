@@ -15,7 +15,8 @@ const ACTIONS = {
   update: 'update',
   updateMany: 'updateMany',
   del: 'delete',
-  deleteMany: 'deleteMany'
+  deleteMany: 'deleteMany',
+  bulkWrite: 'bulkWrite'
 };
 
 function queryCollection(collection, event) {
@@ -238,6 +239,17 @@ async function checkUserAccessToDB(event) {
   }
 }
 
+async function bulkWrite(db, event){
+  try {
+    let dbCollection = await db.collection(event.collection);
+    let response = await dbCollection.bulkWrite(event.documents);
+    return { statusCode: 200, body: response };
+  } catch(err) {
+    console.log("=> an error occurred: ", err);
+    return { statusCode: 500, body: err.message };
+  }
+}
+
 async function execute(event) {
   const client = mongoHandler.mongoConnection;
   try {
@@ -268,6 +280,9 @@ async function execute(event) {
       }
       case ACTIONS.deleteMany: {
         return deleteMany(client.db(event.db), event);
+      }
+      case ACTIONS.bulkWrite: {
+        return bulkWrite(client.db(event.db), event);
       }
       default: {
         console.log('=> Invalid action');
