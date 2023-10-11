@@ -25,10 +25,12 @@ const config = {
   SYNC_DATA_POINTS: {
     SYNC_TIME: 'syncTime', 
     SYNC_STATUS: 'syncStatus',
-    SYNC_MSG: 'syncMessage'
+    SYNC_MSG: 'syncMessage',
+    SYNC_STATS: 'syncStats'
   },
-  SYNC_STATUSES: {PENDING: 'PENDING', DONE: 'DONE'},
+  SYNC_STATUSES: {PENDING: 'PENDING', DONE: 'DONE', ERROR: 'ERROR'},
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
+  SYNC_TO_ADOBE_PATH: 'syncToAdobe',
   DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
   MONGO_DB_COLLECTIONS: {
     USERS: 'users',
@@ -38,7 +40,10 @@ const config = {
     KEY_VALUES: 'keyValues',
     BOTFARM: 'botfarm',
     DOMAINS: 'domains'
-  }
+  },
+  COURSE_FIELDS_TO_SYNC: ['hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'],
+  COURSE_STATUS: {STARTED: 'STARTED', COMPLETED: 'COMPLETED'},
+
 }
 
 function setEnvSpecificConfig() {
