@@ -16,7 +16,8 @@ services:
     ports:
       - "4001:4001"
   webapp:
-    image: webapp 
+    image: webapp
+    restart: always
     build:
       context: webapp 
     depends_on:
