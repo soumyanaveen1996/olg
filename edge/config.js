@@ -5,11 +5,13 @@ const LOCAL_CONFIG = {
   MONGO_URI: "mongodb://localhost:27017/olg",
   REDIS_HOST: "0.0.0.0",
   API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg',
+  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
 };
 const DOCKER_CONFIG = {
   MONGO_URI: "mongodb://mongo:27017/olg",
   REDIS_HOST: "redis",
   API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg', // should point to PROD when we are ready
+  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
 };
 const ADMIN_ROLE = 'admin';
 const config = {

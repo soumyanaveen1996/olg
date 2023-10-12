@@ -8,7 +8,7 @@ const config = require('../config');
 const {IMO_KEY, NODE_ID_KEY, C2E_STATUS_KEY, E2C_STATUS_KEY, SYNC_DATA_POINTS,
     SYNC_STATUSES, API_URL, EDGE_NODE_REGISTRATION_PATH,
     SYNC_TO_ADOBE_PATH, DEFAULT_USER_DOMAINS, MONGO_DB_COLLECTIONS,
-    COURSE_STATUS, COURSE_FIELDS_TO_SYNC} = config;
+    COURSE_STATUS, COURSE_FIELDS_TO_SYNC, PING_URL} = config;
 const REGISTER_SYNC_API_ENDPOINT = `${API_URL}/${EDGE_NODE_REGISTRATION_PATH}`;
 const SYNC_TO_ADOBE_API_ENDPOINT = `${API_URL}/${SYNC_TO_ADOBE_PATH}`;
 const DB_FETCH_LIMIT = 25;
@@ -25,11 +25,24 @@ const DB_STATUS_CODE = {
 
 exports.start = () => {
     const job = cron.schedule("* * * * *", async () => {
-        await doCloudToEdgeSync();
-        await doEdgeToCloudSync();
+        let isAPIAvailable = await checkAPIGatewayAvailability();
+        if(isAPIAvailable) {
+            await doCloudToEdgeSync();
+            await doEdgeToCloudSync();
+        }
     });
 
     job.start();
+}
+
+async function checkAPIGatewayAvailability() {
+    try {
+        await axios.get(PING_URL);
+        console.log(`API gateway available now. Initiating the sync process at ${Date.now()}`);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 async function getRemoteNodeData() {
