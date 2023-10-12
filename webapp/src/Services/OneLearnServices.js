@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const postToEdgeServer = async (route, payload, method = "POST") => {
     // let baseURL = Config.edgeURL;
     let auth = getAuthData();
-    const url = `http://localhost:4001${route}`;
+    const url = `http://cdh.onelearn.global:4001${route}`;
     try {
         const response = await fetch(url, {
             method,
