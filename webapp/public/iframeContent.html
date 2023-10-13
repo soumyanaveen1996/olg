@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe Click Event Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script defer>
+      $(document).ready(function () {
+        let name = "iframeUrl=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        let iframeData = "";
+        for(let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          const test = c.includes(name);
+          if(test)
+            iframeData = c.substring(name.length, c.length)
+        }
+        console.log("iframeData", iframeData);
+        if(iframeData) {
+          // $("#print-button").click(function() {
+            $("<iframe />", { src: iframeData, id: "iframeElement", height: "100vh", width: "100wh" }).appendTo("body");
+            $('#iframeElement').on('load', function () {
+              const iframeDocument = $(this).contents();
+              console.log('Iframe loaded', iframeDocument);
+
+               // Listen for click events inside the iframe
+              iframeDocument.find('#mobile-start-button').on('click', function () {
+                console.log('Course Started');
+              });
+
+              let authToken = "authToken=";
+              let decodedCookie = decodeURIComponent(document.cookie);
+              let ca = decodedCookie.split(';');
+              let token = "";
+              for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                const test = c.includes(name);
+                if(test)
+                  token = c.substring(name.length, c.length)
+              }
+
+              iframeDocument.on('click', function (event) {
+                const clickedElement = $(event.target);
+                const clickedElementId = clickedElement.attr('id');
+                
+                if (clickedElement.find('tspan:contains("Start")').length > 0) {
+                  console.log('A descendant tspan element with the text "START" exists.');
+                  $.ajax({
+                    type: "POST",
+                    url: "http://localhost:4001/AgentGuardService/Execute",
+                    headers: {
+                      "token": token
+                    },
+                    dataType: "json",
+                    success: function (result, status, xhr) {
+                      console.log("Agentguard API success");
+                      console.log("RESULT", result);
+                      console.log("STATUS", status);
+                      console.log("XHR", xhr);
+                    },
+                    error: function (xhr, status, error) {
+                      alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                  });
+                } else {
+                  console.log('No descendant tspan element with the text "START" found');
+                }
+                if (clickedElement.find('tspan:contains("Exit")').length > 0) {
+                  console.log('A descendant tspan element with the text "EXIT" exists.');
+                } else {
+                  console.log('No descendant tspan element with the text "EXIT" found');
+                }
+                if (clickedElement.find("[data-acc-text='Next Icon.png']").length > 0) {
+                  console.log('A descendant Next Icon element exists.');
+                } else {
+                  console.log('No descendant Next Icon element found');
+                }
+                if (clickedElement.find("[data-acc-text='Previous Icon.png']").length > 0) {
+                  console.log('A descendant Previous Icon element exists.');
+                } else {
+                  console.log('No descendant Previous Icon element found');
+                }
+                // Check if the clicked element has an ID
+                if (clickedElementId) {
+                  console.log('Clicked element ID:', clickedElementId);
+                } else {
+                  console.log('Clicked element does not have an ID.');
+                }
+              });
+            });
+          // });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- <button id="print-button">Load Iframe!</button> -->
+  </body>
+</html>

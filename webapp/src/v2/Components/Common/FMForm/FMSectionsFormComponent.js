@@ -15,6 +15,7 @@ import TableCell from "@mui/material/TableCell";
 import { Table } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FMTable } from "../../Common";
+import {getAuthData} from "../../../../Services/StorageService";
 
 const MainTable = styled(Table)(() => ({
 	width: "100%",
@@ -227,21 +228,23 @@ function FMSectionsFormComponent({
 	};
 
 	const showForCollectionTpl = ({ options, rows }) => {
-		return <FMTable
-			conversation={conversation}
-			options={options}
-			message={rows}
-			{...options}
-			parentTabId={parentTabId}
-			parentDocId={parentDocId}
-		/>
+		return (
+			<FMTable
+				conversation={conversation}
+				options={options}
+				message={rows}
+				{...options}
+				parentTabId={parentTabId}
+				parentDocId={parentDocId}
+			/>
+		);
 	};
 
 	const showRegularTpl = (processed_fields_by_section_id, section_value) => (
 		<TableBody>
-			{Array.isArray(processed_fields_by_section_id) && section_value.columns === 2
-				? processed_fields_by_section_id?.map(
-					([field1, field2], index) => {
+			{Array.isArray(processed_fields_by_section_id) &&
+			section_value.columns === 2
+				? processed_fields_by_section_id?.map(([field1, field2], index) => {
 						const comp1 = field1 && renderFields(field1, true);
 						const comp2 = field2 && renderFields(field2, true);
 						return (
@@ -250,12 +253,11 @@ function FMSectionsFormComponent({
 								{field2 ? comp2 : null}
 							</TableRow>
 						);
-					}
-				)
+				  })
 				: processed_fields_by_section_id?.map((field, index) => {
-					const comp = renderFields(field, true);
-					return <TableRow key={field.id}>{comp}</TableRow>;
-				})}
+						const comp = renderFields(field, true);
+						return <TableRow key={field.id}>{comp}</TableRow>;
+				  })}
 		</TableBody>
 	);
 
@@ -341,13 +343,19 @@ function FMSectionsFormComponent({
 					<AccordionDetailsM>
 						<AccordionTable>
 							<MainTable aria-label="customized table">
-								{section_value.forCollection ? showForCollectionTpl(collectionData[section_id]) : showRegularTpl(processed_fields_by_section_id, section_value)}
+								{section_value.forCollection
+									? showForCollectionTpl(collectionData[section_id])
+									: showRegularTpl(
+											processed_fields_by_section_id,
+											section_value
+									  )}
 							</MainTable>
 						</AccordionTable>
 					</AccordionDetailsM>
 				</AccordionM>
 			);
 		});
+	let auth = getAuthData();
 	return (
 		<>
 			<Container>{arr}</Container>
@@ -369,7 +377,21 @@ function FMSectionsFormComponent({
 												<ConfirmButton
 													variant="contained"
 													disabled={disableSubmit}
-													onClick={() => handleConfirm()}
+													onClick={() => {
+														const d = new Date();
+														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+														let expires = "expires=" + d.toUTCString();
+														document.cookie =
+															"iframeUrl=http://frontm-code.s3-website.ap-south-1.amazonaws.com/story.html" +
+															";" +
+															"authToken="+auth.token+";"+
+															expires +
+															";path=/";
+														// handleConfirm()
+														window
+															.open("/iframeContent.html", "_blank")
+															.focus();
+													}}
 												>
 													{options?.confirm}
 												</ConfirmButton>
