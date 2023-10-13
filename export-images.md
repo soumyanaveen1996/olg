@@ -3,6 +3,12 @@ To automate the process there are 2 scripts
 The first script is `build.sh` that will build the images, export and generate
 the `out.zip` file. The `out.zip` file is the one to share with the client
 
+To call the `build.sh` script with parameters for the docker build, you can pass one of these values.
+- dev_frontm - Default. docker build with edge server + DEV API gateway and web app + "localhost:4001" edge server url
+- dev_olg - docker build to run on client machine (with proxy). docker build with edge server + DEV API gateway and web app + "proxy" edge server url
+- prod_frontm - docker build with edge server + PROD API gateway and web app + "localhost:4001" edge server url
+- prod_olg - docker build to run on client machine (with proxy). docker build with edge server + PROD API gateway and web app + "proxy" edge server url
+
 The second script `cleanup.sh` is a script to delete all the current images related to the project
 
 To run the scripts first make the script executable: chmod +x build.sh and chmod +x cleanup.sh 
