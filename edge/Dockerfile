@@ -15,5 +15,7 @@ EXPOSE 4001
 
 #ENTRYPOINT [ "node", "server.js" ]
 
+ARG EDGE_BUILD_TYPE="dev"
+ENV BUILD_TYPE=$EDGE_BUILD_TYPE
 # temp script to load the mongo db
-CMD node "scripts/runDataSync.js"  & node server.js
+CMD node "scripts/runDataSync.js" & node server.js

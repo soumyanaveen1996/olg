@@ -17,6 +17,10 @@ COPY --from=builder /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/src/sw-custom.js /usr/share/nginx/html/
 
 EXPOSE 8080
+
+ARG WEBAPP_BUILD_TYPE="docker_frontm"
+ENV BUILD_TYPE=$WEBAPP_BUILD_TYPE
+
 CMD ["nginx", "-g", "daemon off;"]
 
 

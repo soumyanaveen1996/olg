@@ -1,18 +1,29 @@
 const _ = require("lodash");
 const DEFAULT_ENV = 'docker';
+const DEFAULT_BUILD_TYPE = 'dev';
 const env = process.env.ENV || DEFAULT_ENV;
+const buildType = process.env.BUILD_TYPE || DEFAULT_BUILD_TYPE;
+
+console.log(`:::: buildType:${buildType}. env: ${env}`);
+
+const DEV_CONFIG = {
+  API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg',
+  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
+};
+const PROD_CONFIG = {
+  API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg', // should point to PROD when we are ready
+  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
+};
+
 const LOCAL_CONFIG = {
   MONGO_URI: "mongodb://localhost:27017/olg",
   REDIS_HOST: "0.0.0.0",
-  API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg',
-  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
 };
 const DOCKER_CONFIG = {
   MONGO_URI: "mongodb://mongo:27017/olg",
   REDIS_HOST: "redis",
-  API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg', // should point to PROD when we are ready
-  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
 };
+
 const ADMIN_ROLE = 'admin';
 const config = {
   REDIS_PORT: 6379,
@@ -56,10 +67,18 @@ function setEnvSpecificConfig() {
   }
 }
 
+function setBuildSpecificConfig() {
+  if(buildType === DEFAULT_BUILD_TYPE) {
+    Object.assign(config, DEV_CONFIG);
+  } else {
+    Object.assign(config, PROD_CONFIG);
+  }
+}
+
 function initializeAPIKeys() {
   let errorMessage = '===== ERROR: API Key for Sync API not available in the environment. Exiting... ======';
   try {
-    let apiKey = _.get(require('./.api_key'), `${env}.SYNC_API_KEY`);
+    let apiKey = _.get(require('./.api_key'), `${buildType}.SYNC_API_KEY`);
     if(_.isEmpty(apiKey)) {
       console.log(errorMessage);
       process.exit(1);
@@ -75,6 +94,7 @@ function initializeAPIKeys() {
   console.log('Initializing config');
   config.ADMIN_ROLE = ADMIN_ROLE;
   setEnvSpecificConfig();
+  setBuildSpecificConfig();
   initializeAPIKeys();
 })();
 

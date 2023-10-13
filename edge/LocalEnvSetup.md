@@ -40,6 +40,7 @@ If any changes are necessary, you can update the `config.js` file
     - Populate the mongo db with sample data
     - <span style="color: red">*Note* </span>: If any changes are required, as per the laptop setup, please modify the script accordingly but do not check in the changes
 - Run `npm start` to start the express server.
+- Run `npm run prod` to start the express server pointing to production API gateway.
 
 ### <span style="color: green"> Steps to shut down the server locally </span>
 - Stop the express server on the console (Ctrl + C)

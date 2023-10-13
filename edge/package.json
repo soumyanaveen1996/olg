@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Repo for edge node server",
   "scripts": {
-    "start": "ENV=local DEBUG=express*,ioredis* nodemon --ignore scripts/ --ignore test/ server.js"
+    "start": "ENV=local DEBUG=express*,ioredis* nodemon --ignore scripts/ --ignore test/ server.js",
+    "prod":  "BUILD_TYPE=prod ENV=local DEBUG=express*,ioredis* nodemon --ignore scripts/ --ignore test/ server.js"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
