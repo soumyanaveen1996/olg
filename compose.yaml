@@ -4,6 +4,9 @@ services:
     restart: always
     build:
       context: edge
+      args:  # This is where we specify the build arguments for edge service
+        EDGE_BUILD_TYPE: dev  # Default value; you can override this when running `docker-compose build`
+        WEBAPP_BUILD_TYPE: docker_frontm  # Default value; you can override this too
     depends_on:
       - mongo
       - redis
@@ -15,11 +18,15 @@ services:
       - 4001
     ports:
       - "4001:4001"
+  
   webapp:
     image: webapp
     restart: always
     build:
-      context: webapp 
+      context: webapp
+      args:  # This is where we specify the build arguments for webapp service
+        EDGE_BUILD_TYPE: dev  # Default value; you can override this when running `docker-compose build`
+        WEBAPP_BUILD_TYPE: docker_frontm  # Default value; you can override this too
     depends_on:
       - mongo
       - redis

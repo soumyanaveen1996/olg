@@ -6,7 +6,10 @@ import _ from "lodash";
 import { getAuthData } from "../StorageService";
 
 // let baseURL = `${Config.gRPCURL}/`;
-let baseURL = "http://cdh.onelearn.global:4001/";
+let baseURL = "http://localhost:4001/";
+if (process.env.BUILD_TYPE === 'docker_olg') {
+	baseURL = "http://cdh.onelearn.global:4001/";
+}
 // Config.envName == "development" ? `${Config.gRPCURL}/grpc` : Config.gRPCURL;
 
 export default class RPC {
