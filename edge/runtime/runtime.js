@@ -5,10 +5,11 @@ const redisHandler = require('./utils/redisUtils');
 
 class FrontmRuntime {
   constructor(config) {
+    this.config = config;
     if (config) {
       this.overwriteConfig(config);
     }
-    this.capabilityExecutor = new CapabilityExecutor();
+    this.capabilityExecutor = new CapabilityExecutor(config);
     this.botsRunner = new BotsRunner(this.capabilityExecutor, config);
   }
 

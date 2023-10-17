@@ -30,6 +30,7 @@ const config = {
   EXPRESS_PORT: 4001,
   ASSET_ROOT_PATH: __dirname,
   ASSETS_LOCATION: './bots',
+  BOT_ID: 'bot1',
   ADMIN_USER: { "name": "Admin", "userId": "admin", "domains": [{"domain": "olg", "roles": ["enduser"]}], "dob": 949464502000, pin: '7531', "userRole": ADMIN_ROLE},
   IMO_KEY: 'EDGE_IMO',
   NODE_ID_KEY: 'NODE_ID',

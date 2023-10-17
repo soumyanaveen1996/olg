@@ -9,9 +9,10 @@ const RedisReadQueue = require('./RedisReadQueue');
 const MongoDBManager = require('./MongoDBManager');
 
 class CapabilityExecutor {
-  constructor() {
+  constructor(config) {
     this.dependencies = {};
     this.dependencies.capabilities = {};
+    this.config = config;
     this.setUpCommonDependencies();
     this.setUpCapabilities();
   }
@@ -25,13 +26,13 @@ class CapabilityExecutor {
     this.dependencies.momentTimezone = momentTimezone;
     this.dependencies.log = (payload) => console.log(payload);
     this.dependencies.frontmlib = new Frontmlib(this);
+    this.dependencies.config = this.config;
   }
 
   setUpCapabilities() {
     this.dependencies.capabilities["RedisWriteQueue"] = RedisWriteQueue;
     this.dependencies.capabilities["RedisReadQueue"] = RedisReadQueue;
     this.dependencies.capabilities["MongoDBManager"] = MongoDBManager;
-
   }
 
   async runCapability(capabilityName, event) {
