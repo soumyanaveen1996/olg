@@ -1,4 +1,4 @@
-const FIELDS_TO_UPDATE = ['hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'];
+const FIELDS_TO_UPDATE = ['dateStarted', 'dateCompleted', 'dateSuccess', 'hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'];
 const COLLECTIONS = {
     CREW: 'crews_olg',
     USER_COURSES: 'userCourses_olg',

@@ -54,7 +54,7 @@ const config = {
     BOTFARM: 'botfarm',
     DOMAINS: 'domains'
   },
-  COURSE_FIELDS_TO_SYNC: ['hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'],
+  COURSE_FIELDS_TO_SYNC: ['dateStarted', 'dateCompleted', 'dateSuccess', 'hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'],
   COURSE_STATUS: {STARTED: 'STARTED', COMPLETED: 'COMPLETED'},
 
 }
