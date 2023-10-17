@@ -34,5 +34,12 @@ module.exports = function override(config, env) {
 	// Commented out as you've it commented in your original config
 	// config.optimization.splitChunks = { chunks: 'all', name: false };
 
+	// Expose the BUILD_TYPE variable to the app
+	config.plugins.forEach(plugin => {
+		if (plugin.constructor.name === 'DefinePlugin') {
+			plugin.definitions['process.env.BUILD_TYPE'] = JSON.stringify(process.env.BUILD_TYPE);
+		}
+	});
+
 	return config;
 };
