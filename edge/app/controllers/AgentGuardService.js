@@ -83,6 +83,9 @@ router.post('/AgentGuardService/Execute', doAuth, async (req, res) => {
         await validate(req);
         let {user, botData, domainData, body, convData} = req;
         let {capability, parameters, requestUuid} = body;
+        parameters.environment = {
+            origin: req.get('origin'),
+        };
         await runtime.execute({capability, parameters, requestUuid, conversation: convData, user, botData, domainData});
         return res.status(200).json({message: 'success'});
     } catch(err) {

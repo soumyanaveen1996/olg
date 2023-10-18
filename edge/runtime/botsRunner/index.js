@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const _ = require('lodash');
 const path = require('path');
 
 class BotsRunner {
@@ -15,6 +16,7 @@ class BotsRunner {
       user,
       bot,
       conversation,
+      environment,
       data
     } = event;
     try {
@@ -22,6 +24,7 @@ class BotsRunner {
       user.userDomains = [{ domain: 'frontmai', roles: ["enduser"] }];
 
       if (command === 'asyncRequest') {
+        _.set(data, 'state.messageFromUser.environment', environment);
         return await this.handleAsyncRequest(data, conversation, user, botModule);
       }
       console.log("Command not supported");
