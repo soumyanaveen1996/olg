@@ -378,6 +378,7 @@ function FMSectionsFormComponent({
 													variant="contained"
 													disabled={disableSubmit}
 													onClick={() => {
+														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
@@ -385,6 +386,7 @@ function FMSectionsFormComponent({
 															"iframeUrl=http://frontm-code.s3-website.ap-south-1.amazonaws.com/story.html" +
 															";" +
 															"authToken="+auth.token+";"+
+															"courseId="+getCourseId?.value+";"+
 															expires +
 															";path=/";
 														// handleConfirm()
