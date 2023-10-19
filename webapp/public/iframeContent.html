@@ -40,7 +40,7 @@
               }
 
               console.log("authToken", token);
-
+              //TODO: GET courseid from cookie
               let getCourseId = "courseId=";
               let courseId = "";
               for(let i = 0; i < ca.length; i++) {
@@ -50,6 +50,18 @@
                   courseId = c.substring(getCourseId.length, c.length)
               }
               console.log("courseId", courseId);
+
+              //TODO: GET baseURL from cookie
+              let getbaseUrl = "baseURL=";
+              let baseURL = "";
+              for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                const test = c.includes(getbaseUrl);
+                if(test)
+                  baseURL = c.substring(getbaseUrl.length, c.length)
+              }
+              console.log("baseURL", baseURL);
+
               iframeDocument.on('click', function (event) {
                 const clickedElement = $(event.target);
                 const clickedElementId = clickedElement.attr('id');
@@ -58,7 +70,7 @@
                   console.log('A descendant tspan element with the text "START" exists.');
                   $.ajax({
                     type: "POST",
-                    url: "http://localhost:4001/aicc/startCourse",
+                    url: baseURL + "aicc/startCourse",
                     headers: {
                       "token": token
                     },
@@ -83,7 +95,7 @@
                   console.log('A descendant tspan element with the text "EXIT" exists.');
                   $.ajax({
                     type: "POST",
-                    url: "http://localhost:4001/aicc/endCourse",
+                    url: baseURL + "aicc/endCourse",
                     headers: {
                       "token": token
                     },
