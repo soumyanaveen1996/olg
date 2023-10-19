@@ -378,6 +378,10 @@ function FMSectionsFormComponent({
 													variant="contained"
 													disabled={disableSubmit}
 													onClick={() => {
+														let baseURL = "http://localhost:4001/";
+														if (process.env.BUILD_TYPE === 'docker_olg') {
+															baseURL = "http://cdh.onelearn.global:4001/";
+														}
 														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
@@ -387,6 +391,7 @@ function FMSectionsFormComponent({
 															";" +
 															"authToken="+auth.token+";"+
 															"courseId="+getCourseId?.value+";"+
+															"baseURL="+baseURL+";"+
 															expires +
 															";path=/";
 														// handleConfirm()
