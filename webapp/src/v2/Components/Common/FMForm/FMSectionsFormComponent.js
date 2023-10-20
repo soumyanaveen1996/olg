@@ -15,7 +15,7 @@ import TableCell from "@mui/material/TableCell";
 import { Table } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FMTable } from "../../Common";
-import {getAuthData} from "../../../../Services/StorageService";
+import { getAuthData } from "../../../../Services/StorageService";
 
 const MainTable = styled(Table)(() => ({
 	width: "100%",
@@ -243,21 +243,21 @@ function FMSectionsFormComponent({
 	const showRegularTpl = (processed_fields_by_section_id, section_value) => (
 		<TableBody>
 			{Array.isArray(processed_fields_by_section_id) &&
-			section_value.columns === 2
+				section_value.columns === 2
 				? processed_fields_by_section_id?.map(([field1, field2], index) => {
-						const comp1 = field1 && renderFields(field1, true);
-						const comp2 = field2 && renderFields(field2, true);
-						return (
-							<TableRow key={field1.id}>
-								{comp1}
-								{field2 ? comp2 : null}
-							</TableRow>
-						);
-				  })
+					const comp1 = field1 && renderFields(field1, true);
+					const comp2 = field2 && renderFields(field2, true);
+					return (
+						<TableRow key={field1.id}>
+							{comp1}
+							{field2 ? comp2 : null}
+						</TableRow>
+					);
+				})
 				: processed_fields_by_section_id?.map((field, index) => {
-						const comp = renderFields(field, true);
-						return <TableRow key={field.id}>{comp}</TableRow>;
-				  })}
+					const comp = renderFields(field, true);
+					return <TableRow key={field.id}>{comp}</TableRow>;
+				})}
 		</TableBody>
 	);
 
@@ -346,9 +346,9 @@ function FMSectionsFormComponent({
 								{section_value.forCollection
 									? showForCollectionTpl(collectionData[section_id])
 									: showRegularTpl(
-											processed_fields_by_section_id,
-											section_value
-									  )}
+										processed_fields_by_section_id,
+										section_value
+									)}
 							</MainTable>
 						</AccordionTable>
 					</AccordionDetailsM>
@@ -380,7 +380,7 @@ function FMSectionsFormComponent({
 													onClick={() => {
 														let baseURL = "http://localhost:4001/";
 														if (process.env.BUILD_TYPE === 'docker_olg') {
-															baseURL = "http://cdh.onelearn.global:4001/";
+															baseURL = "https://cdh.onelearn.global:4001/";
 														}
 														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const d = new Date();
@@ -389,9 +389,9 @@ function FMSectionsFormComponent({
 														document.cookie =
 															"iframeUrl=http://frontm-code.s3-website.ap-south-1.amazonaws.com/story.html" +
 															";" +
-															"authToken="+auth.token+";"+
-															"courseId="+getCourseId?.value+";"+
-															"baseURL="+baseURL+";"+
+															"authToken=" + auth.token + ";" +
+															"courseId=" + getCourseId?.value + ";" +
+															"baseURL=" + baseURL + ";" +
 															expires +
 															";path=/";
 														// handleConfirm()
