@@ -380,7 +380,7 @@ function FMSectionsFormComponent({
 													onClick={() => {
 														let baseURL = "http://localhost:4001/api";
 														if (process.env.BUILD_TYPE === 'docker_olg') {
-															baseURL = "https://cdh.onelearn.global:4001/api";
+															baseURL = "https://cdh.onelearn.global/api";
 														}
 														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const d = new Date();

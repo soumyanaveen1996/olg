@@ -8,7 +8,7 @@ import { getAuthData } from "../StorageService";
 // let baseURL = `${Config.gRPCURL}/`;
 let baseURL = "http://localhost:4001/api";
 if (process.env.BUILD_TYPE === 'docker_olg') {
-	baseURL = "https://cdh.onelearn.global:4001/api";
+	baseURL = "https://cdh.onelearn.global/api";
 }
 // Config.envName == "development" ? `${Config.gRPCURL}/grpc` : Config.gRPCURL;
 
