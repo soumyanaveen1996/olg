@@ -6,7 +6,7 @@ const postToEdgeServer = async (route, payload, method = "POST") => {
     let auth = getAuthData();
     let url = `http://localhost:4001/api${route}`;
     if (process.env.BUILD_TYPE === 'docker_olg') {
-        url = `https://cdh.onelearn.global:4001/api${route}`;
+        url = `https://cdh.onelearn.global/api${route}`;
     }
     try {
         const response = await fetch(url, {
