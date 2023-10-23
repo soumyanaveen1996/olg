@@ -15,7 +15,8 @@ import TableCell from "@mui/material/TableCell";
 import { Table } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FMTable } from "../../Common";
-import { getAuthData } from "../../../../Services/StorageService";
+import {getAuthData} from "../../../../Services/StorageService";
+import Config from "../../../../Utils/Config";
 
 const MainTable = styled(Table)(() => ({
 	width: "100%",
@@ -157,7 +158,7 @@ const StyledGrid = styled(Grid)({
 	width: "55%",
 	marginLeft: "14px !important",
 });
-
+let baseURL = Config.gRPCURL;
 function FMSectionsFormComponent({
 	conversation,
 	fields,
@@ -243,21 +244,21 @@ function FMSectionsFormComponent({
 	const showRegularTpl = (processed_fields_by_section_id, section_value) => (
 		<TableBody>
 			{Array.isArray(processed_fields_by_section_id) &&
-				section_value.columns === 2
+			section_value.columns === 2
 				? processed_fields_by_section_id?.map(([field1, field2], index) => {
-					const comp1 = field1 && renderFields(field1, true);
-					const comp2 = field2 && renderFields(field2, true);
-					return (
-						<TableRow key={field1.id}>
-							{comp1}
-							{field2 ? comp2 : null}
-						</TableRow>
-					);
-				})
+						const comp1 = field1 && renderFields(field1, true);
+						const comp2 = field2 && renderFields(field2, true);
+						return (
+							<TableRow key={field1.id}>
+								{comp1}
+								{field2 ? comp2 : null}
+							</TableRow>
+						);
+				  })
 				: processed_fields_by_section_id?.map((field, index) => {
-					const comp = renderFields(field, true);
-					return <TableRow key={field.id}>{comp}</TableRow>;
-				})}
+						const comp = renderFields(field, true);
+						return <TableRow key={field.id}>{comp}</TableRow>;
+				  })}
 		</TableBody>
 	);
 
@@ -346,9 +347,9 @@ function FMSectionsFormComponent({
 								{section_value.forCollection
 									? showForCollectionTpl(collectionData[section_id])
 									: showRegularTpl(
-										processed_fields_by_section_id,
-										section_value
-									)}
+											processed_fields_by_section_id,
+											section_value
+									  )}
 							</MainTable>
 						</AccordionTable>
 					</AccordionDetailsM>
@@ -378,25 +379,22 @@ function FMSectionsFormComponent({
 													variant="contained"
 													disabled={disableSubmit}
 													onClick={() => {
-														let baseURL = "http://localhost:4001/api";
-														if (process.env.BUILD_TYPE === 'docker_olg') {
-															baseURL = "https://cdh.onelearn.global/api";
-														}
 														const getCourseId = fields?.find((item) => item.id === "courseId");
+														const getCourseUrl = fields?.find((item) => item.id === "courseUrl");
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
 														document.cookie =
-															"iframeUrl=http://frontm-code.s3-website.ap-south-1.amazonaws.com/story.html" +
+															"iframeUrl=" +baseURL+ getCourseUrl?.value +
 															";" +
-															"authToken=" + auth.token + ";" +
-															"courseId=" + getCourseId?.value + ";" +
-															"baseURL=" + baseURL + ";" +
+															"authToken="+auth.token+";"+
+															"courseId="+getCourseId?.value+";"+
+															"baseURL="+baseURL+";"+
 															expires +
 															";path=/";
 														// handleConfirm()
 														window
-															.open("/iframeContent.html", "_blank")
+															.open("/offlinelms/iframeContent.html", "_blank")
 															.focus();
 													}}
 												>
