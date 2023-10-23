@@ -16,6 +16,7 @@ import { Table } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FMTable } from "../../Common";
 import {getAuthData} from "../../../../Services/StorageService";
+import Config from "../../../../Utils/Config";
 
 const MainTable = styled(Table)(() => ({
 	width: "100%",
@@ -157,7 +158,7 @@ const StyledGrid = styled(Grid)({
 	width: "55%",
 	marginLeft: "14px !important",
 });
-
+let baseURL = Config.gRPCURL;
 function FMSectionsFormComponent({
 	conversation,
 	fields,
@@ -378,16 +379,13 @@ function FMSectionsFormComponent({
 													variant="contained"
 													disabled={disableSubmit}
 													onClick={() => {
-														let baseURL = "http://localhost:4001/";
-														if (process.env.BUILD_TYPE === 'docker_olg') {
-															baseURL = "http://cdh.onelearn.global:4001/";
-														}
 														const getCourseId = fields?.find((item) => item.id === "courseId");
+														const getCourseUrl = fields?.find((item) => item.id === "courseUrl");
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
 														document.cookie =
-															"iframeUrl=http://frontm-code.s3-website.ap-south-1.amazonaws.com/story.html" +
+															"iframeUrl=" +baseURL+ getCourseUrl?.value +
 															";" +
 															"authToken="+auth.token+";"+
 															"courseId="+getCourseId?.value+";"+
@@ -396,7 +394,7 @@ function FMSectionsFormComponent({
 															";path=/";
 														// handleConfirm()
 														window
-															.open("/iframeContent.html", "_blank")
+															.open("/offlinelms/iframeContent.html", "_blank")
 															.focus();
 													}}
 												>

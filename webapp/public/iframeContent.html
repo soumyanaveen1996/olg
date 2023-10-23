@@ -12,7 +12,7 @@
         let ca = decodedCookie.split(';');
         let iframeData = "";
         for(let i = 0; i < ca.length; i++) {
-          let c = ca[i];
+          let c = ca[i]?.trim();
           const test = c.includes(name);
           if(test)
             iframeData = c.substring(name.length, c.length)
@@ -33,7 +33,7 @@
               let authToken = "authToken=";
               let token = "";
               for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
+                let c = ca[i]?.trim();
                 const test = c.includes(authToken);
                 if(test)
                   token = c.substring(authToken.length, c.length)
@@ -44,7 +44,7 @@
               let getCourseId = "courseId=";
               let courseId = "";
               for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
+                let c = ca[i]?.trim();
                 const test = c.includes(getCourseId);
                 if(test)
                   courseId = c.substring(getCourseId.length, c.length)
@@ -55,7 +55,7 @@
               let getbaseUrl = "baseURL=";
               let baseURL = "";
               for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
+                let c = ca[i]?.trim();
                 const test = c.includes(getbaseUrl);
                 if(test)
                   baseURL = c.substring(getbaseUrl.length, c.length)
