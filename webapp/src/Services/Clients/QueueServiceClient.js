@@ -11,7 +11,11 @@ import {
 import { sendSocketReconnectionEvent } from "../BotsService";
 
 const io = require("socket.io-client");
-let baseURL = Config.gRPCURL;
+
+let baseURL = "http://localhost:4001";
+if (process.env.BUILD_TYPE === 'docker_olg') {
+	baseURL = "https://cdh.onelearn.global";
+}
 
 export default class QueueServiceClient {
 	static setupQueueMessageStream(receiveIncoming) {
@@ -20,7 +24,7 @@ export default class QueueServiceClient {
 		let socketParams;
 		let auth = getAuthData();
 		socketParams = {
-			path: "/clientConn",
+			path: "/api/clientConn",
 			// Config.envName == "development" ? "/grpc/clientConn" : "/clientConn",
 			transports: ["polling", "websocket"],
 			transportOptions: {

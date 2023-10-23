@@ -45,7 +45,7 @@ function setupRedis(socketIO) {
 function setupSocketIO(expressServer) {
 	console.log('Setting up socket io');
 	const socketIO = socket(expressServer, {
-		path: "/clientConn",
+		path: "/api/clientConn",
 		upgradeTimeout: 30000,
 		allowUpgrades: true,
 		allowEIO3: true,

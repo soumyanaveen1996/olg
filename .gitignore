@@ -3,3 +3,4 @@ node_modules/
 data
 out/out.tar
 /db
+centosinstance.pem

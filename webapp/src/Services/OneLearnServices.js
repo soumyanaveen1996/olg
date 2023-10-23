@@ -4,11 +4,10 @@ import { toast } from "react-toastify";
 const postToEdgeServer = async (route, payload, method = "POST") => {
     // let baseURL = Config.edgeURL;
     let auth = getAuthData();
-    let domain = 'localhost';
+    let url = `http://localhost:4001/api${route}`;
     if (process.env.BUILD_TYPE === 'docker_olg') {
-        domain = 'cdh.onelearn.global';
+        url = `https://cdh.onelearn.global/api${route}`;
     }
-    const url = `http://${domain}:4001${route}`;
     try {
         const response = await fetch(url, {
             method,
