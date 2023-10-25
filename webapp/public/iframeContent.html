@@ -20,7 +20,7 @@
         console.log("iframeData", iframeData);
         if(iframeData) {
           // $("#print-button").click(function() {
-            $("<iframe />", { src: iframeData, id: "iframeElement", height: "100vh", width: "100wh" }).appendTo("body");
+            $("<iframe />", { src: iframeData, id: "iframeElement", height: "80vh", width: "100%" }).appendTo("body");
             $('#iframeElement').on('load', function () {
               const iframeDocument = $(this).contents();
               console.log('Iframe loaded', iframeDocument);
@@ -70,7 +70,7 @@
                   console.log('A descendant tspan element with the text "START" exists.');
                   $.ajax({
                     type: "POST",
-                    url: baseURL + "aicc/startCourse",
+                    url: baseURL + "/aicc/startCourse",
                     headers: {
                       "token": token
                     },
@@ -95,7 +95,7 @@
                   console.log('A descendant tspan element with the text "EXIT" exists.');
                   $.ajax({
                     type: "POST",
-                    url: baseURL + "aicc/endCourse",
+                    url: baseURL + "/aicc/endCourse",
                     headers: {
                       "token": token
                     },

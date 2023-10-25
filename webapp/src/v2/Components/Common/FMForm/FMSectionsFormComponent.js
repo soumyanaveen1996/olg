@@ -384,14 +384,11 @@ function FMSectionsFormComponent({
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
-														document.cookie =
-															"iframeUrl=" +baseURL+ getCourseUrl?.value +
-															";" +
-															"authToken="+auth.token+";"+
-															"courseId="+getCourseId?.value+";"+
-															"baseURL="+baseURL+";"+
-															expires +
-															";path=/";
+														document.cookie = "iframeUrl=" +baseURL+ getCourseUrl?.value;
+														document.cookie = "authToken="+auth.token;
+														document.cookie = "courseId="+getCourseId?.value;
+														document.cookie = "baseURL="+baseURL;
+														document.cookie = expires + ";path=/";
 														// handleConfirm()
 														window
 															.open("/offlinelms/iframeContent.html", "_blank")
