@@ -158,7 +158,8 @@ const StyledGrid = styled(Grid)({
 	width: "55%",
 	marginLeft: "14px !important",
 });
-let baseURL = Config.webAppUrl;
+let webAppUrl = Config.webAppUrl;
+let baseURL = Config.gRPCURL;
 function FMSectionsFormComponent({
 	conversation,
 	fields,
@@ -384,7 +385,7 @@ function FMSectionsFormComponent({
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
-														document.cookie = "iframeUrl=" +baseURL+ getCourseUrl?.value;
+														document.cookie = "iframeUrl=" +webAppUrl+ getCourseUrl?.value;
 														document.cookie = "authToken="+auth.token;
 														document.cookie = "courseId="+getCourseId?.value;
 														document.cookie = "baseURL="+baseURL;
