@@ -13,6 +13,7 @@ export default {
 	// gRPCURL: "https://prod2.frontm.com:8080", prev -grpc url
 	// gRPCURL: "https://gw.frontm.ai", //new grpc url
 	gRPCURL: "https://cdh.onelearn.global/api",
+	webAppUrl: "https://cdh.onelearn.global",
 	webertcSignalServer: "gw.frontm.ai",
 	mapURL: "https://maps.frontm.ai/styles/klokantech-basic/style.json",
 	gnsDomain: "voyagervoice",

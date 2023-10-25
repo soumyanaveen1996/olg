@@ -14,6 +14,7 @@ export default {
 		"pk.eyJ1IjoiZ2FjaWx1IiwiYSI6ImNqcHh0azRhdTFjbXQzeW8wcW5vdXhlMzkifQ.qPfpVkrWbk-GSBY3uc6z3A",
 	// gRPCURL: "https://gwdev.frontm.ai",
 	gRPCURL: "http://localhost:4001/api",
+	webAppUrl: "http://localhost:4001",
 	edgeURL: "http://localhost:4001/api",
 	webertcSignalServer: "gwdev.frontm.ai",
 	mapURL: "https://devproxymaps.frontm.ai/styles/klokantech-basic/style.json",

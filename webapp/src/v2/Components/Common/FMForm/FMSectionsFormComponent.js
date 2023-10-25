@@ -158,7 +158,7 @@ const StyledGrid = styled(Grid)({
 	width: "55%",
 	marginLeft: "14px !important",
 });
-let baseURL = Config.gRPCURL;
+let baseURL = Config.webAppUrl;
 function FMSectionsFormComponent({
 	conversation,
 	fields,
