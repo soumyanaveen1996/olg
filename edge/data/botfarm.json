@@ -2,7 +2,7 @@
   {
     "botId": "bot1",
     "userDomain": "olg",
-    "botName": "Test",
+    "botName": "OneLearn Training Application",
     "botUrl": "botfarm/olg/bot1/bot1.js",
     "category": ["Fun"],
     "conversational": false,
