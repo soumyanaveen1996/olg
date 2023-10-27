@@ -131,7 +131,7 @@ class ProfileDetailsView extends Component {
 			phoneNumbers: [...phonesArray],
 			addedTypes,
 			emailAddress: user.emailAddress || "",
-			userName: user.userName || "",
+			userName: user.userName || user.name || "",
 			userCompanyName: user.userCompanyName || "",
 			nationality: user.nationality || "Select Country",
 			addressLine1:
@@ -386,7 +386,7 @@ class ProfileDetailsView extends Component {
 
 	checkForChanges = (data) => {
 		const { user } = this.props;
-		if (user.userName !== data) {
+		if (user.userName || user.name !== data) {
 			store.dispatch(unsavedForm(true));
 			this.setState({ disableCancel: false, isDirty: true });
 		} else if (user.address.addressLine1 !== data) {
