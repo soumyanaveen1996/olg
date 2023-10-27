@@ -262,7 +262,7 @@
 
 .combined-shape {
 	height: 6px;
-	width: 6px;
+	width: 10px;
 	transform: scaleX(-1);
 	background-color: #00bdf2;
 	box-shadow: 0 0 4px 0 #00a7d6;
