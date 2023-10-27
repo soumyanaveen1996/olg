@@ -8,7 +8,7 @@ import { updateLastLoggedInDomain } from "../../Services/UserService";
 
 import history from "../../Services/History";
 import "./Login.css";
-import { div, Button, CircularProgress, Box } from "@mui/material";
+import { Button, CircularProgress, Box } from "@mui/material";
 import { user } from "../../Services/gRPC/Generated/UserService";
 import moment from "moment";
 import Config from "../../Utils/Config";
@@ -244,7 +244,7 @@ const OneLearnLogin = (props) => {
 				</span>
 			</Box>
 			<Box className={"justify-content-center d-flex mb-30"}>
-				<Button style={{}} onClick={() => handleFormSubmit()} className={`btn btn-open btn-icon onship-btn`} >
+				<Button style={{}} onClick={() => handleFormSubmit()} className={`btn btn-open btn-block btn-icon onship-btn`} >
 					Log in
 				</Button>
 			</Box>
@@ -252,7 +252,7 @@ const OneLearnLogin = (props) => {
 
 			<Box className={"mt-20 mb-30 d-flex align-items-center justify-content-center font500 flex-column"}>
 				<Box className={"mb-10"}>New User?</Box>
-				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`ml-2 btn btn-open btn-icon oneLearn-btn`} >
+				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`ml-2 btn btn-open btn-block btn-icon oneLearn-btn`} >
 					Create PIN
 				</Button>
 			</Box>
@@ -299,7 +299,7 @@ const OneLearnLogin = (props) => {
 						/>
 					</div>
 					<Box className={"justify-content-center d-flex"}>
-						<Button onClick={() => handleCreatePin()} className={`mt-30 btn btn-open btn-icon onship-btn`} >
+						<Button onClick={() => handleCreatePin()} className={`mt-30 btn btn-open btn-block btn-icon onship-btn`} >
 							Create pin
 						</Button>
 					</Box>
@@ -355,7 +355,7 @@ const OneLearnLogin = (props) => {
 
 					<Box className={"mt-40 mb-15 justify-content-center d-flex font500"}>Login with your new pin</Box>
 					<Box className={"justify-content-center d-flex mb-20"}>
-						<Button onClick={() => handleNewPinLogin()} className={` btn btn-open btn-icon onship-btn`} >
+						<Button onClick={() => handleNewPinLogin()} className={` btn btn-open btn-block btn-icon onship-btn`} >
 							Login
 						</Button>
 					</Box>
@@ -367,7 +367,9 @@ const OneLearnLogin = (props) => {
 			</>
 		)}
 
-
+		<div id="version-number">
+			<span>Version 1.0</span>
+		</div>
 	</Box>
 }
 

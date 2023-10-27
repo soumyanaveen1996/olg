@@ -396,8 +396,7 @@ class AppNav extends Component {
 
 					{/* ========== Side nav footer =========== */}
 					<div className="d-flex flex flex-row align-items-center overflow-hidden">
-						<Link
-							to={{ pathname: "/app/chats", state: { checkDomain: true } }}
+						<div
 							style={{ height: "60px", padding: "0 15px" }}
 							className="in-nav-dark d-flex flex flex-row align-items-center overflow-hidden justify-content-center"
 						>
@@ -431,7 +430,7 @@ class AppNav extends Component {
 									</span>
 								)}
 							</span>
-						</Link>
+						</div>
 					</div>
 				</div>
 

@@ -170,7 +170,7 @@ class AppContent extends Component {
 				<div className="Logged-content">
 					{!hidden && (
 						<AppHeaderContainer
-							userName={user?.userName}
+							userName={user?.userName || user?.name}
 							openRecharge={this.openRecharge}
 							selectedDomain={
 								selectedDomain ||

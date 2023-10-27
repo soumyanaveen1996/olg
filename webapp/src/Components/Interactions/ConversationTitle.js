@@ -59,8 +59,10 @@ class ConversationTitle extends React.PureComponent {
 	}
 
 	getBotLogo = async (bot) => {
+		console.log("getBotLogo", bot);
 		if (bot) {
 			let res = await GenericAjax.downloadFile(R.prop("botFilesAPI", Config) + bot?.logoUrl)
+			console.log("getBotLogo RES", res);
 			if (res) {
 				console.log("res", res)
 				this.setState({ botLogo: URL.createObjectURL(res) });
@@ -113,6 +115,16 @@ class ConversationTitle extends React.PureComponent {
 					this.props.allProfileImages &&
 					this.props.allProfileImages[newConversation.contact.userId],
 			});
+		}
+
+		if(!this.state.botLogo){
+			let botData;
+			if (this.props.conversation.bot) {
+				botData = this.props.conversation.bot;
+			} else {
+				botData = getSelectedConversation()?.bot;
+			}
+			this.getBotLogo(botData);
 		}
 	}
 
@@ -261,6 +273,7 @@ class ConversationTitle extends React.PureComponent {
 				position: "relative",
 			};
 		}
+		console.log("Conversation type", type, imgSrc)
 		return (
 			<div
 				className="topNavBar list-body d-flex align-items-center justify-content-between"
