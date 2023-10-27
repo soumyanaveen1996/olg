@@ -252,7 +252,7 @@ const OneLearnLogin = (props) => {
 
 			<Box className={"mt-20 mb-30 d-flex align-items-center justify-content-center font500 flex-column"}>
 				<Box className={"mb-10"}>New User?</Box>
-				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`ml-2 btn btn-open btn-block btn-icon oneLearn-btn`} >
+				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`btn btn-open btn-block btn-icon oneLearn-btn`} >
 					Create PIN
 				</Button>
 			</Box>
