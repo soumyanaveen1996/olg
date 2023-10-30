@@ -310,13 +310,13 @@ class WelcomeContainer extends React.Component {
 
 				{pstnMode && (
 					<div className="catalog-card" onClick={this.showCreateConversation}>
-						<a>
+						{/* <a>
 							<CachedImage
 								imgClassName="catalog-card__icon"
 								// imgKey={"homeCallIcon"}
 								image={"offlinelms/img/home-icon-call@2x.svg"}
 							/>
-						</a>
+						</a> */}
 						<label className="catalog-card__fontStyle catalog-card__label">
 							Calls
 						</label>
