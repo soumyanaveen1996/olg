@@ -16,11 +16,11 @@
 }
 
 #version-number {
-	position: fixed;
-	left: 14.7%;
 	height: 30px;
 	width: 100%;
-	bottom: 2%;
 	color: #757575;
 	font-size: 15px;
+	display: flex;
+	justify-content: center;
+	margin-top: 58px;
 }

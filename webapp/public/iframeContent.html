@@ -72,11 +72,12 @@
                     type: "POST",
                     url: baseURL + "/aicc/startCourse",
                     headers: {
-                      "token": token
+                      "token": token,
+                      "Content-Type": "application/json"
                     },
-                    data: {
-                      "courseId": courseId
-                    },
+                    data: JSON.stringify({ // Convert the data object to a JSON string
+                        "courseId": courseId
+                    }),
                     dataType: "json",
                     success: function (result, status, xhr) {
                       console.log("Start Course API success");
@@ -97,11 +98,12 @@
                     type: "POST",
                     url: baseURL + "/aicc/endCourse",
                     headers: {
-                      "token": token
+                      "token": token,
+                      "Content-Type": "application/json"
                     },
-                    data: {
-                      "courseId": courseId
-                    },
+                    data: JSON.stringify({ // Convert the data object to a JSON string
+                        "courseId": courseId
+                    }),
                     dataType: "json",
                     success: function (result, status, xhr) {
                       console.log("End course API success");

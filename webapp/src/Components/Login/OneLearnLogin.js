@@ -296,6 +296,9 @@ const OneLearnLogin = (props) => {
 							style={{ backgroundColor: "#f4f4f4" }}
 							onChange={(e) => handleFormChange(e, "dateOfBirth")}
 							value={form?.dateOfBirth || moment().format("YYYY-MM-DD")}
+							onKeyDown={e=>e.preventDefault()} 
+							onPaste={e=>e.preventDefault()} 
+							onInput={e=>e.preventDefault()}
 						/>
 					</div>
 					<Box className={"justify-content-center d-flex"}>
