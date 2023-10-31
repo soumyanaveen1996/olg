@@ -308,34 +308,34 @@ class WelcomeContainer extends React.Component {
 					</label>
 				</div>
 
-				{pstnMode && (
-					<div className="catalog-card" onClick={this.showCreateConversation}>
-						{/* <a>
-							<CachedImage
-								imgClassName="catalog-card__icon"
-								// imgKey={"homeCallIcon"}
-								image={"offlinelms/img/home-icon-call@2x.svg"}
-							/>
-						</a> */}
-						<label className="catalog-card__fontStyle catalog-card__label">
-							Calls
-						</label>
-						{this.state.openDialPad && (
-							<ModalPopup
-								// onClose={this.closeCreateConversation}
-								size="sm"
-								noHeader
-								className="dialler-modal"
-							>
-								<DiallerKeyPad
-									makePhoneCall={this.makePhoneCall}
-									onClose={this.closeCreateConversation}
-									noBalance={() => this.props.noBalance()}
-								/>
-							</ModalPopup>
-						)}
-					</div>
-				)}
+				{/*{pstnMode && (*/}
+				{/*	<div className="catalog-card" onClick={this.showCreateConversation}>*/}
+				{/*		<a>*/}
+				{/*			<CachedImage*/}
+				{/*				imgClassName="catalog-card__icon"*/}
+				{/*				// imgKey={"homeCallIcon"}*/}
+				{/*				image={"offlinelms/img/home-icon-call@2x.svg"}*/}
+				{/*			/>*/}
+				{/*		</a>*/}
+				{/*		<label className="catalog-card__fontStyle catalog-card__label">*/}
+				{/*			Calls*/}
+				{/*		</label>*/}
+				{/*		{this.state.openDialPad && (*/}
+				{/*			<ModalPopup*/}
+				{/*				// onClose={this.closeCreateConversation}*/}
+				{/*				size="sm"*/}
+				{/*				noHeader*/}
+				{/*				className="dialler-modal"*/}
+				{/*			>*/}
+				{/*				<DiallerKeyPad*/}
+				{/*					makePhoneCall={this.makePhoneCall}*/}
+				{/*					onClose={this.closeCreateConversation}*/}
+				{/*					noBalance={() => this.props.noBalance()}*/}
+				{/*				/>*/}
+				{/*			</ModalPopup>*/}
+				{/*		)}*/}
+				{/*	</div>*/}
+				{/*)}*/}
 				{this.checkForContact(chatMode, voipMode)}
 				{chatMode && (
 					<div className="catalog-card">

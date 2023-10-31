@@ -110,8 +110,9 @@
                       console.log("RESULT", result);
                       console.log("STATUS", status);
                       console.log("XHR", xhr);
+                      window.open('', '_self', '');
                       setTimeout(() => {
-                        window.open('', '_self', '').close();
+                        window.close();
                       }, 2000);
                     },
                     error: function (xhr, status, error) {
