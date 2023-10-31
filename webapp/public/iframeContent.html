@@ -110,10 +110,7 @@
                       console.log("RESULT", result);
                       console.log("STATUS", status);
                       console.log("XHR", xhr);
-                      window.open('', '_self', '');
-                      setTimeout(() => {
-                        window.close();
-                      }, 2000);
+                      alert("Your course has ended, you can close the tab now.");
                     },
                     error: function (xhr, status, error) {
                       alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
