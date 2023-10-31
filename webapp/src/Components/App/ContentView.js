@@ -72,7 +72,12 @@ class ContentView extends Component {
 			// 	isWebRequest: true,
 			// 	selectedDomain: domainData.userDomain
 			// }).then((response) => {
-			this.parseCatalogResponse(data, botIds, domainData);
+			if(this.props.user?.userRole === "admin") {
+				this.props.history.push("/app/my-profile");
+				this.props.hideSpinner();
+			} else {
+				this.parseCatalogResponse(data, botIds, domainData);
+			}
 			// });
 		});
 	};
