@@ -22,6 +22,27 @@
           // $("#print-button").click(function() {
             $("<iframe />", { src: iframeData, id: "iframeElement", height: "80vh", width: "100%" }).appendTo("body");
             $('#iframeElement').on('load', function () {
+              window.onload = function() {
+                var iframe = document.getElementById('iframeElement');
+
+                // Make sure we're allowed to access the content
+                if (iframe.contentWindow) {
+                  // Create a new script element
+                  var script = iframe.contentWindow.document.createElement('script');
+                  script.type = 'text/javascript';
+                  // This script should be injected into the iframe
+                  // It will attempt to override the window.open function of the parent (top) window
+                  script.textContent = `
+    window.top.window.open = function() {
+        console.log("window.open called, but action is intercepted");
+        // Return a mock window object with a noop close function
+        return { close: function() { console.log("close called, but action is intercepted"); } };
+    };
+`;
+                  // Append the script to the iframe's document
+                  iframe.contentWindow.document.head.appendChild(script);
+                }
+              };
               const iframeDocument = $(this).contents();
               console.log('Iframe loaded', iframeDocument);
 
