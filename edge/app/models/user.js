@@ -6,6 +6,7 @@ const SALT_FACTOR = 5;
 const UserSchema = new mongoose.Schema(
     {
         userId: { type: String, required: true},
+        userIdForLogin: { type: String, required: true},
         name: { type: String, required: true},
         pin: { type: String, required: true},
         dob: { type: Number, required: true},

@@ -17,6 +17,7 @@ async function getClient() {
     await populateBotFarm(database);
     await populateDomains(database);
     await createIndex(database, MONGO_DB_COLLECTIONS.USERS, {userId: 1});
+    await createIndex(database, MONGO_DB_COLLECTIONS.USERS, {userIdForLogin: 1});
     await createIndex(database, MONGO_DB_COLLECTIONS.CONVERSATIONS, {conversationId: 1});
     await createIndex(database, MONGO_DB_COLLECTIONS.KEY_VALUES, {key: 1});
     await createIndex(database, MONGO_DB_COLLECTIONS.COURSES, {courseId: 1});

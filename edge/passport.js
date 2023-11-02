@@ -4,11 +4,11 @@ const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const User = require('./app/models/user');
-const USER_FIELDS_IN_AUTH_RESPONSE = ['userId', 'name', 'dob', 'domains', 'userRole'];
+const USER_FIELDS_IN_AUTH_RESPONSE = ['userId', 'userIdForLogin', 'name', 'dob', 'domains', 'userRole'];
 
-passport.use('local', new LocalStrategy({ usernameField: 'userId', passwordField: 'pin' },
+passport.use('local', new LocalStrategy({ usernameField: 'userIdForLogin', passwordField: 'pin' },
 	async function (userId, pin, done) {
-		let user = await User.findOne({ userId });
+		let user = await User.findOne({ userIdForLogin: userId });
 		if (_.isEmpty(user)) {
 			return done({ message: 'User not found' });
 		}

@@ -12,8 +12,8 @@ function validateFields(input, fieldsToValidate) {
   });
 }
 
-async function getUserFromDB(userId) {
-  let user = await User.findOne({userId});
+async function getUserFromDB(userIdForLogin) {
+  let user = await User.findOne({userIdForLogin});
   if(_.isEmpty(user)) {
     throw new Error('User not found');
   }
@@ -45,6 +45,7 @@ router.post('/register', setUserPin);
 router.post('/forgotPin', setUserPin);
 
 router.post('/login', (req, res) => {
+    req.body.userIdForLogin = req.body.userId;
     passport.authenticate('local', { session: false },
       (err, user) => {
     if(err) {

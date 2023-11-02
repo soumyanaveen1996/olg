@@ -56,7 +56,7 @@ async function validateInput(input) {
 }
 
 async function getUsers(imo) {
-    let body = await queryDB(COLLECTIONS.CREW, {vesselImo: imo});
+    let body = await queryDB(COLLECTIONS.CREW, {vesselImo: imo, userIdForLogin: {$exists: true}});
     if(state._.isEmpty(body)) {
         let errorMessage = `No users exist for the IMO: ${imo}`;
         D.log({ message: errorMessage, data: {error: body, imo} });
