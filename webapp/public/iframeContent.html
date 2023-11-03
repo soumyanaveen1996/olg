@@ -65,7 +65,7 @@
               iframeDocument.on('click', function (event) {
                 const clickedElement = $(event.target);
                 const clickedElementId = clickedElement.attr('id');
-                
+                console.log("CLICKED ELEMENT", clickedElement);
                 if (clickedElement.find('tspan:contains("Start")').length > 0) {
                   console.log('A descendant tspan element with the text "START" exists.');
                   $.ajax({
@@ -92,6 +92,36 @@
                 } else {
                   console.log('No descendant tspan element with the text "START" found');
                 }
+                setTimeout(() => {
+                  if (clickedElement.find('tspan:contains("Exit")').length > 0) {
+                    console.log('A descendant tspan element with the text "EXIT" exists.');
+                    $.ajax({
+                      type: "POST",
+                      url: baseURL + "/aicc/endCourse",
+                      headers: {
+                        "token": token,
+                        "Content-Type": "application/json"
+                      },
+                      data: JSON.stringify({ // Convert the data object to a JSON string
+                        "courseId": courseId
+                      }),
+                      dataType: "json",
+                      success: function (result, status, xhr) {
+                        console.log("End course API success");
+                        console.log("RESULT", result);
+                        console.log("STATUS", status);
+                        console.log("XHR", xhr);
+                        alert("Your course has ended, you can close the tab now.");
+                      },
+                      error: function (xhr, status, error) {
+                        alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                      }
+                    });
+                  } else {
+                    console.log('No descendant tspan element with the text "EXIT" found');
+                  }
+                }, 1000);
+
                 if (clickedElement.find('tspan:contains("Exit")').length > 0) {
                   console.log('A descendant tspan element with the text "EXIT" exists.');
                   $.ajax({
@@ -102,7 +132,7 @@
                       "Content-Type": "application/json"
                     },
                     data: JSON.stringify({ // Convert the data object to a JSON string
-                        "courseId": courseId
+                      "courseId": courseId
                     }),
                     dataType: "json",
                     success: function (result, status, xhr) {
@@ -119,6 +149,7 @@
                 } else {
                   console.log('No descendant tspan element with the text "EXIT" found');
                 }
+
                 if (clickedElement.find("[data-acc-text='Next Icon.png']").length > 0) {
                   console.log('A descendant Next Icon element exists.');
                 } else {
