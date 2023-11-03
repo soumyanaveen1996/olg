@@ -36,7 +36,7 @@
     window.top.window.open = function() {
         console.log("window.open called, but action is intercepted");
         // Return a mock window object with a noop close function
-        return { close: function() { console.log("close called, but action is intercepted"); } };
+        return { close: function() { window.parent.postMessage("exit", "*"); console.log("close called, but action is intercepted"); } };
     };
 `;
                   // Append the script to the iframe's document
@@ -83,6 +83,35 @@
               }
               console.log("baseURL", baseURL);
 
+              window.addEventListener('message', function(event) {
+                console.log("Message received from the child: " + event.data); // Message received from child
+                if(typeof event.data === "string" && event.data === "exit") {
+                  console.log('Window Callback for Exit called');
+                  $.ajax({
+                    type: "POST",
+                    url: baseURL + "/aicc/endCourse",
+                    headers: {
+                      "token": token,
+                      "Content-Type": "application/json"
+                    },
+                    data: JSON.stringify({ // Convert the data object to a JSON string
+                      "courseId": courseId
+                    }),
+                    dataType: "json",
+                    success: function (result, status, xhr) {
+                      console.log("End course API success");
+                      console.log("RESULT", result);
+                      console.log("STATUS", status);
+                      console.log("XHR", xhr);
+                      alert("Your course has ended, you can close the tab now.");
+                    },
+                    error: function (xhr, status, error) {
+                      alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                  });
+                }
+              });
+
               iframeDocument.on('click', function (event) {
                 const clickedElement = $(event.target);
                 const clickedElementId = clickedElement.attr('id');
@@ -113,35 +142,6 @@
                 } else {
                   console.log('No descendant tspan element with the text "START" found');
                 }
-                setTimeout(() => {
-                  if (clickedElement.find('tspan:contains("Exit")').length > 0) {
-                    console.log('A descendant tspan element with the text "EXIT" exists.');
-                    $.ajax({
-                      type: "POST",
-                      url: baseURL + "/aicc/endCourse",
-                      headers: {
-                        "token": token,
-                        "Content-Type": "application/json"
-                      },
-                      data: JSON.stringify({ // Convert the data object to a JSON string
-                        "courseId": courseId
-                      }),
-                      dataType: "json",
-                      success: function (result, status, xhr) {
-                        console.log("End course API success");
-                        console.log("RESULT", result);
-                        console.log("STATUS", status);
-                        console.log("XHR", xhr);
-                        alert("Your course has ended, you can close the tab now.");
-                      },
-                      error: function (xhr, status, error) {
-                        alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-                      }
-                    });
-                  } else {
-                    console.log('No descendant tspan element with the text "EXIT" found');
-                  }
-                }, 1000);
 
                 if (clickedElement.find('tspan:contains("Exit")').length > 0) {
                   console.log('A descendant tspan element with the text "EXIT" exists.');
