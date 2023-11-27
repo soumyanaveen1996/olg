@@ -164,7 +164,8 @@ class ProfileDetailsView extends Component {
 					...data,
 					vesselIMO: res.imo || null,
 					nodeId: res.nodeId || "Nil",
-					lastSyncTime: res.lastSyncTime || moment().tz(user.userTimezone || "Etc/UTC").format('MMMM Do YYYY, h:mm:ss a')
+					lastSyncTime: res.lastSyncTime || moment().tz(user.userTimezone || "Etc/UTC").format('MMMM Do YYYY, h:mm:ss a'),
+					...res
 				}
 			));
 		} catch (error) {
@@ -770,8 +771,160 @@ class ProfileDetailsView extends Component {
 														disabled
 														style={{ opacity: "1", }}
 														className="newInputValue"
-														value={this.state.lastSyncTime}
+														value={moment(this.state.lastSyncTime).tz(this.props?.user?.userTimezone || "Etc/UTC").format('MMMM Do YYYY, h:mm:ss a')}
 													/>
+												</div>
+											</div>
+											{divider}
+											<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+												<div>
+													{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+													<label className="ml-3 font600">
+														Cloud to Edge Sync Status
+													</label>
+												</div>
+												{/* <div style={{ position: "absolute", left: "38%", }} >
+													<input
+														type="text"
+														disabled
+														style={{ opacity: "1", }}
+														className="newInputValue"
+														value={this.state?.cloudToEdgeSyncStatus?.syncStatus}
+													/>
+												</div> */}
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Status
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={this.state.cloudToEdgeSyncStatus?.syncStatus}
+														/>
+													</div>
+												</div>
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Message
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={this.state.cloudToEdgeSyncStatus?.syncMessage}
+														/>
+													</div>
+												</div>
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Last Sync
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={moment(this.state.cloudToEdgeSyncStatus?.syncTime).tz(this.props?.user?.userTimezone || "Etc/UTC").format('MMMM Do YYYY, h:mm:ss a')}
+														/>
+													</div>
+												</div>
+											</div>
+
+
+											{divider}
+											<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+												<div>
+													{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+													<label className="ml-3 font600">
+														Edge to Cloud Sync Status 
+													</label>
+												</div>
+												{/* <div style={{ position: "absolute", left: "38%", }} >
+													<input
+														type="text"
+														disabled
+														style={{ opacity: "1", }}
+														className="newInputValue"
+														value={this.state?.edgeToCloudSyncStatus?.syncStatus}
+													/>
+												</div> */}
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Status
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={this.state.edgeToCloudSyncStatus?.syncStatus}
+														/>
+													</div>
+												</div>
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Message
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={this.state.edgeToCloudSyncStatus?.syncMessage}
+														/>
+													</div>
+												</div>
+											</div>
+											<div className="ml-10">
+												<div style={{ color: "#9B9B9B" }} className="form-contactdetails" >
+													<div>
+														{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
+														<label className="inputPlaceholder-email ml-5">
+															Last Sync
+														</label>
+													</div>
+													<div style={{ position: "absolute", left: "38%", }} >
+														<input
+															type="text"
+															disabled
+															style={{ opacity: "1", }}
+															className="newInputValue"
+															value={moment(this.state.edgeToCloudSyncStatus?.syncTime).tz(this.props?.user?.userTimezone || "Etc/UTC").format('MMMM Do YYYY, h:mm:ss a')}
+														/>
+													</div>
 												</div>
 											</div>
 										</div>
