@@ -780,7 +780,7 @@ class ProfileDetailsView extends Component {
 												<div>
 													{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
 													<label className="ml-3 font600">
-														Cloud to Edge Sync Status
+														Cloud to Edge Sync
 													</label>
 												</div>
 												{/* <div style={{ position: "absolute", left: "38%", }} >
@@ -857,7 +857,7 @@ class ProfileDetailsView extends Component {
 												<div>
 													{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
 													<label className="ml-3 font600">
-														Edge to Cloud Sync Status 
+														Edge to Cloud Sync 
 													</label>
 												</div>
 												{/* <div style={{ position: "absolute", left: "38%", }} >
