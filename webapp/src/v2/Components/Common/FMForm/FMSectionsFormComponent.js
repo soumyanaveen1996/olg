@@ -382,6 +382,10 @@ function FMSectionsFormComponent({
 													onClick={() => {
 														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const getCourseUrl = fields?.find((item) => item.id === "courseUrl");
+														if(!getCourseUrl?.value) {
+															alert("The URL for the course you are attempting to start is not available. For further assistance, contact our support team.");
+															return;
+														}
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 														let expires = "expires=" + d.toUTCString();
