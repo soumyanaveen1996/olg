@@ -371,7 +371,7 @@ const OneLearnLogin = (props) => {
 		)}
 
 		<div id="version-number">
-			<span>Version 1.0.1</span>
+			<span>Version 1.0.2</span>
 		</div>
 	</Box>
 }
