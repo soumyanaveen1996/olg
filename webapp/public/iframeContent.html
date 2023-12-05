@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iframe Click Event Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script defer>
+    <script>
       $(document).ready(function () {
         let name = "iframeUrl=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -22,7 +22,7 @@
           // $("#print-button").click(function() {
             $("<iframe />", { src: iframeData, id: "iframeElement", height: "80vh", width: "100%" }).appendTo("body");
             $('#iframeElement').on('load', function () {
-              window.onload = function() {
+              // window.onload = function() {
                 var iframe = document.getElementById('iframeElement');
 
                 // Make sure we're allowed to access the content
@@ -33,16 +33,18 @@
                   // This script should be injected into the iframe
                   // It will attempt to override the window.open function of the parent (top) window
                   script.textContent = `
-    window.top.window.open = function() {
-        console.log("window.open called, but action is intercepted");
-        // Return a mock window object with a noop close function
-        return { close: function() { window.parent.postMessage("exit", "*"); console.log("close called, but action is intercepted"); } };
-    };
-`;
+                      window.top.window.open = function() {
+                          console.log("window.open called, but action is intercepted");
+                          // Return a mock window object with a noop close function
+                          return { close: function() { window.parent.postMessage("exit", "*"); console.log("close called, but action is intercepted"); } };
+                      };
+                  `;
                   // Append the script to the iframe's document
+                  console.log("Before");
                   iframe.contentWindow.document.head.appendChild(script);
+                  console.log("After");
                 }
-              };
+              // };
               const iframeDocument = $(this).contents();
               console.log('Iframe loaded', iframeDocument);
 
