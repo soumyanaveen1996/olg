@@ -3,6 +3,7 @@ const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const sha1 = require('sha1');
 const Bot = require('../models/bot');
 const doAuth = passport.authenticate('jwt', {
   session: false
@@ -14,6 +15,11 @@ const ACTIONS = {
   START_COURSE: 'startCourse',
   END_COURSE: 'endCourse'
 };
+
+function getConversation(userId, botId) {
+    let text = _.join(_.sortBy([userId, botId]), '-');
+    return userId.substr(0, 10) + "-" + sha1(text).substr(0, 12);
+}
 
 async function callBot(data, user) {
   const payload = {
@@ -29,9 +35,10 @@ async function callBot(data, user) {
     },
     requestUuid: "id1",
     conversation: {
-      conversationId: "aicc-response",
+      conversationId: getConversation(user.userId, config.BOT_ID),
       bot: config.BOT_ID,
-      participants: [user.userId]
+      participants: [user.userId],
+      client: "web2"
     },
     user
   }
