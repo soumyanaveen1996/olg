@@ -30,8 +30,8 @@ exports.start = () => {
         console.log(`CRON JOB: API gateway available: ${isAPIAvailable}`);
         if(isAPIAvailable) {
             console.log('CRON JOB: API gateway is available. Doing the sync process');
-            await doCloudToEdgeSync();
             await doEdgeToCloudSync();
+            await doCloudToEdgeSync();
         }
     });
 
@@ -77,13 +77,17 @@ async function getEdgeData(IMO, remoteNodeId) {
     }
     let {users, userEnrollments, courses} = _.get(apiResponse, 'data');
     console.log(`CRON JOB: getEdgeData. Got data: users${_.size(users)}. userEnrollments: ${_.size(userEnrollments)}. courses: ${_.size(courses)}`);
-    if(_.isEmpty(users) || _.isEmpty(userEnrollments) || _.isEmpty(courses)) {
+    if(_.isEmpty(users)) {
         throw new Error(`Data not setup correctly in cloud. Users size: ${_.size(users)}. UserEnrollments size: ${_.size(userEnrollments)}. Courses size: ${_.size(courses)}.`);
     }
     return {users, userEnrollments, courses};
 }
 
 async function upsertDocuments(documents, collection, queryFields) {
+    if(_.isEmpty(documents)) {
+        console.log(`CRON JOB: upsertDocuments. No data loaded into collection ${collection} because no input is empty `);
+        return;
+    }
     documents = _.map(documents, doc => {
         return {updateOne: { filter: _.pick(doc, queryFields), update: {$set: doc}, upsert: true}}
     });
@@ -103,9 +107,17 @@ async function loadCloudDataIntoEdge(users, userEnrollments, courses) {
     });
     await upsertDocuments(users, MONGO_DB_COLLECTIONS.USERS, COLLECTION_FILTERS.USERS);
     console.log(`CRON JOB: loadCloudDataIntoEdge. Finished uploading users`);
+
     await upsertDocuments(userEnrollments, MONGO_DB_COLLECTIONS.USER_COURSES, COLLECTION_FILTERS.USER_COURSES);
-    console.log(`CRON JOB: loadCloudDataIntoEdge. Finished uploading user enrollments`);
+    if(!_.isEmpty(userEnrollments)) {
+        console.log(`CRON JOB: loadCloudDataIntoEdge. Finished uploading user enrollments`);
+    }
+
     await upsertDocuments(courses, MONGO_DB_COLLECTIONS.COURSES, COLLECTION_FILTERS.COURSES);
+    if(!_.isEmpty(courses)) {
+        console.log(`CRON JOB: loadCloudDataIntoEdge. Finished uploading courses`);
+    }
+
     console.log(`CRON JOB: loadCloudDataIntoEdge. Finished uploading courses`);
 }
 
@@ -128,7 +140,7 @@ async function doCloudToEdgeSync() {
         console.log(`CRON JOB: Starting CloudToEdgeSync: imo${imo}. nodeId: ${nodeId}. c2eSyncStatus: ${c2eSyncStatus}`);
         console.log(`CRON JOB: CloudToEdgeSync. Status is ${c2eSyncStatus}. Starting sync process`);
         let {users, userEnrollments, courses} = await getEdgeData(imo, nodeId);
-        console.log(`CRON JOB: CloudToEdgeSync. Got data: users${_.size(users)}. userEnrollments: ${_.size(userEnrollments)}. courses: ${_.size(courses)}`);
+        console.log(`CRON JOB: CloudToEdgeSync. Got data: users: ${_.size(users)}. userEnrollments: ${_.size(userEnrollments)}. courses: ${_.size(courses)}`);
         await loadCloudDataIntoEdge(users, userEnrollments, courses);
         console.log(`CRON JOB: CloudToEdgeSync. Finished loading edge data`);
         await logCloudToEdgeStatus();
