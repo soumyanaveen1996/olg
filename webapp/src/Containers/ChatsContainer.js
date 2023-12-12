@@ -70,6 +70,7 @@ class ChatsContainer extends Component {
 
 	componentDidMount() {
 		let { state } = this.props.location;
+		console.log("HERE*******************", state);
 
 		if (this.props.selectedConversation) {
 			if (state && state.paramArgs) {

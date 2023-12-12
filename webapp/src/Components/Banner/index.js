@@ -193,19 +193,19 @@ class Banner extends Component {
 	render() {
 		let { visibility } = this.props;
 		const { slowInternet } = this.state;
-		if (visibility) {
-			let trash_btns = document.getElementsByClassName("mapbox-gl-draw_trash");
-			let polygon_btns = document.getElementsByClassName(
-				"mapbox-gl-draw_polygon"
-			);
-			if (trash_btns.length) {
-				trash_btns[0].setAttribute("disabled", "");
-			}
-			if (polygon_btns.length) {
-				polygon_btns[0].setAttribute("disabled", "");
-			}
-			return <OfflineBanner BannerStyle={BannerStyle} />;
-		}
+		// if (visibility) {
+		// 	let trash_btns = document.getElementsByClassName("mapbox-gl-draw_trash");
+		// 	let polygon_btns = document.getElementsByClassName(
+		// 		"mapbox-gl-draw_polygon"
+		// 	);
+		// 	if (trash_btns.length) {
+		// 		trash_btns[0].setAttribute("disabled", "");
+		// 	}
+		// 	if (polygon_btns.length) {
+		// 		polygon_btns[0].setAttribute("disabled", "");
+		// 	}
+		// 	return <OfflineBanner BannerStyle={BannerStyle} />;
+		// }
 		var trash_btns = document.getElementsByClassName("mapbox-gl-draw_trash");
 		let polygon_btns = document.getElementsByClassName(
 			"mapbox-gl-draw_polygon"
