@@ -14,7 +14,7 @@ let initialState = {
 function offlineBannerReducer(state = initialState, action) {
 	switch (action.type) {
 		case BANNER_VISIBILITY:
-			return { ...state, visibility: action.data };
+			return { ...state, visibility: false };
 
 		case SET_COUNTER:
 			return { ...state, counter: action.data };
