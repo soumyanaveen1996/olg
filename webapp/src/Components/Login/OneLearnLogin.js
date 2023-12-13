@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { getAuthCode, storeAuthData, unsetAuthCode } from "../../Services/StorageService";
 import { activateEnterpriseBots } from "../../Services/BotsService";
 import { updateLastLoggedInDomain } from "../../Services/UserService";
-
+import packageObj from "../../../package.json";
 import history from "../../Services/History";
 import "./Login.css";
 import { Button, CircularProgress, Box } from "@mui/material";
@@ -296,9 +296,9 @@ const OneLearnLogin = (props) => {
 							style={{ backgroundColor: "#f4f4f4" }}
 							onChange={(e) => handleFormChange(e, "dateOfBirth")}
 							value={form?.dateOfBirth || moment().format("YYYY-MM-DD")}
-							onKeyDown={e=>e.preventDefault()} 
-							onPaste={e=>e.preventDefault()} 
-							onInput={e=>e.preventDefault()}
+							onKeyDown={e => e.preventDefault()}
+							onPaste={e => e.preventDefault()}
+							onInput={e => e.preventDefault()}
 						/>
 					</div>
 					<Box className={"justify-content-center d-flex"}>
@@ -371,7 +371,7 @@ const OneLearnLogin = (props) => {
 		)}
 
 		<div id="version-number">
-			<span>Version 1.0.2</span>
+			<div>Version {packageObj?.version}</div>
 		</div>
 	</Box>
 }
