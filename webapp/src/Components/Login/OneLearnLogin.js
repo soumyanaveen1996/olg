@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { getAuthCode, storeAuthData, unsetAuthCode } from "../../Services/StorageService";
 import { activateEnterpriseBots } from "../../Services/BotsService";
 import { updateLastLoggedInDomain } from "../../Services/UserService";
-
+import packageObj from "../../../package.json";
 import history from "../../Services/History";
 import "./Login.css";
 import { Button, CircularProgress, Box } from "@mui/material";
@@ -371,7 +371,7 @@ const OneLearnLogin = (props) => {
 		)}
 
 		<div id="version-number">
-			<span>Version {process.env.REACT_APP_VERSION}</span>
+			<div>Version {packageObj?.version}</div>
 		</div>
 	</Box>
 }
