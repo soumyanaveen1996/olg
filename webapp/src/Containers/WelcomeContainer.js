@@ -112,7 +112,7 @@ class WelcomeContainer extends React.Component {
 		const convBot = botSubscriptions.filter((bot) => bot.botId === botId);
 		if (convBot && convBot.length) {
 			createConversation(convBot[0], userId);
-			history.push("/app/chats");
+			history.push("/offlinelms/app/chats");
 		}
 		if (botId === FRONTM_BOT_ID) {
 			this.callToFrontMAssistantFromWelcome();
@@ -122,7 +122,7 @@ class WelcomeContainer extends React.Component {
 	callToFrontMAssistantFromWelcome = () => {
 		this.setState({ active: true });
 		this.props.getFrontMAssistant();
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 	};
 	/* ends here */
 	makePhoneCall = async (phone, callMode) => {
@@ -162,7 +162,7 @@ class WelcomeContainer extends React.Component {
 	openConversation = (conversation) => {
 		let { changeConversation, history } = this.props;
 		changeConversation(conversation);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	openChannel = (channel) => {
@@ -173,7 +173,7 @@ class WelcomeContainer extends React.Component {
 				subscribedChannel.channelId === channel.conversationId
 		);
 		initiateChannelConversation(selectedChannel, () =>
-			history.push("/app/chats")
+			history.push("/offlinelms/app/chats")
 		);
 	};
 
