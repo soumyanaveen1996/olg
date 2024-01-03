@@ -285,7 +285,7 @@ const Main = () => {
 								path="/messages/:type/:botId/s/:message"
 								component={LinkableMessage}
 							/>
-							<Route path="/app" component={App} />
+							<Route path="/offlinelms/app" component={App} />
 							<Route exact path="/" component={HomeContainer} />
 
 							<Route path="/*" component={Error404} />

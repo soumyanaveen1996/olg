@@ -252,7 +252,7 @@ class ContentView extends Component {
 		console.log("props", this.props);
 		this.props.createConversation(bots[0], this.props?.userId);
 		// }
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 		this.props.hideSpinner();
 	};
 
@@ -374,9 +374,9 @@ class ContentView extends Component {
 			>
 				<Suspense fallback={<div>Control flow fallback</div>}>
 					<Switch>
-						<Redirect exact from="/app" to="/app/chats" />
-						<Route exact path="/app/chats/:id" component={ChatsContainer} />
-						<Route path="/app/chats" component={ChatsContainer} />
+						<Redirect exact from="/offlinelms/app" to="/offlinelms/app/chats" />
+						<Route exact path="/offlinelms/app/chats/:id" component={ChatsContainer} />
+						<Route path="/offlinelms/app/chats" component={ChatsContainer} />
 						{/* <ProtectedRoute
 							path="/app/groups"
 							component={ChannelsContainer}
@@ -404,15 +404,15 @@ class ContentView extends Component {
 							{...this.props}
 						/> */}
 						<ProtectedRoute
-							path="/app/home"
+							path="/offlinelms/app/home"
 							component={WelcomeContainer}
 							{...this.props}
 						/>
-						<ProtectedRoute
+						{/* <ProtectedRoute
 							path="/app/*"
 							component={Error404}
 							{...this.props}
-						/>
+						/> */}
 					</Switch>
 				</Suspense>
 
