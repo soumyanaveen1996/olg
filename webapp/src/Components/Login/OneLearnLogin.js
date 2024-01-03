@@ -88,7 +88,7 @@ const OneLearnLogin = (props) => {
 				if (res.error) return setForm((prev) => ({ ...prev, loginError: true, errorMessage: res.error }))
 				// console.log("res", res)
 				storeAuthData(res.user);
-				history.push("/app/home");
+				history.push("/offlinelms/app/home");
 
 			}
 
