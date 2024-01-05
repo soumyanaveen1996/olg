@@ -171,11 +171,11 @@ const AuthenticationModel = (props) => {
 						dispatch(updateMFAStatus(null));
 						dispatch(updateSoftwareMfaStatus(null));
 						updateErrorMsg(null);
-						history.push("/app/chats");
+						history.push("/offlinelms/app/chats");
 					} else {
 						updateErrorMsg(data.errorMessage || data.message);
 						setTimeout(() => {
-							history.push("/app/home");
+							history.push("/offlinelms/app/home");
 							dispatch(updateMFAStatus(null));
 							if (data.errorCode === "CodeMismatchException") {
 								dispatch(updateSoftwareMfaStatus("idleValidateNumber"));

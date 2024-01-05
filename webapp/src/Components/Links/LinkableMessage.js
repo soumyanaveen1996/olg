@@ -95,7 +95,7 @@ class LinkableMessage extends Component {
 		} else {
 			populateLinkData(params.type, params.botId);
 		}
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 		this.setState({ isLoading: false })
 	};
 

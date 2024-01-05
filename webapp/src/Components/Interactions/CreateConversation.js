@@ -85,12 +85,12 @@ class CreateConversation extends Component {
 	addToTimeLine = (bot) => {
 		const { userId, createConversation, history } = this.props;
 		createConversation(bot, userId);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	addChannelConversationToTimeLine = (channel) => {
 		this.props.initiateChannelConversation(channel, () =>
-			this.props.history.push("/app/chats")
+			this.props.history.push("/offlinelms/app/chats")
 		);
 	};
 

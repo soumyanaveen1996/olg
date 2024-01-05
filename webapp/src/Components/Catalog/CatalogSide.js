@@ -17,7 +17,7 @@ class CatalogSide extends Component {
 		const { userId, createConversation } = this.props;
 		createConversation(bot, userId);
 
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	openBot = (bot) => {

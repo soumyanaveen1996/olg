@@ -362,7 +362,7 @@ class ProfileDetailsView extends Component {
 		let botData = getSelectedConversation()?.bot;
 		if (botData) {
 			this.props.createConversation(botData, this.props.userId);
-			return this.props.history.push("/app/chats");
+			return this.props.history.push("/offlinelms/app/chats");
 		}
 	}
 

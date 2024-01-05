@@ -27,7 +27,7 @@ class Home extends Component {
 			let storedUser = getAuthData();
 			if (storedUser) {
 				hydrateUserData(storedUser);
-				this.props.history.push("/app/home");
+				this.props.history.push("/offlinelms/app/home");
 			}
 			if (
 				[

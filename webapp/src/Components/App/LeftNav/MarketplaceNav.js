@@ -60,7 +60,7 @@ class MarketplaceNav extends Component {
 	//   } = this.props;
 	//   const convBot = botSubscriptions.filter(bot => bot.botId === botId);
 	//   createConversation(convBot[0], userId);
-	//   history.push("/app/chats");
+	//   history.push("/offlinelms/app/chats");
 	// }	 
 
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -91,7 +91,7 @@ class MarketplaceNav extends Component {
 			return conversation.bot && FRONTM_BOT_ID === conversation.bot.botId;
 		});
 		this.props.changeConversation(timeLine[index], true);
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 	};
 
 	toggleTooltipApps = () => {

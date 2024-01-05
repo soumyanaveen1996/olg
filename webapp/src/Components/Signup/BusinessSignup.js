@@ -23,7 +23,7 @@ class BusinessSignup extends Component {
 		registerBusiness(data)
 			.then(() => {
 				this.setState({ loading: false });
-				history.push("/app/chats");
+				history.push("/offlinelms/app/chats");
 				Toast({
 					type: "success",
 					message:

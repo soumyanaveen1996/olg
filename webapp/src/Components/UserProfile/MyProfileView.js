@@ -80,7 +80,7 @@ class MyProfileView extends Component {
 			this.props.updateUserProfile(data);
 			store.dispatch(unsavedForm(false));
 			Toast({ type: "success", message: "Profile has been updated" });
-			this.props.history.push("/app/home");
+			this.props.history.push("/offlinelms/app/home");
 			// dispatch the action from here to show notification
 
 			store.dispatch(

@@ -19,7 +19,7 @@ class ChatsView extends Component {
 				this.props.getTimeLine();
 			}
 
-			this.props.history.push("/app/chats");
+			this.props.history.push("/offlinelms/app/chats");
 		}
 	}
 

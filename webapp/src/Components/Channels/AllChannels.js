@@ -4,7 +4,7 @@ import NewChannel from "./NewChannel";
 import ModalPopup from "./../ModalMessages/ModalPopup";
 class AllChannels extends Component {
 	openChannel = (channel) => {
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 		this.props.initiateChannelConversation(channel, () => {});
 	};
 	state = {};
