@@ -161,7 +161,7 @@ class AppNav extends Component {
 		} else {
 			if (convBot && convBot.length) {
 				createConversation(convBot[0], userId);
-				history.push("/app/chats");
+				history.push("/offlinelms/app/chats");
 			}
 		}
 		if (botId === FRONTM_BOT_ID) {
