@@ -130,7 +130,7 @@ class AppNav extends Component {
 					this.setState({
 						createConversationDetails: null,
 					});
-					// this.props.history.push("/app/chats");
+					// this.props.history.push("/offlinelms/app/chats");
 				}
 			}, 1000);
 		}
@@ -147,7 +147,7 @@ class AppNav extends Component {
 				if (convBot && convBot.length) {
 					this.props.updateSoftwareMfaStatus("idle");
 					// createConversation(convBot[0], userId);
-					// history.push("/app/chats");
+					// history.push("/offlinelms/app/chats");
 					this.setState({
 						createConversationDetails: {
 							bot: convBot[0],
@@ -180,7 +180,7 @@ class AppNav extends Component {
 			this.props.changeConversation(timeLine[index], true);
 		}
 		this.setState({ active: true });
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 	};
 
 	openSettings = () => {
@@ -212,7 +212,7 @@ class AppNav extends Component {
 				this.props.changeConversation(timeLine[index], true);
 			}
 
-			this.props.history.push("/app/home");
+			this.props.history.push("/offlinelms/app/home");
 		});
 	};
 

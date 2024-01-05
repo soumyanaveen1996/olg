@@ -63,7 +63,7 @@ class HelpNav extends PureComponent {
 
 		let { changeConversation, history } = this.props;
 		changeConversation(conversation);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	/*startFrontMAssistantConversation = (botId) => {
@@ -73,7 +73,7 @@ class HelpNav extends PureComponent {
     //   return conversation.bot && FRONTM_BOT_ID === conversation.bot.botId;
     // });
     // this.props.changeConversation(timeLine[index], true);
-    // this.props.history.push("/app/chats");
+    // this.props.history.push("/offlinelms/app/chats");
 
     let { timeLine } = this.props;
     if (timeLine && timeLine.length === 0) {
@@ -88,7 +88,7 @@ class HelpNav extends PureComponent {
       this.props.changeConversation(timeLine[index], true);
     }
     this.setState({ active: true });
-    this.props.history.push("/app/chats");
+    this.props.history.push("/offlinelms/app/chats");
   }; */
 
 	helperBot = (botDetails) => {

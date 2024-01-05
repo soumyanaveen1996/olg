@@ -56,7 +56,7 @@ class FavouritesNav extends PureComponent {
 				channelToSend = eachChannel;
 			}
 		});
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 		this.props.initiateChannelConversation(channelToSend, () => {});
 	};
 
@@ -90,7 +90,7 @@ class FavouritesNav extends PureComponent {
 				});
 			} else {
 				createConversation(contact, userId);
-				history.push("/app/chats");
+				history.push("/offlinelms/app/chats");
 			}
 		} else {
 			this.setState({ selContact: contact });
@@ -175,7 +175,7 @@ class FavouritesNav extends PureComponent {
 		} else {
 			let { changeConversation, history } = this.props;
 			changeConversation(conversation);
-			history.push("/app/chats");
+			history.push("/offlinelms/app/chats");
 		}
 	};
 

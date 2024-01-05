@@ -12,7 +12,7 @@ class SettingsNav extends PureComponent {
 
 	openChannel = (channel) => {
 		this.props.initiateChannelConversation(channel, () =>
-			this.props.history.push("/app/chats")
+			this.props.history.push("/offlinelms/app/chats")
 		);
 	};
 

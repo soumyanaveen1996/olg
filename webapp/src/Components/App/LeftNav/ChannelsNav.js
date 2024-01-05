@@ -88,7 +88,7 @@ class ChannelsNav extends PureComponent {
 		// 	userDomain: store.getState().selectedDomain.userDomain,
 		// 	botId: "im-bot",
 		// });
-		this.props.history.push("/app/chats");
+		this.props.history.push("/offlinelms/app/chats");
 		this.props.initiateChannelConversation(channel, () => {});
 	};
 

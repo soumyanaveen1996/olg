@@ -19,7 +19,7 @@ class ContactsViewOld extends Component {
 	onContactClicked = (contact) => {
 		const { createConversation, userId, history } = this.props;
 		createConversation(contact, userId);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	render() {

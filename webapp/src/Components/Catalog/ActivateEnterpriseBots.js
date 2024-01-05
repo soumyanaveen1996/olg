@@ -36,7 +36,7 @@ class ActivateEnterpriseBots extends Component {
 					this.props.changeConversation(timeLine[index], true);
 				}
 				this.props.getAllDomains();
-				this.props.history.push("/app/home");
+				this.props.history.push("/offlinelms/app/home");
 				this.props.hideSpinner();
 			})
 			.catch((err) => {

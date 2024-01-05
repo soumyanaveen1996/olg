@@ -24,7 +24,7 @@ class ContactsMenu extends React.PureComponent {
 	startConversation = () => {
 		const { createConversation, contact, userId } = this.props;
 		createConversation(contact, userId);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 		this.setState({
 			dropdownOpen: !this.state.dropdownOpen,
 		});

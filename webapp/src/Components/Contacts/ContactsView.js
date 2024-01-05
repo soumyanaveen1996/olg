@@ -214,7 +214,7 @@ class ContactsView extends Component {
 	startConversation = (contact) => {
 		const { createConversation, userId, history } = this.props;
 		createConversation(contact, userId);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 	};
 
 	startRemoveContact = (contact) => {

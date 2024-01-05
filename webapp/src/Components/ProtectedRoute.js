@@ -111,7 +111,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 		if (NON_PROTECTED_PATH.includes(rest.path)) {
 			const authData = getAuthData();
 			if (!_.isEmpty(authData)) {
-				return <Redirect to="/app/home" />;
+				return <Redirect to="/offlinelms/app/home" />;
 			}
 		}
 		return <Route render={() => <Component {...rest} />} {...rest} />;

@@ -214,7 +214,7 @@ class ContactsNav extends PureComponent {
 				});
 			} else {
 				createConversation(contact, userId);
-				history.push("/app/chats");
+				history.push("/offlinelms/app/chats");
 			}
 		} else {
 			this.setState({ selContact: contact });

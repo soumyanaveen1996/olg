@@ -169,8 +169,8 @@ class App extends Component {
 			}
 		}
 		window.addEventListener("popstate", (e) => {
-			if (this.props.history.location.pathname === "/app/home") {
-				this.props.history.push("/app/home");
+			if (this.props.history.location.pathname === "/offlinelms/app/home") {
+				this.props.history.push("/offlinelms/app/chat");
 			}
 		});
 
@@ -274,7 +274,7 @@ class App extends Component {
 		}
 		storeLinkData({ type: type, botId: botId });
 		populateLinkData(type, botId);
-		history.push("/app/chats");
+		history.push("/offlinelms/app/chats");
 		this.setState({ isLoading: true });
 	};
 
