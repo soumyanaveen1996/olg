@@ -11,8 +11,8 @@ const DEV_CONFIG = {
   PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
 };
 const PROD_CONFIG = {
-  API_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/item/olg', // should point to PROD when we are ready
-  PING_URL: 'https://y7uq3an27c.execute-api.us-east-1.amazonaws.com/ping',
+  API_URL: 'https://api.frontm.ai/api/olg', // should point to PROD when we are ready
+  PING_URL: 'https://api.frontm.ai/ping',
 };
 
 const LOCAL_CONFIG = {
