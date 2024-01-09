@@ -7,6 +7,7 @@ let db = new DB(state);
 import {COLLECTIONS, DB_STATUS_CODE} from "../constants";
 
 const REGISTER_NODE = 'registerNode';
+const MAX_LIMIT_OF_USERS = 30;
 
 let registerNode = new Intent(REGISTER_NODE, state);
 registerNode.runOnCloud();
@@ -26,8 +27,8 @@ registerNode.onResolution = async () => {
     }
 };
 
-async function queryDB(collection, query) {
-    let response = await db.getDataFromCollection({collection, query, projection: { projection: {"_id": 0}}});
+async function queryDB(collection, query, limit) {
+    let response = await db.getDataFromCollection({collection, query, limit, projection: { projection: {"_id": 0}}});
     let body = state._.get(response, 'body');
     let statusCode = state._.get(response, 'statusCode');
     if(statusCode === DB_STATUS_CODE.ERROR) {
@@ -56,7 +57,7 @@ async function validateInput(input) {
 }
 
 async function getUsers(imo) {
-    let body = await queryDB(COLLECTIONS.CREW, {vesselImo: imo, userIdForLogin: {$exists: true}});
+    let body = await queryDB(COLLECTIONS.CREW, {vesselImo: imo, userIdForLogin: {$exists: true}}, MAX_LIMIT_OF_USERS);
     if(state._.isEmpty(body)) {
         let errorMessage = `No users exist for the IMO: ${imo}`;
         D.log({ message: errorMessage, data: {error: body, imo} });
