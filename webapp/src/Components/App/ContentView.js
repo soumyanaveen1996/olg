@@ -73,7 +73,7 @@ class ContentView extends Component {
 			// 	selectedDomain: domainData.userDomain
 			// }).then((response) => {
 			if(this.props.user?.userRole === "admin") {
-				this.props.history.push("/app/my-profile");
+				this.props.history.push("/offlinelms/app/my-profile");
 				this.props.hideSpinner();
 			} else {
 				this.parseCatalogResponse(data, botIds, domainData);
@@ -394,7 +394,7 @@ class ContentView extends Component {
 						/> */}
 						{this.props.user?.userRole === "admin" && (
 							<ProtectedRoute
-								path="/app/my-profile"
+								path="/offlinelms/app/my-profile"
 								component={MyProfileContainer}
 								{...this.props}
 							/>)}

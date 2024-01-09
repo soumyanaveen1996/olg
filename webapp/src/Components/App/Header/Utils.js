@@ -7,7 +7,7 @@ export function getPageName(pathName, isAnonymousUser) {
 		return "Channels";
 	} else if (pathName.indexOf("/app/catalog") !== -1 && !isAnonymousUser) {
 		return "Chatbots";
-	} else if (pathName === "/app/my-profile" && !isAnonymousUser) {
+	} else if (pathName === "/offlinelms/app/my-profile" && !isAnonymousUser) {
 		return "Profile";
 	} else if (pathName === "/app/home" && !isAnonymousUser) {
 		return "Welcome";

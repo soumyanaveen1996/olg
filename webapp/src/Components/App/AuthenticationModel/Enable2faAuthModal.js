@@ -60,7 +60,7 @@ const Enable2faAuthModal = () => {
 								size="small"
 								onClick={() => {
 									closeModal();
-									history.push("/app/my-profile");
+									history.push("/offlinelms/app/my-profile");
 								}}
 							>
 								Go to settings
