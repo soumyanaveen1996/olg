@@ -59,7 +59,7 @@ export default function UserInfo(props) {
 	};
 
 	const gotoUserProfile = () => {
-		history.push("/app/my-profile");
+		history.push("/offlinelms/app/my-profile");
 	};
 
 	const clearListCookies = () => {
