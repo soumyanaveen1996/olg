@@ -388,12 +388,12 @@ function FMSectionsFormComponent({
 														}
 														const d = new Date();
 														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
-														let expires = "expires=" + d.toUTCString();
-														document.cookie = "iframeUrl=" +webAppUrl+ getCourseUrl?.value;
-														document.cookie = "authToken="+auth.token;
-														document.cookie = "courseId="+getCourseId?.value;
-														document.cookie = "baseURL="+baseURL;
-														document.cookie = expires + ";path=/";
+														let expires = d.toUTCString();
+														document.cookie = "iframeUrl=" +webAppUrl+ getCourseUrl?.value + ";path=/;expires=" + expires;
+														document.cookie = "authToken="+auth.token + ";path=/;expires=" + expires;
+														document.cookie = "courseId="+getCourseId?.value + ";path=/;expires=" + expires;
+														document.cookie = "baseURL="+baseURL + ";path=/;expires=" + expires;
+														// document.cookie = expires + ";path=/";
 														// handleConfirm()
 														window
 															.open("/offlinelms/iframeContent.html", "_blank")
