@@ -527,11 +527,13 @@ class ProfileDetailsView extends Component {
 										>
 											No
 										</button>
-										<NavLink to={{ pathname: "/offlinelms/app/chats" }}>
+										{/*<NavLink to={{ pathname: "/offlinelms/app/my-profile" }}>*/}
 											<button
 												type="button"
 												className="btn btn-lg btn-open m-1"
-												onClick={() => this.goTolandingBot()}
+												onClick={() => {
+													window.location.reload();
+												}}
 												style={{
 													height: "40px",
 													width: "110%",
@@ -545,7 +547,7 @@ class ProfileDetailsView extends Component {
 											>
 												Yes
 											</button>
-										</NavLink>
+										{/*</NavLink>*/}
 									</div>
 								</div>
 							</div>
