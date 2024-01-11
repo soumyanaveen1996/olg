@@ -119,7 +119,7 @@ class LinkableMessage extends Component {
 			// sendMessageByUrlParam()
 		}
 		history.push({
-			pathname: "/app/chats",
+			pathname: "/offlinelms/app/chats",
 			state: {
 				paramArgs: paramArguments,
 			},

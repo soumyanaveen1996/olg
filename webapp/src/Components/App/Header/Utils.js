@@ -1,5 +1,5 @@
 export function getPageName(pathName, isAnonymousUser) {
-	if (pathName.includes("/app/chats") || pathName === "/app/") {
+	if (pathName.includes("/offlinelms/app/chats") || pathName === "/app/") {
 		return "Home";
 	} else if (pathName === "/app/contacts" && !isAnonymousUser) {
 		return "Contacts";
@@ -9,7 +9,7 @@ export function getPageName(pathName, isAnonymousUser) {
 		return "Chatbots";
 	} else if (pathName === "/offlinelms/app/my-profile" && !isAnonymousUser) {
 		return "Profile";
-	} else if (pathName === "/app/home" && !isAnonymousUser) {
+	} else if (pathName === "/offlinelms/app/home" && !isAnonymousUser) {
 		return "Welcome";
 	} else if (pathName === "/app/loft") {
 		return "Loft";

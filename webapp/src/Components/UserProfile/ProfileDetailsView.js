@@ -527,7 +527,7 @@ class ProfileDetailsView extends Component {
 										>
 											No
 										</button>
-										<NavLink to={{ pathname: "/app/chats" }}>
+										<NavLink to={{ pathname: "/offlinelms/app/chats" }}>
 											<button
 												type="button"
 												className="btn btn-lg btn-open m-1"
@@ -857,7 +857,7 @@ class ProfileDetailsView extends Component {
 												<div>
 													{/* <i className="icon-envelope mr-2 primary-link" style={{ fontWeight: "bold", marginLeft: "20px" }} />{" "} */}
 													<label className="ml-3 font600">
-														Edge to Cloud Sync 
+														Edge to Cloud Sync
 													</label>
 												</div>
 												{/* <div style={{ position: "absolute", left: "38%", }} >

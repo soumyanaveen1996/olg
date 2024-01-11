@@ -61,7 +61,7 @@ class MarketplaceNav extends Component {
 	//   const convBot = botSubscriptions.filter(bot => bot.botId === botId);
 	//   createConversation(convBot[0], userId);
 	//   history.push("/offlinelms/app/chats");
-	// }	 
+	// }
 
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (
@@ -160,7 +160,7 @@ class MarketplaceNav extends Component {
 									selectedDomain.viewModes &&
 									selectedDomain.viewModes.apps && (
 										<NavLink
-										to="/app/chats"
+										to="/offlinelms/app/chats"
 											className="appnav-link-gear  d-flex align-items-center justify-content-between"
 											activeClassName="appnav-link-active"
 											style={{ margin: "0px" }}
