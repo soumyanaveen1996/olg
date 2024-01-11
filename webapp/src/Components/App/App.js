@@ -209,8 +209,8 @@ class App extends Component {
 	isChatURL = (pathname) => {
 		console.log("isChatURL pathname = ", pathname, pathname === "/app/chats");
 		return (
-			pathname === "/app/chats" ||
-			pathname === "/app/chats/" ||
+			pathname === "/offlinelms/app/chats" ||
+			pathname === "/offlinelms/app/chats/" ||
 			pathname === "/app/" ||
 			pathname === "/app"
 		);

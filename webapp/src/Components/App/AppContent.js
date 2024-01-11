@@ -8,7 +8,7 @@ import Notify from "../ModalMessages/ToastNotif";
 import { BANNER_TYPE_INFO } from "../../Utils/Constants";
 import ConfrimCreditModal from "../Payments/ConfrimCreditModal";
 import ModalPopup from "../ModalMessages/ModalPopup";
-import StripePayments_New from "../Payments/StripePayments_New";
+// import StripePayments_New from "../Payments/StripePayments_New";/
 import GetCreditModal from "../Payments/GetCreditModal";
 
 class AppContent extends Component {
@@ -278,20 +278,20 @@ class AppContent extends Component {
 						</ModalPopup>
 					)}
 
-				{this.state.showStripe ? (
-					<ModalPopup
-						onClose={this.closeStripePayment}
-						size="sm"
-						title="Payment"
-					>
-						<StripePayments_New
-							user={this.props.user}
-							startPayment={this.initiatePayment}
-							confirmPayment={this.confirmPayment}
-							sendPaymentResponseMessage={this.sendPaymentResponseMessage}
-						/>
-					</ModalPopup>
-				) : null}
+				{/*{this.state.showStripe ? (*/}
+				{/*	<ModalPopup*/}
+				{/*		onClose={this.closeStripePayment}*/}
+				{/*		size="sm"*/}
+				{/*		title="Payment"*/}
+				{/*	>*/}
+				{/*		<StripePayments_New*/}
+				{/*			user={this.props.user}*/}
+				{/*			startPayment={this.initiatePayment}*/}
+				{/*			confirmPayment={this.confirmPayment}*/}
+				{/*			sendPaymentResponseMessage={this.sendPaymentResponseMessage}*/}
+				{/*		/>*/}
+				{/*	</ModalPopup>*/}
+				{/*) : null}*/}
 				{this.state.getConfirmCreditModal && (
 					<ModalPopup noHeader="true">
 						<ConfrimCreditModal

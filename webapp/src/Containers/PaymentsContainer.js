@@ -43,14 +43,15 @@ class PaymentsContainer extends Component {
 	};
 
 	render() {
-		return (
-			<StripePayments
-				{...this.props}
-				startPayment={this.startPayment}
-				confirmPayment={this.confirmPayment}
-				sendPaymentResponseMessage={this.props.sendPaymentResponseMessage}
-			/>
-		);
+		return null;
+		// return (
+		// 	<StripePayments
+		// 		{...this.props}
+		// 		startPayment={this.startPayment}
+		// 		confirmPayment={this.confirmPayment}
+		// 		sendPaymentResponseMessage={this.props.sendPaymentResponseMessage}
+		// 	/>
+		// );
 	}
 }
 
