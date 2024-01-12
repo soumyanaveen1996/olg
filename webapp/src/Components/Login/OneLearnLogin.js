@@ -252,21 +252,7 @@ const OneLearnLogin = (props) => {
 
 			<Box className={"mt-20 mb-30 d-flex align-items-center justify-content-center font500 flex-column"}>
 				<Box className={"mb-10"}>New User?</Box>
-				<Button onClick={() => {
-					const d = new Date();
-					d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
-					let expires = "expires=" + d.toUTCString();
-					document.cookie = "iframeUrl=" +"webAppUrl"+ "getCourseUrl?.value" + ";path=/";
-					document.cookie = "authToken="+"auth.token" + ";path=/";
-					document.cookie = "courseId="+"getCourseId?.value" + ";path=/";
-					document.cookie = "baseURL="+"baseURL" + ";path=/";
-					document.cookie = expires + ";path=/";
-					// handleConfirm()
-					window
-						.open("/offlinelms/iframeContent.html", "_blank")
-						.focus();}
-				}
-				 className={`btn btn-open btn-block btn-icon oneLearn-btn`} >
+				<Button onClick={() => setForm((prev) => ({ ...prev, page: "CREATE_PIN", action: "CREATE_PIN" }))} className={`btn btn-open btn-block btn-icon oneLearn-btn`} >
 					Create PIN
 				</Button>
 			</Box>
