@@ -381,23 +381,27 @@ function FMSectionsFormComponent({
 													disabled={disableSubmit}
 													onClick={() => {
 														const getCourseId = fields?.find((item) => item.id === "courseId");
+														const getCourseStatus = fields?.find((item) => item.id === "courseStatus");
 														const getCourseUrl = fields?.find((item) => item.id === "courseUrl");
-														if(!getCourseUrl?.value) {
-															alert("The URL for the course you are attempting to start is not available. For further assistance, contact our support team.");
-															return;
+														// STARTED, ENROLLED and COMPLETED
+														if(getCourseStatus?.value === "COMPLETED") {
+															handleConfirm();
+														} else {
+															if(!getCourseUrl?.value) {
+																alert("The URL for the course you are attempting to start is not available. For further assistance, contact our support team.");
+																return;
+															}
+															const d = new Date();
+															d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+															let expires = d.toUTCString();
+															document.cookie = "iframeUrl=" +webAppUrl+ getCourseUrl?.value + ";path=/;expires=" + expires;
+															document.cookie = "authToken="+auth.token + ";path=/;expires=" + expires;
+															document.cookie = "courseId="+getCourseId?.value + ";path=/;expires=" + expires;
+															document.cookie = "baseURL="+baseURL + ";path=/;expires=" + expires;
+															window
+																.open("/offlinelms/iframeContent.html", "_blank")
+																.focus();
 														}
-														const d = new Date();
-														d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
-														let expires = d.toUTCString();
-														document.cookie = "iframeUrl=" +webAppUrl+ getCourseUrl?.value + ";path=/;expires=" + expires;
-														document.cookie = "authToken="+auth.token + ";path=/;expires=" + expires;
-														document.cookie = "courseId="+getCourseId?.value + ";path=/;expires=" + expires;
-														document.cookie = "baseURL="+baseURL + ";path=/;expires=" + expires;
-														// document.cookie = expires + ";path=/";
-														// handleConfirm()
-														window
-															.open("/offlinelms/iframeContent.html", "_blank")
-															.focus();
 													}}
 												>
 													{options?.confirm}
