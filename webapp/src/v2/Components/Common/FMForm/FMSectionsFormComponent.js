@@ -383,8 +383,8 @@ function FMSectionsFormComponent({
 														const getCourseId = fields?.find((item) => item.id === "courseId");
 														const getCourseStatus = fields?.find((item) => item.id === "courseStatus");
 														const getCourseUrl = fields?.find((item) => item.id === "courseUrl");
-														// STARTED, ENROLLED and COMPLETED
-														if(getCourseStatus?.value === "COMPLETED") {
+														// STARTED, ENROLLED and "FINISHED"
+														if(getCourseStatus?.value === "FINISHED") {
 															handleConfirm();
 														} else {
 															if(!getCourseUrl?.value) {
