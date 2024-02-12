@@ -39,6 +39,7 @@ jobs:
       - name: Build Docker Images
         run: |
           ./build.sh ${{ github.event.inputs.build_type }}
+          rm .api_key.json
  #       working-directory: ${{ github.workspace }}
     
       - name: Configure AWS credentials
@@ -62,14 +63,12 @@ jobs:
           port: ${{ secrets.EC2_SSH_PORT }}
           script: |
             # Backup existing docker builds
-            sudo mkdir -p /backup/docker
-            sudo mv /var/lib/docker /backup/docker/$(date +%Y%m%d)
-
-            # Delete builds older than 30 days
-            sudo find /backup/docker -type d -mtime +30 -exec rm -rf {} \;
+            cp out.zip previousZipFiles/"out_$(date +'%Y%m%d%H').zip"
+            mv out previousOutFolders/"out_$(date +'%Y%m%d%H')"
 
             # Deploy new build
-            sudo unzip -o /path/to/artifacts/out.zip -d /path/to/deployment/folder
-            cd /path/to/deployment/folder
+            aws s3 cp s3://olg-docker/out-${current_timestamp}.zip out.zip
+            sudo unzip out.zip .
+            cd ./out
             sudo docker load --input ./out.tar
             sudo docker-compose up -d
