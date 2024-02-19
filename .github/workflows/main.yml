@@ -55,7 +55,7 @@ jobs:
       - name: Upload build artifacts to S3
         run: |
            current_timestamp=$(date +"%m%d%Y%H%M")
-           aws s3 cp out.zip s3://olg-docker/out-${current_timestamp}.zip
+           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out-${current_timestamp}.zip
 
       - name: SSH Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
@@ -70,7 +70,7 @@ jobs:
             mv out previousOutFolders/"out_$(date +'%Y%m%d%H')"
 
             # Deploy new build
-            aws s3 cp s3://olg-docker/out-${current_timestamp}.zip out.zip
+            aws s3 cp s3://dev-frontm-downloads/olg-docker/out-${current_timestamp}.zip out.zip
             sudo unzip out.zip .
             cd ./out
             sudo docker load --input ./out.tar
