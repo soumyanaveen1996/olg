@@ -37,7 +37,7 @@ jobs:
         run: |
             pwd
             touch edge/.api_key.json
-            cp  ${{ secrets.API_KEY }} edge/.api_key.json
+            echo "${{ secrets.API_KEY }}" > edge/.api_key.json
 
       - name: Build Docker Images
         run: |
