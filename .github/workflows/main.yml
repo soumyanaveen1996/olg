@@ -36,7 +36,7 @@ jobs:
       - name: Copy .api_key.json file
         run: |
             pwd
-            touch ./edge/.api_key.json
+            touch edge/.api_key.json
             cp  ${{ secrets.API_KEY }} ./edge/.api_key.json
 
       - name: Build Docker Images
