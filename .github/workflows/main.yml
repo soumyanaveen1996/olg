@@ -34,12 +34,14 @@ jobs:
 
 
       - name: Copy .api_key.json file
-        run: cp  ${{ secrets.API_KEY }} olg/edge/.api_key.json
+        run: |
+            touch ./edg/.api_key.json
+            cp  ${{ secrets.API_KEY }} ./edge/.api_key.json
 
       - name: Build Docker Images
         run: |
           ./build.sh ${{ github.event.inputs.build_type }}
-          rm .api_key.json
+          rm edge/.api_key.json
  #       working-directory: ${{ github.workspace }}
     
       - name: Configure AWS credentials
