@@ -26,7 +26,7 @@ jobs:
 
       - name: Increment version in package.json
         run: |
-  
+           cd webapp
            current_version=$(jq -r '.version' package.json)
            new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
