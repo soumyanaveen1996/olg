@@ -10,8 +10,8 @@ const DB_STATUS_CODE = {
     ERROR: 500
 };
 
-module.exports = {
+export {
     FIELDS_TO_UPDATE,
     COLLECTIONS,
-    DB_STATUS_CODE
+    DB_STATUS_CODE,
 };

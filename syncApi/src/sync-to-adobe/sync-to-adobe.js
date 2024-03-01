@@ -1,9 +1,9 @@
-import {state} from "frontm.js/core/State";
-import {D} from "frontm.js/core/State";
+import {state, D} from "frontm.js/core/State";
 import {Intent} from "frontm.js/core/Intent";
 import {DB} from "frontm.js/core/DB";
 let db = new DB(state);
 import {FIELDS_TO_UPDATE, COLLECTIONS, DB_STATUS_CODE} from "../constants";
+import {queryDB} from "../utils";
 
 const SYNC_TO_ADOBE = 'syncToAdobe';
 let syncToAdobe = new Intent(SYNC_TO_ADOBE, state);
@@ -24,16 +24,6 @@ syncToAdobe.onResolution = async () => {
     }
 };
 
-async function queryDB(collection, query) {
-    let response = await db.getDataFromCollection({collection, query, projection: { projection: {"_id": 0}}});
-    let body = state._.get(response, 'body');
-    let statusCode = state._.get(response, 'statusCode');
-    if(statusCode === DB_STATUS_CODE.ERROR) {
-        D.log({ message: "Error while querying data", data: {error: body, collection, query} });
-        throw new Error(body);
-    }
-    return body;
-}
 async function validateInput(input) {
     let {IMO, remoteNodeId, userEnrollments} = input;
     if (state._.isEmpty(IMO)) {
@@ -46,7 +36,7 @@ async function validateInput(input) {
         throw new Error("Missing userEnrollments");
     }
 
-    let body = await queryDB(COLLECTIONS.REMOTE_NODES, {IMO, remoteNodeId});
+    let body = await queryDB({collection: COLLECTIONS.REMOTE_NODES, query: {IMO, remoteNodeId}});
     if(state._.isEmpty(body)) {
         throw new Error(`Invalid input. IMO: ${IMO} and remoteNodeId: ${remoteNodeId}`);
     }
@@ -56,7 +46,7 @@ async function updateUserEnrollments(IMO, remoteNodeId, userEnrollments) {
     let documents = state._.map(userEnrollments, doc => {
         let docFieldsToUpdate = state._.pick(doc, FIELDS_TO_UPDATE);
         docFieldsToUpdate.edgeSyncDate = Date.now();
-        return {updateOne: { filter: {userId: doc.userId, courseId: doc.courseId}, update: {$set: docFieldsToUpdate}}}
+        return {updateOne: { filter: {userId: doc.userId, courseId: doc.courseId}, update: {$set: docFieldsToUpdate, $unset: {adobeSyncDate: 1}}}}
     });
     D.log({ message: "updateUserEnrollments", data: {documents} });
     let response = await db.bulkWriteToCollection({

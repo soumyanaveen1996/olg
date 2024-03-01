@@ -1,10 +1,10 @@
-import {state} from "frontm.js/core/State";
-import {D} from "frontm.js/core/State";
+import {state, D} from "frontm.js/core/State";
 import {Intent} from "frontm.js/core/Intent";
 import {DB} from "frontm.js/core/DB";
 let db = new DB(state);
 
 import {COLLECTIONS, DB_STATUS_CODE} from "../constants";
+import {queryDB} from "../utils";
 
 const REGISTER_NODE = 'registerNode';
 const MAX_LIMIT_OF_USERS = 30;
@@ -27,16 +27,6 @@ registerNode.onResolution = async () => {
     }
 };
 
-async function queryDB(collection, query, limit) {
-    let response = await db.getDataFromCollection({collection, query, limit, projection: { projection: {"_id": 0}}});
-    let body = state._.get(response, 'body');
-    let statusCode = state._.get(response, 'statusCode');
-    if(statusCode === DB_STATUS_CODE.ERROR) {
-        D.log({ message: "Error while querying data", data: {error: body, collection, query} });
-        throw new Error(body);
-    }
-    return body;
-}
 async function validateInput(input) {
     let {IMO, remoteNodeId} = input;
     if (state._.isEmpty(IMO)) {
@@ -46,18 +36,18 @@ async function validateInput(input) {
         throw new Error("Missing remoteNodeId");
     }
 
-    let body = await queryDB(COLLECTIONS.REMOTE_NODES, {IMO});
+    let body = await queryDB({collection: COLLECTIONS.REMOTE_NODES, query: {IMO}});
     if(!state._.isEmpty(body) && state._.get(body, '[0].remoteNodeId') !== remoteNodeId) {
         throw new Error(`IMO: ${IMO} is mapped to a different remoteNodeId`);
     }
-    body = await queryDB(COLLECTIONS.REMOTE_NODES, {remoteNodeId});
+    body = await queryDB({collection: COLLECTIONS.REMOTE_NODES, query: {remoteNodeId}});
     if(!state._.isEmpty(body) && state._.get(body, '[0].IMO') !== IMO) {
         throw new Error(`remoteNodeId: ${remoteNodeId} is mapped to a different IMO`);
     }
 }
 
 async function getUsers(imo) {
-    let body = await queryDB(COLLECTIONS.CREW, {vesselImo: imo, userIdForLogin: {$exists: true}}, MAX_LIMIT_OF_USERS);
+    let body = await queryDB({collection: COLLECTIONS.CREW, query: {vesselImo: imo, userIdForLogin: {$exists: true}}, limit: MAX_LIMIT_OF_USERS});
     if(state._.isEmpty(body)) {
         let errorMessage = `No users exist for the IMO: ${imo}`;
         D.log({ message: errorMessage, data: {error: body, imo} });
@@ -74,7 +64,7 @@ async function getUserEnrollments(users) {
             continue;
         }
         let userId = user.userId;
-        let body = await queryDB(COLLECTIONS.USER_COURSES, { userId });
+        let body = await queryDB({collection: COLLECTIONS.USER_COURSES, query: { userId }});
         if(state._.isEmpty(body)) {
             D.log({ message: `No courses exist for the userId: ${userId}`});
             continue;
@@ -91,7 +81,7 @@ async function getCourses(userEnrollments) {
     let courses = [];
     for(let i = 0; i < state._.size(chunks); i++) {
         let chunk = chunks[i];
-        let body = await queryDB(COLLECTIONS.COURSES, { courseId: {$in: chunk} });
+        let body = await queryDB({collection: COLLECTIONS.COURSES, query: { courseId: {$in: chunk} }});
         courses = courses.concat(body);
     }
     return courses;
@@ -112,11 +102,23 @@ async function registerNewRemoteNode(IMO, remoteNodeId) {
     }
 }
 
+async function getCoursesTotalCount() {
+    let response = await db.countDataFromCollection({collection: COLLECTIONS.COURSES});
+    let body = state._.get(response, 'body');
+    let statusCode = state._.get(response, 'statusCode');
+    if(statusCode === DB_STATUS_CODE.ERROR) {
+        D.log({ message: "Error while querying data", data: {error: body} });
+        throw new Error(body);
+    }
+    return body;
+}
+
 async function getDataForRemoteNode(IMO) {
     let users = await getUsers(IMO);
     let userEnrollments = await getUserEnrollments(users);
     let courses = await getCourses(userEnrollments);
-    return {users, userEnrollments, courses};
+    let courseCatalogSize = await getCoursesTotalCount();
+    return {users, userEnrollments, courses, courseCatalogSize};
 }
 
 async function processRemoteNodeRequest(inputFromApi) {
