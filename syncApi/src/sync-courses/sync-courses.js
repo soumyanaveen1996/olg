@@ -42,13 +42,25 @@ async function validateInput(input) {
     }
 }
 
-async function getCoursesForPage(pageNumber) {
-    let skip = pageNumber * COURSES_PAGE_SIZE;
-    return await queryDB({collection: COLLECTIONS.COURSES, limit: COURSES_PAGE_SIZE, skip});
+async function getCatalogCourseIds() {
+    let response = await queryDB({
+        collection: COLLECTIONS.CATALOG,
+        query: {},
+        limit: 100,
+        projection: {projection: {id: 1, courseIds: 1, '_id': 0}},
+    });
+
+    return state._(response).map('courseIds').flatten().uniq().sort().value();
+}
+
+async function getCoursesForPage(coursesIdsForCurPage) {
+    return await queryDB({collection: COLLECTIONS.COURSES, limit: COURSES_PAGE_SIZE, query: {courseId: {$in: coursesIdsForCurPage}}});
 }
 async function getCourses(curPageNumber = 0) {
-    let courses = await getCoursesForPage(curPageNumber);
-    let nextPageNumber = state._.size(courses) < COURSES_PAGE_SIZE ? 0 : (curPageNumber + 1);
+    let catalogCourseIds = await getCatalogCourseIds();
+    let coursesIdsForCurPage = state._(catalogCourseIds).drop(curPageNumber * COURSES_PAGE_SIZE).take(COURSES_PAGE_SIZE).value();
+    let courses = await getCoursesForPage(coursesIdsForCurPage);
+    let nextPageNumber = state._.size(coursesIdsForCurPage) < COURSES_PAGE_SIZE ? 0 : (curPageNumber + 1);
     return {courses, nextPageNumber};
 }
 

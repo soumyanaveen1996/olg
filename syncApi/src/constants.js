@@ -3,7 +3,8 @@ const COLLECTIONS = {
     CREW: 'crews_olg',
     USER_COURSES: 'userCourses_olg',
     COURSES: 'courses_olg',
-    REMOTE_NODES: 'remoteNodes_olg'
+    REMOTE_NODES: 'remoteNodes_olg',
+    CATALOG: 'catalog_olg',
 };
 const DB_STATUS_CODE = {
     SUCCESS: 200,
