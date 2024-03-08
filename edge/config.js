@@ -36,15 +36,18 @@ const config = {
   NODE_ID_KEY: 'NODE_ID',
   C2E_STATUS_KEY: 'C2E_STATUS_KEY',
   E2C_STATUS_KEY: 'E2C_STATUS_KEY',
+  COURSES_SYNC_STATUS_KEY: 'COURSES_SYNC_STATUS_KEY',
+  REMOTE_CATALOG_SIZE_KEY: 'REMOTE_CATALOG_SIZE_KEY',
   SYNC_DATA_POINTS: {
     SYNC_TIME: 'syncTime', 
     SYNC_STATUS: 'syncStatus',
     SYNC_MSG: 'syncMessage',
     SYNC_STATS: 'syncStats'
   },
-  SYNC_STATUSES: {PENDING: 'PENDING', DONE: 'DONE', ERROR: 'ERROR'},
+  SYNC_STATUSES: {PENDING: 'PENDING', DONE: 'DONE', ERROR: 'ERROR', IN_PROGRESS: 'IN_PROGRESS'},
   EDGE_NODE_REGISTRATION_PATH: 'registerRemoteNode',
   SYNC_TO_ADOBE_PATH: 'syncToAdobe',
+  SYNC_ALL_COURSES_PATH: 'syncAllCourses',
   DEFAULT_USER_DOMAINS: [{"domain": "olg", "roles": ["enduser"]}],
   MONGO_DB_COLLECTIONS: {
     USERS: 'users',
@@ -55,8 +58,8 @@ const config = {
     BOTFARM: 'botfarm',
     DOMAINS: 'domains'
   },
-  COURSE_FIELDS_TO_SYNC: ['dateStarted', 'dateCompleted', 'dateSuccess', 'hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules'],
-  COURSE_STATUS: {STARTED: 'STARTED', COMPLETED: 'COMPLETED'},
+  COURSE_FIELDS_TO_SYNC: ['dateStarted', 'dateCompleted', 'dateSuccess', 'hasPassed', 'progressPercent', 'score', 'state', 'courseId', 'userId', 'completedModules', 'enrolledStats'],
+  COURSE_STATUS: {STARTED: 'STARTED', COMPLETED: 'COMPLETED', ENROLLED: 'ENROLLED'},
 
 }
 
