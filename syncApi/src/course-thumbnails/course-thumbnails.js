@@ -19,7 +19,7 @@ getSignedUrlForThumbnails.onResolution = async () => {
         D.log({ message: "Input from API", data: inputFromApi });
         await validateInput(inputFromApi);
         let signedUrls = await getSignedUrls(inputFromApi);
-        state.api.sendResponse({ code: 200, response: signedUrls});
+        state.api.sendResponse({ code: 200, response: {signedUrls}});
     } catch (e) {
         D.log({ message: "Error in getSignedUrlForThumbnails API", data: e.message })
         state.api.sendResponse({ code: 500, response: { errorMessage: e.message } });
