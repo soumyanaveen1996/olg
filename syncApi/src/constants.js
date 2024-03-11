@@ -11,8 +11,11 @@ const DB_STATUS_CODE = {
     ERROR: 500
 };
 
+const COURSE_LOCATION = 'olg/course_images';
+
 export {
     FIELDS_TO_UPDATE,
     COLLECTIONS,
     DB_STATUS_CODE,
+    COURSE_LOCATION
 };

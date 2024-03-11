@@ -3,6 +3,7 @@ import { Intent } from "frontm.js/core/Intent";
 import {registerNode} from "./register-node/register-node"
 import {syncToAdobe} from "./sync-to-adobe/sync-to-adobe"
 import {syncCourses} from "./sync-courses/sync-courses"
+import {getSignedUrlForThumbnails} from "./course-thumbnails/course-thumbnails"
 state.onStart = async () => {
 }
 
