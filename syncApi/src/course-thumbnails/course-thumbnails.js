@@ -6,6 +6,7 @@ import { getSignedUrl } from "frontm.js/lib/surveys/utils";
 
 const COURSE_THUMBNAILS = 'getSignedUrlForThumbnails';
 const IMAGE_BUCKET = 'imageBucket';
+const TEN_HOUR_SEC = 10 * 60 * 60;
 
 let getSignedUrlForThumbnails = new Intent(COURSE_THUMBNAILS, state);
 getSignedUrlForThumbnails.runOnCloud();
@@ -60,7 +61,7 @@ async function getSignedUrls(inputFromApi) {
     let courseIdUrls = [];
     state._.forEach(courseIds, courseId => {
         if(state._.indexOf(dbCourseIds, courseId) !== -1) {
-            courseIdUrls.push({courseId, signedUrl: getSignedUrl(bucket, `${COURSE_LOCATION}/${courseId}.png`)});
+            courseIdUrls.push({courseId, signedUrl: getSignedUrl(bucket, `${COURSE_LOCATION}/${courseId}.png`, TEN_HOUR_SEC)});
         }
     });
     return courseIdUrls;
