@@ -7,12 +7,21 @@ const {DB_STATUS_CODE, getRemoteNodeData} = require("./jobUtils");
 const {MONGO_DB_COLLECTIONS, SIGNED_URLS_PATH, API_URL, THUMBNAIL_PATH} = config;
 const SIGNED_URLS_ENDPOINT = `${API_URL}/${SIGNED_URLS_PATH}`;
 const DB_FETCH_LIMIT = 10;
+const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+
 async function getCourseIdsWithoutThumbnails() {
+    let thirtyDaysAgo = Date.now() - THIRTY_DAYS_MS;
     let response = await MongoDBManager.execute({
         action: 'query',
         db: 'olg',
         collection: MONGO_DB_COLLECTIONS.COURSES,
-        query: { s3ThumbnailDownloadDate: {$exists: true}, lmsThumbnailDownloadDate: {$exists: false}}, // TODO: get thumbnails downloaded within 1 month
+        query: {$and: [
+                { s3ThumbnailDownloadDate: {$exists: true} },
+                {$or: [
+                        { lmsThumbnailDownloadDate: {$exists: false} },
+                        { lmsThumbnailDownloadDate: {$lte: thirtyDaysAgo} }
+                    ]}
+            ]},
         projection: {projection: {courseId: 1, '_id': 0}}, skip: 0, limit: DB_FETCH_LIMIT
     });
     let body = _.get(response, 'body');
