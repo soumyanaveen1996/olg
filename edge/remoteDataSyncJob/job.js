@@ -3,6 +3,7 @@ let cron = require('node-cron');
 const {doEdgeToCloudSync} = require('./syncE2CEnrolments');
 const {doCloudToEdgeSync} = require('./syncC2EEnrolments');
 const {doCoursesSync} = require('./syncAllCourses');
+const {doThumbnailsSync} = require('./syncCourseThumbnails');
 const {checkAPIGatewayAvailability} = require('./jobUtils');
 
 const CRON_EXPRESSIONS = {
@@ -12,6 +13,7 @@ const CRON_EXPRESSIONS = {
 exports.start = () => {
     startEnrollmentSyncJob();
     startAllCoursesSyncJob();
+    startThumbnailsSyncJob();
 }
 
 function startAllCoursesSyncJob() {
@@ -52,6 +54,26 @@ function startEnrollmentSyncJob() {
         console.log('CRON JOB: enrollmentSyncJob started successfully');
     } catch (e) {
         console.log(`CRON JOB: ${Date.now()} Unable to start enrollmentSyncJob. Error: ${e.message}`);
+    }
+}
+
+function startThumbnailsSyncJob() {
+    const job = cron.schedule(CRON_EXPRESSIONS.EVERY_MIN, async () => {
+        console.log('CRON JOB: Executing thumbnailsSyncJob');
+        let isAPIAvailable = await checkAPIGatewayAvailability();
+        console.log(`CRON JOB: API gateway available: ${isAPIAvailable}`);
+        if(isAPIAvailable) {
+            console.log('CRON JOB: API gateway is available. Doing the thumbnailsSyncJob process');
+            await doThumbnailsSync();
+        }
+    });
+
+    try {
+        console.log('CRON JOB: Starting thumbnailsSyncJob');
+        job.start();
+        console.log('CRON JOB: Cron thumbnailsSyncJob started successfully');
+    } catch (e) {
+        console.log(`CRON JOB: ${Date.now()} Unable to start cron thumbnailsSyncJob. Error: ${e.message}`);
     }
 }
 
