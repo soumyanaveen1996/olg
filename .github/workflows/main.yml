@@ -16,3 +16,23 @@ on:
             description: 'Production build for Frontm'
           - value: 'prod_olg'
             description: 'Production build for OLG'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Increment version in package.json
+      run: |
+        npm version patch
+        git push --follow-tags
+
+    - name: Copy .api_key.json to olg/edge folder
+      run: cp .api_key.json olg/edge/
