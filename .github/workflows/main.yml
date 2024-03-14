@@ -30,6 +30,14 @@ jobs:
       - name: Build Docker Image
         run: docker-compose -f compose.yaml build
 
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.Docker_token }}" | docker login -u soumyanaveen --password-stdin
 
+      - name: Tag Docker Image
+        run: |
+              docker tag <your-local-image-name> <your-dockerhub-username>/<your-repository-name>:<tag-name>
+
+      - name: Push Docker Image to Docker Hub
+        run: docker push soumyanaveen/olg:tagname
 
     
