@@ -24,14 +24,11 @@ jobs:
     	- name: Checkout code
     	  uses: actions/checkout@v2
       
-   	    - name: Checkout Repository
-          uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Increment version in package.json
-          run: |
+      - name: Increment version in package.json
+        run: |
            cd webapp
            current_version=$(jq -r '.version' package.json)
            new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
@@ -40,11 +37,10 @@ jobs:
 
 
 
-        - name: Copy .api_key.json to olg/edge folder
-          run: cp .api_key.json olg/edge/
-
-        - name: Build Docker images
-          run: docker-compose -f path/to/your/docker-compose.yml build
+      - name: Copy .api_key.json to olg/edge folder
+        run: cp .api_key.json olg/edge/
+      - name: Build Docker images
+        run: docker-compose -f path/to/your/docker-compose.yml build
            current_version=$(jq -r '.version' package.json)
            new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
@@ -52,8 +48,8 @@ jobs:
 
 
 
-        - name: Copy .api_key.json to olg/edge folder
-          run: cp .api_key.json olg/edge/
+      - name: Copy .api_key.json to olg/edge folder
+         run: cp .api_key.json olg/edge/
 
-        - name: Build Docker images
-          run: docker-compose -f path/to/your/docker-compose.yml build
+       - name: Build Docker images
+         run: docker-compose -f path/to/your/docker-compose.yml build
