@@ -49,4 +49,8 @@ jobs:
       - name: Push Docker Image to Docker Hub
         run: docker push soumyanaveen/olg:tagname
 
-    
+      - name: Send Notification
+        if: always()
+        run: |
+         echo "Build completed!\nVersion: '${{ github.run_number }}'\nDescription: ${{ github.event.inputs.build_description }}" | sendmail soumyanaveen1996@gmail.com
+ 
