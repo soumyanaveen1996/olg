@@ -31,11 +31,21 @@ jobs:
         run: docker-compose -f compose.yaml build
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.Docker_token }}" | docker login -u soumyanaveen
+        run: echo "${{ secrets.Dockerhub_Token}}" | docker login -u soumyanaveen --password-stdin
+
 
       - name: Tag Docker Image
         run: |
-              docker tag <your-local-image-name> <your-dockerhub-username>/<your-repository-name>:<tag-name>
+              docker tag <your-local-image-name> soumyanaveen/olg:tagname
+      - name: Extract Image Name
+        id: extract_image_name
+        run: |
+         IMAGE_NAME=$(docker-compose -f compose.yaml config | grep 'image:' | awk '{print $2}')
+         echo "::set-output name=image_name::$IMAGE_NAME"
+
+      - name: Tag Docker Image
+        run: |
+          docker tag ${{ steps.extract_image_name.outputs.image_name }} soumyanaveen/olg:tagname
 
       - name: Push Docker Image to Docker Hub
         run: docker push soumyanaveen/olg:tagname
