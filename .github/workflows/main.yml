@@ -31,7 +31,7 @@ jobs:
         run: docker-compose -f compose.yaml build
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.Docker_token }}" | docker login -u soumyanaveen --password-stdin
+        run: echo "${{ secrets.Docker_token }}" | docker login -u soumyanaveen
 
       - name: Tag Docker Image
         run: |
