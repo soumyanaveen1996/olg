@@ -43,5 +43,5 @@ jobs:
             touch edge/.api_key.json
             echo "${{ secrets.API_KEY }}" > edge/.api_key.json
 
-    - name: Copy .api_key.json to olg/edge folder
-      run: cp .api_key.json olg/edge/
+      - name: Copy .api_key.json to olg/edge folder
+        run: cp .api_key.json olg/edge/
