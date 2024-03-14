@@ -46,3 +46,15 @@ jobs:
 
       - name: Build Docker images
         run: docker-compose -f path/to/your/docker-compose.yml build
+           current_version=$(jq -r '.version' package.json)
+           new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
+           jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
+           mv package.json.tmp package.json
+
+
+
+      - name: Copy .api_key.json to olg/edge folder
+        run: cp .api_key.json olg/edge/
+
+      - name: Build Docker images
+        run: docker-compose -f path/to/your/docker-compose.yml build
