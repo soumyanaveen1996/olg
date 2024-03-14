@@ -20,8 +20,11 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+  steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -37,11 +40,9 @@ jobs:
            mv package.json.tmp package.json
 
 
-      - name: Copy .api_key.json file
-        run: |
-            pwd
-            touch edge/.api_key.json
-            echo "${{ secrets.API_KEY }}" > edge/.api_key.json
 
-      - name: Copy .api_key.json to olg/edge folder
-        run: cp .api_key.json olg/edge/
+    - name: Copy .api_key.json to olg/edge folder
+      run: cp .api_key.json olg/edge/
+
+    - name: Build Docker images
+      run: docker-compose -f path/to/your/docker-compose.yml build
