@@ -67,7 +67,8 @@ jobs:
           docker push soumyanaveen/web-app:${{ inputs.webapp_tags }}
 
       - name: Update Build Info
-        run: echo "Build Type: ${{ inputs.build_type }}, Description: ${{ inputs.build_description }}" >> build-info.txt
+        run: |
+          echo "Build Type: ${{ inputs.build_type }}, Description: ${{ inputs.build_description }}" >> build-info.txt
 
 
      
