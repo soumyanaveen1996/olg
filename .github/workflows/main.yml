@@ -1,9 +1,18 @@
-name: Build and Push Docker Images
+name: OLG Application Pipeline
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Select build type'
+        required: true
+        default: 'dev_olg'
+        options:
+          - 'dev_frontm'
+          - 'dev_olg'
+          - 'prod_frontm'
+          - 'prod_olg'
+--
     paths:
       - 'docker-compose.yml'
       - 'edge/Dockerfile'
@@ -42,7 +51,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_TOKEN}}
 
       - name: Build and push images
         run: |
@@ -53,12 +62,12 @@ jobs:
         run: |
           IFS=',' read -ra edge_tags_array <<< "${{ inputs.edge_tags }}"
           for tag in "${edge_tags_array[@]}"; do
-            docker tag yourdockerhubusername/edge-app:latest yourdockerhubusername/edge-app:${tag}
+            docker tag soumyanaveen/edge-app:latest soumyanaveen/edge-app:${tag}
           done
 
           IFS=',' read -ra webapp_tags_array <<< "${{ inputs.webapp_tags }}"
           for tag in "${webapp_tags_array[@]}"; do
-            docker tag yourdockerhubusername/web-app:latest yourdockerhubusername/web-app:${tag}
+            docker tag soumyanaveen/web-app:latest soumyanaveen/web-app:${tag}
           done
 
       - name: Push Tagged Images
