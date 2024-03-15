@@ -12,11 +12,12 @@ on:
           - 'dev_olg'
           - 'prod_frontm'
           - 'prod_olg'
---
-    paths:
-      - 'docker-compose.yml'
-      - 'edge/Dockerfile'
-      - 'webapp/Dockerfile'
+        description: 'Choose the type of build to run: dev_olg (development OLG), dev_frontm (development FrontM), prod_olg (production OLG), prod_frontm (production FrontM)'
+      docker_tags:
+        description: 'Tags for Docker images (comma-separated)'
+        required: true
+        type: string
+
 
 jobs:
   build_and_push:
