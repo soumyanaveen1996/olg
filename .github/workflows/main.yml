@@ -43,7 +43,7 @@ jobs:
           for tag in "${tags_array[@]}"; do
             docker tag edge:latest ${{ secrets.DOCKERHUB_USERNAME }}/edge:$tag
             docker tag webapp:latest ${{ secrets.DOCKERHUB_USERNAME }}/webapp:$tag
-            docker push ${{ secrets.DOCKERHUB_USERNAME }}/edgeapp:$tag
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/edge:$tag
             docker push ${{ secrets.DOCKERHUB_USERNAME }}/webapp:$tag
           done
 
