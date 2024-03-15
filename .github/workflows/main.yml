@@ -39,7 +39,7 @@ jobs:
 
       - name: Tag and Push Images
         run: |
-          for image in edge webapp; do
+          for image in edge, webapp; do
             docker tag $image:$VERSION ${{ inputs.docker_tags }}/$image:$VERSION
             docker push ${{ inputs.docker_tags }}/$image:$VERSION
           done
