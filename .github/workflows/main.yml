@@ -41,8 +41,8 @@ jobs:
         run: |
           IFS=',' read -ra tags_array <<< "${{ inputs.docker_tags }}"
           for tag in "${tags_array[@]}"; do
-            docker tag soumyanaveen/edge-app:latest soumyanaveen/edge-app:${tag}
-            docker tag soumyanaveen/web-app:latest soumyanaveen/web-app:${tag}
+            docker tag soumyanaveen/edge:latest soumyanaveen/edge-app:${tag}
+            docker tag soumyanaveen/webapp:latest soumyanaveen/web-app:${tag}
           done
 
       - name: Generate Updated Docker Compose File
