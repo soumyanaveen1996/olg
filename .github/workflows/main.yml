@@ -1,60 +1,74 @@
-name: OLG Application Pipeline
+name: Build and Push Docker Images
 
 on:
-  workflow_dispatch:
-    inputs:
-      build_type:
-        description: 'Select build type'
-        required: true
-        default: 'dev_olg'
-        options:
-          - value: 'dev_frontm'
-            description: 'Development build for Frontm'
-          - value: 'dev_olg'
-            description: 'Development build for OLG'
-          - value: 'prod_frontm'
-            description: 'Production build for Frontm'
-          - value: 'prod_olg'
-            description: 'Production build for OLG'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docker-compose.yml'
+      - 'edge/Dockerfile'
+      - 'webapp/Dockerfile'
 
 jobs:
-  build_and_deploy:
+  build_and_push:
     runs-on: ubuntu-latest
+
+    inputs:
+      build_type:
+        description: 'Type of build (e.g., production, staging)'
+        required: true
+      build_description:
+        description: 'Description of the build'
+        required: true
+      edge_tags:
+        description: 'Tags for Edge image (comma-separated)'
+        required: true
+      webapp_tags:
+        description: 'Tags for Web App image (comma-separated)'
+        required: true
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Set up Docker Buildx
+
+      - name: Fetch latest Git tag
+        id: git_tag
+        run: echo ::set-output name=TAG::$(git describe --tags $(git rev-list --tags --max-count=1))
+
+      - name: Set Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build Docker Image
-        run: docker-compose -f compose.yaml build
-
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN}}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract Image Name
-        id: extract_image_name
+      - name: Build and push images
         run: |
-         IMAGE_NAME=$(docker-compose -f compose.yaml config | grep 'image:' | awk '{print $2}')
-         echo "::set-output name=image_name::$IMAGE_NAME"
+          docker-compose build --build-arg GIT_TAG=${{ steps.git_tag.outputs.TAG }}
+          docker-compose push
 
       - name: Tag Docker Image
         run: |
-          docker tag ${{ steps.extract_image_name.outputs.image_name }} soumyanaveen/olg:tagname
+          IFS=',' read -ra edge_tags_array <<< "${{ inputs.edge_tags }}"
+          for tag in "${edge_tags_array[@]}"; do
+            docker tag yourdockerhubusername/edge-app:latest yourdockerhubusername/edge-app:${tag}
+          done
 
-      - name: Push Docker Image to Docker Hub
-        run: docker push soumyanaveen/olg:tagname
+          IFS=',' read -ra webapp_tags_array <<< "${{ inputs.webapp_tags }}"
+          for tag in "${webapp_tags_array[@]}"; do
+            docker tag yourdockerhubusername/web-app:latest yourdockerhubusername/web-app:${tag}
+          done
 
-      - name: Build and push Edge image
+      - name: Push Tagged Images
         run: |
-         docker build -t yourdockerhubusername/edge-app:input-tag .
-         docker push yourdockerhubusername/edge-app:input-tag
-    
-      - name: Build and push Web App image
-        run: |
-          docker build -t yourdockerhubusername/web-app:input-tag .
-          docker push yourdockerhubusername/web-app:input-tag
+          docker push soumyanaveen/edge-app:${{ inputs.edge_tags }}
+          docker push soumyanaveen/web-app:${{ inputs.webapp_tags }}
+
+      - name: Update Build Info
+        run: echo "Build Type: ${{ inputs.build_type }}, Description: ${{ inputs.build_description }}" >> build-info.txt
+
+
+     
+          
