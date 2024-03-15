@@ -49,12 +49,12 @@ jobs:
       - name: Push Docker Image to Docker Hub
         run: docker push soumyanaveen/olg:tagname
 
-   - name: Build and push Edge image
-      run: |
-        docker build -t yourdockerhubusername/edge-app:input-tag .
-        docker push yourdockerhubusername/edge-app:input-tag
+      - name: Build and push Edge image
+        run: |
+         docker build -t yourdockerhubusername/edge-app:input-tag .
+         docker push yourdockerhubusername/edge-app:input-tag
     
-    - name: Build and push Web App image
-      run: |
-        docker build -t yourdockerhubusername/web-app:input-tag .
-        docker push yourdockerhubusername/web-app:input-tag
+      - name: Build and push Web App image
+        run: |
+          docker build -t yourdockerhubusername/web-app:input-tag .
+          docker push yourdockerhubusername/web-app:input-tag
