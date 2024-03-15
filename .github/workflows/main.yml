@@ -37,12 +37,14 @@ jobs:
       - name: Build Docker Image
         run: docker-compose -f compose.yaml build
 
-      - name: Tag Docker Images
+      - name: Tag and Push Images
         run: |
           IFS=',' read -ra tags_array <<< "${{ inputs.docker_tags }}"
           for tag in "${tags_array[@]}"; do
-            docker tag soumyanaveen/edge:latest soumyanaveen/edge-app:${tag}
-            docker tag soumyanaveen/webapp:latest soumyanaveen/web-app:${tag}
+            docker tag edge:latest ${{ secrets.DOCKERHUB_USERNAME }}/edge:$tag
+            docker tag webapp:latest ${{ secrets.DOCKERHUB_USERNAME }}/webapp:$tag
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/edge-app:$tag
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/web-app:$tag
           done
 
       - name: Generate Updated Docker Compose File
