@@ -47,6 +47,17 @@ jobs:
           sed -i "s/image:  soumyanaveen\/edge:.*/image:  soumyanaveen\/edge:${{ github.run_number }}/" compose.yaml
           
       - name: Push Docker Image to Docker Hub
-        run: docker-compose push 
-      
-   
+        run: docker push soumyanaveen/olgs:tagname
+        
+      - name: Send email notification for deployment job
+        if: success()      
+        uses: dawidd6/action-send-mail@v3
+        with:
+         server_address: smtp.gmail.com
+         server_port: 587
+         username: ${{ secrets.EMAIL_USERNAME }}
+         password: ${{ secrets.EMAIL_PASSWORD }}
+         from: 'kamchamswarna@gmail.com'
+         to: 'soumyasg12@gmail.com'
+         subject: 'Deployment job completed successfully'
+         body: 'The deployment job in your workflow completed successfully.
