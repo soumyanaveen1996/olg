@@ -50,7 +50,7 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: docker-compose push
-        working-directory: https://github.com/soumyanaveen1996/olg/tree/master/compose.yaml
+        working-directory: .
 
       - name: Send email notification for deployment job
         if: success()      
