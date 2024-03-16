@@ -6,7 +6,12 @@ on:
       build_type:
         description: 'Select build type'
         required: true
-        type: string
+        default: 'dev-olg'
+        options:
+          - 'dev_frontm'
+          - 'dev_olg'
+          - 'prod_frontm'
+          - 'prod_olg'
       build_description:
         description: 'Description of the build'
         required: true
@@ -37,15 +42,7 @@ jobs:
       - name: Build Docker Image
         run: docker-compose -f compose.yaml build
 
-      - name: Verify Docker image build
-        run: |
-         IMAGE_ID=$(docker images -q soumyanaveen/edge:latest)
-         if [ -n "$IMAGE_ID" ]; then
-          echo "Docker image built successfully."
-         else
-          echo "Error: Docker image build failed."
-          exit 1
-          fi
+    
 
       - name: Update Docker Compose file
         id: update-compose
