@@ -37,40 +37,17 @@ jobs:
       - name: Build Docker Image
         run: docker-compose -f compose.yaml build
 
-      - name: Tag and Push Images
-        run: |
-          IFS=',' read -ra tags_array <<< "${{ inputs.docker_tags }}"
-          for tag in "${tags_array[@]}"; do
-            docker tag edge:latest ${{ secrets.DOCKERHUB_USERNAME }}/edge:$tag
-            docker tag webapp:latest ${{ secrets.DOCKERHUB_USERNAME }}/webapp:$tag
-            docker push ${{ secrets.DOCKERHUB_USERNAME }}/edge:$tag
-            docker push ${{ secrets.DOCKERHUB_USERNAME }}/webapp:$tag
-          done
+     
 
-      - name: Generate Updated Docker Compose File
+      - name: Update Docker Compose file
+        id: update-compose
         run: |
-          echo "version: '3.8'" > docker-compose.yml
-          echo "services:" >> docker-compose.yml
-          for service in webapp edge redis mongo; do
-            image_tag=${{ inputs.docker_tags }}/$service:$VERSION
-            echo "  $service:" >> docker-compose.yml
-            echo "    image: $image_tag" >> docker-compose.yml
-          done
-      - name: Send mail
-        if: always()
-        uses: dawidd6/action-send-mail@v2
-        with:
-          # mail server settings
-          server_address: smtp.gmail.com
-          server_port: 587
-         # user credentials
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD}}
-         # email subject
-          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-         # email body as text
-          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-         # comma-separated string, send email to
-          to: soumyasg12@gmail.com
-         # from email name
-          from: soumya
+          # Update image tags in the Docker Compose file
+          sed -i "s/image: soumyanaveen\/webapp:.*/image:  soumyanaveen\/webapp:${{ github.run_number }}/" docker-compose.yml
+          sed -i "s/image:  soumyanaveen\/edge:.*/image:  soumyanaveen\/edge:${{ github.run_number }}/" docker-compose.yml
+          sed -i "s/image: redis:.*/image: redis:latest/" docker-compose.yml
+          sed -i "s/image: mongo:.*/image: mongo:latest/" docker-compose.yml
+      - name: Push Docker Image to Docker Hub
+        run: docker push soumyanaveen/olg:tagname
+      
+   
