@@ -47,6 +47,6 @@ jobs:
           sed -i "s/image:  soumyanaveen\/edge:.*/image:  soumyanaveen\/edge:${{ github.run_number }}/" compose.yaml
           
       - name: Push Docker Image to Docker Hub
-        run: docker push soumyanaveen/olg:tagname
+        run: docker-compose push 
       
    
