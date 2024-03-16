@@ -50,8 +50,8 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: |
-           docker push soumyanaveen/webapp : latest
-           docker push soumyanaveen/edge : latest
+           docker push soumyanaveen/webapp : ${{ inputs.docker_tag }}
+           docker push soumyanaveen/edge : ${{ inputs.docker_tag }}
         
 
       - name: Send email notification for deployment job
