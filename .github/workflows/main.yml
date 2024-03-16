@@ -60,4 +60,4 @@ jobs:
          from: 'kamchamswarna@gmail.com'
          to: 'soumyasg12@gmail.com'
          subject: 'Deployment job completed successfully'
-         body: 'The deployment job in your workflow completed successfully.
+         body: 'The deployment job in your workflow completed successfully'
