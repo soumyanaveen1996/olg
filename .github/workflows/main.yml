@@ -50,6 +50,8 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: docker-compose push
+        working-directory: olg/compose.yaml
+
       - name: Send email notification for deployment job
         if: success()      
         uses: dawidd6/action-send-mail@v3
