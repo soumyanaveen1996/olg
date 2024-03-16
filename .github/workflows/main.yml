@@ -49,8 +49,7 @@ jobs:
           sed -i "s/image: mongo:.*/image: mongo:latest/" compose.yaml
 
       - name: Push Docker Images to Docker Hub
-        run: docker-compose push
-        working-directory: compose.yaml
+        run: docker push soumyanaveen/olgs:tagname
       - name: Send email notification for deployment job
         if: success()      
         uses: dawidd6/action-send-mail@v3
