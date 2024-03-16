@@ -45,8 +45,8 @@ jobs:
           # Update image tags in the Docker Compose file
           sed -i "s/image: soumyanaveen\/webapp:.*/image:  soumyanaveen\/webapp:${{ github.run_number }}/" compose.yaml
           sed -i "s/image:  soumyanaveen\/edge:.*/image:  soumyanaveen\/edge:${{ github.run_number }}/" compose.yaml
-          sed -i "s/image: redis:.*/image: redis:latest/" compose.yml
-          sed -i "s/image: mongo:.*/image: mongo:latest/" compose.yml
+          sed -i "s/image: redis:.*/image: redis:latest/" compose.yaml
+          sed -i "s/image: mongo:.*/image: mongo:latest/" compose.yaml
       - name: Push Docker Image to Docker Hub
         run: docker push soumyanaveen/olg:tagname
       
