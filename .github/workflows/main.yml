@@ -49,10 +49,7 @@ jobs:
         run: |
          docker tag soumyanaveen/webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
          docker tag soumyanaveen/edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
-         echo "Docker tag for Web App: $DOCKER_TAG_WEBAPP"
-         echo "Docker tag for Edge: $DOCKER_TAG_EDGE"
-         sed -i "s/image: redis:.*/image: redis:latest/" compose.yaml
-         sed -i "s/image: mongo:.*/image: mongo:latest/" compose.yaml
+    
 
       - name: Push Docker Images to Docker Hub
         run: |
