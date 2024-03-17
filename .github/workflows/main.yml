@@ -29,6 +29,10 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker images
+        run: docker-compose -f compose.yaml build
+        
       - name: Tag the Images
         run: |
           # Check if the Docker images are built successfully
