@@ -44,8 +44,7 @@ jobs:
 
     
 
-      - name: Update Docker Compose file
-        id: update-compose
+      - name: Tag the Images
         run: |
          docker tag soumyanaveen/webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
          docker tag soumyanaveen/edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
