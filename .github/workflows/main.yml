@@ -29,26 +29,27 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+      - name: Tag the Images
+        run: |
+          # Check if the Docker images are built successfully
+          if docker images | grep soumyanaveen/webapp | grep latest; then
+            docker tag soumyanaveen/webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+          else
+            echo "Error: Docker image soumyanaveen/webapp:latest not found."
+            exit 1
+          fi
 
-      
+          if docker images | grep soumyanaveen/edge | grep latest; then
+            docker tag soumyanaveen/edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+          else
+            echo "Error: Docker image soumyanaveen/edge:latest not found."
+            exit 1
+          fi
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-     
-
-      - name: Build Docker Image
-        run: docker-compose -f compose.yaml build
-
-    
-
-      - name: Tag the Images
-        run: |
-         docker tag soumyanaveen/webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
-         docker tag soumyanaveen/edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
-    
 
       - name: Push Docker Images to Docker Hub
         run: |
