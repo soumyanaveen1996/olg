@@ -47,8 +47,8 @@ jobs:
       - name: Update Docker Compose file
         id: update-compose
         run: |
-         docker tag webapp:latest webapp:${{ github.event.inputs.docker_tags}}
-         docker tag edge:latest edge:${{ github.event.inputs.docker_tags}}
+         docker tag soumyanaveen/webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
+         docker tag soumyanaveen/edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
     
 
       - name: Push Docker Images to Docker Hub
