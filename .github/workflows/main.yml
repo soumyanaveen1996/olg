@@ -53,8 +53,8 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: |
-           docker push soumyanaveen/webapp : ${{ github.event.inputs.docker_tags}}
-           docker push soumyanaveen/edge : ${{ github.event.inputs.docker_tags}}
+           docker push soumyanaveen/webapp :${{ github.event.inputs.docker_tags}}
+           docker push soumyanaveen/edge :${{ github.event.inputs.docker_tags}}
       - name: Update Docker Compose file
         run: |
           sed -i 's/image: edge/image: ${{ github.event.inputs.docker_tags}}/' compose.yaml
