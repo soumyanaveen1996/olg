@@ -79,6 +79,6 @@ jobs:
          subject: 'Deployment job completed successfully'
          body: |
           'The deployment job in your workflow completed successfully'
-           New Version:$(cat env_file.txt | cut -d= -f2)
+           New Version:${{cat env_file.txt | cut -d= -f2}}
            Description:${{ github.event.inputs.build_description }}
 
