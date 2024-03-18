@@ -37,6 +37,7 @@ jobs:
            new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
+           echo "New Version: $new_version"
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
         
