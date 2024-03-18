@@ -38,6 +38,7 @@ jobs:
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
            echo "New Version: $new_version"
+           echo "::set-output name=new_version::$new_version" 
           
        
       - name: Build Docker images
@@ -78,6 +79,6 @@ jobs:
          subject: 'Deployment job completed successfully'
          body: |
           'The deployment job in your workflow completed successfully'
-           New Version:${{ steps.increment-version.new_version }}
+           New Version:${{ steps.increment-version.output.new_version }}
            Description:${{ github.event.inputs.build_description }}
 
