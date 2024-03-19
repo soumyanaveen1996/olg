@@ -65,7 +65,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
-        
+          
+      - name: Set SSH key permissions
+        run: chmod 600 ${{ secrets.EC2_PEM_KEY }}
+
          
       - name: SSH Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
