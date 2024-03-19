@@ -66,21 +66,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
           
-      - name: Set SSH key permissions
-        run: chmod 600 ${{ secrets.EC2_PEM_KEY }}
-
-         
-      - name: SSH Deploy to EC2 Instance
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_PEM_KEY }}
-          script: |
-           ssh -i ${{ secrets.EC2_PEM_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} "your_ssh_command_here"
-           bash /home/ubuntu/docker-compose4.sh
-           sudo docker-compose -f compose1.yaml up -d
- 
+   
+      - name: Build & Deploy
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            HOSTNAME: ${{secrets.SSH_HOST}}
+            USER_NAME: ${{secrets.USER_NAME}}
+      
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+              bash /home/ubuntu/docker-compose4.sh
+              sudo docker-compose -f compose1.yaml up -d
+              '
         
 
       - name: Send email notification for deployment job
