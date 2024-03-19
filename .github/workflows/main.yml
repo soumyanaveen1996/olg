@@ -71,14 +71,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
-        
           
-      - name: Deploy Docker build to EC2
-        run: |
-          ssh-keyscan -H <your_ec2_public_ip> >> ~/.ssh/known_hosts
-          ssh -i <path_to_your_ssh_key> <user>@<your_ec2_public_ip> "mkdir -p /path/to/app"
-          scp -i <path_to_your_ssh_key> docker-compose.yml <user>@<your_ec2_public_ip>:/path/to/app/
-          ssh -i <path_to_your_ssh_key> <user>@<your_ec2_public_ip> "cd /path/to/app && docker-compose up -d"
+      - name: SSH Deploy to EC2 Instance
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          run: |
+           docker-compose up -d
 
       - name: Send email notification for deployment job
         if: success()      
