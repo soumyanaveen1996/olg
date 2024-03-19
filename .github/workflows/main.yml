@@ -39,7 +39,13 @@ jobs:
            mv package.json.tmp package.json
            echo "New Version: $new_version" 
            
-          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_DEV }}
+          aws-region: us-east-1
+          echo "AK : $aws-access-key-id"
        
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
@@ -65,6 +71,20 @@ jobs:
       - name: Deploy Docker Compose
         run: |
           docker-compose up -d
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_DEV }}
+          aws-region: us-east-1
+          echo "AK : $aws-access-key-id"
+          
+      - name: Deploy Docker build to EC2
+        run: |
+          ssh-keyscan -H <your_ec2_public_ip> >> ~/.ssh/known_hosts
+          ssh -i <path_to_your_ssh_key> <user>@<your_ec2_public_ip> "mkdir -p /path/to/app"
+          scp -i <path_to_your_ssh_key> docker-compose.yml <user>@<your_ec2_public_ip>:/path/to/app/
+          ssh -i <path_to_your_ssh_key> <user>@<your_ec2_public_ip> "cd /path/to/app && docker-compose up -d"
 
       - name: Send email notification for deployment job
         if: success()      
