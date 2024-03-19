@@ -71,16 +71,20 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
-          
+        
+         
       - name: SSH Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_PEM_KEY }}
-         
-          script: |
-           docker-compose up -d
+          run: |
+           echo "${{ secrets.EC2_PEM_KEY }}" > ssh_key.pem
+           chmod 600 ssh_key.pem  
+           ssh -i ssh_key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} "your_ssh_command_here"
+ 
+        
 
       - name: Send email notification for deployment job
         if: success()      
