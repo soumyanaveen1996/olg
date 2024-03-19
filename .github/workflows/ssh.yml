@@ -24,4 +24,4 @@ jobs:
               cd /home/ubuntu/<PROJECT_DIRECTORY> &&
               git checkout master &&
               git fetch --all &&
-'
+              '
