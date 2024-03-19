@@ -23,5 +23,5 @@ jobs:
 
               # Now we have got the access of EC2 and we will start the deploy .
               cd /home/ubuntu/ &&
-              git checkout master
+              touch test
               '
