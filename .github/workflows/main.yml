@@ -74,7 +74,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_PEM_KEY }}
           script: |
-           ssh -i ssh_key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} "your_ssh_command_here"
+           ssh -i ${{ secrets.EC2_PEM_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} "your_ssh_command_here"
            bash /home/ubuntu/docker-compose4.sh
            sudo docker-compose -f compose1.yaml up -d
  
