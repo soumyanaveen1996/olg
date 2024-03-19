@@ -78,7 +78,8 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          run: |
+          directory: ${{ secrets.TARGET_DIR }}
+          script: |
            docker-compose up -d
 
       - name: Send email notification for deployment job
