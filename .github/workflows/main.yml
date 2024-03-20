@@ -24,6 +24,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.set_version.outputs.new_version }}
+
+    
     steps:
       - uses: actions/checkout@v3
 
@@ -37,7 +41,8 @@ jobs:
            new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
-           echo "New Version: $new_version" 
+           echo "::set-output name=new_version::$new_version"
+          
     
      
        
@@ -94,6 +99,6 @@ jobs:
          subject: 'Deployment job completed successfully'
          body: |
           'The deployment job in your workflow completed successfully'
-           New Version:${{steps.increment-version.new_version}}
+           New Version:${{ needs.increment_version.outputs.new_version }}
            Description:${{ github.event.inputs.build_description }}
 
