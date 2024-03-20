@@ -38,7 +38,8 @@ jobs:
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
            echo "New Version: $new_version" 
-           
+      - name: Copy API Key file
+        run: cp .api_key.json olg/edge/     
      
        
       - name: Build Docker images
