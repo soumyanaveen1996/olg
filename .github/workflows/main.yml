@@ -49,7 +49,7 @@ jobs:
           git add webapp/package.json
           git commit -m "Increment version"
           git remote set-url origin https://github.com/soumyanaveen1996/olg.git
-          git push -u origin
+          git push -u origin main
      
        
       - name: Build Docker images
