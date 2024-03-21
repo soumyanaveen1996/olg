@@ -41,7 +41,9 @@ jobs:
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
            echo "::set-output name=new_version::$new_version"
-          
+      - name: Clear Git credentials cache
+        run: git config --global --unset credential.helper
+
       - name: Commit version update
         run: |
           git config --global user.email "soumyanaveen199@.com"
