@@ -44,8 +44,8 @@ jobs:
            echo "New_version=$new_version"
       - name: Commit version update
         run: |
-          git config --global user.email "soumyanaveen199@.com"
-          git config --global user.name "soumyanaveen1996"
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
           git add webapp/package.json
           git commit -m "Increment version"
           git push origin master
