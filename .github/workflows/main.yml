@@ -46,7 +46,7 @@ jobs:
         run: |
           git config --global user.email "soumyanaveen199@.com"
           git config --global user.name "soumyanaveen1996"
-          git add weapp/package.json
+          git add webapp/package.json
           git commit -m "Increment version"
           git push
      
