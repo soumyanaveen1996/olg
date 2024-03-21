@@ -48,7 +48,8 @@ jobs:
           git config --global user.name "soumyanaveen1996"
           git add webapp/package.json
           git commit -m "Increment version"
-          git push
+          git remote add origin https://github.com/soumyanaveen1996/olg.git
+          git push -u origin
      
        
       - name: Build Docker images
