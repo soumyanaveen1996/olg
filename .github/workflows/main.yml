@@ -48,7 +48,7 @@ jobs:
           git config --global user.name "soumyanaveen1996"
           git add webapp/package.json
           git commit -m "Increment version"
-         
+          git remote set-url origin https://github.com/soumyanaveen1996/olg.git
           git push -u origin
      
        
