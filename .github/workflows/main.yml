@@ -48,18 +48,7 @@ jobs:
           git add webapp/package.json
           git commit -m "Increment version"
           git push origin master
-      - name: Clear Git credentials cache
-        run: git config --unset credential.helper
-
-      - name: Update version in GitHub
-        uses: actions/create-release@v1
-        if: always()
-        with:
-          tag_name: ${{ steps.increment-version.outputs.new_version }}
-          release_name: Version ${{ steps.increment-version.outputs.new_version }}
-          draft: false
-          prerelease: false
-          auth_token: ${{ secrets.GIT_TOKEN }}
+      
 
     
      
