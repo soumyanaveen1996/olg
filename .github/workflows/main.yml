@@ -41,7 +41,7 @@ jobs:
            jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
            mv package.json.tmp package.json
            echo "::set-output name=new_version::$new_version"
-           echo "New_version=new_version"
+           echo "New_version=$new_version"
       - name: Commit version update
         run: |
           git config --global user.email "soumyanaveen199@.com"
