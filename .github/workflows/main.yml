@@ -57,7 +57,7 @@ jobs:
           release_name: Version ${{ steps.increment-version.outputs.new_version }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GTOKEN }}
+          token: ${{ secrets.GIT_TOKEN }}
 
     
      
