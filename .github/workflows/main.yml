@@ -98,6 +98,6 @@ jobs:
          subject: 'Deployment job completed successfully'
          body: |
           'The deployment job in your workflow completed successfully'
-           New Version:${{ steps.increment_version.outputs.new_version }}
+           New Version:${{ steps.increment-version.outputs.new_version }}
            Description:${{ github.event.inputs.build_description }}
 
