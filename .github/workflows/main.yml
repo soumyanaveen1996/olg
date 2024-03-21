@@ -48,6 +48,8 @@ jobs:
           git add webapp/package.json
           git commit -m "Increment version"
           git push origin master
+      - name: Clear Git credentials cache
+        run: git config --global --unset credential.helper
 
       - name: Update version in GitHub
         uses: actions/create-release@v1
