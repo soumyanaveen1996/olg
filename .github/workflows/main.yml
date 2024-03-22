@@ -97,7 +97,7 @@ jobs:
               sudo docker-compose -f compose.yaml up -d
               '
       - name: Zip Docker Compose
-        run: zip docker-compose.zip docker-compose.yaml
+        run: zip docker-compose.zip compose.yaml
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -107,7 +107,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload to S3
-        run: aws s3 cp docker-compose.zip s3://eks-backend-bucket-1/eks/
+        run: aws s3 cp docker-compose.zip s3://eks-backend-bucket-1/docker/
 
       - name: Send email notification for deployment job
         if: success()      
