@@ -95,8 +95,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
               bash /home/ubuntu/docker-compose4.sh
               sudo docker-compose -f compose.yaml up -d
-              zip docker-compose.zip compose.yaml
-              aws s3 cp docker-compose.zip s3://eks-backend-bucket-1/docker/
               '
       - name: Zip Docker Compose
         run: zip docker-compose.zip docker-compose.yaml
