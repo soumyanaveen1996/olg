@@ -20,6 +20,10 @@ on:
         description: 'Tags for Docker images (comma-separated)'
         required: true
         type: string
+      branch_type:
+        description: 'Type the required branch'
+        required: true
+        type: string
 
 jobs:
   build-and-deploy:
@@ -91,6 +95,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
               bash /home/ubuntu/docker-compose4.sh
               sudo docker-compose -f compose.yaml up -d
+              zip docker-compose.zip compose.yaml
+              aws s3 cp docker-compose.zip s3://eks-backend-bucket-1/docker/
               '
         
 
