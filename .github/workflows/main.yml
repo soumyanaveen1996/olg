@@ -56,7 +56,9 @@ jobs:
       
 
     
-     
+      - name: Backup Compose File to S3
+        run: |
+          aws s3 cp compose.yaml s3://your-bucket-name/compose-backup-$(date +"%Y-%m-%d_%H-%M-%S").yaml
        
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
