@@ -88,20 +88,12 @@ jobs:
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
            docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
     
-     
-      - name: Create Unique S3 Bucket Name
-        id: create-bucket-name
+      - name: Copy Compose File to Unique S3 Bucket
         run: |
-          echo "s3-bucket-${{ github.event.inputs.docker_tags}}" >> bucket_name.txt
-      - name: Create S3 Bucket
-        run: |
-          bucket_name=$(cat bucket_name.txt)
+          bucket_name="s3-bucket-${{ github.event.inputs.docker_tags }}"
           aws s3 mb s3://$bucket_name
-
-      - name: Copy Compose File to S3
-        run: |
-          bucket_name=$(cat bucket_name.txt)
-          aws s3 cp compose.yaml s3://$bucket_name/compose-${{ github.event.inputs.docker_tags }}.yaml   
+          aws s3 cp compose.yaml s3://$bucket_name/compose-${{ github.event.inputs.docker_tags }}.yaml
+  
    
       - name: Build & Deploy
         env:
