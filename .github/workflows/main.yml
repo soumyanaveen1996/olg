@@ -53,7 +53,12 @@ jobs:
           git add webapp/package.json
           git commit -m "Increment version"
           git push origin master
-      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
+          aws-region: us-east-1
 
     
       - name: Backup Compose File to S3
@@ -83,12 +88,7 @@ jobs:
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
            docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
     
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
-          aws-region: us-east-1
+     
       - name: Create Unique S3 Bucket Name
         id: create-bucket-name
         run: |
