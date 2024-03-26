@@ -72,6 +72,10 @@ jobs:
         run: |
           docker tag edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
           docker tag webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+      - name: Update Tags in Docker Compose File
+        run: |
+          sed -i "s|edge:latest|edge:${{ github.event.inputs.docker_tags }}|g" compose.yaml
+          sed -i "s|webapp:latest|webapp:${{ github.event.inputs.docker_tags }}|g" compose.yaml
       - name: Commit version update
         run: |
           git config --global user.email "${{ secrets.GIT_EMAIL }}"
