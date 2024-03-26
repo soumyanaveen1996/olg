@@ -70,8 +70,8 @@ jobs:
         
       - name: Tag the Images
         run: |
-          docker tag edge:latest edge:${{ github.event.inputs.docker_tags }}
-          docker tag webapp:latest webapp:${{ github.event.inputs.docker_tags }}
+          docker tag edge edge:${{ github.event.inputs.docker_tags }}
+          docker tag webapp webapp:${{ github.event.inputs.docker_tags }}
      
          
       - name: Login to Docker Hub
