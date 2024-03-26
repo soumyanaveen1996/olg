@@ -89,7 +89,7 @@ jobs:
          sed -i 's/image: edge$/image: edge:${{ github.event.inputs.docker_tags }}/' compose.yaml
          sed -i 's/image: webapp$/image: webapp:${{ github.event.inputs.docker_tags }}/' compose.yaml
 
-      - name: Commit version update
+      - name: updated in the composefile
         run: |
           git config --global user.email "${{ secrets.GIT_EMAIL }}"
           git config --global user.name "${{ secrets.GIT_USERNAME }}"
