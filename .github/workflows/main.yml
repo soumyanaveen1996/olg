@@ -46,7 +46,13 @@ jobs:
            mv package.json.tmp package.json
            echo "::set-output name=new_version::$new_version"
            echo "New_version=$new_version"
-     
+      - name: Commit version update
+        run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+          git add webapp/package.json
+          git commit -m "Increment version"
+          git push origin master
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -102,8 +108,6 @@ jobs:
         run: |
           git config --global user.email "${{ secrets.GIT_EMAIL }}"
           git config --global user.name "${{ secrets.GIT_USERNAME }}"
-          git add webapp/package.json
-          git commit -m "Increment version"
           git add compose.yaml
           git commit -m "updating the tags"
           git push origin master
