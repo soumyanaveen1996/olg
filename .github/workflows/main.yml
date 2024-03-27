@@ -66,7 +66,7 @@ jobs:
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
      
-     - name: Fetch image name and tag from Compose file
+      - name: Fetch image name and tag from Compose file
         id: fetch_image_info
         run: |
           IMAGE_NAME=$(grep -oP '(?<=image:\s)[^\s]+' compose.yaml)
