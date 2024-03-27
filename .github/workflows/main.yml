@@ -65,17 +65,19 @@ jobs:
        
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
-      - name: Fetch Docker image tag
-        id: fetch_image_tag
+     
+      - name: Fetch image name and tag
+        id: fetch_image_info
         run: |
-          IMAGE_TAG=$(docker inspect --format='{{.RepoTags}}' edge:t3 | cut -d ':' -f 2)
+          IMAGE_NAME=edge
+          IMAGE_TAG=$(docker image inspect --format='{{.Tag}}' $IMAGE_NAME)
+          echo "::set-output name=image_name::$IMAGE_NAME"
           echo "::set-output name=image_tag::$IMAGE_TAG"
 
-      - name: Tag Docker image with dynamic tag
+      - name: Tag edge image
         run: |
-          IMAGE_TAG_TO_USE=${{ steps.fetch_image_tag.outputs.image_tag }}
-          docker tag edge:$IMAGE_TAG_TO_USE soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
-        
+          docker tag ${{ steps.fetch_image_info.outputs.image_name }}:${{ steps.fetch_image_info.outputs.image_tag }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+         
       - name: Tag the Images
         run: |
           docker tag edge soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
