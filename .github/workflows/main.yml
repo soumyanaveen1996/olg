@@ -101,8 +101,10 @@ jobs:
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
       - name: Update Tags in Docker Compose File
         run: |
-         sed -i 's/image: edge$/image: edge:${{ github.event.inputs.docker_tags }}/' compose.yaml
-         sed -i 's/image: webapp$/image: webapp:${{ github.event.inputs.docker_tags }}/' compose.yaml
+           current_tag_edge=$(grep -oP '(?<=image: edge:)[^\s]+' compose.yaml)
+           current_tag_webapp=$(grep -oP '(?<=image: edge:)[^\s]+' compose.yaml)
+           sed -i "s/image: edge:${current_tag_edge}/image: edge:${{ github.event.inputs.docker_tags }}/" compose.yaml
+           sed -i "s/image: edge:${current_tag_webapp}/image: edge:${{ github.event.inputs.docker_tags }}/" compose.yaml
 
       - name: updated in the composefile
         run: |
