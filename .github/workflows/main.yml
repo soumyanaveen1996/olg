@@ -115,7 +115,6 @@ jobs:
               bash /home/ubuntu/docker-compose4.sh
               sudo docker-compose -f compose.yaml up -d
               zip docker-compose.zip compose.yaml
-              aws s3 cp docker-compose.zip s3://eks-backend-bucket-1/docker/
               '
     
       - name: Send email notification for deployment job
