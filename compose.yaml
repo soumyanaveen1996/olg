@@ -1,6 +1,6 @@
 services:
   edge:
-    image: edge:t7
+    image: edge:t6
     restart: always
     build:
       context: edge
