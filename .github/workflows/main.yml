@@ -66,18 +66,17 @@ jobs:
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
      
-      - name: Fetch image name and tag
+      - name: Fetch image name and tag from Compose file
         id: fetch_image_info
         run: |
-          IMAGE_NAME=edge
-          IMAGE_TAG=$(docker image inspect --format='{{.Tag}}' $IMAGE_NAME)
+          IMAGE_NAME=$(grep -oP '(?<=image:\s)[^\s]+' compose.yaml)
+          IMAGE_TAG=$(grep -oP '(?<=image:\s)[^\s]+:[^\s]+' compose.yaml | cut -d ':' -f 2)
           echo "::set-output name=image_name::$IMAGE_NAME"
           echo "::set-output name=image_tag::$IMAGE_TAG"
 
-      - name: Tag edge image
+      - name: Tag Docker image
         run: |
           docker tag ${{ steps.fetch_image_info.outputs.image_name }}:${{ steps.fetch_image_info.outputs.image_tag }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
-         
       - name: Tag the Images
         run: |
           docker tag edge soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
