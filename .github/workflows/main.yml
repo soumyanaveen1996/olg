@@ -69,8 +69,8 @@ jobs:
       - name: Fetch image name and tag from Compose file
         id: fetch_image_info
         run: |
-          IMAGE_NAME=$(grep -oP '(?<=image:\s)[^\s]+' docker-compose.yml)
-          IMAGE_TAG=$(grep -oP '(?<=image:\s)[^\s]+:[^\s]+' docker-compose.yml | cut -d ':' -f 2)
+          IMAGE_NAME=$(grep -oP '(?<=image:\s)[^\s]+' compose.yaml)
+          IMAGE_TAG=$(grep -oP '(?<=image:\s)[^\s]+:[^\s]+'compose.yaml | cut -d ':' -f 2)
           echo "::set-output name=image_name::$IMAGE_NAME"
           echo "::set-output name=image_tag::$IMAGE_TAG"
 
