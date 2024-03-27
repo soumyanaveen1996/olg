@@ -78,6 +78,7 @@ jobs:
           echo "::set-output name=image_name_webapp::$IMAGE_NAME_WEBAPP"
           echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
 
+
       - name: Tag Docker images
         run: |
           docker tag ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
