@@ -73,10 +73,10 @@ jobs:
           IMAGE_TAG_EDGE=$(grep -A 3 'edge' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
           IMAGE_NAME_WEBAPP=$(grep -E '^\s{2}(webapp)' compose.yaml)
           IMAGE_TAG_WEBAPP=$(grep -A 3 'webapp' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
-          echo "::set-output name=image_name_edge:$IMAGE_NAME_EDGE"
-          echo "::set-output name=image_tag_edge:$IMAGE_TAG_EDGE"
-          echo "::set-output name=image_name_webapp:$IMAGE_NAME_WEBAPP"
-          echo "::set-output name=image_tag_webapp:$IMAGE_TAG_WEBAPP"
+          echo "::set-output name=image_name_edge::$IMAGE_NAME_EDGE"
+          echo "::set-output name=image_tag_edge::$IMAGE_TAG_EDGE"
+          echo "::set-output name=image_name_webapp::$IMAGE_NAME_WEBAPP"
+          echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
 
 
       - name: Tag Docker images
