@@ -76,7 +76,7 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag ${{ steps.fetch_image_info.outputs.image_name }}:${{ steps.fetch_image_info.outputs.image_tag }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+          docker tag ${{ steps.fetch_image_info.outputs.image_name }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
       - name: Tag the Images
         run: |
           docker tag edge soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
