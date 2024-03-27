@@ -110,7 +110,7 @@ jobs:
           git config --global user.name "${{ secrets.GIT_USERNAME }}"
           git add compose.yaml
           git commit -m "updating the tags"
-          git push origin master
+          git push -u origin master
       - name: Copy Compose File to Unique S3 Bucket
         run: |
           bucket_name="s3-bucket-${{ github.event.inputs.docker_tags }}"
