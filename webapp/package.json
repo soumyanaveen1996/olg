@@ -1,6 +1,6 @@
 {
   "name": "frontm_webapp",
-  "version": "1.0.8",
+  "version": "1.0.4",
   "private": true,
   "homepage": "/offlinelms/",
   "dependencies": {
