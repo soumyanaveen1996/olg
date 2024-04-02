@@ -1,6 +1,6 @@
 services:
   edge:
-    image: edge:t2
+    image: edge:t1
     restart: always
     build:
       context: edge
@@ -20,7 +20,7 @@ services:
       - "4001:4001"
   
   webapp:
-    image: webapp:t2
+    image: webapp:t1
     restart: always
     build:
       context: webapp
