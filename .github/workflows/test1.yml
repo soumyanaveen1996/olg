@@ -111,7 +111,7 @@ jobs:
           git push origin master --force
       - name: Copy Compose File to Unique S3 Bucket
         run: |
-          aws s3 cp compose.yaml s3://logzi/compose-${{ github.event.inputs.docker_tags }}.yaml
+          aws s3 cp compose.yaml s3://logzi/compose-$(date +"%Y-%m-%d_%H-%M-%S").yaml
 
       - name: Build & Deploy
         env:
@@ -121,7 +121,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-              aws s3 cp s3://logzi/compose-${{ github.event.inputs.docker_tags }}.yaml compose.yaml
+              aws s3 cp s3://logzi/compose-$(date +"%Y-%m-%d_%H-%M-%S").yaml compose.yaml
               docker-compose -f compose.yaml build
               '
       - name: Send email notification for deployment job
