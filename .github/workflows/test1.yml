@@ -119,7 +119,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
               aws s3 cp s3://logzi/compose-${{ github.event.inputs.docker_tags }}.yaml compose.yaml
               docker-compose -f compose.yaml build
-
               '
 
       - name: Send email notification for deployment job
