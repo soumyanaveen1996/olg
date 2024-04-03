@@ -62,23 +62,11 @@ jobs:
      
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
+      - name: tag the images
+        run: |
+           docker tag edge edge:${{ github.event.inputs.docker_tags }}
+           docker tag webapp webapp:${{ github.event.inputs.docker_tags }}
      
-      - name: Fetch image name and tag from Compose file
-        id: fetch_image_info
-        run: |
-         IMAGE_NAME_EDGE=$(grep -E '^\s{2}(edge)' compose.yaml | awk '{$1=$1};1' | sed 's/:$//')
-         IMAGE_TAG_EDGE=$(grep -A 3 'edge' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
-         IMAGE_NAME_WEBAPP=$(grep -E '^\s{2}(webapp):' compose.yaml | awk '{$1=$1};1' | sed 's/:$//' | awk '{print $NF}')
-         IMAGE_TAG_WEBAPP=$(grep -A 3 'webapp' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
-         echo "::set-output name=image_name_edge::$IMAGE_NAME_EDGE"
-         echo "::set-output name=image_tag_edge::$IMAGE_TAG_EDGE"
-         echo "::set-output name=image_name_webapp::$IMAGE_NAME_WEBAPP"
-         echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
-
-      - name: Tag Docker images
-        run: |
-          docker tag ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
-          docker tag ${{ steps.fetch_image_info.outputs.image_name_webapp }}:${{ steps.fetch_image_info.outputs.image_tag_webapp }} soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
      
       - name: Backup Compose File to S3
         run: |
