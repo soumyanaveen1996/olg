@@ -59,7 +59,7 @@ jobs:
 
       - name: zip the images and store to s3
         run: |
-           zip docker-compose.zip compose.yaml      
+           zip -r docker-compose.zip compose.yaml      
            aws s3 cp docker-compose.zip s3://logzi/
 
 
