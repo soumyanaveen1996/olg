@@ -58,9 +58,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
-      - name: Copy .api_key.json file
-        run: |
-            aws s3 cp s3://dev-frontm-downloads/olg-docker/api_key.json edge/.api_key.json
+          
+     
       - name: Build Docker images
         run: docker-compose -f compose.yaml build
      
