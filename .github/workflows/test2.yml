@@ -1,4 +1,4 @@
-name: OLG Build and Deploy
+name: OLG Build and Deploy test2
  
 on:
   workflow_dispatch:
