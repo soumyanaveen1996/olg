@@ -64,8 +64,8 @@ jobs:
         run: docker-compose -f compose.yaml build
       - name: tag the images
         run: |
-           docker tag edge edge:${{ github.event.inputs.docker_tags }}
-           docker tag webapp webapp:${{ github.event.inputs.docker_tags }}
+           docker tag edge:latest edge:${{ github.event.inputs.docker_tags }}
+           docker tag webapp:latest webapp:${{ github.event.inputs.docker_tags }}
            docker images
      
       - name: Backup Compose File to S3
