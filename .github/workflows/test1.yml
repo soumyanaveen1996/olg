@@ -64,9 +64,10 @@ jobs:
         run: docker-compose -f compose.yaml build
       - name: tag the images
         run: |
-           docker tag edge edge:${{ github.event.inputs.docker_tags }}
-           docker tag webapp webapp:${{ github.event.inputs.docker_tags }}
-     
+           n1=docker tag edge edge:${{ github.event.inputs.docker_tags }}
+           n2=docker tag webapp webapp:${{ github.event.inputs.docker_tags }}
+           echo "n1=$n1"
+           echo "n2=$n2"
      
       - name: Backup Compose File to S3
         run: |
@@ -80,6 +81,7 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: |
+           echo "
            docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
 
