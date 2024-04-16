@@ -24,8 +24,8 @@ on:
         description: 'Type the required branch'
         required: true
         type: string
-      builddomain_type:
-        description: 'enter the domain name'
+      builddomain_type: 
+        description: 'enter the domain'
         required: true
         type: string
 
