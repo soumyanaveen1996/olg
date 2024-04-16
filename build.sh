@@ -4,13 +4,7 @@
 echo "input_build_type = $1"
 echo "input_builddomain_type = $2"
 
-case ${input_build_type}-#!/bin/bash
-
-
-echo "input_build_type = $1"
-echo "input_builddomain_type = $2"
-
-case ${input_build_type} in
+case $1 in
     dev_frontm)
         build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=$2"
         ;;
