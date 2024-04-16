@@ -12,6 +12,10 @@ on:
           - 'dev_olg'
           - 'prod_frontm'
           - 'prod_olg'
+      builddomain_type: 
+        description: 'enter the domain'
+        required: true
+        type: string
       build_description:
         description: 'Description of the build'
         required: true
@@ -24,10 +28,7 @@ on:
         description: 'Type the required branch'
         required: true
         type: string
-      builddomain_type: 
-        description: 'enter the domain'
-        required: true
-        type: string
+    
 
 jobs:
   build-and-deploy:
