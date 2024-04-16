@@ -2,8 +2,11 @@
 
 
 
-echo "input_build_type = ${input_build_type}"
-echo "input_builddomain_type = ${input_builddomain_type}"
+
+
+
+echo "input_build_type = $1
+echo "input_builddomain_type = $2"
 
 case ${input_build_type} && ${input_builddomain_type} in
     dev_frontm)
