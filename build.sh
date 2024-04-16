@@ -9,7 +9,7 @@ case $1 in
         build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=$2"
         ;;
     dev_olg)
-        build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_olg --build-arg DOMAIN=$2"
+        build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_olg  --build-arg DOMAIN=$2"
         ;;
     prod_frontm)
         build_args="--build-arg EDGE_BUILD_TYPE=prod --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=$2"
@@ -18,7 +18,7 @@ case $1 in
         build_args="--build-arg EDGE_BUILD_TYPE=prod --build-arg WEBAPP_BUILD_TYPE=docker_olg --build-arg DOMAIN=$2"
         ;;
     *)
-        echo "Unknown build type: $1or domain type: $2"
+        echo "Unknown build type: $1 or domain type: $2"
         exit 1
         ;;
 esac
