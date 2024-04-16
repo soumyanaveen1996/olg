@@ -1,11 +1,7 @@
 #!/bin/bash
 
 
-
-
-
-
-echo "input_build_type = $1
+echo "input_build_type = $1"
 echo "input_builddomain_type = $2"
 
 case ${input_build_type} && ${input_builddomain_type} in
@@ -40,4 +36,4 @@ docker save edge webapp mongo-frontm redis-frontm -o ./out/out.tar
 zip -r $OUT ./out
 
 echo "Build generated $OUT"
-                     
+~                   
