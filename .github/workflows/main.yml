@@ -68,8 +68,8 @@ jobs:
       
       - name: Build Docker Images
         run: |
-          ./build.sh "${{ github.event.inputs.build_type }}" "${{ github.event.inputs.builddomain_type }}"
-          rm edge/.api_key.json
+          ./build.sh ${{ github.event.inputs.build_type }} ${{ github.event.inputs.builddomain_type }}
+           rm edge/.api_key.json
       - name: tag the images
         run: |
            docker tag edge edge:${{ github.event.inputs.docker_tags }}
