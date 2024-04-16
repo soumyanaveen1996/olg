@@ -6,7 +6,7 @@ DEFAULT_BUILD_TYPE="dev_frontm"
 DEFAULT_BUILDDOMAIN_TYPE="OLG"
 input_build_type=${1:-$DEFAULT_BUILD_TYPE}
 echo "input_build_type = ${input_build_type}"
-input_builddomain_type=${1:-$DEFAULT_BUILDDOMAIN_TYPE}
+input_builddomain_type=${2:-$DEFAULT_BUILDDOMAIN_TYPE}
 echo "input_builddomain_type = ${input_builddomain_type}"
 
 case $input_build_type in
