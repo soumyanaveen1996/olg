@@ -26,7 +26,6 @@ on:
         type: string
       builddomain_type:
         description: 'enter the domain name'
-        default: olg
         required: true
         type: string
 
