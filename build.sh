@@ -9,17 +9,17 @@ input_builddomain_type=${2:-$DEFAULT_BUILDDOMAIN_TYPE}
 echo "input_build_type = ${input_build_type}"
 echo "input_builddomain_type = ${input_builddomain_type}"
 
-case ${input_build_type},${input_builddomain_type} in
-    dev_frontm-OLG)
+case ${input_build_type}, ${input_builddomain_type} in
+    dev_frontm)
         build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=${input_builddomain_type}"
         ;;
-    dev_olg-OLG)
+    dev_olg)
         build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_olg --build-arg DOMAIN=${input_builddomain_type}"
         ;;
-    prod_frontm-OLG)
+    prod_frontm)
         build_args="--build-arg EDGE_BUILD_TYPE=prod --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=${input_builddomain_type}"
         ;;
-    prod_olg-OLG)
+    prod_olg)
         build_args="--build-arg EDGE_BUILD_TYPE=prod --build-arg WEBAPP_BUILD_TYPE=docker_olg --build-arg DOMAIN=${input_builddomain_type}"
         ;;
     *)
