@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEFAULT_BUILD_TYPE="dev_frontm"
-DEFAULT_BUILDDOMAIN_TYPE="OLG"
+
 
 input_build_type=${1:-$DEFAULT_BUILD_TYPE}
 input_builddomain_type=${2:-$DEFAULT_BUILDDOMAIN_TYPE}
@@ -9,7 +9,7 @@ input_builddomain_type=${2:-$DEFAULT_BUILDDOMAIN_TYPE}
 echo "input_build_type = ${input_build_type}"
 echo "input_builddomain_type = ${input_builddomain_type}"
 
-case ${input_build_type}-${input_builddomain_type} in
+case ${input_build_type} in
     dev_frontm)
         build_args="--build-arg EDGE_BUILD_TYPE=dev --build-arg WEBAPP_BUILD_TYPE=docker_frontm --build-arg DOMAIN=${input_builddomain_type}"
         ;;
