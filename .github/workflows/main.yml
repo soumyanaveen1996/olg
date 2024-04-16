@@ -24,6 +24,11 @@ on:
         description: 'Type the required branch'
         required: true
         type: string
+      builddomain_type:
+        description: 'enter the domain name'
+        default: true
+        required: true
+        type: string
 
 jobs:
   build-and-deploy:
@@ -62,9 +67,10 @@ jobs:
 
     
       
-       
-      - name: Build Docker images
-        run: docker-compose -f compose.yaml build
+      - name: Build Docker Images
+        run: |
+          ./build.sh ${{ github.event.inputs.build_type }}
+          rm edge/.api_key.json
       - name: tag the images
         run: |
            docker tag edge edge:${{ github.event.inputs.docker_tags }}
