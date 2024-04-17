@@ -1,0 +1,134 @@
+name: OLG Application Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Select build type'
+        required: true
+        default: 'dev_olg'
+        options:
+          - 'dev_frontm'
+          - 'dev_olg'
+          - 'prod_frontm'
+          - 'prod_olg'
+      builddomain_type: 
+        description: 'enter the domain'
+        required: true
+        type: string
+    
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Increment version in package.json
+        run: |
+           cd webapp
+           current_version=$(jq -r '.version' package.json)
+           new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
+           jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
+           mv package.json.tmp package.json
+      
+      - name: Commit version update
+        run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+          git add webapp/package.json
+          git commit -m "Increment version"
+          git push origin master
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+          aws-region: us-east-1
+
+      - name: Copy .api_key.json file
+        run: |
+            aws s3 cp s3://dev-frontm-downloads/olg-docker/api_key.json edge/.api_key.json
+
+      - name: Build Docker Images
+        run: |
+          ./build.sh ${{ github.event.inputs.build_type }} ${{ github.event.inputs.builddomain_type }}
+          rm edge/.api_key.json
+ #       working-directory: ${{ github.workspace }}
+      - name: Fetch image name and tag from Compose file
+        id: fetch_image_info
+        run: |
+         IMAGE_NAME_EDGE=$(grep -E '^\s{2}(edge)' compose.yaml | awk '{$1=$1};1' | sed 's/:$//')
+         IMAGE_TAG_EDGE=$(grep -A 3 'edge' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
+         IMAGE_NAME_WEBAPP=$(grep -E '^\s{2}(webapp):' compose.yaml | awk '{$1=$1};1' | sed 's/:$//' | awk '{print $NF}')
+         IMAGE_TAG_WEBAPP=$(grep -A 3 'webapp' compose.yaml | grep 'image:' | awk '{print $2}' | cut -d ':' -f 2)
+         echo "::set-output name=image_name_edge::$IMAGE_NAME_EDGE"
+         echo "::set-output name=image_tag_edge::$IMAGE_TAG_EDGE"
+         echo "::set-output name=image_name_webapp::$IMAGE_NAME_WEBAPP"
+         echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
+
+      - name: Tag Docker images
+        run: |
+          docker tag ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+          docker tag ${{ steps.fetch_image_info.outputs.image_name_webapp }}:${{ steps.fetch_image_info.outputs.image_tag_webapp }} soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker Images to Docker Hub
+        run: |
+           docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
+           docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
+
+      - name: Update Tags in Docker Compose File
+        run: |
+           current_tag_edge=$(grep -oP '(?<=image: edge:)[^\s]+' compose.yaml)
+           current_tag_webapp=$(grep -oP '(?<=image: edge:)[^\s]+' compose.yaml)
+           sed -i "s/image: edge:${current_tag_edge}/image: edge:${{ github.event.inputs.docker_tags }}/" compose.yaml
+           sed -i "s/image: webapp:${current_tag_webapp}/image: webapp:${{ github.event.inputs.docker_tags }}/" compose.yaml
+
+      - name: updated in the composefile
+        run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+          git add compose.yaml
+          git commit -m "updating the tags"
+          git push origin master --force
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+          aws-region: us-east-1
+          
+      - name: Upload build artifacts to S3
+        run: |
+           current_timestamp=$(date +"%m%d%Y%H%M")
+           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out-${current_timestamp}.zip
+           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out.zip
+
+      - name: SSH Deploy to EC2 Instance
+        uses: appleboy/ssh-action@master
+        with:
+           port: ${{ secrets.EC2_SSH_PORT }}
+           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+           HOSTNAME: ${{secrets.SSH_HOST}}
+           USER_NAME: ${{secrets.USER_NAME}}
+           script: |
+            # Backup existing docker builds
+            sudo mv out.zip previousZipFiles/"out_$(date +'%Y%m%d%H').zip"
+            sudo mv out previousOutFolders/"out_$(date +'%Y%m%d%H')"
+
+            # Deploy new build
+            aws s3 cp s3://dev-frontm-downloads/olg-docker/out.zip out.zip
+            sudo unzip out.zip 
+            cd out && sudo docker load --input ./out.tar && sudo docker compose up -d
