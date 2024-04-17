@@ -1,4 +1,4 @@
-name: OLG Application Pipeline
+name: OLG Application Pipelinenew
 
 on:
   workflow_dispatch:
