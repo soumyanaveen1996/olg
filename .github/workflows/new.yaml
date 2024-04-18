@@ -95,6 +95,8 @@ jobs:
         run: |
            docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
+           docker push soumyanaveen/redis:alphine
+           docker push soumyanaveen/mongo:4.4.6 
 
       - name: Update Tags in Docker Compose File
         run: |
@@ -110,18 +112,10 @@ jobs:
           git add compose.yaml
           git commit -m "updating the tags"
           git push origin master --force
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
-          aws-region: us-east-1
-          
-      - name: Upload build artifacts to S3
+                
+      - name: Backup Compose File to S3
         run: |
-           current_timestamp=$(date +"%m%d%Y%H%M")
-           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out-${current_timestamp}.zip
-           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out.zip
+          aws s3 cp compose.yaml s3://logzi/compose-backup-$(date +"%Y-%m-%d_%H-%M-%S").yaml
 
       - name: SSH Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
@@ -132,10 +126,8 @@ jobs:
            USER_NAME: ${{secrets.USER_NAME}}
            script: |
             # Backup existing docker builds
-            sudo mv out.zip previousZipFiles/"out_$(date +'%Y%m%d%H').zip"
-            sudo mv out previousOutFolders/"out_$(date +'%Y%m%d%H')"
+            aws s3 cp s3://logzi/compose-backup-yyyy-mm-dd_hh-mm-ss.yaml compose.yaml
+            docker-compose -f compose.yaml up -d
 
-            # Deploy new build
-            aws s3 cp s3://dev-frontm-downloads/olg-docker/out.zip out.zip
-            sudo unzip out.zip 
-            cd out && sudo docker load --input ./out.tar && sudo docker compose up -d
+            
+          
