@@ -66,8 +66,7 @@ jobs:
    
 
       - name: Build Docker Images
-        run: |
-          ./build.sh ${{ github.event.inputs.build_type }} ${{ github.event.inputs.builddomain_type }}
+        run: docker-compose -f compose.yaml build
           
  #       working-directory: ${{ github.workspace }}
       - name: Fetch image name and tag from Compose file
