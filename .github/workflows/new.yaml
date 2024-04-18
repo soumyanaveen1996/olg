@@ -95,8 +95,7 @@ jobs:
         run: |
            docker push soumyanaveen/edge:${{ github.event.inputs.docker_tags}}
            docker push soumyanaveen/webapp:${{ github.event.inputs.docker_tags}}
-           docker push soumyanaveen/redis:alphine
-           docker push soumyanaveen/mongo:4.4.6 
+         
 
       - name: Update Tags in Docker Compose File
         run: |
