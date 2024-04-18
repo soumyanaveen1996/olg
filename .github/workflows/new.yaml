@@ -16,7 +16,18 @@ on:
         description: 'enter the domain'
         required: true
         type: string
-    
+      build_description:
+        description: 'Description of the build'
+        required: true
+        type: string
+      docker_tags:
+        description: 'Tags for Docker images (comma-separated)'
+        required: true
+        type: string
+      branch_type:
+        description: 'Type the required branch'
+        required: true
+        type: string
 
 jobs:
   build_and_deploy:
@@ -52,14 +63,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
           aws-region: us-east-1
 
-      - name: Copy .api_key.json file
-        run: |
-            aws s3 cp s3://dev-frontm-downloads/olg-docker/api_key.json edge/.api_key.json
+   
 
       - name: Build Docker Images
         run: |
           ./build.sh ${{ github.event.inputs.build_type }} ${{ github.event.inputs.builddomain_type }}
-          rm edge/.api_key.json
+          
  #       working-directory: ${{ github.workspace }}
       - name: Fetch image name and tag from Compose file
         id: fetch_image_info
