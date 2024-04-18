@@ -1,0 +1,75 @@
+name: OLG Application Pipelinenew
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Select build type'
+        required: true
+        default: 'dev_olg'
+        options:
+          - 'dev_frontm'
+          - 'dev_olg'
+          - 'prod_frontm'
+          - 'prod_olg'
+      builddomain_type: 
+        description: 'enter the domain'
+        required: true
+        type: string
+      build_description:
+        description: 'Description of the build'
+        required: true
+        type: string
+      docker_tags:
+        description: 'Tags for Docker images (comma-separated)'
+        required: true
+        type: string
+      branch_type:
+        description: 'Type the required branch'
+        required: true
+        type: string
+  jobs:
+        
+     build_and_deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Increment version in package.json
+        run: |
+           cd webapp
+           current_version=$(jq -r '.version' package.json)
+           new_version=$(echo $current_version | awk -F. '{$NF+=1; OFS="."; print $0}')
+           jq --arg new_version "$new_version" '.version = $new_version' package.json > package.json.tmp
+           mv package.json.tmp package.json
+      
+      - name: Commit version update
+        run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+          git add webapp/package.json
+          git commit -m "Increment version"
+          git push origin master
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID_DEV }}
+          aws-region: us-east-1
+
+   
+
+      - name: Build Docker Images
+        run: docker-compose -f compose.yaml build
+          
+      - name: Upload out.zip to S3
+        run: |
+           current_timestamp=$(date +"%m%d%Y%H%M")
+           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out-${current_timestamp}.zip
+           aws s3 cp out.zip s3://dev-frontm-downloads/olg-docker/out.zip
+
