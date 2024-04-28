@@ -68,10 +68,23 @@ jobs:
          echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
  
  
-      - name: Tag Docker images
+       - name: Tag Docker images
         run: |
-          docker tag ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
-          docker tag ${{ steps.fetch_image_info.outputs.image_name_webapp }}:${{ steps.fetch_image_info.outputs.image_tag_webapp }} soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+          if [[ "$(docker images -q ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} 2> /dev/null)" ]]; then
+            echo "Image ${IMAGE_NAME_EDGE}:${IMAGE_TAG_EDGE} already exists. Tagging as ${{ github.event.inputs.docker_tags }}."
+            docker tag ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+          else
+            echo "Image ${IMAGE_NAME_EDGE}:${IMAGE_TAG_EDGE} does not exist. Tagging with provided tag."
+            docker tag edge:latest soumyanaveen/edge:${{ github.event.inputs.docker_tags }}
+          fi
+
+          if [[ "$(docker images -q ${{ steps.fetch_image_info.outputs.image_name_webapp }}:${{ steps.fetch_image_info.outputs.image_tag_webapp }} 2> /dev/null)" ]]; then
+            echo "Image ${IMAGE_NAME_WEBAPP}:${IMAGE_TAG_WEBAPP} already exists. Tagging as ${{ github.event.inputs.docker_tags }}."
+            docker tag ${{ steps.fetch_image_info.outputs.image_name_webapp }}:${{ steps.fetch_image_info.outputs.image_tag_webapp }} soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+          else
+            echo "Image ${IMAGE_NAME_WEBAPP}:${IMAGE_TAG_WEBAPP} does not exist. Tagging with provided tag."
+            docker tag webapp:latest soumyanaveen/webapp:${{ github.event.inputs.docker_tags }}
+          fi
 
       - name: Backup Compose File to S3
         run: |
