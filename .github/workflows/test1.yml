@@ -53,8 +53,7 @@ jobs:
       - name: Build Docker Images
         run: docker-compose -f compose.yaml build
           
-      - name: Build Docker images
-        run: docker-compose -f compose.yaml build
+      
       - name: Fetch image name and tag from Compose file
         id: fetch_image_info
         run: |
