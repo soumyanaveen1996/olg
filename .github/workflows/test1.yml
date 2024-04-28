@@ -67,7 +67,7 @@ jobs:
          echo "::set-output name=image_tag_webapp::$IMAGE_TAG_WEBAPP"
  
  
-       - name: Tag Docker images
+      - name: Tag Docker images
         run: |
           if [[ "$(docker images -q ${{ steps.fetch_image_info.outputs.image_name_edge }}:${{ steps.fetch_image_info.outputs.image_tag_edge }} 2> /dev/null)" ]]; then
             echo "Image ${IMAGE_NAME_EDGE}:${IMAGE_TAG_EDGE} already exists. Tagging as ${{ github.event.inputs.docker_tags }}."
