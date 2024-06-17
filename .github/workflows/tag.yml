@@ -1,0 +1,11 @@
+name: Dev2 Pipeline
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to run the pipeline for 
+        required: false
