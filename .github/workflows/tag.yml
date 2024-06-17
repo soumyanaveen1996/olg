@@ -7,5 +7,32 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to run the pipeline for 
+        description: 'Tag to run the pipeline for'
         required: false
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Install dependencies
+        run: npm install --unsafe-perm
+
+      - name: Build production build
+        run: |
+          export NODE_OPTIONS=--
